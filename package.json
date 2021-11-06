@@ -29,8 +29,7 @@
     "serve": "wds -r build --watch",
     "test": "web-test-runner",
     "test:watch": "web-test-runner --watch",
-    "lint": "eslint . --ext .ts --fix",
-    "deploy": "rsync -avz --delete dist/ home.silve.net:/home/robert/deploy/compose-guitar.com/"
+    "lint": "eslint . --ext .ts --fix"
   },
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
