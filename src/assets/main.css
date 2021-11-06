@@ -1,0 +1,64 @@
+:root {
+
+
+    --color-error-h: 7;
+    --color-error-s: 89%;
+    --color-error-l: 62%;
+    --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
+
+    --color-background: #fffffe;
+    --color-background-secondary: #f2f2f2;
+    --color-text: #1b2d45;
+    --color-text-secondary: #fde24f;
+    --color-headline: #00214d;
+    --color-button: #00ebc7;
+    --color-button-text: var(--color-headline);
+    --color-button-text-disabled: #ff5470;
+    --border-radius: 4px;
+
+    --input-border: var(--color-headline);
+    --input-focus-h: 350;
+    --input-focus-s: 67%;
+    --input-focus-l: 60%;
+    --input-focus-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+
+    --grid-border-color: var(--color-headline);
+
+    --icon-size: 1.5em;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: .8em;
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    -webkit-user-select: none;
+}
+
+
+
+

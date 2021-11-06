@@ -1,0 +1,10 @@
+@page  {
+    margin: 10%;
+    size: landscape;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    padding: 0;
+}

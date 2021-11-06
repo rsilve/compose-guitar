@@ -1,0 +1,54 @@
+export interface IStateDownload {
+    filename?: string
+    ready?: boolean
+}
+
+export interface IStateEditor {
+    grid_text?: string
+    title?: string
+}
+
+export interface IStateTrack {
+    grid_text?: string
+    title?: string
+    updated_at?: string
+    saved_at?: string
+    id?: string
+}
+
+export interface IStateV1 {
+    grid_text?: string;
+    title?: string
+    download?: IStateDownload
+    upload?: boolean
+    save_as?: boolean
+    gallery?: boolean
+    notification?: string
+    zoom: number
+    editor?: IStateEditor;
+}
+
+
+type IStateVersion = "v2"
+export const STATE_VERSION: IStateVersion = "v2"
+
+export interface IState {
+    version: IStateVersion
+    track?: IStateTrack
+    download?: IStateDownload
+    gallery?: boolean
+    notification?: string
+    zoom: number
+    editor?: IStateEditor;
+    help_open?: boolean
+    confirm_save?: boolean
+    transpose: number
+}
+
+export function default_state(): IState {
+    return  {
+        version: STATE_VERSION,
+        zoom: 100,
+        transpose: 0,
+    }
+}
