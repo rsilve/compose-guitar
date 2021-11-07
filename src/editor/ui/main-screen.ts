@@ -43,12 +43,12 @@ class MainScreen extends LitElement {
         }
     }
 
-    store_callback(state: IState): void {
-        this._on_boarding_enabled = !state.track
-        this._title = state.track?.title
-        this._grid_text = state.track?.grid_text
-        this._zoom = state.zoom
-        this._transpose = state.transpose
+    store_callback(st: IState): void {
+        this._on_boarding_enabled = !st.track
+        this._title = st.track?.title
+        this._grid_text = st.track?.grid_text
+        this._zoom = st.zoom
+        this._transpose = st.transpose
     }
 
 }

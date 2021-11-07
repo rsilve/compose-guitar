@@ -48,7 +48,7 @@ class TrackGallery extends LitElement {
     list: Record<string, string> = {}
 
     @property({attribute: false})
-    remove_handler: (id: string) => void = () => {}
+    remove_handler: (id: string) => void = () => { /* do nothing by default */ }
 
     _generate_handler_select(id: string) {
         return (): void => {
