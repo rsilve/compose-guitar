@@ -1,5 +1,5 @@
 import {expect, fixture, html} from "@open-wc/testing";
-import TransposeGrid from "../transpose";
+import TransposeGrid from "../TransposeGrid";
 
 suite("transpose element", () => {
 

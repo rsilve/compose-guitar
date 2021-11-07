@@ -4,7 +4,7 @@ import icon_style from "./icon_style";
 
 
 @customElement('new-working-session-icon')
-class NewWorkingSession extends LitElement {
+class NewWorkingSessionIcon extends LitElement {
 
     static styles = [
         icon_style,
@@ -25,4 +25,4 @@ class NewWorkingSession extends LitElement {
 
 }
 
-export default NewWorkingSession
+export default NewWorkingSessionIcon

@@ -5,7 +5,7 @@ import {noPrintStyles} from "./styles/no_print";
 import './menu/Menu'
 import './main-screen'
 import './zoom-grid'
-import './transpose'
+import './TransposeGrid'
 import './modals/Modals'
 import './notification/compose-notification'
 import './compose-keys'
