@@ -82,6 +82,17 @@ suite("Parse chords", () => {
         expect(chord.valid).to.be.true
     })
 
+    test("Parse simple + modifier", () => {
+        const chord = new Chord("A+5");
+        expect(chord.name).to.be.equal("A+5")
+        expect(chord.base).to.be.equal("A")
+        expect(chord.base_modifier).to.be.null
+        expect(chord.color).to.be.null
+        expect(chord.extension).to.be.equal("+5")
+        expect(chord.external_base).to.be.null
+        expect(chord.valid).to.be.true
+    })
+
     test("Parse base", () => {
         const base = ["A", "B", "C", "D", "E", "F", "G"];
         for (const b of base) {
