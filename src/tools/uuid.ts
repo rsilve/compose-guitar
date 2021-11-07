@@ -3,7 +3,9 @@ export function uuid(): string {
     let random: number;
 
     for (let i: number = 0; i < 32; i++) {
-        random = Math.random() * 16 | 0;
+        const crypto = window.crypto;
+        const array = new Uint32Array(1);
+        random = crypto.getRandomValues(array)[0] * 16 | 0;
 
         if (i == 8 || i == 12 || i == 16 || i == 20) {
             uuid += "-";

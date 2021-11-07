@@ -1,6 +1,6 @@
 import Chord from "./Chord";
 
-const measure_regexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]+\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/
+const measure_regexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]{1,32}\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/
 
 class Measure {
     private _raw: string
