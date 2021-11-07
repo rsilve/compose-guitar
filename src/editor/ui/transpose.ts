@@ -75,7 +75,7 @@ class TransposeGrid extends LitElement {
         const cb = (st: IState) => {
             this._transpose = st.transpose || 0
         }
-        this.addController(new DispatcherController(this, cb.bind(this)))
+        this.addController(new DispatcherController(cb.bind(this)))
     }
 
     @state()
