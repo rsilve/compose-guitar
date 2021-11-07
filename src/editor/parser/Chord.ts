@@ -1,4 +1,4 @@
-const chord_regexp = new RegExp("^([ABCDEFG])([b#])?(m)?((-|\\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M)*)(\\/([ABCDEFG])([b#])?)?$")
+const chord_regexp = /^([ABCDEFG])([b#])?(m)?((-|\\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M)*)(\/([ABCDEFG])([b#])?)?$/
 const base_score: Record<string, number> = {
     "A": 0, "A#": 1, "Ab": 11,
     "B": 2, "Bb": 1,
