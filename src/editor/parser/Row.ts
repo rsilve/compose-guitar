@@ -1,7 +1,7 @@
 import Measure from "./Measure";
 
 const row_regexp = /(\|{1,2})?[^|]+(\|{1,2})?/g
-const row_invalid_regexp = new RegExp("\\|\\s\\||\\|\\|\\|")
+const row_invalid_regexp = /\|\s\||\|\|\|/
 
 class Row {
 

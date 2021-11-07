@@ -4,7 +4,7 @@ import {save_needed} from "../state_tools";
 suite("state tool", () => {
 
     test("need_save undefined", () => {
-        const need_save = save_needed(undefined)
+        const need_save = save_needed()
         expect(need_save).to.be.false
     })
 
