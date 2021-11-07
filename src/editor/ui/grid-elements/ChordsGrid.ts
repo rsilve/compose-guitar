@@ -6,14 +6,14 @@ import {repeat_end, repeat_start} from "./repeat";
 import Grid from "../../parser/Grid";
 import Row from "../../parser/Row";
 import Measure from "../../parser/Measure";
-import './measure1'
-import './measure2'
-import './measure3'
-import './measure4'
-import './measure5'
-import './measure6'
-import './measure7'
-import './measure8'
+import './MeasureElement1'
+import './MeasureElement2'
+import './MeasureElement3'
+import './MeasureElement4'
+import './MeasureElement5'
+import './MeasureElement6'
+import './MeasureElement7'
+import './MeasureElement8'
 
 @customElement('chords-grid')
 class ChordsGrid extends LitElement {

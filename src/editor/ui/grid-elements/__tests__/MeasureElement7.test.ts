@@ -1,5 +1,5 @@
 import {expect, fixture, html} from "@open-wc/testing";
-import "../measure7";
+import "../MeasureElement7";
 import Measure from "../../../parser/Measure";
 
 suite("Measure7", () => {

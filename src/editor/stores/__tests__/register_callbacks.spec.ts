@@ -1,5 +1,5 @@
 import {expect} from '@open-wc/testing'
-import register_callbacks from "../register";
+import register_callbacks from "../register_callbacks";
 import {registered} from "../../../stores/dispatcher";
 import {
     ga_notification_callback,
