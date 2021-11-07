@@ -1,6 +1,6 @@
 import Chord from "./Chord";
 
-const measure_regexp = new RegExp("^(\\|{1,2})?(:)?(\\((\\w)\\))?\\s*(([^:|\\s]+\\s*){1,4})\\s*(:)?(\\|{1,2})?$")
+const measure_regexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]+\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/
 
 class Measure {
     private _raw: string
@@ -57,8 +57,8 @@ class Measure {
 
     private computeMeasureType() {
         const count = this.chords.length;
-        const duration  = this.chords[0].duration;
-        let duration2  = 0;
+        const duration = this.chords[0].duration;
+        let duration2 = 0;
         if (count == 1) {
             this.type = 1;
         }
