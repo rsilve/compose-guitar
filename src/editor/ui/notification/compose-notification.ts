@@ -45,7 +45,7 @@ class ComposeNotification extends LitElement {
                 }, 3000)
             }
         }
-        new DispatcherController(this, cb.bind(this));
+        this.addController(new DispatcherController(cb.bind(this)));
     }
 
     @state()

@@ -21,7 +21,7 @@ class ComposeKeys extends LitElement {
         const cb = (st: IState) => {
             this._state = {...st}
         }
-        new DispatcherController(this, cb.bind(this));
+        this.addController(new DispatcherController(cb.bind(this)));
     }
 
     @state()

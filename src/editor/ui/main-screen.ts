@@ -26,7 +26,7 @@ class MainScreen extends LitElement {
 
     constructor() {
         super();
-        new DispatcherController(this, this.store_callback.bind(this))
+        this.addController(new DispatcherController(this.store_callback.bind(this)))
     }
 
     render(): unknown {

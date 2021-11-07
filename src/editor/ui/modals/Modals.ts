@@ -64,7 +64,7 @@ class Modals extends LitElement {
             this._help_open = !!st.help_open
             this._confirm_save_enabled = !!st.confirm_save
         }
-        new DispatcherController(this, cb.bind(this))
+        this.addController(new DispatcherController(cb.bind(this)))
     }
 
     private _dispatch_library_select(e: CustomEvent): void {

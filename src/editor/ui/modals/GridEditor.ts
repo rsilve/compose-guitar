@@ -134,7 +134,7 @@ class GridEditor extends LitElement {
             this._grid_title = editor?.title
             this._original_title = this._grid_title
         }
-        new DispatcherController(this, cb.bind(this))
+        this.addController(new DispatcherController(cb.bind(this)))
     }
 
 

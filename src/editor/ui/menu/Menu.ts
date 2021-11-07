@@ -28,7 +28,7 @@ class Menu extends LitElement {
         const cb = ({track}: IState): void => {
             this._need_save = save_needed(track)
         }
-        new DispatcherController(this, cb.bind(this))
+        this.addController(new DispatcherController(cb.bind(this)))
     }
 
     @state()

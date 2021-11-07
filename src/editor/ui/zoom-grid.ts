@@ -60,7 +60,7 @@ class ZoomGrid extends LitElement {
         const cb = (st: IState) => {
             this._zoom = st.zoom || DEFAULT_ZOOM
         }
-        new DispatcherController(this, cb.bind(this));
+        this.addController(new DispatcherController(cb.bind(this)));
     }
 
     @state()
