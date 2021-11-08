@@ -22,7 +22,7 @@
   "scripts": {
     "clean": "rm -rf build dist",
     "build": "rm -rf build/; npm run build:assets; tsc",
-    "build:assets": "mkdir -p build; cp -R src/editor.html src/editor/sw.js src/robots.txt src/assets build/",
+    "build:assets": "mkdir -p build; cp -R src/index.html src/editor/sw.js src/robots.txt src/assets build/",
     "build:assets:watch": "npm-watch",
     "build:watch": "rm -rf build/; npm run build:assets; tsc --watch",
     "build:prod": "rm -rf dist/; npm run build; rollup -c",
@@ -36,7 +36,6 @@
   "devDependencies": {
     "@open-wc/testing": "^2.5.33",
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "@types/gtag.js": "^0.0.6",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "@web/dev-server": "^0.1.17",

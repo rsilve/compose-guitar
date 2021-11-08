@@ -1,11 +1,4 @@
-import {
-    INIT_APP,
-    SAVE_AS_START,
-    TRACK_EDIT,
-    TRACK_EDIT_APPLY,
-    TRANSPOSE_CHANGE,
-    ZOOM_CHANGE
-} from "../../actions/actions";
+import {INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE} from "../../actions/actions";
 import {get_last_state} from "./gallery_tools";
 import {IState} from "../state";
 import {Action} from "../../../actions/Action";
@@ -18,31 +11,6 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
         }
     }
 
-    return Promise.resolve(state)
-}
-
-export function ga_notification_callback(action: Action, state: IState): Promise<IState> {
-    if (action.action_type === TRACK_EDIT) {
-        gtag('event', 'edit', {
-            'event_category':'Track',
-            //'event_label': <label>,
-            //'value': <value>
-        });
-    }
-    if (action.action_type === TRACK_EDIT_APPLY) {
-        gtag('event', 'update', {
-            'event_category':'Track',
-            //'event_label': <label>,
-            //'value': <value>
-        });
-    }
-    if (action.action_type === SAVE_AS_START) {
-        gtag('event', 'save_as', {
-            'event_category':'Track',
-            //'event_label': <label>,
-            //'value': <value>
-        });
-    }
     return Promise.resolve(state)
 }
 

@@ -11,7 +11,7 @@ export default {
         // Entry point for application build; can specify a glob to build multiple
         // HTML files for non-SPA app
         html({
-            input: ['build/editor.html'],
+            input: ['build/index.html'],
             extractAssets: false,
             minify: true,
         }),
