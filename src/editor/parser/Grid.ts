@@ -10,7 +10,7 @@ class Grid {
         if (raw) {
             const trimmed = raw?.trim();
             this._raw = trimmed
-            const rows = trimmed.split(/\n|;\s*?\n?/);
+            const rows = trimmed.split(/\n|;\s*\n?/);
             for (const r of rows) {
                 const row = new Row(r);
                 this.rows.push(row)
