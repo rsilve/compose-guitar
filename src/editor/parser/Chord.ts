@@ -1,4 +1,6 @@
-const chord_regexp = /^([ABCDEFG])([b#])?(m)?((-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5})(\/([ABCDEFG])([b#])?)?$/
+const chord_regexp = /^([ABCDEFG])([b#])?(m)?([^\s/]{0,20})(\/([ABCDEFG])([b#])?)?$/
+const chord_extension_regexp = /^(-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5}$/
+
 const base_score: Record<string, number> = {
     "A": 0, "A#": 1, "Ab": 11,
     "B": 2, "Bb": 1,
@@ -27,13 +29,15 @@ class Chord {
         this._name = name.trim();
         const match = this.name.match(chord_regexp);
         if (match) {
-            this.base = match[1] || null
-            this.base_modifier = match[2] || null
-            this.color = match[3] || null
-            this.extension = match[4] || null
-            this.external_base = match[7] || null
-            this.external_base_modifier = match[8] || null
-            this.valid = true
+            const extension_match = this._parse_extension(match[4] || null)
+            if (extension_match) {
+                this.base = match[1] || null
+                this.base_modifier = match[2] || null
+                this.color = match[3] || null
+                this.external_base = match[6] || null
+                this.external_base_modifier = match[7] || null
+                this.valid = true
+            }
         }
         if (this.name === "%") {
             this._same = true
@@ -43,9 +47,21 @@ class Chord {
         if (this.name === "X") {
             this._empty = true
         }
+
         if (duration) {
             this.duration = duration
         }
+    }
+
+    _parse_extension(extension: string | null): boolean {
+        if (!extension) {
+            return true;
+        }
+        const match = extension.match(chord_extension_regexp)
+        if (match) {
+            this.extension = match[0] || null
+        }
+        return !!match;
     }
 
     get name(): string {

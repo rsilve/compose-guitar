@@ -6,9 +6,8 @@ self.addEventListener('install', function (event) {
         caches.open(cacheName).then(cache => {
             return cache.addAll([
                 `/`,
-                `/editor.html`,
+                `/index.html`,
                 `/editor/editor.js`,
-                `/uuid.js`,
                 `/assets/main.css`,
                 `/assets/print.css`,
                 `/assets/favicon.ico`,
