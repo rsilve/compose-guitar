@@ -17,12 +17,12 @@ suite("Parse chords", () => {
     test("Parse simple", () => {
         const chord = new Chord("A");
         expect(chord.name).to.be.equal("A")
+        expect(chord.valid).to.be.true
         expect(chord.base).to.be.equal("A")
         expect(chord.base_modifier).to.be.null
         expect(chord.color).to.be.null
         expect(chord.extension).to.be.null
         expect(chord.external_base).to.be.null
-        expect(chord.valid).to.be.true
     })
 
     test("Parse simple + modifier", () => {
