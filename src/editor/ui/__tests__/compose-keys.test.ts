@@ -94,5 +94,30 @@ suite("compose-key element", () => {
         fixtureCleanup()
     });
 
+    test('add track_new event', async () => {
+        reset_dispatcher(st)
+        register(track_callback)
+        const promise = new Promise(resolve => {
+            connect((state: IState) => {
+                console.log(state)
+                resolve(state.editor)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            ctrlKey: true,
+            key: "n"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.not.be.undefined
+        })
+        fixtureCleanup()
+    });
+
 })
 
