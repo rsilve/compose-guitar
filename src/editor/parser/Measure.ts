@@ -92,16 +92,8 @@ class Measure {
         return this._raw;
     }
 
-    set raw(value: string) {
-        this._raw = value;
-    }
-
     get chords(): Chord[] {
         return this._chords;
-    }
-
-    set chords(value: Chord[]) {
-        this._chords = value;
     }
 
     get valid(): boolean {

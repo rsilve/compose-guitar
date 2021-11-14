@@ -46,7 +46,7 @@ class ComposeKeys extends LitElement {
 
             this.paste_key(e);
 
-            this.close_modal_key(e);
+            ComposeKeys.close_modal_key(e);
         })
     }
 

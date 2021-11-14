@@ -92,8 +92,8 @@ class Modals extends LitElement {
             <track-gallery
                     class="modal"
                     .list="${gallery_dict()}"
-                    @select="${this._dispatch_library_select}"
-                    @remove="${this._dispatch_library_remove}"
+                    @select="${Modals._dispatch_library_select}"
+                    @remove="${Modals._dispatch_library_remove}"
                     @close="${action_gallery_close}"
             ></track-gallery>`
         }
