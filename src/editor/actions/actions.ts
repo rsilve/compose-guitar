@@ -3,8 +3,8 @@ import {Action, publish_action} from "../../actions/Action";
 
 
 export const INIT_APP = "INIT_APP"
-export const action_init_app = (): void => {
-    publish_action(new Action(INIT_APP))
+export const action_init_app = (): Promise<void> => {
+    return publish_action(new Action(INIT_APP))
 }
 
 export const UPLOAD_FROM_GALLERY = "UPLOAD_FROM_GALLERY"
@@ -56,8 +56,8 @@ export const action_zoom_change = (zoom: number): void => {
 }
 
 export const TRANSPOSE_CHANGE = "TRANSPOSE_CHANGE"
-export const action_transpose_change = (transpose: number): void => {
-    publish_action(new Action(TRANSPOSE_CHANGE,{transpose: transpose}))
+export const action_transpose_change = (transpose: number): Promise<void> => {
+    return publish_action(new Action(TRANSPOSE_CHANGE,{transpose: transpose}))
 }
 
 export interface IPayloadEditor {
