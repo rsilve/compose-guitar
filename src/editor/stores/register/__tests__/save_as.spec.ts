@@ -12,6 +12,10 @@ suite("Register save_as", () => {
     test("save as start", async () => {
         await save_as_callback(new Action(SAVE_AS_START), {...st});
         const fromGallery = get_from_gallery("title");
+        expect(fromGallery?.track).to.be.not.null
+        expect(fromGallery?.track?.id).to.be.not.null
+        expect(fromGallery?.track?.saved_at).to.be.not.null
+        delete fromGallery?.track?.saved_at
         expect(fromGallery).to.deep.equal(st)
     })
 

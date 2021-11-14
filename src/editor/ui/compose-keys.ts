@@ -16,12 +16,15 @@ import {
 @customElement('compose-keys')
 class ComposeKeys extends LitElement {
 
+    private readonly _listener_handler: (e: KeyboardEvent) => void
+
     constructor() {
         super()
         const cb = (st: IState) => {
             this._state = {...st}
         }
         this.addController(new DispatcherController(cb.bind(this)));
+        this._listener_handler = this._listener.bind(this)
     }
 
     @state()
@@ -29,25 +32,32 @@ class ComposeKeys extends LitElement {
 
     connectedCallback(): void {
         super.connectedCallback()
-        document.addEventListener("keydown", (e) => {
-            this.edit_key(e);
+        document.addEventListener("keydown", this._listener_handler)
+    }
 
-            this.save_as_start_key(e);
+    disconnectedCallback(): void {
+        super.disconnectedCallback();
+        document.removeEventListener("keydown", this._listener_handler)
+    }
 
-            this.gallery_open_key(e);
+    _listener(e: KeyboardEvent): void {
+        this.edit_key(e);
 
-            this.track_new_key(e);
+        this.save_as_start_key(e);
 
-            this.zoom_incr_key(e);
+        this.gallery_open_key(e);
 
-            this.zoom_decr_key(e);
+        this.track_new_key(e);
 
-            this.copy_key(e);
+        this.zoom_incr_key(e);
 
-            this.paste_key(e);
+        this.zoom_decr_key(e);
 
-            ComposeKeys.close_modal_key(e);
-        })
+        this.copy_key(e);
+
+        this.paste_key(e);
+
+        ComposeKeys.close_modal_key(e);
     }
 
     private static close_modal_key(e: KeyboardEvent) {
@@ -107,7 +117,7 @@ class ComposeKeys extends LitElement {
     private edit_key(e: KeyboardEvent) {
         if (e.ctrlKey && e.key === "e" && this._state) {
             const {track = {}} = this._state
-            action_track_edit(track)
+            action_track_edit(track).catch(reason => console.log(reason))
         }
     }
 
@@ -116,7 +126,6 @@ class ComposeKeys extends LitElement {
             <help-icon @click="${action_help_open}" title="Shortcut help"></help-icon>
         `
     }
-
 }
 
 export default ComposeKeys

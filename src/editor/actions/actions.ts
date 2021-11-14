@@ -83,8 +83,8 @@ export const action_track_new_cancel = (): void => {
 
 
 export const TRACK_EDIT = "TRACK_EDIT"
-export const action_track_edit = (track_payload: IPayloadEditor): void => {
-    publish_action(new Action(TRACK_EDIT, track_payload))
+export const action_track_edit = (track_payload: IPayloadEditor): Promise<void> => {
+    return publish_action(new Action(TRACK_EDIT, track_payload))
 }
 
 export const TRACK_EDIT_CANCEL = "TRACK_EDIT_CANCEL"
