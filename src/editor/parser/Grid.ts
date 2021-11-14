@@ -8,7 +8,7 @@ class Grid {
 
     constructor(raw: string | undefined) {
         if (raw) {
-            const trimmed = raw?.trim();
+            const trimmed = raw.trim();
             this._raw = trimmed
             const rows = trimmed.split(/\n|;\s*\n?/);
             for (const r of rows) {
@@ -34,10 +34,6 @@ class Grid {
 
     get rows(): Row[] {
         return this._rows;
-    }
-
-    set rows(value: Row[]) {
-        this._rows = value;
     }
 
     get valid(): boolean {
