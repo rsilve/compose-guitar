@@ -198,6 +198,7 @@ suite("compose-key element", () => {
         register(zoom_change_callback)
         const promise = new Promise(resolve => {
             connect((state: IState) => {
+                console.log(state)
                 resolve(state.zoom)
             })
         })
