@@ -19,5 +19,13 @@ suite("Parse grid", () => {
         expect(measure.rows).to.deep.equal([new Row("A"), new Row("B")])
     })
 
+    test("Parse invalid", () => {
+        const measure = new Grid("N");
+        expect(measure.raw).to.be.equal("N")
+        expect(measure.valid).to.be.false
+        expect(measure.reason).to.be.equal("N")
+        expect(measure.rows).to.deep.equal([new Row("N")])
+    })
+
 
 })

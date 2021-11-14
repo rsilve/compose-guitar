@@ -42,10 +42,6 @@ class Row {
         return this._measure;
     }
 
-    set measure(value: Measure[]) {
-        this._measure = value;
-    }
-
     get valid(): boolean {
         return this._valid;
     }
