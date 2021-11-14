@@ -32,7 +32,7 @@ self.addEventListener('fetch', event => {
         caches.open(cacheName)
             .then(cache => cache.match(event.request, {ignoreSearch: true}))
             .then(response => {
-                return response || fetch(event.request);
+                return Promise.resolve(response) || fetch(event.request);
             })
     );
 });
