@@ -12,6 +12,7 @@ suite("Parse chords", () => {
         expect(chord.extension).to.be.null
         expect(chord.external_base).to.be.null
         expect(chord.valid).to.be.false
+        expect(chord.empty).to.be.false
     })
 
     test("Parse simple", () => {
@@ -23,6 +24,7 @@ suite("Parse chords", () => {
         expect(chord.color).to.be.null
         expect(chord.extension).to.be.null
         expect(chord.external_base).to.be.null
+        expect(chord.empty).to.be.false
     })
 
     test("Parse simple + modifier", () => {
@@ -194,5 +196,17 @@ suite("Parse chords", () => {
         const orig = new Chord('A/G')
         const transposed = orig.transpose(4)
         expect(transposed.name).to.be.equal('C#/B')
+    })
+
+    test("Parse empty", () => {
+        const chord = new Chord("X");
+        expect(chord.name).to.be.equal("X")
+        expect(chord.valid).to.be.true
+        expect(chord.base).to.be.null
+        expect(chord.base_modifier).to.be.null
+        expect(chord.color).to.be.null
+        expect(chord.extension).to.be.null
+        expect(chord.external_base).to.be.null
+        expect(chord.empty).to.be.true
     })
 })

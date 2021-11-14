@@ -13,7 +13,7 @@ const base_score: Record<string, number> = {
 
 class Chord {
 
-    private _name: string;
+    private readonly _name: string;
     private _base: string | null = null
     private _base_modifier: string | null = null
     private _color: string | null = null
@@ -21,8 +21,8 @@ class Chord {
     private _external_base: string | null = null
     private _external_base_modifier: string | null = null
     private _valid = false
-    private _same = false
-    private _empty = false
+    private readonly _same: boolean = false
+    private readonly _empty: boolean = false
     private _duration = 1
 
     constructor(name: string, duration?: number) {
@@ -31,7 +31,7 @@ class Chord {
         if (match) {
             const extension_match = this._parse_extension(match[4] || null)
             if (extension_match) {
-                this.base = match[1] || null
+                this.base = match[1]
                 this.base_modifier = match[2] || null
                 this.color = match[3] || null
                 this.external_base = match[6] || null
@@ -46,6 +46,7 @@ class Chord {
         }
         if (this.name === "X") {
             this._empty = true
+            this.valid = true
         }
 
         if (duration) {
@@ -59,17 +60,13 @@ class Chord {
         }
         const match = extension.match(chord_extension_regexp)
         if (match) {
-            this.extension = match[0] || null
+            this.extension = match[0]
         }
         return !!match;
     }
 
     get name(): string {
         return this._name;
-    }
-
-    set name(value: string) {
-        this._name = value;
     }
 
     get base(): string | null {
