@@ -13,13 +13,13 @@ export const action_upload_from_gallery = (id: string): void => {
 }
 
 export const SAVE_AS_START = "SAVE_AS_START"
-export const action_save_as_start = (): void => {
-    publish_action(new Action(SAVE_AS_START))
+export const action_save_as_start = (): Promise<void> => {
+    return publish_action(new Action(SAVE_AS_START))
 }
 
 export const SAVE_AS_START_AND_NEW = "SAVE_AS_START_AND_NEW"
-export const action_save_as_start_and_new = (): void => {
-    publish_action(new Action(SAVE_AS_START_AND_NEW))
+export const action_save_as_start_and_new = (): Promise<void> => {
+    return publish_action(new Action(SAVE_AS_START_AND_NEW))
 }
 
 export const GALLERY_OPEN = "GALLERY_OPEN"
@@ -93,18 +93,18 @@ export const action_track_edit_cancel = (): void => {
 }
 
 export const TRACK_EDIT_APPLY = "TRACK_EDIT_APPLY"
-export const action_track_edit_apply = (track_payload: IPayloadEditor): void => {
-    publish_action(new Action(TRACK_EDIT_APPLY, track_payload))
+export const action_track_edit_apply = (track_payload: IPayloadEditor): Promise<void> => {
+    return publish_action(new Action(TRACK_EDIT_APPLY, track_payload))
 }
 
 export const TRACK_COPY = "TRACK_COPY"
-export const action_track_copy = (track_payload: IPayloadEditor): void => {
-    publish_action(new Action(TRACK_COPY, track_payload))
+export const action_track_copy = (track_payload: IPayloadEditor): Promise<void> => {
+    return publish_action(new Action(TRACK_COPY, track_payload))
 }
 
 export const TRACK_PASTE = "TRACK_PASTE"
-export const action_track_paste = (): void => {
-    publish_action(new Action(TRACK_PASTE))
+export const action_track_paste = (): Promise<void> => {
+    return publish_action(new Action(TRACK_PASTE))
 }
 
 

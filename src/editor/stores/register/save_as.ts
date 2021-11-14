@@ -1,4 +1,4 @@
-import {action_notification_open, SAVE_AS_START, SAVE_AS_START_AND_NEW} from "../../actions/actions";
+import {SAVE_AS_START, SAVE_AS_START_AND_NEW} from "../../actions/actions";
 import {add_to_gallery} from "./gallery_tools";
 import {IState} from "../state";
 import {uuid} from "../../../tools/uuid";
@@ -6,13 +6,14 @@ import {Action} from "../../../actions/Action";
 
 function save(state: IState): void {
     if (state.track && state.track.title) {
-        state.track.saved_at = new Date().toISOString()
+        const {track = {}} = state
+        const tr = {...track, saved_at: new Date().toISOString()}
         if (!state.track.id) {
-            state.track.id = uuid()
+            tr.id = uuid()
+            state = {...state, track: tr}
         }
-        state.confirm_save = undefined
-        add_to_gallery(state.track, state)
-        action_notification_open("Save completed")
+        state = {...state, confirm_save: undefined}
+        add_to_gallery(tr, state)
     }
 }
 

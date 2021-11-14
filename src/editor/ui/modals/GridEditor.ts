@@ -11,7 +11,7 @@ import {DispatcherController} from "../../../stores/lit_controller";
 import {IState} from "../../stores/state";
 import Grid from "../../parser/Grid";
 import {exists_in_gallery} from "../../stores/register/gallery_tools";
-import {action_track_edit_apply, action_track_edit_cancel} from "../../actions/actions";
+import {action_notification_open, action_track_edit_apply, action_track_edit_cancel} from "../../actions/actions";
 
 @customElement('grid-editor')
 class GridEditor extends LitElement {
@@ -174,7 +174,7 @@ class GridEditor extends LitElement {
                 title: this._grid_title,
                 grid_text: this._value,
                 updated_at: new Date().toISOString()
-            })
+            }).then(() => action_notification_open("Track updated"))
         } else {
             console.log("grid text is empty: close")
             action_track_edit_cancel()

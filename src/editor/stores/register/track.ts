@@ -1,20 +1,21 @@
 import {
-    action_notification_open,
     IPayloadEditor,
-    MODALS_CLOSE, TRACK_COPY,
+    MODALS_CLOSE,
+    TRACK_COPY,
     TRACK_EDIT,
     TRACK_EDIT_APPLY,
     TRACK_EDIT_CANCEL,
     TRACK_NEW,
     TRACK_NEW_CANCEL,
-    TRACK_NEW_WITHOUT_SAVE, TRACK_PASTE
+    TRACK_NEW_WITHOUT_SAVE,
+    TRACK_PASTE
 } from "../../actions/actions";
 import {IState} from "../state";
 import {save_needed} from "../../tools/state_tools";
 import {Action} from "../../../actions/Action";
 import {uuid} from "../../../tools/uuid";
 
-export function track_callback(action: Action, state: IState): Promise<IState> {
+export async function track_callback(action: Action, state: IState): Promise<IState> {
 
     if (action.action_type === TRACK_NEW) {
         const {track = {}} = state
@@ -51,27 +52,17 @@ export function track_callback(action: Action, state: IState): Promise<IState> {
             track.id = uuid()
         }
         state = {...state, track, editor: undefined}
-        action_notification_open("Track updated")
     }
 
     if (action.action_type === TRACK_COPY) {
         const {title, grid_text} = action.payload as IPayloadEditor
-        return new Promise((resolve) => {
-            navigator.clipboard
-                .writeText(JSON.stringify({title, grid_text}))
-                .then(() => resolve(state))
-                .then(() => action_notification_open("Song copied"))
-        });
+        await navigator.clipboard.writeText(JSON.stringify({title, grid_text}))
     }
 
     if (action.action_type === TRACK_PASTE) {
-        return new Promise((resolve) => {
-            navigator.clipboard
-                .readText()
-                .then((t) => state.track = JSON.parse(t))
-                .then(() => resolve(state))
-                .then(() => action_notification_open("Pasted"))
-        });
+        await navigator.clipboard
+            .readText()
+            .then((t) => state.track = JSON.parse(t))
     }
 
     return Promise.resolve(state)

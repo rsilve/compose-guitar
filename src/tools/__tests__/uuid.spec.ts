@@ -9,6 +9,7 @@ suite("uuid", () => {
         expect(uuid1).to.not.be.empty
 
         const uuid2 = uuid()
+        expect(uuid2.length).to.be.equal(36)
         expect(uuid2).to.not.be.equal(uuid1)
     })
 

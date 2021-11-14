@@ -5,7 +5,7 @@ import '../../icons/help_icon'
 import {IState} from "../stores/state";
 import {DispatcherController} from "../../stores/lit_controller";
 import {
-    action_gallery_open, action_help_open, action_modals_close,
+    action_gallery_open, action_help_open, action_modals_close, action_notification_open,
     action_save_as_start,
     action_track_copy,
     action_track_edit, action_track_new, action_track_paste,
@@ -42,7 +42,7 @@ class ComposeKeys extends LitElement {
 
             this.zoom_decr_key(e);
 
-            this.cpoy_key(e);
+            this.copy_key(e);
 
             this.paste_key(e);
 
@@ -50,7 +50,7 @@ class ComposeKeys extends LitElement {
         })
     }
 
-    private close_modal_key(e: KeyboardEvent) {
+    private static close_modal_key(e: KeyboardEvent) {
         if (e.key === "Escape") {
             action_modals_close();
             e.preventDefault()
@@ -60,13 +60,15 @@ class ComposeKeys extends LitElement {
     private paste_key(e: KeyboardEvent) {
         if (e.ctrlKey && e.key === "v" && this._state) {
             action_track_paste()
+                .then(() => action_notification_open("Pasted"))
         }
     }
 
-    private cpoy_key(e: KeyboardEvent) {
+    private copy_key(e: KeyboardEvent) {
         if (e.ctrlKey && e.key === "c" && this._state) {
             const {track: {title, grid_text} = {}} = this._state
             action_track_copy({title, grid_text})
+                .then(() => action_notification_open("Song copied"))
         }
     }
 
@@ -97,7 +99,7 @@ class ComposeKeys extends LitElement {
 
     private save_as_start_key(e: KeyboardEvent) {
         if (e.ctrlKey && e.key === "s" && this._state) {
-            action_save_as_start()
+            action_save_as_start().then(() => action_notification_open("Save completed"))
             e.preventDefault()
         }
     }

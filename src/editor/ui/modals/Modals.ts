@@ -8,7 +8,11 @@ import {DispatcherController} from "../../../stores/lit_controller";
 import {
     action_gallery_close,
     action_gallery_remove,
-    action_help_close, action_save_as_start_and_new, action_track_new_cancel, action_track_new_without_save,
+    action_help_close,
+    action_notification_open,
+    action_save_as_start_and_new,
+    action_track_new_cancel,
+    action_track_new_without_save,
     action_upload_from_gallery
 } from "../../actions/actions";
 import {gallery_dict} from "../../stores/register/gallery_tools";
@@ -67,12 +71,16 @@ class Modals extends LitElement {
         this.addController(new DispatcherController(cb.bind(this)))
     }
 
-    private _dispatch_library_select(e: CustomEvent): void {
+    private static _dispatch_library_select(e: CustomEvent): void {
         action_upload_from_gallery(e.detail.id)
     }
 
-    private _dispatch_library_remove(e: CustomEvent): void {
+    private static _dispatch_library_remove(e: CustomEvent): void {
         action_gallery_remove(e.detail.id)
+    }
+
+    private _handle_save(): void {
+        action_save_as_start_and_new().then(() => action_notification_open("Save completed"))
     }
 
     render(): unknown {
@@ -104,7 +112,7 @@ class Modals extends LitElement {
                     class="modal"
                     @cancel="${action_track_new_cancel}"
                     @continue="${action_track_new_without_save}"
-                    @save="${action_save_as_start_and_new}"
+                    @save="${this._handle_save}"
             ></confirm-save>`
         }
         return html``

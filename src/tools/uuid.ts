@@ -4,8 +4,8 @@ export function uuid(): string {
 
     for (let i = 0; i < 32; i++) {
         const crypto = window.crypto;
-        const array = new Uint32Array(1);
-        random = crypto.getRandomValues(array)[0] * 16 | 0;
+        const array = new Uint8Array(1);
+        random = (crypto.getRandomValues(array)[0] | 0) % 16;
 
         if (i == 8 || i == 12 || i == 16 || i == 20) {
             id += "-";

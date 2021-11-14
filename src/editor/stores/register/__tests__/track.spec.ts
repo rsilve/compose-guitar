@@ -1,7 +1,6 @@
 import {expect} from '@open-wc/testing'
 import {
     MODALS_CLOSE,
-    NOTIFICATION_OPEN,
     TRACK_EDIT,
     TRACK_EDIT_APPLY,
     TRACK_EDIT_CANCEL,
@@ -12,10 +11,8 @@ import {
 import {state_test} from "../../../../__tests__/TestHelpers";
 import {track_callback} from "../track";
 import {Action} from "../../../../actions/Action";
-import {connect, register} from "../../../../stores/dispatcher";
-import {IState} from "../../state";
 
-suite("Upload callback", () => {
+suite("track callback", () => {
 
     const st = state_test
 
@@ -75,26 +72,29 @@ suite("Upload callback", () => {
 
     test("apply track edition", async () => {
         const {track = {}} = st
-        let action_notification_open_send = false
-        register((action, state): Promise<IState> => {
-            action_notification_open_send = action.action_type === NOTIFICATION_OPEN
-            return Promise.resolve(state)
-        })
-        const promise = new Promise<void>(resolve => {
-            connect(() => {
-                resolve()
-            })
-        })
         const payload = {
             title: "new title",
             grid_text: "new grid",
             updated_at: "now"
         }
         const state = await track_callback(new Action(TRACK_EDIT_APPLY, payload), {...st});
-        await promise
         expect(state.editor).to.be.undefined
         expect(state.track).to.deep.equal({...track, ...payload})
-        expect(action_notification_open_send).to.be.true
+    })
+
+    test("apply track edition without track id", async () => {
+        const {track = {}} = st
+        delete track.id
+        const payload = {
+            title: "new title",
+            grid_text: "new grid",
+            updated_at: "now"
+        }
+        const state = await track_callback(new Action(TRACK_EDIT_APPLY, payload), {...st});
+        expect(state.editor).to.be.undefined
+        expect(state.track?.id).to.not.be.null
+        delete state.track?.id
+        expect(state.track).to.deep.equal({...track, ...payload})
     })
 
 })

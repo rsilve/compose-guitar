@@ -8,7 +8,12 @@ import "../../../icons/gallery_icon"
 import {IState} from "../../stores/state";
 import {save_needed} from "../../tools/state_tools";
 import {DispatcherController} from "../../../stores/lit_controller";
-import {action_gallery_open, action_save_as_start, action_track_new} from "../../actions/actions";
+import {
+    action_gallery_open,
+    action_notification_open,
+    action_save_as_start,
+    action_track_new
+} from "../../actions/actions";
 
 
 @customElement('compose-menu')
@@ -34,12 +39,16 @@ class Menu extends LitElement {
     @state()
     _need_save = false;
 
+    _handle_save(): void {
+        action_save_as_start().then(() => action_notification_open("Save completed"))
+    }
+
     render(): unknown {
         return html`
             <menu-item title="save the track - Ctrl+s"
                        class="_save"
                        .dotted="${this._need_save}"
-                       @click="${action_save_as_start}">
+                       @click="${this._handle_save}">
                 <save-icon></save-icon>
             </menu-item>
             <menu-item title="Open the Library - Ctrl+l" 
