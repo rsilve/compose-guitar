@@ -5,7 +5,7 @@ const row_invalid_regexp = /\|\s\||\|\|\|/
 
 class Row {
 
-    private _raw: string
+    private readonly _raw: string
     private _measure: Measure[] = []
     private _valid = true
     private _reason: string | undefined = undefined
@@ -32,11 +32,6 @@ class Row {
     get raw(): string {
         return this._raw;
     }
-
-    set raw(value: string) {
-        this._raw = value;
-    }
-
 
     get measure(): Measure[] {
         return this._measure;

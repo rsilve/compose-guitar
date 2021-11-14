@@ -1,7 +1,7 @@
 import Row from "./Row"
 
 class Grid {
-    private _raw: string | undefined
+    private readonly _raw: string | undefined
     private _rows: Row[] = []
     private _valid = true
     private _reason: string | undefined = undefined
@@ -26,10 +26,6 @@ class Grid {
 
     get raw(): string | undefined {
         return this._raw;
-    }
-
-    set raw(value: string | undefined) {
-        this._raw = value;
     }
 
     get rows(): Row[] {
