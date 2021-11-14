@@ -11,9 +11,7 @@ suite("Register save_as", () => {
 
     test("save as start", async () => {
         const state = await save_as_callback(new Action(SAVE_AS_START), {...st});
-        console.log(state)
         const fromGallery = get_from_gallery(state.track?.id || "");
-        console.log(fromGallery)
         expect(fromGallery?.track).to.be.not.null
         expect(fromGallery?.track?.id).to.be.not.null
         expect(fromGallery?.track?.saved_at).to.be.not.null

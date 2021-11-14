@@ -16,19 +16,6 @@ export interface IStateTrack {
     id?: string
 }
 
-export interface IStateV1 {
-    grid_text?: string;
-    title?: string
-    download?: IStateDownload
-    upload?: boolean
-    save_as?: boolean
-    gallery?: boolean
-    notification?: string
-    zoom: number
-    editor?: IStateEditor;
-}
-
-
 type IStateVersion = "v2"
 export const STATE_VERSION: IStateVersion = "v2"
 

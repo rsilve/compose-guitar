@@ -1,12 +1,14 @@
 import {expect} from '@open-wc/testing'
 
 import {
-    add_to_gallery, exists_in_gallery, gallery_dict,
+    add_to_gallery,
+    exists_in_gallery,
+    gallery_dict,
     gallery_list,
-    get_from_gallery, migrateFromV1,
+    get_from_gallery,
     remove_from_gallery
 } from "../gallery_tools";
-import {IState, IStateV1, STATE_VERSION} from "../../state";
+import {STATE_VERSION} from "../../state";
 import {state_test} from "../../../../__tests__/TestHelpers";
 import {uuid} from "../../../../tools/uuid";
 
@@ -145,36 +147,6 @@ suite("Gallery tools", () => {
         expect(new_st).to.deep.equal(new_state)
         remove_from_gallery(new_state.track?.id || "")
 
-    })
-
-    test("migrate from v1 to v2", () => {
-        const st: IStateV1 = {
-            title: "title",
-            grid_text: "Em7 | A7",
-            zoom: 100
-        }
-        const result = migrateFromV1(st)
-        expect(result).to.deep.equal({
-            track: {
-                title: "title",
-                grid_text: "Em7 | A7",
-            },
-            zoom: 100
-        })
-    })
-
-    test("migrate from v2 to v2", () => {
-        const st: IState = {
-            version: STATE_VERSION,
-            track: {
-                title: "title",
-                grid_text: "Em7 | A7",
-            },
-            zoom: 100,
-            transpose: 0,
-        }
-        const result = migrateFromV1(st)
-        expect(result).to.deep.equal(st)
     })
 
     test("exists in library (empty)", () => {

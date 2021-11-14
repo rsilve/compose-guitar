@@ -1,4 +1,4 @@
-import {default_state, IState, IStateTrack, IStateV1} from "../state";
+import {default_state, IState, IStateTrack} from "../state";
 import {uuid} from "../../../tools/uuid";
 
 export function exists_in_gallery(title: string, old_title: string | undefined): boolean {
@@ -32,31 +32,11 @@ export function add_to_gallery(track: IStateTrack, state: IState): IState {
     return state
 }
 
-export function migrateFromV1(state: unknown): IState {
-
-    const {version} = state as { version: string }
-    if (version) {
-        return {...state as IState}
-    } else {
-        const {track} = state as { track: { title: string | undefined, grid_text: string | undefined } }
-        if (track) {
-            return {...state as IState}
-        } else {
-            const st = state as IStateV1
-            const result = {...st, track: {title: st.title, grid_text: st.grid_text}}
-            delete result.title
-            delete result.grid_text
-            return result as IState
-        }
-    }
-}
-
 function stateFromString(str: string): IState {
     const state = default_state()
     state.track = undefined
-    let parsed = JSON.parse(str || "{}");
+    const parsed = JSON.parse(str || "{}");
     delete parsed.editor_enabled
-    parsed = migrateFromV1(parsed)
     return {...state, ...parsed}
 }
 

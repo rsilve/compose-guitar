@@ -26,25 +26,6 @@ suite("Register misc", () => {
         expect(state).to.deep.equal(last_state)
     })
 
-    test("init_app_callback v1", async () => {
-        const last_state = {
-            title: "title2",
-            grid_text: "B7",
-            zoom: 100
-        }
-        localStorage.setItem("_last_state_", JSON.stringify(last_state))
-        const state = await init_app_callback(new Action(INIT_APP), {...st});
-        expect(state).to.deep.equal( {
-            version: STATE_VERSION,
-            track: {
-                title: "title2",
-                grid_text: "B7",
-            },
-            zoom: 100,
-            transpose: 0,
-        })
-    })
-
     test("zoom_change_callback", async () => {
         const state = await zoom_change_callback(new Action(ZOOM_CHANGE, {zoom: 101}), {...st});
         expect(state).to.deep.equal({...st, zoom: 101})
