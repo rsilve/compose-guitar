@@ -2,7 +2,6 @@ import {css, html, LitElement} from 'lit';
 import {customElement, state} from "lit/decorators.js";
 import './menu-item'
 import "../../../icons/save_icon"
-import "../../../icons/file_upload_icon"
 import "../../../icons/new_track_icon"
 import "../../../icons/gallery_icon"
 import {IState} from "../../stores/state";
