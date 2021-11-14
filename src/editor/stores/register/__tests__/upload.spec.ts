@@ -25,10 +25,9 @@ suite("Upload callback", () => {
             })
         })
 
-
         const track = {grid_text: "zz", title: "test", id: uuid()}
         add_to_gallery(track, {...st, track: track})
-        const state = await upload_callback(new Action(UPLOAD_FROM_GALLERY, {id: "test"}), {
+        const state = await upload_callback(new Action(UPLOAD_FROM_GALLERY, {id: track.id}), {
             ...st,
             gallery: true
         });

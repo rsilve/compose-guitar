@@ -36,11 +36,9 @@ suite("Gallery tools", () => {
         expect(gallery_list()).to.deep.equal(["test"])
         expect(Object.values(gallery_dict())).to.deep.equal([track.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track.id])
-        expect(get_from_gallery("test")).to.deep.equal({...st, track: track})
+        expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
         expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
         remove_from_gallery(track.id)
-        expect(localStorage.getItem("test")).to.be.null
-        expect(localStorage.getItem("_gallery_list_")).to.deep.equal('[]')
         expect(gallery_dict()).to.deep.equal({})
         expect(gallery_list()).to.deep.equal([])
         expect(get_from_gallery("test")).to.be.null
@@ -55,13 +53,10 @@ suite("Gallery tools", () => {
 
         const track = {id: uuid(), grid_text: "zz", title: "test"}
         add_to_gallery(track, {...st, track: track})
-        expect(localStorage.getItem("_gallery_list_")).to.deep.equal('["test"]')
         expect(gallery_list()).to.deep.equal(["test"])
-        expect(get_from_gallery("test")).to.deep.equal({...st, track: track})
         expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
         remove_from_gallery(track.id)
         expect(localStorage.getItem(track.id)).to.be.null
-        expect(localStorage.getItem("_gallery_list_")).to.deep.equal('[]')
         expect(gallery_dict()).to.deep.equal({})
         expect(gallery_list()).to.deep.equal([])
         expect(get_from_gallery("test")).to.be.null
@@ -77,22 +72,18 @@ suite("Gallery tools", () => {
         expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id])
         expect(gallery_list()).to.deep.equal(["test1", "test2"])
-        expect(get_from_gallery("test1")).to.deep.equal({...st, track: track_a})
-        expect(get_from_gallery("test2")).to.deep.equal({...st, track: track_b})
+        expect(get_from_gallery(track_a.id)).to.deep.equal({...st, track: track_a})
+        expect(get_from_gallery(track_b.id)).to.deep.equal({...st, track: track_b})
 
         remove_from_gallery("unknow_id")
         expect(gallery_list()).to.deep.equal(["test1", "test2"])
         expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id])
-        expect(get_from_gallery("test1")).to.deep.equal({...st, track: track_a})
         expect(get_from_gallery(track_a.id)).to.deep.equal({...st, track: track_a})
-        expect(get_from_gallery("test2")).to.deep.equal({...st, track: track_b})
         expect(get_from_gallery(track_b.id)).to.deep.equal({...st, track: track_b})
 
         remove_from_gallery(track_b.id)
         expect(gallery_list()).to.deep.equal(["test1"])
-        expect(get_from_gallery("test1")).to.deep.equal({...st, track: track_a})
-        expect(get_from_gallery("test2")).to.be.null
         expect(get_from_gallery(track_a.id)).to.deep.equal({...st, track: track_a})
         expect(get_from_gallery(track_b.id)).to.be.null
 
@@ -113,7 +104,6 @@ suite("Gallery tools", () => {
         expect(gallery_list()).to.deep.equal(["test1"])
         expect(Object.values(gallery_dict())).to.deep.equal([track.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track.id])
-        expect(get_from_gallery("test1")).to.deep.equal({...st, track: track})
         expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
 
         track.grid_text = "bb"
@@ -121,7 +111,6 @@ suite("Gallery tools", () => {
         expect(gallery_list()).to.deep.equal(["test1"])
         expect(Object.values(gallery_dict())).to.deep.equal([track.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track.id])
-        expect(get_from_gallery("test1")).to.deep.equal({...st, track: track})
         expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
 
         track.title = "test2"
@@ -129,14 +118,11 @@ suite("Gallery tools", () => {
         expect(gallery_list()).to.deep.equal(["test2"])
         expect(Object.values(gallery_dict())).to.deep.equal([track.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track.id])
-        expect(get_from_gallery("test2")).to.deep.equal({...st, track: track})
-        expect(get_from_gallery("test1")).not.to.deep.equal({...st, track: track})
         expect(get_from_gallery(track.id)).to.deep.equal({...st, track: track})
 
         remove_from_gallery(track.id)
         expect(gallery_list()).to.deep.equal([])
         expect(gallery_dict()).to.deep.equal({})
-        expect(get_from_gallery("test1")).not.to.be.null
         expect(get_from_gallery(track.id)).to.be.null
 
     })
@@ -153,11 +139,11 @@ suite("Gallery tools", () => {
             "zoom": 100,
             transpose: 0,
         }
-        add_to_gallery({grid_text: "A", title: "title"}, state)
-        expect(localStorage.getItem("title")).to.deep.equal("{\"version\":\"v2\",\"track\":{\"grid_text\":\"A\",\"title\":\"title\"},\"zoom\":100,\"transpose\":0}")
-        const st = get_from_gallery("title")
-        expect(st).to.deep.equal(state)
-        remove_from_gallery("test")
+        const new_state = add_to_gallery(state.track, state)
+        expect(new_state.track?.id).to.not.be.undefined
+        const new_st = get_from_gallery(new_state.track?.id || "")
+        expect(new_st).to.deep.equal(new_state)
+        remove_from_gallery(new_state.track?.id || "")
 
     })
 

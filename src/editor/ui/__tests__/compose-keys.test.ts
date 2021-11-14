@@ -99,7 +99,6 @@ suite("compose-key element", () => {
         register(track_callback)
         const promise = new Promise(resolve => {
             connect((state: IState) => {
-                console.log(state)
                 resolve(state.editor)
             })
         })

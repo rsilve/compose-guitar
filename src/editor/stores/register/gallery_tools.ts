@@ -1,24 +1,6 @@
 import {default_state, IState, IStateTrack, IStateV1} from "../state";
 import {uuid} from "../../../tools/uuid";
 
-export function migrate_to_gallery_with_id(): void {
-    const list = gallery_list()
-    const track_index: Record<string, string> = {}
-    list.forEach(title => {
-        const state = get_from_gallery(title)
-        if (state && state.track) {
-            if (!state.track.id) {
-                state.track.id = uuid()
-            }
-            if (state.track.id && state.track.title) {
-                localStorage.setItem(state.track.id, JSON.stringify(state))
-                track_index[state.track.id] = state.track.title
-            }
-        }
-    })
-    localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index))
-}
-
 export function exists_in_gallery(title: string, old_title: string | undefined): boolean {
     const index = gallery_list()
         .filter((t) => t !== old_title)
@@ -36,24 +18,18 @@ export function gallery_dict(): Record<string, string> {
     return JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
 }
 
-export function add_to_gallery(track: IStateTrack, state: IState): void {
+export function add_to_gallery(track: IStateTrack, state: IState): IState {
     if (track.title) {
         const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
         if (!track.id) {
             track.id = uuid()
         }
         track_index[track.id] = track.title
+        state = {...state, track: track}
         localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index))
         localStorage.setItem(track.id, JSON.stringify(state))
-
-        const title = track.title
-        const list = gallery_list()
-        list.push(title)
-        const dict = list.reduce((a, x) => ({...a, [x]: true}), {})
-        const uniq = Object.keys(dict)
-        localStorage.setItem("_gallery_list_", JSON.stringify(uniq))
-        localStorage.setItem(title, JSON.stringify(state))
     }
+    return state
 }
 
 export function migrateFromV1(state: unknown): IState {
@@ -96,19 +72,19 @@ function hasJsonStructure(str: string | null): boolean {
     }
 }
 
-export function get_from_gallery(title: string): IState | null {
-    const from_gallery: string | null = localStorage.getItem(title)
+export function get_from_gallery(id: string): IState | null {
+    const from_gallery: string | null = localStorage.getItem(id)
     if (from_gallery) {
         const is_json = hasJsonStructure(from_gallery)
         if (is_json) {
             const parsed = stateFromString(from_gallery)
             if (parsed.track) {
-                parsed.track.title = parsed.track.title || title
+                parsed.track.title = parsed.track.title || id
             }
             return parsed
         } else {
             const state = default_state()
-            return {...state, track: {grid_text: from_gallery, title: title}};
+            return {...state, track: {grid_text: from_gallery, title: id}};
         }
     }
     return null
@@ -116,20 +92,9 @@ export function get_from_gallery(title: string): IState | null {
 
 export function remove_from_gallery(id: string): void {
     const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
-    const title = track_index[id]
     delete track_index[id]
     localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index))
     localStorage.removeItem(id)
-
-    const list: string[] = JSON.parse(localStorage.getItem("_gallery_list_") || "[]");
-    const index = list.indexOf(title);
-    if (index >= 0) {
-        list.splice(index, 1);
-        localStorage.setItem("_gallery_list_", JSON.stringify(list))
-        localStorage.removeItem(title)
-    }
-
-
 }
 
 export function save_last_state(state: IState): void {

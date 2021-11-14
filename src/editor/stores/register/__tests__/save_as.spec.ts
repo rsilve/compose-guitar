@@ -10,19 +10,21 @@ suite("Register save_as", () => {
     const st = state_test
 
     test("save as start", async () => {
-        await save_as_callback(new Action(SAVE_AS_START), {...st});
-        const fromGallery = get_from_gallery("title");
+        const state = await save_as_callback(new Action(SAVE_AS_START), {...st});
+        console.log(state)
+        const fromGallery = get_from_gallery(state.track?.id || "");
+        console.log(fromGallery)
         expect(fromGallery?.track).to.be.not.null
         expect(fromGallery?.track?.id).to.be.not.null
         expect(fromGallery?.track?.saved_at).to.be.not.null
-        delete fromGallery?.track?.saved_at
-        expect(fromGallery).to.deep.equal(st)
+        delete state?.confirm_save
+        expect(fromGallery).to.deep.equal(state)
     })
 
     test("save as start without id", async () => {
         delete st.track?.id
-        await save_as_callback(new Action(SAVE_AS_START), {...st});
-        const fromGallery = get_from_gallery("title");
+        const state = await save_as_callback(new Action(SAVE_AS_START), {...st});
+        const fromGallery = get_from_gallery(state.track?.id || "");
         expect(fromGallery?.track).to.be.not.null
         expect(fromGallery?.track?.id).to.be.not.null
         expect(fromGallery?.track?.saved_at).to.be.not.null
@@ -34,7 +36,7 @@ suite("Register save_as", () => {
     test("save as start and new", async () => {
 
         const state = await save_as_callback(new Action(SAVE_AS_START_AND_NEW), {...st, transpose: 0});
-        const fromGallery = get_from_gallery("title");
+        const fromGallery = get_from_gallery(state.track?.id || "");
         expect(fromGallery?.track?.id).to.be.not.null
         expect(fromGallery?.track?.saved_at).to.be.not.null
         delete fromGallery?.track?.id
