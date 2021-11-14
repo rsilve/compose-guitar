@@ -7,6 +7,7 @@ import {state_test} from "../../../__tests__/TestHelpers";
 import {save_as_callback} from "../../stores/register/save_as";
 import {gallery_callback} from "../../stores/register/gallery";
 import {zoom_change_callback} from "../../stores/register/misc";
+import {help_callback} from "../../stores/register/help";
 
 suite("compose-key element", () => {
 
@@ -143,13 +144,11 @@ suite("compose-key element", () => {
         fixtureCleanup()
     });
 
-
     test('zoom_incr event 2', async () => {
         reset_dispatcher(st)
         register(zoom_change_callback)
         const promise = new Promise(resolve => {
             connect((state: IState) => {
-                console.log(state)
                 resolve(state.zoom)
             })
         })
@@ -193,13 +192,11 @@ suite("compose-key element", () => {
         fixtureCleanup()
     });
 
-
     test('zoom_decr event 2', async () => {
         reset_dispatcher(st)
         register(zoom_change_callback)
         const promise = new Promise(resolve => {
             connect((state: IState) => {
-                console.log(state)
                 resolve(state.zoom)
             })
         })
@@ -215,6 +212,29 @@ suite("compose-key element", () => {
         document.dispatchEvent(e)
         await promise.then((value) => {
             expect(value).to.be.equal(90)
+        })
+        fixtureCleanup()
+    });
+
+    test('esc event', async () => {
+        reset_dispatcher(st)
+        register(help_callback)
+        const promise = new Promise(resolve => {
+            connect(() => {
+                resolve(true)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            key: "Escape"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.be.true
         })
         fixtureCleanup()
     });
