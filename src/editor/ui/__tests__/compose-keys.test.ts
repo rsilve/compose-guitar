@@ -6,6 +6,7 @@ import {IState, IStateTrack} from "../../stores/state";
 import {state_test} from "../../../__tests__/TestHelpers";
 import {save_as_callback} from "../../stores/register/save_as";
 import {gallery_callback} from "../../stores/register/gallery";
+import {zoom_change_callback} from "../../stores/register/misc";
 
 suite("compose-key element", () => {
 
@@ -114,6 +115,106 @@ suite("compose-key element", () => {
         document.dispatchEvent(e)
         await promise.then((value) => {
             expect(value).to.not.be.undefined
+        })
+        fixtureCleanup()
+    });
+
+    test('zoom_incr event', async () => {
+        reset_dispatcher(st)
+        register(zoom_change_callback)
+        const promise = new Promise(resolve => {
+            connect((state: IState) => {
+                resolve(state.zoom)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            altKey: true,
+            key: "+"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.be.equal(110)
+        })
+        fixtureCleanup()
+    });
+
+
+    test('zoom_incr event 2', async () => {
+        reset_dispatcher(st)
+        register(zoom_change_callback)
+        const promise = new Promise(resolve => {
+            connect((state: IState) => {
+                console.log(state)
+                resolve(state.zoom)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            altKey: true,
+            key: "≠"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.be.equal(110)
+        })
+        fixtureCleanup()
+    });
+
+    test('zoom_decr event', async () => {
+        reset_dispatcher(st)
+        register(zoom_change_callback)
+        const promise = new Promise(resolve => {
+            connect((state: IState) => {
+                resolve(state.zoom)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            altKey: true,
+            key: "-"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.be.equal(90)
+        })
+        fixtureCleanup()
+    });
+
+
+    test('zoom_decr event 2', async () => {
+        reset_dispatcher(st)
+        register(zoom_change_callback)
+        const promise = new Promise(resolve => {
+            connect((state: IState) => {
+                console.log(state)
+                resolve(state.zoom)
+            })
+        })
+
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        const e = new KeyboardEvent('keydown', {
+            altKey: true,
+            key: "—"
+        });
+        document.dispatchEvent(e)
+        await promise.then((value) => {
+            expect(value).to.be.equal(90)
         })
         fixtureCleanup()
     });
