@@ -1,4 +1,4 @@
-import {customElement, state} from "lit/decorators.js";
+import {customElement, property, state} from "lit/decorators.js";
 import {css, html, LitElement} from "lit";
 import {DispatcherController} from "../../../stores/lit_controller";
 import {action_notification_close} from "../../actions/actions";
@@ -42,11 +42,14 @@ class ComposeNotification extends LitElement {
                 setTimeout(() => {
                     this._message.shift()
                     this._message = [...this._message]
-                }, 3000)
+                }, this.delay)
             }
         }
         this.addController(new DispatcherController(cb.bind(this)));
     }
+
+    @property()
+    delay = 3000
 
     @state()
     private _message: string[] = []
