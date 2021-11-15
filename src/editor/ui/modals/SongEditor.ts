@@ -7,11 +7,13 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
 import "../../../icons/info_icon"
+import "./editor/GridEditor"
+
 import {DispatcherController} from "../../../stores/lit_controller";
 import {IState} from "../../stores/state";
-import Grid from "../../parser/Grid";
 import {exists_in_gallery} from "../../stores/register/gallery_tools";
 import {action_notification_open, action_track_edit_apply, action_track_edit_cancel} from "../../actions/actions";
+
 
 @customElement('song-editor')
 class SongEditor extends LitElement {
@@ -29,16 +31,7 @@ class SongEditor extends LitElement {
             position: relative;
        }
        
-       .song-editor-body-form-error {
-            position: absolute;
-            box-sizing: border-box;
-            width: 100%;
-            padding: 1ex;
-            bottom: 0;
-            background-color: hsla(var(--color-error-h),var(--color-error-s),var(--color-error-l), 0.9);
-            color: var(--color-background);
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-       }
+       
        
        .song-editor-body-form-error-title {
             position: absolute;
@@ -77,7 +70,7 @@ class SongEditor extends LitElement {
             justify-content: space-around;
         }
         
-        input, textarea {
+        input {
             display: block;
             font-family: monospace;
             font-size: 2em;
@@ -144,13 +137,6 @@ class SongEditor extends LitElement {
     }
 
     _update_grid(raw: string | undefined): void {
-        if (raw) {
-            const parsed = new Grid(raw)
-            this._grid_valid = parsed.valid
-            this._grid_error_reason = parsed.reason
-        } else {
-            this._grid_valid = true
-        }
         this._value = raw
     }
 
@@ -161,11 +147,8 @@ class SongEditor extends LitElement {
         this._grid_title = value
     }
 
-    _handle_change_grid(e: Event): void {
-        let value = (e.target as HTMLTextAreaElement).value
-        value = value.replace(/([^:|\s])\|/g, "$1 |").replace(/\|([^:|\s])/g, "| $1")
-        value = value.trim()
-        this._update_grid(value)
+    _handle_change_grid(e: CustomEvent): void {
+        this._update_grid(e.detail.value)
     }
 
     _handle_apply(): void {
@@ -198,10 +181,7 @@ class SongEditor extends LitElement {
                        
                     </div>
                     <div class="form-item">
-                        <textarea .value="${ifDefined(this._value)}" class="${classMap({"invalid": !this._grid_valid})}"
-                                  required placeholder="Chords (required)"
-                                  @input="${this._handle_change_grid}"></textarea>
-                        ${this.grid_error_pane()}
+                        <grid-editor .value="${this._value}" @update-grid="${this._handle_change_grid}"></grid-editor>
                     </div>
 
                 </div>
