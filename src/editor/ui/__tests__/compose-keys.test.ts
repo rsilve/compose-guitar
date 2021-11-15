@@ -46,7 +46,6 @@ suite("compose-key element", () => {
         fixtureCleanup()
     });
 
-
     test('add save_as_start event', async () => {
         reset_dispatcher(st)
         register(save_as_callback)

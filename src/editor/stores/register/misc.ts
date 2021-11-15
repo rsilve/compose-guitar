@@ -16,20 +16,20 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
 
 export function zoom_change_callback(action: Action, state: IState): Promise<IState> {
     if (action.action_type === ZOOM_CHANGE) {
-        let {zoom} = action.payload as {zoom: number}
+        let {zoom} = action.payload as { zoom: number }
         if (isNaN(zoom)) {
             zoom = 100
         }
         zoom = Math.min(200, zoom)
         zoom = Math.max(10, zoom)
-        state.zoom = zoom;
+        state = {...state, zoom: zoom};
     }
     return Promise.resolve(state)
 }
 
 export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
     if (action.action_type === TRANSPOSE_CHANGE) {
-        let {transpose} = action.payload as {transpose: number}
+        let {transpose} = action.payload as { transpose: number }
         if (isNaN(transpose)) {
             transpose = 0
         }
