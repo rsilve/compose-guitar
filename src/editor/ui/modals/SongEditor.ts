@@ -20,16 +20,16 @@ class SongEditor extends LitElement {
         modalStyles,
         inputStyles,
         css`
-       .grid-editor-body {
+       .song-editor-body {
             display: flex;
             flex-direction: row;
        }
        
-       .grid-editor-body-form {
+       .song-editor-body-form {
             position: relative;
        }
        
-       .grid-editor-body-form-error {
+       .song-editor-body-form-error {
             position: absolute;
             box-sizing: border-box;
             width: 100%;
@@ -40,7 +40,7 @@ class SongEditor extends LitElement {
             border-radius: 0 0 var(--border-radius) var(--border-radius);
        }
        
-       .grid-editor-body-form-error-title {
+       .song-editor-body-form-error-title {
             position: absolute;
             box-sizing: border-box;
             bottom: 2px;
@@ -51,7 +51,7 @@ class SongEditor extends LitElement {
             border-radius: var(--border-radius) 0 var(--border-radius) 0;
        }
        
-       .grid-editor-body-help {
+       .song-editor-body-help {
             display: none;
             margin-left: 1em;
             margin-top: 1px;
@@ -63,15 +63,15 @@ class SongEditor extends LitElement {
             border-radius: 4px;
        }
        
-       .grid-editor-body-help.open {
+       .song-editor-body-help.open {
             display: block;
        }
        
-       .grid-editor-body-help chords-grid {
+       .song-editor-body-help chords-grid {
             font-size: .5em;
        }
         
-        .grid-editor-body-help-example {
+        .song-editor-body-help-example {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -187,8 +187,8 @@ class SongEditor extends LitElement {
 
     render(): unknown {
         return html`
-            <div class="grid-editor-body">
-                <div class="grid-editor-body-form">
+            <div class="song-editor-body">
+                <div class="song-editor-body-form">
                     <div class="form-item">
                         ${this.title_error_pane()}
                         <input id="title_input" type="text" .value="${ifDefined(this._grid_title)}"
@@ -236,7 +236,7 @@ class SongEditor extends LitElement {
     grid_error_pane(): unknown {
         if (!this._grid_valid) {
             return html`
-                <div class="grid-editor-body-form-error">Invalid syntax : ${this._grid_error_reason}</div>`
+                <div class="song-editor-body-form-error">Invalid syntax : ${this._grid_error_reason}</div>`
         } else {
             return html``
         }
@@ -245,14 +245,14 @@ class SongEditor extends LitElement {
     title_error_pane(): unknown {
         if (this._grid_title_already_exists) {
             return html`
-                <div class="grid-editor-body-form-error-title">This title already exists</div>`
+                <div class="song-editor-body-form-error-title">This title already exists</div>`
         } else {
             return html``
         }
     }
 
     help_pane(): unknown {
-        const classes = classMap({"grid-editor-body-help": true, open: this._help_pane_open})
+        const classes = classMap({"song-editor-body-help": true, open: this._help_pane_open})
         return html`
             <div class="${classes}">
                 <h2>Examples</h2>
@@ -260,7 +260,7 @@ class SongEditor extends LitElement {
                     <strong>G7</strong>, <strong>D9</strong>, <strong>Asus2</strong>, <strong>Bm57b</strong>,
                     <strong>Bø</strong>, <strong>C/E</strong></p>
                 <p>Measure : <strong>| A |</strong>, <strong>| D C |</strong>, <strong>| G Em _ _ |</strong>
-                <div class="grid-editor-body-help-example">
+                <div class="song-editor-body-help-example">
                     <chords-grid>| A |</chords-grid>
                     <chords-grid>| D C |</chords-grid>
                     <chords-grid>| G Em _ _ |</chords-grid>
@@ -269,12 +269,12 @@ class SongEditor extends LitElement {
                 </div>
                 </p>
                 <p>Measure row : <strong>| F | G | Em | G Em |</strong>
-                <div class="grid-editor-body-help-example">
+                <div class="song-editor-body-help-example">
                     <chords-grid>| F | G | Em | G Em |</chords-grid>
                 </div>
                 </p>
                 <p>Measure modifier : <strong>|(a) A |</strong>, <strong>|: D :|</strong>
-                <div class="grid-editor-body-help-example">
+                <div class="song-editor-body-help-example">
                     <chords-grid> |(a) A |</chords-grid>
                     <chords-grid>|: D :|</chords-grid>
                 </div>
