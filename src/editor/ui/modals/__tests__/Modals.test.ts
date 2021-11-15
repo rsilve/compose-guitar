@@ -35,7 +35,7 @@ suite("Modals element", () => {
         await expect(el).shadowDom.to.be.accessible();
         expect(el).shadowDom.to.be.equal(`
         <div class="overlay"></div>
-        <grid-editor class="modal"></grid-editor>`)
+        <song-editor class="modal"></song-editor>`)
     });
 
     test('open help', async () => {

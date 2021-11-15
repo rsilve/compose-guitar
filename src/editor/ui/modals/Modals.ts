@@ -1,7 +1,7 @@
 import {css, html, LitElement} from 'lit';
 import {customElement, state} from "lit/decorators.js";
 import './TrackGallery'
-import './GridEditor';
+import './SongEditor';
 import './HelpModal'
 import './ConfirmSave'
 import {DispatcherController} from "../../../stores/lit_controller";
@@ -99,7 +99,7 @@ class Modals extends LitElement {
         }
         if (this._editor_enabled) {
             return html`${overlay}
-            <grid-editor class="modal"></grid-editor>`
+            <song-editor class="modal"></song-editor>`
         }
         if (this._help_open) {
             return html`${overlay}

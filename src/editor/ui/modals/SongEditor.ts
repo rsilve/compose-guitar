@@ -13,8 +13,8 @@ import Grid from "../../parser/Grid";
 import {exists_in_gallery} from "../../stores/register/gallery_tools";
 import {action_notification_open, action_track_edit_apply, action_track_edit_cancel} from "../../actions/actions";
 
-@customElement('grid-editor')
-class GridEditor extends LitElement {
+@customElement('song-editor')
+class SongEditor extends LitElement {
     static styles = [
         buttonStyles,
         modalStyles,
@@ -283,4 +283,4 @@ class GridEditor extends LitElement {
     }
 }
 
-export default GridEditor
+export default SongEditor
