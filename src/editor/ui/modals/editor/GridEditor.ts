@@ -4,6 +4,7 @@ import {ifDefined} from "lit/directives/if-defined.js";
 import {classMap} from "lit/directives/class-map.js";
 import Grid from "../../../parser/Grid";
 import {inputStyles} from "../../styles/input";
+import {auto_correct, normalize} from "./tools";
 
 
 @customElement('grid-editor')
@@ -51,8 +52,8 @@ class GridEditor extends LitElement {
 
     _handle_change_grid(e: Event): void {
         let raw = (e.target as HTMLTextAreaElement).value
-        raw = raw.replace(/([^:|\s])\|/g, "$1 |").replace(/\|([^:|\s])/g, "| $1")
-        raw = raw.trim()
+        raw = auto_correct(raw)
+        raw = normalize(raw)
 
         this.validate(raw)
 

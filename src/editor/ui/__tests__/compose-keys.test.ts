@@ -198,18 +198,17 @@ suite("compose-key element", () => {
     test('zoom_decr event 2', async () => {
         reset_dispatcher(st)
         register(zoom_change_callback)
+        const el: ComposeKeys = await fixture(html`
+            <compose-keys></compose-keys> `);
+        expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).shadowDom.to.be.accessible();
+        await expect(el).dom.to.be.displayed
         const promise = new Promise(resolve => {
             connect((state: IState) => {
                 console.log(state)
                 resolve(state.zoom)
             })
         })
-
-        const el: ComposeKeys = await fixture(html`
-            <compose-keys></compose-keys> `);
-        expect(el).to.instanceOf(ComposeKeys)
-        await expect(el).shadowDom.to.be.accessible();
-        await expect(el).dom.to.be.accessible()
         const e = new KeyboardEvent('keydown', {
             altKey: true,
             key: "—"
