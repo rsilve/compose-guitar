@@ -57,7 +57,7 @@ class GridEditor extends LitElement {
         this.validate(raw)
 
         const options = {
-            detail: {value: raw},
+            detail: {value: raw, valid: this._grid_valid},
             bubbles: true,
             composed: true
         };

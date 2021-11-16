@@ -149,6 +149,7 @@ class SongEditor extends LitElement {
 
     _handle_change_grid(e: CustomEvent): void {
         this._update_grid(e.detail.value)
+        this._grid_valid = e.detail.valid
     }
 
     _handle_apply(): void {
@@ -211,15 +212,6 @@ class SongEditor extends LitElement {
                         @click="${this._handle_apply}">Apply
                 </button>
             </div>`
-    }
-
-    grid_error_pane(): unknown {
-        if (!this._grid_valid) {
-            return html`
-                <div class="song-editor-body-form-error">Invalid syntax : ${this._grid_error_reason}</div>`
-        } else {
-            return html``
-        }
     }
 
     title_error_pane(): unknown {
