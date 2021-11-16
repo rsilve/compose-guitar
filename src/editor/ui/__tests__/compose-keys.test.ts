@@ -131,6 +131,7 @@ suite("compose-key element", () => {
         const el: ComposeKeys = await fixture(html`
             <compose-keys></compose-keys> `);
         expect(el).to.instanceOf(ComposeKeys)
+        await expect(el).dom.to.be.accessible()
         await expect(el).shadowDom.to.be.accessible();
         const e = new KeyboardEvent('keydown', {
             altKey: true,
@@ -156,6 +157,7 @@ suite("compose-key element", () => {
             <compose-keys></compose-keys> `);
         expect(el).to.instanceOf(ComposeKeys)
         await expect(el).shadowDom.to.be.accessible();
+        await expect(el).dom.to.be.accessible()
         const e = new KeyboardEvent('keydown', {
             altKey: true,
             key: "≠"
@@ -181,6 +183,7 @@ suite("compose-key element", () => {
             <compose-keys></compose-keys> `);
         expect(el).to.instanceOf(ComposeKeys)
         await expect(el).shadowDom.to.be.accessible();
+        await expect(el).dom.to.be.accessible()
         const e = new KeyboardEvent('keydown', {
             altKey: true,
             key: "-"
@@ -206,6 +209,7 @@ suite("compose-key element", () => {
             <compose-keys></compose-keys> `);
         expect(el).to.instanceOf(ComposeKeys)
         await expect(el).shadowDom.to.be.accessible();
+        await expect(el).dom.to.be.accessible()
         const e = new KeyboardEvent('keydown', {
             altKey: true,
             key: "—"
@@ -230,6 +234,7 @@ suite("compose-key element", () => {
             <compose-keys></compose-keys> `);
         expect(el).to.instanceOf(ComposeKeys)
         await expect(el).shadowDom.to.be.accessible();
+        await expect(el).dom.to.be.accessible()
         const e = new KeyboardEvent('keydown', {
             key: "Escape"
         });

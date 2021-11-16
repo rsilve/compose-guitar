@@ -33,6 +33,7 @@ class ComposeKeys extends LitElement {
     connectedCallback(): void {
         super.connectedCallback()
         document.addEventListener("keydown", this._listener_handler)
+        console.log("connected")
     }
 
     disconnectedCallback(): void {
