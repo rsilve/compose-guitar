@@ -27,6 +27,10 @@ suite("tools normalize", () => {
         expect(normalize(' A ')).to.be.equal('A')
     })
 
+    test("trim text", () => {
+        expect(normalize(' A ')).to.be.equal('A')
+    })
+
 })
 
 suite("tools auto_correct", () => {
@@ -35,6 +39,13 @@ suite("tools auto_correct", () => {
         expect(auto_correct(',')).to.be.equal('|')
     })
 
+    test("replace . by _", () => {
+        expect(auto_correct('A.B')).to.be.equal('A _ B')
+    })
+
+    test("replace . by _", () => {
+        expect(auto_correct('A. B')).to.be.equal('A _ B')
+    })
 
     test("capitalize first letter for chord", () => {
         expect(auto_correct('|a')).to.be.equal('|A')

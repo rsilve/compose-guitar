@@ -7,5 +7,6 @@ export function normalize(value: string): string {
 export function auto_correct(value: string): string {
     return value
         .replace(/,/g, '|')
+        .replace(/\b\.\s*/g, ' _ ')
         .replace(/\b([a-g])/g, substring => substring.toUpperCase())
 }
