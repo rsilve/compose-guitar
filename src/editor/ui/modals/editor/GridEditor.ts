@@ -21,7 +21,7 @@ class GridEditor extends LitElement {
     }
     
     textarea {
-        height: 20em;
+        height: 6em;
     }
         
     .song-editor-body-form-error {
@@ -63,13 +63,21 @@ class GridEditor extends LitElement {
             composed: true
         };
         this.dispatchEvent(new CustomEvent('update-grid', options));
+    }
 
+    auto_grow(e: Event) {
+
+        const el = (e.target as HTMLTextAreaElement)
+        if (el.scrollHeight > el.clientHeight) {
+            el.style.height = el.scrollHeight + 30 + "px";
+            console.log("keyup", el.style.height)
+        }
     }
 
     render(): unknown {
         return html`
             <textarea .value="${ifDefined(this.value)}" class="${classMap({"invalid": !this._grid_valid})}"
-                      required placeholder="Chords (required)"
+                      required placeholder="Chords (required)" @keypress="${this.auto_grow}"
                       @input="${this._handle_change_grid}"></textarea>
             ${this.grid_error_pane()}
         `;

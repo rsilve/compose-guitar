@@ -51,5 +51,9 @@ suite("tools auto_correct", () => {
         expect(auto_correct('|a')).to.be.equal('|A')
     })
 
+    test("capitalize first letter for chord", () => {
+        expect(auto_correct('am')).to.be.equal('Am')
+    })
+
 
 })
