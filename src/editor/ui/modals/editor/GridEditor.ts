@@ -23,6 +23,12 @@ class GridEditor extends LitElement {
     textarea {
         height: 20em;
     }
+    
+    @media only screen and (max-height: 768px) {
+        textarea {
+            height: 6em;
+        }
+    }  
         
     .song-editor-body-form-error {
             position: absolute;
@@ -63,7 +69,6 @@ class GridEditor extends LitElement {
             composed: true
         };
         this.dispatchEvent(new CustomEvent('update-grid', options));
-
     }
 
     render(): unknown {
