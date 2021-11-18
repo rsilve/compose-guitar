@@ -7,7 +7,7 @@ export default {
     preserveSymlinks: true,
     coverage: true,
     browsers: [
-        playwrightLauncher({ product: 'firefox' })
+        playwrightLauncher({ product: 'chromium' })
     ],
     testFramework: {
         // https://mochajs.org/api/mocha
