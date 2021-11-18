@@ -3,4 +3,7 @@ image:
 
 tasks:
   - name: init
-    command: npm install
+    command: |
+      npm install
+      npx playwright install-deps
+      npm run build
