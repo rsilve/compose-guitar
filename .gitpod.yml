@@ -1,0 +1,39 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: prepare project
+    init: |
+      npm install
+      npx playwright install-deps
+      npm run build
+  - name: run assets
+    command: npm run build:assets:watch
+    openMode: tab-after
+  - name: run build watch
+    command: npm run build:watch
+    openMode: tab-after
+  - name: run serve
+    command: npm run serve
+    openMode: tab-after
+
+
+ports:
+  - port: 8000
+
+github:
+  prebuilds:
+    # enable for the master/default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: false
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # enable for pull requests coming from forks (defaults to false)
+    pullRequestsFromForks: false
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to true)
+    addComment: true
+    # add a "Review in Gitpod" button to pull requests (defaults to false)
+    addBadge: false
+    # add a label once the prebuild is ready to pull requests (defaults to false)
+    addLabel: prebuilt-in-gitpod
