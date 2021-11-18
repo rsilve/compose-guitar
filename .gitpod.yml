@@ -7,6 +7,16 @@ tasks:
       npm install
       npx playwright install-deps
       npm run build
+  - name: run assets
+    command: npm run build:assets:watch
+    openMode: tab-after
+  - name: run build watch
+    command: npm run build:watch
+    openMode: tab-after
+  - name: run serve
+    command: npm run serve
+    openMode: tab-after
+
 
 ports:
   - port: 8000
