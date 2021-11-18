@@ -2,8 +2,11 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name: init
-    command: |
+  - name: prepare project
+    init: |
       npm install
       npx playwright install-deps
       npm run build
+
+ports:
+  - port: 8000
