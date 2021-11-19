@@ -5,10 +5,9 @@ image:
 tasks:
   - name: prepare project
     init: |
+      npm install
       yes y | npx playwright install
       yes y | npx playwright install-deps
-  - name: prepare project
-    init: npm install
   - name: run assets
     command: npm run build:assets:watch
     openMode: tab-after
