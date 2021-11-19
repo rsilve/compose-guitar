@@ -5,8 +5,8 @@ image:
 tasks:
   - name: prepare project
     init: |
-      npx playwright install
-      npx playwright install-deps
+      yes y | npx playwright install
+      yes y | npx playwright install-deps
   - name: prepare project
     init: npm install
   - name: run assets
