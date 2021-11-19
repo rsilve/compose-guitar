@@ -4,18 +4,21 @@ image:
 
 tasks:
   - name: prepare project
-    init: npm install
-  - name: prepare playwright
-    command: |
+    init: |
+      npm install
       yes y | npx playwright install
       yes y | npx playwright install-deps
-  - name: run assets
+      gp sync-done bundle
+  - name: run build watch asset
+    init: gp sync-await bundle
     command: npm run build:assets:watch
     openMode: tab-after
   - name: run build watch
+    init: gp sync-await bundle
     command: npm run build:watch
     openMode: tab-after
   - name: run serve
+    init: gp sync-await bundle
     command: npm run serve
     openMode: tab-after
 
