@@ -4,6 +4,10 @@ image:
 
 tasks:
   - name: prepare project
+    init: |
+      npx playwright install
+      npx playwright install-deps
+  - name: prepare project
     init: npm install
   - name: run assets
     command: npm run build:assets:watch
