@@ -12,7 +12,7 @@ export default {
         // HTML files for non-SPA app
         html({
             input: ['build/index.html'],
-            extractAssets: false,
+            extractAssets: true,
             minify: true,
         }),
         // Resolve bare module specifiers to relative paths
