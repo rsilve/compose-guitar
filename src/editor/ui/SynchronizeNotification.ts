@@ -18,6 +18,10 @@ class SynchronizeNotification extends LitElement {
             align-items: center;
             height: 1.6em;
         }
+        
+        div {
+            cursor: pointer;
+        }
         `
     ]
 
