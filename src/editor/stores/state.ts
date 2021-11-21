@@ -21,6 +21,7 @@ export const STATE_VERSION: IStateVersion = "v2"
 
 interface IStateSynchronisation {
     enabled: boolean
+    open?: boolean
 }
 
 export interface IState {
