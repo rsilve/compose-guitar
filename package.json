@@ -7,12 +7,8 @@
   "watch": {
     "build:assets": {
       "patterns": [
-        "src/editor.html",
+        "src/index.html",
         "src/sw.js",
-        "src/training.html",
-        "src/training/sw-training.js",
-        "src/scale.html",
-        "src/scale/sw-scale.js",
         "src/robots.txt",
         "src/assets/*"
       ],
