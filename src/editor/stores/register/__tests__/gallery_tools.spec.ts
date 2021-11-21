@@ -77,7 +77,7 @@ suite("Gallery tools", () => {
         expect(get_from_gallery(track_a.id)).to.deep.equal({...st, track: track_a})
         expect(get_from_gallery(track_b.id)).to.deep.equal({...st, track: track_b})
 
-        remove_from_gallery("unknow_id")
+        remove_from_gallery("unknown_id")
         expect(gallery_list()).to.deep.equal(["test1", "test2"])
         expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title])
         expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id])
@@ -135,7 +135,7 @@ suite("Gallery tools", () => {
         expect(gallery_dict()).to.deep.equal({})
         expect(get_from_gallery("test")).to.be.null
 
-        const state = {
+        const state = { ...st,
             version: STATE_VERSION,
             track: {grid_text: "A", title: "title"},
             "zoom": 100,
@@ -157,7 +157,7 @@ suite("Gallery tools", () => {
 
     test("exists in library (not empty) ", () => {
         localStorage.clear()
-        add_to_gallery({grid_text: "A", title: "title"}, {
+        add_to_gallery({grid_text: "A", title: "title"}, {...st,
             version: STATE_VERSION,
             track: {grid_text: "A", title: "title"},
             "zoom": 100,
@@ -174,13 +174,13 @@ suite("Gallery tools", () => {
 
     test("exists in library (not empty) 2 ", () => {
         localStorage.clear()
-        add_to_gallery({grid_text: "A", title: "title"}, {
+        add_to_gallery({grid_text: "A", title: "title"}, {...st,
             version: STATE_VERSION,
             track: {grid_text: "A", title: "title"},
             "zoom": 100,
             transpose: 0,
         })
-        add_to_gallery({grid_text: "A", title: "title2"}, {
+        add_to_gallery({grid_text: "A", title: "title2"}, {...st,
             version: STATE_VERSION,
             track: {grid_text: "A", title: "title2"},
             "zoom": 100,

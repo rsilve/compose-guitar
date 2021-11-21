@@ -177,7 +177,6 @@ suite("compose-key element", () => {
         await expect(el).dom.to.be.accessible()
         const promise = new Promise(resolve => {
             connect((state: IState) => {
-                console.log(state)
                 resolve(state.zoom)
             })
         })
@@ -202,7 +201,6 @@ suite("compose-key element", () => {
         await expect(el).dom.to.be.displayed
         const promise = new Promise(resolve => {
             connect((state: IState) => {
-                console.log(state)
                 resolve(state.zoom)
             })
         })

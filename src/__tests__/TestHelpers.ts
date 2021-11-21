@@ -9,4 +9,7 @@ export const state_test: IState = {
     },
     zoom: 100,
     transpose: 0,
+    synchronization: {
+        enabled: false
+    }
 }

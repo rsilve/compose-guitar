@@ -19,6 +19,10 @@ export interface IStateTrack {
 type IStateVersion = "v2"
 export const STATE_VERSION: IStateVersion = "v2"
 
+interface IStateSynchronisation {
+    enabled: boolean
+}
+
 export interface IState {
     version: IStateVersion
     track?: IStateTrack
@@ -29,7 +33,8 @@ export interface IState {
     editor?: IStateEditor;
     help_open?: boolean
     confirm_save?: boolean
-    transpose: number
+    transpose: number,
+    synchronization: IStateSynchronisation
 }
 
 export function default_state(): IState {
@@ -37,5 +42,8 @@ export function default_state(): IState {
         version: STATE_VERSION,
         zoom: 100,
         transpose: 0,
+        synchronization: {
+            enabled: false
+        }
     }
 }

@@ -20,6 +20,9 @@ suite("Register misc", () => {
             },
             zoom: 100,
             transpose: 0,
+            synchronization: {
+                enabled: false,
+            }
         }
         save_last_state(last_state)
         const state = await init_app_callback(new Action(INIT_APP), {...st});

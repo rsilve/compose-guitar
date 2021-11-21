@@ -10,6 +10,9 @@ suite("State", () => {
             version: STATE_VERSION,
             zoom: 100,
             transpose: 0,
+            synchronization: {
+                enabled: false
+            }
         })
     })
 
