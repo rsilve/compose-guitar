@@ -1,5 +1,7 @@
 import {html, LitElement, css} from 'lit';
-import {customElement} from "lit/decorators.js";
+import {customElement, state} from "lit/decorators.js";
+import {DispatcherController} from "../../stores/lit_controller";
+import {IState} from "../stores/state";
 
 
 @customElement('synchronize-notification')
@@ -18,10 +20,23 @@ class SynchronizeNotification extends LitElement {
         `
     ]
 
+    constructor() {
+        super();
+        const cb = (st: IState) => {
+            this._enabled = st.synchronization?.enabled
+        }
+        this.addController(new DispatcherController(cb.bind(this)))
+    }
+
+    @state()
+    _enabled = false
+
     render(): unknown {
-        return html`
-            <div>sync</div>
-            `
+        if (this._enabled) {
+            return html`<div>sync active</div>`
+        } else {
+            return html`<div>sync inactive</div>`
+        }
     }
 
 }
