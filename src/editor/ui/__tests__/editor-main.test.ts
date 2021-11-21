@@ -17,6 +17,7 @@ suite("Main app element", () => {
             <compose-modals class="no_print"></compose-modals>
             <compose-notification class="no_print"></compose-notification>
             <synchronize-notification class="no_print"></synchronize-notification>
+            <google-api class="no_print"></google-api>
         `)
     });
 
