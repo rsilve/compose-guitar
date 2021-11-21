@@ -1,5 +1,5 @@
 import {Action} from "../actions/Action";
-import {IState} from "../editor/stores/state";
+import {default_state, IState} from "../editor/stores/state";
 
 let state: IState
 
@@ -51,7 +51,7 @@ export function reset_dispatcher(st: IState | undefined = undefined): void {
     if (st) {
         state = {...st}
     } else {
-        state = {}
+        state = {...default_state()}
     }
     listeners = []
     dispatch_callback = []

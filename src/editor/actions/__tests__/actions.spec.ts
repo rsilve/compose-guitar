@@ -17,12 +17,12 @@ suite("actions", () => {
     test("transpose", async () => {
         let handle = 0
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             if (action.action_type === TRANSPOSE_CHANGE) {
                 const {transpose} = action.payload as { transpose: number }
                 handle = transpose
             }
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_transpose_change(2)
         expect(handle).to.be.equal(2)
@@ -31,9 +31,9 @@ suite("actions", () => {
     test("init", async () => {
         let handle = false
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             handle = action.action_type === INIT_APP
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_init_app()
         expect(handle).to.be.true
@@ -42,10 +42,10 @@ suite("actions", () => {
     test("upload_from_gallery", async () => {
         let handle = ''
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             const {id = ''} = action.payload as { id: string }
             handle = action.action_type === UPLOAD_FROM_GALLERY ? id : ''
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_upload_from_gallery('id')
         expect(handle).to.be.equal('id')
@@ -54,9 +54,9 @@ suite("actions", () => {
     test("save_as_start", async () => {
         let handle = false
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             handle = action.action_type === SAVE_AS_START
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_save_as_start()
         expect(handle).to.be.true
@@ -65,9 +65,9 @@ suite("actions", () => {
     test("save_as_start_and_new", async () => {
         let handle = false
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             handle = action.action_type === SAVE_AS_START_AND_NEW
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_save_as_start_and_new()
         expect(handle).to.be.true
@@ -76,9 +76,9 @@ suite("actions", () => {
     test("gallery_open", async () => {
         let handle = false
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             handle = action.action_type === GALLERY_OPEN
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_gallery_open()
         expect(handle).to.be.true
@@ -87,10 +87,10 @@ suite("actions", () => {
     test("gallery_gallery_remove", async () => {
         let handle = 'id'
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             const {id = ''} = action.payload as { id: string }
             handle = action.action_type === GALLERY_REMOVE ? id : ''
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_gallery_remove('id')
         expect(handle).to.be.equal('id')
@@ -99,9 +99,9 @@ suite("actions", () => {
     test("gallery_gallery_close", async () => {
         let handle = false
         reset_dispatcher(default_state())
-        register(action => {
+        register((action, state) => {
             handle = action.action_type === GALLERY_CLOSE
-            return Promise.resolve({})
+            return Promise.resolve(state)
         })
         await action_gallery_close()
         expect(handle).to.be.true

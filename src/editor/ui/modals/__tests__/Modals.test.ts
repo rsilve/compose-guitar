@@ -17,7 +17,7 @@ suite("Modals element", () => {
     });
 
     test('open gallery', async () => {
-        reset_dispatcher({...st, gallery: {}})
+        reset_dispatcher({...st, gallery: true})
         const el: Modals = await fixture(html`
             <compose-modals></compose-modals> `);
         expect(el).to.instanceOf(Modals)
@@ -39,7 +39,7 @@ suite("Modals element", () => {
     });
 
     test('open help', async () => {
-        reset_dispatcher({...st, help_open: {}})
+        reset_dispatcher({...st, help_open: true})
         const el: Modals = await fixture(html`
             <compose-modals></compose-modals> `);
         expect(el).to.instanceOf(Modals)
@@ -50,7 +50,7 @@ suite("Modals element", () => {
     });
 
     test('confirm save', async () => {
-        reset_dispatcher({...st, confirm_save: {}})
+        reset_dispatcher({...st, confirm_save: true})
         const el: Modals = await fixture(html`
             <compose-modals></compose-modals> `);
         expect(el).to.instanceOf(Modals)

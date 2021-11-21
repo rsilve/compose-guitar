@@ -1,7 +1,6 @@
 import {Action, publish_action} from "../../actions/Action";
 
 
-
 export const INIT_APP = "INIT_APP"
 export const action_init_app = (): Promise<void> => {
     return publish_action(new Action(INIT_APP))
@@ -52,12 +51,12 @@ export const action_notification_close = (): void => {
 
 export const ZOOM_CHANGE = "ZOOM_CHANGE"
 export const action_zoom_change = (zoom: number): void => {
-    publish_action(new Action(ZOOM_CHANGE,{zoom: zoom}))
+    publish_action(new Action(ZOOM_CHANGE, {zoom: zoom}))
 }
 
 export const TRANSPOSE_CHANGE = "TRANSPOSE_CHANGE"
 export const action_transpose_change = (transpose: number): Promise<void> => {
-    return publish_action(new Action(TRANSPOSE_CHANGE,{transpose: transpose}))
+    return publish_action(new Action(TRANSPOSE_CHANGE, {transpose: transpose}))
 }
 
 export interface IPayloadEditor {
@@ -107,8 +106,6 @@ export const action_track_paste = (): Promise<void> => {
     return publish_action(new Action(TRACK_PASTE))
 }
 
-
-
 export const HELP_OPEN = "HELP_OPEN"
 export const action_help_open = (): void => {
     publish_action(new Action(HELP_OPEN))
@@ -119,9 +116,14 @@ export const action_help_close = (): void => {
     publish_action(new Action(HELP_CLOSE))
 }
 
-export const MODALS_CLOSE= "MODALS_CLOSE"
+export const MODALS_CLOSE = "MODALS_CLOSE"
 export const action_modals_close = (): void => {
     publish_action(new Action(MODALS_CLOSE))
+}
+
+export const SYNCHRO_ACTIVATION_REQUEST = "SYNCHRO_ACTIVATION_REQUEST"
+export const action_synchronization_activation_request = (): Promise<void> => {
+    return publish_action(new Action(SYNCHRO_ACTIVATION_REQUEST))
 }
 
 

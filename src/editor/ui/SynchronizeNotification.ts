@@ -2,6 +2,7 @@ import {html, LitElement, css} from 'lit';
 import {customElement, state} from "lit/decorators.js";
 import {DispatcherController} from "../../stores/lit_controller";
 import {IState} from "../stores/state";
+import {action_synchronization_activation_request} from "../actions/actions";
 
 
 @customElement('synchronize-notification')
@@ -35,7 +36,7 @@ class SynchronizeNotification extends LitElement {
         if (this._enabled) {
             return html`<div>sync active</div>`
         } else {
-            return html`<div>sync inactive</div>`
+            return html`<div @click="${action_synchronization_activation_request}">sync inactive</div>`
         }
     }
 
