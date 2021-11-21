@@ -7,7 +7,14 @@ class GoogleAPI extends LitElement {
 
     render(): unknown {
         return html`
-            `
+            ${this.script()}
+        `
+    }
+
+    script() {
+        const script = document.createElement('script');
+        script.src = 'https://apis.google.com/js/api.js';
+        return script;
     }
 
 }
