@@ -16,7 +16,7 @@ suite("Main app element", () => {
             <transpose-grid class="no_print"></transpose-grid>
             <compose-modals class="no_print"></compose-modals>
             <compose-notification class="no_print"></compose-notification>
-            
+            <synchronize-notification class="no_print"></synchronize-notification>
         `)
     });
 

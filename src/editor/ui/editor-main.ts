@@ -9,6 +9,7 @@ import './TransposeGrid'
 import './modals/Modals'
 import './notification/compose-notification'
 import './compose-keys'
+import './SynchronizeNotification'
 
 @customElement('editor-main')
 class EditorMain extends LitElement {
@@ -61,6 +62,7 @@ class EditorMain extends LitElement {
             <transpose-grid class="no_print"></transpose-grid>
             <compose-modals class="no_print"></compose-modals>
             <compose-notification class="no_print"></compose-notification>
+            <synchronize-notification class="no_print"></synchronize-notification>
         `
     }
 }
