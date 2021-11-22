@@ -126,5 +126,7 @@ export const action_synchronization_activation_request = (): Promise<void> => {
     return publish_action(new Action(SYNCHRO_ACTIVATION_REQUEST))
 }
 
-
-
+export const SYNCHRO_DEACTIVATION_REQUEST = "SYNCHRO_DEACTIVATION_REQUEST"
+export const action_synchronization_deactivation_request = (): Promise<void> => {
+    return publish_action(new Action(SYNCHRO_DEACTIVATION_REQUEST))
+}

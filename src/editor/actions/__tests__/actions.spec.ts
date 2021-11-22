@@ -2,11 +2,23 @@ import {expect} from '@open-wc/testing'
 import {register, reset_dispatcher} from "../../../stores/dispatcher";
 import {
     action_gallery_close,
-    action_gallery_open, action_gallery_remove,
-    action_init_app, action_save_as_start, action_save_as_start_and_new, action_synchronization_activation_request,
+    action_gallery_open,
+    action_gallery_remove,
+    action_init_app,
+    action_save_as_start,
+    action_save_as_start_and_new,
+    action_synchronization_activation_request,
+    action_synchronization_deactivation_request,
     action_transpose_change,
-    action_upload_from_gallery, GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE,
-    INIT_APP, SAVE_AS_START, SAVE_AS_START_AND_NEW, SYNCHRO_ACTIVATION_REQUEST,
+    action_upload_from_gallery,
+    GALLERY_CLOSE,
+    GALLERY_OPEN,
+    GALLERY_REMOVE,
+    INIT_APP,
+    SAVE_AS_START,
+    SAVE_AS_START_AND_NEW,
+    SYNCHRO_ACTIVATION_REQUEST,
+    SYNCHRO_DEACTIVATION_REQUEST,
     TRANSPOSE_CHANGE,
     UPLOAD_FROM_GALLERY
 } from "../actions";
@@ -115,6 +127,17 @@ suite("actions", () => {
             return Promise.resolve(state)
         })
         await action_synchronization_activation_request()
+        expect(handle).to.be.true
+    })
+
+    test("action_synchronization_deactivation_request", async () => {
+        let handle = false
+        reset_dispatcher(default_state())
+        register((action, state) => {
+            handle = action.action_type === SYNCHRO_DEACTIVATION_REQUEST
+            return Promise.resolve(state)
+        })
+        await action_synchronization_deactivation_request()
         expect(handle).to.be.true
     })
 
