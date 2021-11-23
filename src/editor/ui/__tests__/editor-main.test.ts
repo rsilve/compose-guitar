@@ -1,14 +1,13 @@
-import {expect, fixture, html} from "@open-wc/testing";
-import EditorMain from "../editor-main";
+import { expect, fixture, html } from '@open-wc/testing';
+import EditorMain from '../editor-main';
 
-suite("Main app element", () => {
-
-    test('is defined', async () => {
-        const el: EditorMain = await fixture(html`
+suite('Main app element', () => {
+  test('is defined', async () => {
+    const el: EditorMain = await fixture(html`
             <editor-main></editor-main> `);
-        expect(el).to.instanceOf(EditorMain)
-        await expect(el).shadowDom.to.be.accessible();
-        expect(el).shadowDom.to.be.equal(`
+    expect(el).to.instanceOf(EditorMain);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal(`
             <compose-menu class="no_print"></compose-menu>
             <main-screen></main-screen>
             <zoom-grid class="no_print"></zoom-grid>
@@ -18,9 +17,6 @@ suite("Main app element", () => {
             <compose-notification class="no_print"></compose-notification>
             <synchronize-notification class="no_print"></synchronize-notification>
             <google-api class="no_print"></google-api>
-        `)
-    });
-
-
-})
-
+        `);
+  });
+});

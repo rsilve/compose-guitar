@@ -1,14 +1,13 @@
-import {css, html, LitElement} from 'lit';
-import {customElement, property} from "lit/decorators.js";
-import "../../../icons/save_icon"
-import "../../../icons/new_track_icon"
-import "../../../icons/gallery_icon"
-import {classMap} from 'lit/directives/class-map.js';
-
+import { css, html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import '../../../icons/save_icon';
+import '../../../icons/new_track_icon';
+import '../../../icons/gallery_icon';
+import { classMap } from 'lit/directives/class-map.js';
 
 @customElement('menu-item')
 class MenuItem extends LitElement {
-    static styles = css` 
+  static styles = css` 
         :host {
             display: block;
             cursor: pointer;
@@ -31,25 +30,23 @@ class MenuItem extends LitElement {
             color: var(--color-error);
         }
         
-   `
+   `;
 
-    constructor() {
-        super();
-        this.setAttribute("ontouchstart", "")
-    }
+  constructor() {
+    super();
+    this.setAttribute('ontouchstart', '');
+  }
 
-    @property({type: Boolean})
-    dotted = false;
+    @property({ type: Boolean })
+      dotted = false;
 
     render(): unknown {
-        return html`
-            <div class="${classMap({dot: this.dotted})}">
+      return html`
+            <div class="${classMap({ dot: this.dotted })}">
                 <slot></slot>
             </div>
         `;
     }
-
-
 }
 
-export default MenuItem
+export default MenuItem;

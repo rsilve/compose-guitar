@@ -1,14 +1,13 @@
-import {css, html, LitElement} from 'lit';
-import {customElement} from "lit/decorators.js";
-import {buttonStyles} from "../styles/button";
-import {action_track_new} from "../../actions/actions";
-
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { buttonStyles } from '../styles/button';
+import { action_track_new } from '../../actions/actions';
 
 @customElement('app-on-boarding')
 class AppOnBoarding extends LitElement {
-    static styles = [
-        buttonStyles,
-        css`
+  static styles = [
+    buttonStyles,
+    css`
         :host {
             display: block;
             text-align: center;
@@ -47,10 +46,10 @@ class AppOnBoarding extends LitElement {
             font-size:1.3em; 
             line-height: 1.5em;
         }
-        `]
+        `];
 
-    render(): unknown {
-        return html`
+  render(): unknown {
+    return html`
             <h1>Chords grid editor</h1>
             <h2>Your songs in a glance</h2>
             <p>Just write down your chord sequence and get a simple picture of your song.</p>
@@ -67,9 +66,8 @@ class AppOnBoarding extends LitElement {
             </div>
 
             <button @click="${action_track_new}">Create your first chords grid</button>
-        `
-    }
-
+        `;
+  }
 }
 
-export default AppOnBoarding
+export default AppOnBoarding;

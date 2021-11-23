@@ -16,8 +16,8 @@ export interface IStateTrack {
     id?: string
 }
 
-type IStateVersion = "v2"
-export const STATE_VERSION: IStateVersion = "v2"
+type IStateVersion = 'v2'
+export const STATE_VERSION: IStateVersion = 'v2';
 
 interface IStateSynchronisation {
     enabled: boolean
@@ -39,12 +39,12 @@ export interface IState {
 }
 
 export function default_state(): IState {
-    return  {
-        version: STATE_VERSION,
-        zoom: 100,
-        transpose: 0,
-        synchronization: {
-            enabled: false
-        }
-    }
+  return {
+    version: STATE_VERSION,
+    zoom: 100,
+    transpose: 0,
+    synchronization: {
+      enabled: false,
+    },
+  };
 }

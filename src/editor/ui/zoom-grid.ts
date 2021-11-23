@@ -1,15 +1,15 @@
-import {css, html, LitElement} from 'lit';
-import {customElement, state} from "lit/decorators.js";
-import {action_zoom_change} from "../actions/actions";
-import {DispatcherController} from "../../stores/lit_controller";
-import {IState} from "../stores/state";
+import { css, html, LitElement } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
+import { action_zoom_change } from '../actions/actions';
+import { DispatcherController } from '../../stores/lit_controller';
+import { IState } from '../stores/state';
 
-const DEFAULT_ZOOM = 100
+const DEFAULT_ZOOM = 100;
 
 @customElement('zoom-grid')
 class ZoomGrid extends LitElement {
-    static styles = [
-        css`
+  static styles = [
+    css`
         :host {
             display: flex;
             flex-direction: row;
@@ -52,37 +52,35 @@ class ZoomGrid extends LitElement {
         .text {
             font-size: 1em;
         }
-    `]
+    `];
 
-
-    constructor() {
-        super()
-        const cb = (st: IState) => {
-            this._zoom = st.zoom || DEFAULT_ZOOM
-        }
-        this.addController(new DispatcherController(cb.bind(this)));
-    }
+  constructor() {
+    super();
+    const cb = (st: IState) => {
+      this._zoom = st.zoom || DEFAULT_ZOOM;
+    };
+    this.addController(new DispatcherController(cb.bind(this)));
+  }
 
     @state()
-    _zoom = DEFAULT_ZOOM
+      _zoom = DEFAULT_ZOOM;
 
     _handle_incr(): void {
-        const z = this._zoom + 10
-        action_zoom_change(z)
+      const z = this._zoom + 10;
+      action_zoom_change(z);
     }
 
     _handle_decr(): void {
-        const z = this._zoom - 10
-        action_zoom_change(z)
+      const z = this._zoom - 10;
+      action_zoom_change(z);
     }
 
     render(): unknown {
-        return html`
+      return html`
             <div class="zoom_in pill" @click="${this._handle_incr}" title="Zoom in - Atl++/Alt+=" ontouchstart="">+</div>
             <div class="zoom_out pill" @click="${this._handle_decr}" title="Zoom out - Alt+-" ontouchstart="">-</div>
-            <div class="text">${this._zoom}%</div>`
+            <div class="text">${this._zoom}%</div>`;
     }
-
 }
 
-export default ZoomGrid
+export default ZoomGrid;

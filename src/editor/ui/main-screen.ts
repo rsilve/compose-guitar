@@ -1,16 +1,15 @@
-import {html, LitElement} from 'lit';
-import {customElement, state} from "lit/decorators.js";
+import { html, LitElement } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
 
-import './screen/app-on-boarding'
-import './screen/app-main-preview'
-import {DispatcherController} from "../../stores/lit_controller";
-import {IState} from "../stores/state";
+import './screen/app-on-boarding';
+import './screen/app-main-preview';
+import { DispatcherController } from '../../stores/lit_controller';
+import { IState } from '../stores/state';
 
 @customElement('main-screen')
 class MainScreen extends LitElement {
-
     @state()
-    protected _on_boarding_enabled = false
+  protected _on_boarding_enabled = false;
 
     @state()
     protected _title: string | undefined;
@@ -25,32 +24,30 @@ class MainScreen extends LitElement {
     protected _transpose = 0;
 
     constructor() {
-        super();
-        this.addController(new DispatcherController(this.store_callback.bind(this)))
+      super();
+      this.addController(new DispatcherController(this.store_callback.bind(this)));
     }
 
     render(): unknown {
-        if (this._on_boarding_enabled) {
-            return html`
-                <app-on-boarding></app-on-boarding>`
-        } else {
-            return html`
+      if (this._on_boarding_enabled) {
+        return html`
+                <app-on-boarding></app-on-boarding>`;
+      }
+      return html`
                 <app-main-preview
                         zoom="${this._zoom}"
                         song_title="${this._title}"
                         song_grid="${this._grid_text}"
-                        transpose="${this._transpose}"></app-main-preview>`
-        }
+                        transpose="${this._transpose}"></app-main-preview>`;
     }
 
     store_callback(st: IState): void {
-        this._on_boarding_enabled = !st.track
-        this._title = st.track?.title
-        this._grid_text = st.track?.grid_text
-        this._zoom = st.zoom
-        this._transpose = st.transpose
+      this._on_boarding_enabled = !st.track;
+      this._title = st.track?.title;
+      this._grid_text = st.track?.grid_text;
+      this._zoom = st.zoom;
+      this._transpose = st.transpose;
     }
-
 }
 
-export default MainScreen
+export default MainScreen;

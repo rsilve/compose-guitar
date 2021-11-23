@@ -1,18 +1,16 @@
-import {html, LitElement, css} from 'lit';
-import {customElement, state} from "lit/decorators.js";
-import {DispatcherController} from "../../stores/lit_controller";
-import {IState} from "../stores/state";
+import { html, LitElement, css } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
+import { DispatcherController } from '../../stores/lit_controller';
+import { IState } from '../stores/state';
 import {
-    action_synchronization_activation_request,
-    action_synchronization_deactivation_request
-} from "../actions/actions";
-
+  action_synchronization_activation_request,
+  action_synchronization_deactivation_request,
+} from '../actions/actions';
 
 @customElement('synchronize-notification')
 class SynchronizeNotification extends LitElement {
-
-    static styles = [
-        css`
+  static styles = [
+    css`
         :host {
             position: absolute;
             bottom: 0;
@@ -25,28 +23,26 @@ class SynchronizeNotification extends LitElement {
         div {
             cursor: pointer;
         }
-        `
-    ]
+        `,
+  ];
 
-    constructor() {
-        super();
-        const cb = (st: IState) => {
-            this._enabled = st.synchronization?.enabled
-        }
-        this.addController(new DispatcherController(cb.bind(this)))
-    }
+  constructor() {
+    super();
+    const cb = (st: IState) => {
+      this._enabled = st.synchronization?.enabled;
+    };
+    this.addController(new DispatcherController(cb.bind(this)));
+  }
 
     @state()
-    _enabled = false
+      _enabled = false;
 
     render(): unknown {
-        if (this._enabled) {
-            return html`<div @click="${action_synchronization_deactivation_request}">sync active</div>`
-        } else {
-            return html`<div @click="${action_synchronization_activation_request}">sync inactive</div>`
-        }
+      if (this._enabled) {
+        return html`<div @click="${action_synchronization_deactivation_request}">sync active</div>`;
+      }
+      return html`<div @click="${action_synchronization_activation_request}">sync inactive</div>`;
     }
-
 }
 
-export default SynchronizeNotification
+export default SynchronizeNotification;

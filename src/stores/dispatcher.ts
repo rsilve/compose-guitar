@@ -1,61 +1,58 @@
-import {Action} from "../actions/Action";
-import {default_state, IState} from "../editor/stores/state";
+import { Action } from '../actions/Action';
+import { default_state, IState } from '../editor/stores/state';
 
-let state: IState
+let state: IState;
 
-let listeners: ((state: IState) => void)[] = []
-let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = []
+let listeners: ((state: IState) => void)[] = [];
+let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = [];
 
 function notify() {
-    for (const listener of listeners) {
-        listener({...state})
-    }
+  for (const listener of listeners) {
+    listener({ ...state });
+  }
 }
 
 export function initialize_state(st: IState): void {
-    state = st
+  state = st;
 }
 
 export function init(callback: (state: IState) => void): void {
-    callback({...state})
+  callback({ ...state });
 }
 
 export function connect(callback: (state: IState) => void): void {
-    listeners.push(callback)
+  listeners.push(callback);
 }
 
 export function disconnect(callback: (state: IState) => void): void {
-    const index = listeners.indexOf(callback);
-    if (index >= 0) {
-        listeners.splice(index, 1)
-    }
+  const index = listeners.indexOf(callback);
+  if (index >= 0) {
+    listeners.splice(index, 1);
+  }
 }
 
 export function register(callback: (action: Action, state: IState) => Promise<IState>): void {
-    dispatch_callback.push(callback)
+  dispatch_callback.push(callback);
 }
 
 export function registered(callback: (action: Action, state: IState) => Promise<IState>): boolean {
-    return dispatch_callback.indexOf(callback) >= 0
+  return dispatch_callback.indexOf(callback) >= 0;
 }
 
 export async function dispatch(action: Action): Promise<void> {
-    for (const cb of dispatch_callback) {
-        state = await cb(action, {...state})
-    }
-    notify()
+  for (const cb of dispatch_callback) {
+    state = await cb(action, { ...state });
+  }
+  notify();
 }
 
 // for tests
 export function reset_dispatcher(st: IState | undefined = undefined): void {
-    if (st) {
-        state = {...st}
-    } else {
-        state = {...default_state()}
-    }
-    listeners = []
-    dispatch_callback = []
-
+  if (st) {
+    state = { ...st };
+  } else {
+    state = { ...default_state() };
+  }
+  listeners = [];
+  dispatch_callback = [];
 }
-
-

@@ -1,16 +1,14 @@
-import {css, html, LitElement} from 'lit';
-import {customElement} from "lit/decorators.js";
-import {buttonStyles} from "../styles/button";
-import {modalStyles} from "../styles/modals";
-
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { buttonStyles } from '../styles/button';
+import { modalStyles } from '../styles/modals';
 
 @customElement('help-modal')
 class HelpModal extends LitElement {
-
-    static styles = [
-        buttonStyles,
-        modalStyles,
-        css`
+  static styles = [
+    buttonStyles,
+    modalStyles,
+    css`
         .shortcuts p {
             margin: .6ex 0;
         }
@@ -23,19 +21,19 @@ class HelpModal extends LitElement {
         td + td {
             padding-left: 1ex;
         }
-        `
-    ]
+        `,
+  ];
 
-    private _dispatch_close() {
-        const options = {
-            bubbles: true,
-            composed: true
-        };
-        this.dispatchEvent(new CustomEvent('close', options));
-    }
+  private _dispatch_close() {
+    const options = {
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent('close', options));
+  }
 
-    render(): unknown {
-        return html`
+  render(): unknown {
+    return html`
             <h1>Keyboard shortcuts</h1>
             <div class="shortcuts">
                 <table>
@@ -81,8 +79,7 @@ class HelpModal extends LitElement {
                 <button tabindex="-1" class="btn-primary _close" @click="${this._dispatch_close}">Close</button>
             </div>
         `;
-    }
-
+  }
 }
 
-export default HelpModal
+export default HelpModal;

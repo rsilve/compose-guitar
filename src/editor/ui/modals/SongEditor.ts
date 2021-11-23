@@ -1,27 +1,28 @@
-import {css, html, LitElement, PropertyValues} from 'lit';
-import {customElement, query, state} from "lit/decorators.js";
-import {buttonStyles} from "../styles/button";
-import {modalStyles} from "../styles/modals";
-import {inputStyles} from "../styles/input";
-import {classMap} from 'lit/directives/class-map.js';
-import {ifDefined} from 'lit/directives/if-defined.js';
+import {
+  css, html, LitElement, PropertyValues,
+} from 'lit';
+import { customElement, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { buttonStyles } from '../styles/button';
+import { modalStyles } from '../styles/modals';
+import { inputStyles } from '../styles/input';
 
-import "../../../icons/info_icon"
-import "./editor/GridEditor"
+import '../../../icons/info_icon';
+import './editor/GridEditor';
 
-import {DispatcherController} from "../../../stores/lit_controller";
-import {IState} from "../../stores/state";
-import {exists_in_gallery} from "../../stores/register/gallery_tools";
-import {action_notification_open, action_track_edit_apply, action_track_edit_cancel} from "../../actions/actions";
-
+import { DispatcherController } from '../../../stores/lit_controller';
+import { IState } from '../../stores/state';
+import { exists_in_gallery } from '../../stores/register/gallery_tools';
+import { action_notification_open, action_track_edit_apply, action_track_edit_cancel } from '../../actions/actions';
 
 @customElement('song-editor')
 class SongEditor extends LitElement {
-    static styles = [
-        buttonStyles,
-        modalStyles,
-        inputStyles,
-        css`
+  static styles = [
+    buttonStyles,
+    modalStyles,
+    inputStyles,
+    css`
        .song-editor-body {
             display: flex;
             flex-direction: row;
@@ -96,87 +97,87 @@ class SongEditor extends LitElement {
         button:active {
             transform: scale(1.2);
         }
-    `]
+    `];
 
-    @query("#title_input")
-    _el_title: HTMLInputElement | undefined
-
-    @state()
-    _value: string | undefined;
+    @query('#title_input')
+      _el_title: HTMLInputElement | undefined;
 
     @state()
-    _grid_valid = true;
+      _value: string | undefined;
 
     @state()
-    _grid_error_reason: string | undefined = undefined;
+      _grid_valid = true;
 
     @state()
-    _grid_title: string | undefined;
-    _original_title: string | undefined = undefined
+      _grid_error_reason: string | undefined = undefined;
 
     @state()
-    _grid_title_already_exists = false
+      _grid_title: string | undefined;
+
+    _original_title: string | undefined = undefined;
 
     @state()
-    _help_pane_open = false
+      _grid_title_already_exists = false;
+
+    @state()
+      _help_pane_open = false;
 
     constructor() {
-        super();
-        const cb = ({editor}: IState): void => {
-            this._update_grid(editor?.grid_text)
-            this._grid_title = editor?.title
-            this._original_title = this._grid_title
-        }
-        this.addController(new DispatcherController(cb.bind(this)))
+      super();
+      const cb = ({ editor }: IState): void => {
+        this._update_grid(editor?.grid_text);
+        this._grid_title = editor?.title;
+        this._original_title = this._grid_title;
+      };
+      this.addController(new DispatcherController(cb.bind(this)));
     }
 
-
     protected firstUpdated(_changedProperties: PropertyValues): void {
-        super.firstUpdated(_changedProperties);
-        this._el_title?.focus()
+      super.firstUpdated(_changedProperties);
+      this._el_title?.focus();
     }
 
     _update_grid(raw: string | undefined): void {
-        this._value = raw
+      this._value = raw;
     }
 
     _handle_change_title(e: Event): void {
-        let value = (e.target as HTMLInputElement).value
-        value = value.trim()
-        this._grid_title_already_exists = exists_in_gallery(value, this._original_title)
-        this._grid_title = value
+      let { value } = e.target as HTMLInputElement;
+      value = value.trim();
+      this._grid_title_already_exists = exists_in_gallery(value, this._original_title);
+      this._grid_title = value;
     }
 
     _handle_change_grid(e: CustomEvent): void {
-        this._update_grid(e.detail.value)
-        this._grid_valid = e.detail.valid
+      this._update_grid(e.detail.value);
+      this._grid_valid = e.detail.valid;
     }
 
     _handle_apply(): void {
-        if (this._value) {
-            action_track_edit_apply({
-                title: this._grid_title,
-                grid_text: this._value,
-                updated_at: new Date().toISOString()
-            }).then(() => action_notification_open("Track updated"))
-        } else {
-            console.log("grid text is empty: close")
-            action_track_edit_cancel()
-        }
+      if (this._value) {
+        action_track_edit_apply({
+          title: this._grid_title,
+          grid_text: this._value,
+          updated_at: new Date().toISOString(),
+        }).then(() => action_notification_open('Track updated'));
+      } else {
+        console.log('grid text is empty: close');
+        action_track_edit_cancel();
+      }
     }
 
     _toggle_help(): void {
-        this._help_pane_open = !this._help_pane_open
+      this._help_pane_open = !this._help_pane_open;
     }
 
     render(): unknown {
-        return html`
+      return html`
             <div class="song-editor-body">
                 <div class="song-editor-body-form">
                     <div class="form-item">
                         ${this.title_error_pane()}
                         <input id="title_input" type="text" .value="${ifDefined(this._grid_title)}"
-                               class="${classMap({"invalid": this._grid_title_already_exists})}"
+                               class="${classMap({ invalid: this._grid_title_already_exists })}"
                                required placeholder="Title (required)"
                                @input="${this._handle_change_title}">
                        
@@ -194,11 +195,11 @@ class SongEditor extends LitElement {
     }
 
     footer_pane(): unknown {
-        let disabled = ""
-        if (!this._grid_valid || !this._grid_title || !this._value) {
-            disabled = "disabled"
-        }
-        return html`
+      let disabled = '';
+      if (!this._grid_valid || !this._grid_title || !this._value) {
+        disabled = 'disabled';
+      }
+      return html`
             <div class="modal-footer">
                 <div class="help_toggle" @click="${this._toggle_help}">
                     <info-icon></info-icon>
@@ -211,21 +212,20 @@ class SongEditor extends LitElement {
                 <button .disabled="${disabled}" ontouchstart=""
                         @click="${this._handle_apply}">Apply
                 </button>
-            </div>`
+            </div>`;
     }
 
     title_error_pane(): unknown {
-        if (this._grid_title_already_exists) {
-            return html`
-                <div class="song-editor-body-form-error-title">This title already exists</div>`
-        } else {
-            return html``
-        }
+      if (this._grid_title_already_exists) {
+        return html`
+                <div class="song-editor-body-form-error-title">This title already exists</div>`;
+      }
+      return html``;
     }
 
     help_pane(): unknown {
-        const classes = classMap({"song-editor-body-help": true, open: this._help_pane_open})
-        return html`
+      const classes = classMap({ 'song-editor-body-help': true, open: this._help_pane_open });
+      return html`
             <div class="${classes}">
                 <h2>Examples</h2>
                 <p>Chord : <strong>A</strong>, <strong>Em</strong>, <strong>F#</strong>, <strong>Cb</strong>,
@@ -251,8 +251,8 @@ class SongEditor extends LitElement {
                     <chords-grid>|: D :|</chords-grid>
                 </div>
                 </p>
-            </div>`
+            </div>`;
     }
 }
 
-export default SongEditor
+export default SongEditor;

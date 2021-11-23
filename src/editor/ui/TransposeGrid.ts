@@ -1,14 +1,13 @@
-import {css, html, LitElement} from 'lit';
-import {customElement, state} from "lit/decorators.js";
-import {action_transpose_change} from "../actions/actions";
-import {IState} from "../stores/state";
-import {DispatcherController} from "../../stores/lit_controller";
-
+import { css, html, LitElement } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
+import { action_transpose_change } from '../actions/actions';
+import { IState } from '../stores/state';
+import { DispatcherController } from '../../stores/lit_controller';
 
 @customElement('transpose-grid')
 class TransposeGrid extends LitElement {
-    static styles = [
-        css`
+  static styles = [
+    css`
         :host {
             position: absolute;
             bottom: 0;
@@ -68,33 +67,32 @@ class TransposeGrid extends LitElement {
         input:active {
             background-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
         }
-    `]
+    `];
 
-    constructor() {
-        super()
-        const cb = (st: IState) => {
-            this._transpose = st.transpose || 0
-        }
-        this.addController(new DispatcherController(cb.bind(this)))
-    }
+  constructor() {
+    super();
+    const cb = (st: IState) => {
+      this._transpose = st.transpose || 0;
+    };
+    this.addController(new DispatcherController(cb.bind(this)));
+  }
 
     @state()
-    _transpose = 0
+      _transpose = 0;
 
     _handle_change(e: Event): void {
-        this._transpose = +(e.target as HTMLInputElement).value
-        action_transpose_change(this._transpose)
+      this._transpose = +(e.target as HTMLInputElement).value;
+      action_transpose_change(this._transpose);
     }
 
     render(): unknown {
-        return html`
+      return html`
             <label title="transpose">
                 <input type="range" min="-11" max="11" @input="${this._handle_change}" .value="${this._transpose}">
                 <div>${this._transpose} tone</div>
             </label>
-            `
+            `;
     }
-
 }
 
-export default TransposeGrid
+export default TransposeGrid;

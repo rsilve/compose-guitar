@@ -1,17 +1,16 @@
-import {expect, fixture, html} from "@open-wc/testing";
+import { expect, fixture, html } from '@open-wc/testing';
 
-import AppOnBoarding from "../app-on-boarding";
-import {register, reset_dispatcher} from "../../../../stores/dispatcher";
-import {TRACK_NEW} from "../../../actions/actions";
+import AppOnBoarding from '../app-on-boarding';
+import { register, reset_dispatcher } from '../../../../stores/dispatcher';
+import { TRACK_NEW } from '../../../actions/actions';
 
-suite("app on boarding element", () => {
-
-    test('is defined', async () => {
-        const el: AppOnBoarding = await fixture(html`
+suite('app on boarding element', () => {
+  test('is defined', async () => {
+    const el: AppOnBoarding = await fixture(html`
             <app-on-boarding></app-on-boarding> `);
-        expect(el).to.instanceOf(AppOnBoarding)
-        await expect(el).shadowDom.to.be.accessible();
-        expect(el).shadowDom.to.be.equal(`
+    expect(el).to.instanceOf(AppOnBoarding);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal(`
             <h1>Chords grid editor</h1>
             <h2>Your songs in a glance</h2>
             <p>Just write down your chord sequence and get a simple picture of your song.</p>
@@ -28,24 +27,21 @@ suite("app on boarding element", () => {
             </div>
 
             <button>Create your first chords grid</button>
-        `)
+        `);
+  });
+
+  test('is defined', async () => {
+    reset_dispatcher();
+    let click_handled = false;
+    register((action, state) => {
+      click_handled = action.action_type === TRACK_NEW;
+      return Promise.resolve(state);
     });
 
-    test('is defined', async () => {
-        reset_dispatcher()
-        let click_handled = false
-        register((action, state) => {
-            click_handled = action.action_type === TRACK_NEW
-            return Promise.resolve(state)
-        })
-
-        const el: AppOnBoarding = await fixture(html`
+    const el: AppOnBoarding = await fixture(html`
             <app-on-boarding></app-on-boarding> `);
-        const node = el.shadowRoot?.querySelector("button") as HTMLElement
-        node.click()
-        expect(click_handled).to.be.true
-
-    })
-
-})
-
+    const node = el.shadowRoot?.querySelector('button') as HTMLElement;
+    node.click();
+    expect(click_handled).to.be.true;
+  });
+});

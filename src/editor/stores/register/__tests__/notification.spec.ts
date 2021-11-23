@@ -1,26 +1,21 @@
-import {expect} from '@open-wc/testing'
-import {NOTIFICATION_CLOSE, NOTIFICATION_OPEN} from "../../../actions/actions";
-import {notification_callback} from "../notification";
-import {state_test} from "../../../../__tests__/TestHelpers";
-import {Action} from "../../../../actions/Action";
+import { expect } from '@open-wc/testing';
+import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from '../../../actions/actions';
+import { notification_callback } from '../notification';
+import { state_test } from '../../../../__tests__/TestHelpers';
+import { Action } from '../../../../actions/Action';
 
+suite('Notification callback', () => {
+  const st = state_test;
 
-suite("Notification callback", () => {
+  test('notification open', async () => {
+    const action = new Action(NOTIFICATION_OPEN, { message: 'message' });
+    const state = await notification_callback(action, { ...st });
+    expect(state.notification).to.equal('message');
+  });
 
-    const st = state_test
-
-    test("notification open", async () => {
-        const action = new Action(NOTIFICATION_OPEN, {message: "message"})
-        const state = await notification_callback(action, {...st});
-        expect(state.notification).to.equal("message")
-    })
-
-    test("notification close", async () => {
-        const action = new Action(NOTIFICATION_CLOSE)
-        const state = await notification_callback(action, {...st});
-        expect(state.notification).to.be.undefined
-    })
-
-
-
-})
+  test('notification close', async () => {
+    const action = new Action(NOTIFICATION_CLOSE);
+    const state = await notification_callback(action, { ...st });
+    expect(state.notification).to.be.undefined;
+  });
+});

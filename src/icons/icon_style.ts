@@ -1,4 +1,4 @@
-import {css} from "lit";
+import { css } from 'lit';
 
 export default css`
 svg {
@@ -6,4 +6,4 @@ svg {
     width: var(--icon-size);
     height: var(--icon-size);
 }
-`
+`;

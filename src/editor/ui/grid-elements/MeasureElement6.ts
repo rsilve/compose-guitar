@@ -1,14 +1,13 @@
-import {html} from 'lit';
-import chord_render from "./chord_render";
-import Measure from "../../parser/Measure";
-import {customElement} from "lit/decorators.js";
-import {MeasureElement} from "./MeasureElement";
+import { html } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import chord_render from './chord_render';
+import Measure from '../../parser/Measure';
+import { MeasureElement } from './MeasureElement';
 
 @customElement('chords-grid-measure6')
 export default class MeasureElement6 extends MeasureElement {
-
-    renderMeasure(measure: Measure, transpose = 0): unknown {
-        return html`
+  renderMeasure(measure: Measure, transpose = 0): unknown {
+    return html`
             <table class="grid-measure-6">
                 <tbody>
                 <tr>
@@ -21,8 +20,6 @@ export default class MeasureElement6 extends MeasureElement {
                 </tr>
                 </tbody>
             </table>
-        `
-
-    }
+        `;
+  }
 }
-
