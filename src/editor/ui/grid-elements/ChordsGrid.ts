@@ -57,30 +57,30 @@ class ChordsGrid extends LitElement {
     renderMeasure(measure: Measure): unknown {
       let element: unknown;
       switch (measure.type) {
-        case 1: // A _ _ _
-          element = html`<chords-grid-measure1 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure1>`;
-          break;
-        case 2: // A B _ _
-          element = html`<chords-grid-measure2 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure2>`;
-          break;
-        case 3: // A _ B _
-          element = html`<chords-grid-measure3 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure3>`;
-          break;
-        case 4: // A _ _ B
-          element = html`<chords-grid-measure4 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure4>`;
-          break;
-        case 5: // A B C _
-          element = html`<chords-grid-measure5 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure5>`;
-          break;
-        case 6: // A B _ C
-          element = html`<chords-grid-measure6 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure6>`;
-          break;
-        case 7: // A _ B C
-          element = html`<chords-grid-measure7 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure7>`;
-          break;
-        case 8: // A B C D
-          element = html`<chords-grid-measure8 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure8>`;
-          break;
+      case 1: // A _ _ _
+        element = html`<chords-grid-measure1 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure1>`;
+        break;
+      case 2: // A B _ _
+        element = html`<chords-grid-measure2 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure2>`;
+        break;
+      case 3: // A _ B _
+        element = html`<chords-grid-measure3 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure3>`;
+        break;
+      case 4: // A _ _ B
+        element = html`<chords-grid-measure4 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure4>`;
+        break;
+      case 5: // A B C _
+        element = html`<chords-grid-measure5 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure5>`;
+        break;
+      case 6: // A B _ C
+        element = html`<chords-grid-measure6 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure6>`;
+        break;
+      case 7: // A _ B C
+        element = html`<chords-grid-measure7 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure7>`;
+        break;
+      case 8: // A B C D
+        element = html`<chords-grid-measure8 .measure="${measure}" transpose="${this.transpose}"></chords-grid-measure8>`;
+        break;
       }
       const part_element = part(measure);
       const repeat_start_el = repeat_start(measure);
