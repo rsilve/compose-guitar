@@ -1,21 +1,29 @@
-import { expect } from '@open-wc/testing';
-import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from '../../../actions/actions';
+import { expect } from "@open-wc/testing";
+import {
+  INIT_APP,
+  TRANSPOSE_CHANGE,
+  ZOOM_CHANGE,
+} from "../../../actions/actions";
 
-import { init_app_callback, transpose_change_callback, zoom_change_callback } from '../misc';
-import { save_last_state } from '../gallery_tools';
-import { state_test } from '../../../../__tests__/TestHelpers';
-import { IState, STATE_VERSION } from '../../state';
-import { Action } from '../../../../actions/Action';
+import {
+  init_app_callback,
+  transpose_change_callback,
+  zoom_change_callback,
+} from "../misc";
+import { save_last_state } from "../gallery_tools";
+import { state_test } from "../../../../__tests__/TestHelpers";
+import { IState, STATE_VERSION } from "../../state";
+import { Action } from "../../../../actions/Action";
 
-suite('Register misc', () => {
+suite("Register misc", () => {
   const st = state_test;
 
-  test('init_app_callback', async () => {
+  test("init_app_callback", async () => {
     const last_state: IState = {
       version: STATE_VERSION,
       track: {
-        title: 'title2',
-        grid_text: 'B7',
+        title: "title2",
+        grid_text: "B7",
       },
       zoom: 100,
       transpose: 0,
@@ -28,43 +36,67 @@ suite('Register misc', () => {
     expect(state).to.deep.equal(last_state);
   });
 
-  test('zoom_change_callback', async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 101 }), { ...st });
+  test("zoom_change_callback", async () => {
+    const state = await zoom_change_callback(
+      new Action(ZOOM_CHANGE, { zoom: 101 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, zoom: 101 });
   });
 
-  test('zoom_change_callback 001', async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 201 }), { ...st });
+  test("zoom_change_callback 001", async () => {
+    const state = await zoom_change_callback(
+      new Action(ZOOM_CHANGE, { zoom: 201 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, zoom: 200 });
   });
 
-  test('zoom_change_callback 002', async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 9 }), { ...st });
+  test("zoom_change_callback 002", async () => {
+    const state = await zoom_change_callback(
+      new Action(ZOOM_CHANGE, { zoom: 9 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, zoom: 10 });
   });
 
-  test('zoom_change_callback 003', async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: undefined }), { ...st });
+  test("zoom_change_callback 003", async () => {
+    const state = await zoom_change_callback(
+      new Action(ZOOM_CHANGE, { zoom: undefined }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, zoom: 100 });
   });
 
-  test('transpose_change_callback', async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: 2 }), { ...st });
+  test("transpose_change_callback", async () => {
+    const state = await transpose_change_callback(
+      new Action(TRANSPOSE_CHANGE, { transpose: 2 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, transpose: 2 });
   });
 
-  test('transpose_change_callback 001', async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: 13 }), { ...st });
+  test("transpose_change_callback 001", async () => {
+    const state = await transpose_change_callback(
+      new Action(TRANSPOSE_CHANGE, { transpose: 13 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, transpose: 12 });
   });
 
-  test('transpose_change_callback 002', async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: -13 }), { ...st });
+  test("transpose_change_callback 002", async () => {
+    const state = await transpose_change_callback(
+      new Action(TRANSPOSE_CHANGE, { transpose: -13 }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st, transpose: -12 });
   });
 
-  test('transpose_change_callback 003', async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: 'a' }), { ...st });
+  test("transpose_change_callback 003", async () => {
+    const state = await transpose_change_callback(
+      new Action(TRANSPOSE_CHANGE, { transpose: "a" }),
+      { ...st }
+    );
     expect(state).to.deep.equal({ ...st });
   });
 });

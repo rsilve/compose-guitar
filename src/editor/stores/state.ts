@@ -1,41 +1,41 @@
 export interface IStateDownload {
-    filename?: string
-    ready?: boolean
+  filename?: string;
+  ready?: boolean;
 }
 
 export interface IStateEditor {
-    grid_text?: string
-    title?: string
+  grid_text?: string;
+  title?: string;
 }
 
 export interface IStateTrack {
-    grid_text?: string
-    title?: string
-    updated_at?: string
-    saved_at?: string
-    id?: string
+  grid_text?: string;
+  title?: string;
+  updated_at?: string;
+  saved_at?: string;
+  id?: string;
 }
 
-type IStateVersion = 'v2'
-export const STATE_VERSION: IStateVersion = 'v2';
+type IStateVersion = "v2";
+export const STATE_VERSION: IStateVersion = "v2";
 
 interface IStateSynchronisation {
-    enabled: boolean
-    open?: boolean
+  enabled: boolean;
+  open?: boolean;
 }
 
 export interface IState {
-    version: IStateVersion
-    track?: IStateTrack
-    download?: IStateDownload
-    gallery?: boolean
-    notification?: string
-    zoom: number
-    editor?: IStateEditor;
-    help_open?: boolean
-    confirm_save?: boolean
-    transpose: number,
-    synchronization: IStateSynchronisation
+  version: IStateVersion;
+  track?: IStateTrack;
+  download?: IStateDownload;
+  gallery?: boolean;
+  notification?: string;
+  zoom: number;
+  editor?: IStateEditor;
+  help_open?: boolean;
+  confirm_save?: boolean;
+  transpose: number;
+  synchronization: IStateSynchronisation;
 }
 
 export function default_state(): IState {

@@ -1,8 +1,8 @@
-import { LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('new-track-icon')
+@customElement("new-track-icon")
 class NewTrackIcon extends LitElement {
   static styles = icon_style;
 

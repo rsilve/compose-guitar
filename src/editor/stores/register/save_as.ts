@@ -1,7 +1,7 @@
-import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from '../../actions/actions';
-import { add_to_gallery } from './gallery_tools';
-import { IState, IStateTrack } from '../state';
-import { Action } from '../../../actions/Action';
+import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../actions/actions";
+import { add_to_gallery } from "./gallery_tools";
+import { IState, IStateTrack } from "../state";
+import { Action } from "../../../actions/Action";
 
 function save(state: IState): IState {
   if (state.track && state.track.title) {
@@ -13,7 +13,10 @@ function save(state: IState): IState {
   return state;
 }
 
-export function save_as_callback(action: Action, state: IState): Promise<IState> {
+export function save_as_callback(
+  action: Action,
+  state: IState
+): Promise<IState> {
   if (action.action_type === SAVE_AS_START) {
     state = save(state);
   }

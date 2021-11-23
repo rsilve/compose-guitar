@@ -1,9 +1,9 @@
-import { css } from 'lit';
+import { css } from "lit";
 
 export const noPrintStyles = css`
-@media print {
+  @media print {
     .no_print {
-        display: none;
+      display: none;
     }
-}
+  }
 `;

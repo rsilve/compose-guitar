@@ -1,36 +1,38 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import SynchronizeConfiguration from '../SynchronizeConfiguration';
-import { reset_dispatcher } from '../../../../stores/dispatcher';
-import { state_test } from '../../../../__tests__/TestHelpers';
+import { expect, fixture, html } from "@open-wc/testing";
+import SynchronizeConfiguration from "../SynchronizeConfiguration";
+import { reset_dispatcher } from "../../../../stores/dispatcher";
+import { state_test } from "../../../../__tests__/TestHelpers";
 
-suite('synchronise configuration element', () => {
+suite("synchronise configuration element", () => {
   const st = state_test;
 
-  test('is defined', async () => {
+  test("is defined", async () => {
     reset_dispatcher();
-    const el: SynchronizeConfiguration = await fixture(html`
-            <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration =
+      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test('have a close button', async () => {
+  test("have a close button", async () => {
     reset_dispatcher();
     let handle_close = false;
-    const el: SynchronizeConfiguration = await fixture(html`
-            <synchronize-configuration @close="${() => handle_close = true}"></synchronize-configuration>`);
+    const el: SynchronizeConfiguration =
+      await fixture(html` <synchronize-configuration
+        @close="${() => (handle_close = true)}"
+      ></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector('._close') as HTMLElement;
+    const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
     expect(node).to.not.be.null;
     node.click();
     expect(handle_close).to.be.true;
   });
 
-  test('has default state', async () => {
+  test("has default state", async () => {
     reset_dispatcher();
-    const el: SynchronizeConfiguration = await fixture(html`
-            <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration =
+      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     expect(el._enabled).to.be.false;
@@ -42,10 +44,10 @@ suite('synchronise configuration element', () => {
         `);
   });
 
-  test('listen store', async () => {
+  test("listen store", async () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
-    const el: SynchronizeConfiguration = await fixture(html`
-            <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration =
+      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     expect(el._enabled).to.be.true;

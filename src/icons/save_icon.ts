@@ -1,8 +1,8 @@
-import { LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('save-icon')
+@customElement("save-icon")
 class SaveIcon extends LitElement {
   static styles = icon_style;
 

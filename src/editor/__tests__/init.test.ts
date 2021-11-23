@@ -1,12 +1,12 @@
-import { expect } from '@open-wc/testing';
-import init from '../init';
-import { INIT_APP } from '../actions/actions';
-import { connect, register } from '../../stores/dispatcher';
-import { IState } from '../stores/state';
-import { get_last_state } from '../stores/register/gallery_tools';
+import { expect } from "@open-wc/testing";
+import init from "../init";
+import { INIT_APP } from "../actions/actions";
+import { connect, register } from "../../stores/dispatcher";
+import { IState } from "../stores/state";
+import { get_last_state } from "../stores/register/gallery_tools";
 
-suite('Init', () => {
-  test('init', async () => {
+suite("Init", () => {
+  test("init", async () => {
     localStorage.clear();
 
     let action_init_done = false;

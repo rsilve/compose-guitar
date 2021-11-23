@@ -1,13 +1,14 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture, html } from "@open-wc/testing";
 
-import AppOnBoarding from '../app-on-boarding';
-import { register, reset_dispatcher } from '../../../../stores/dispatcher';
-import { TRACK_NEW } from '../../../actions/actions';
+import AppOnBoarding from "../app-on-boarding";
+import { register, reset_dispatcher } from "../../../../stores/dispatcher";
+import { TRACK_NEW } from "../../../actions/actions";
 
-suite('app on boarding element', () => {
-  test('is defined', async () => {
+suite("app on boarding element", () => {
+  test("is defined", async () => {
     const el: AppOnBoarding = await fixture(html`
-            <app-on-boarding></app-on-boarding> `);
+      <app-on-boarding></app-on-boarding>
+    `);
     expect(el).to.instanceOf(AppOnBoarding);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -30,7 +31,7 @@ suite('app on boarding element', () => {
         `);
   });
 
-  test('is defined', async () => {
+  test("is defined", async () => {
     reset_dispatcher();
     let click_handled = false;
     register((action, state) => {
@@ -39,8 +40,9 @@ suite('app on boarding element', () => {
     });
 
     const el: AppOnBoarding = await fixture(html`
-            <app-on-boarding></app-on-boarding> `);
-    const node = el.shadowRoot?.querySelector('button') as HTMLElement;
+      <app-on-boarding></app-on-boarding>
+    `);
+    const node = el.shadowRoot?.querySelector("button") as HTMLElement;
     node.click();
     expect(click_handled).to.be.true;
   });

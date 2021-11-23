@@ -1,4 +1,4 @@
-import { dispatch } from '../stores/dispatcher';
+import { dispatch } from "../stores/dispatcher";
 
 export class Action {
   readonly action_type: string;
@@ -13,6 +13,6 @@ export class Action {
 
 export function publish_action(action: Action): Promise<void> {
   return dispatch(action).then(() => {
-    console.log('action completed', action);
+    console.log("action completed", action);
   });
 }

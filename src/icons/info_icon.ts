@@ -1,18 +1,18 @@
-import { css, LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { css, LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('info-icon')
+@customElement("info-icon")
 class InfoIcon extends LitElement {
   static styles = [
     icon_style,
     css`
-        :host {
-            display: inline-block;
-            position: relative;
-            top: 6px; 
-        }  
-        `,
+      :host {
+        display: inline-block;
+        position: relative;
+        top: 6px;
+      }
+    `,
   ];
 
   render(): unknown {

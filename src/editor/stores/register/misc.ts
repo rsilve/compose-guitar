@@ -1,9 +1,12 @@
-import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from '../../actions/actions';
-import { get_last_state } from './gallery_tools';
-import { IState } from '../state';
-import { Action } from '../../../actions/Action';
+import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../actions/actions";
+import { get_last_state } from "./gallery_tools";
+import { IState } from "../state";
+import { Action } from "../../../actions/Action";
 
-export function init_app_callback(action: Action, state: IState): Promise<IState> {
+export function init_app_callback(
+  action: Action,
+  state: IState
+): Promise<IState> {
   if (action.action_type === INIT_APP) {
     const st = get_last_state();
     if (st) {
@@ -14,7 +17,10 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
   return Promise.resolve(state);
 }
 
-export function zoom_change_callback(action: Action, state: IState): Promise<IState> {
+export function zoom_change_callback(
+  action: Action,
+  state: IState
+): Promise<IState> {
   if (action.action_type === ZOOM_CHANGE) {
     let { zoom } = action.payload as { zoom: number };
     if (isNaN(zoom)) {
@@ -27,7 +33,10 @@ export function zoom_change_callback(action: Action, state: IState): Promise<ISt
   return Promise.resolve(state);
 }
 
-export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
+export function transpose_change_callback(
+  action: Action,
+  state: IState
+): Promise<IState> {
   if (action.action_type === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };
     if (isNaN(transpose)) {

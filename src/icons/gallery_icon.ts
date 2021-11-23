@@ -1,8 +1,8 @@
-import { LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('gallery-icon')
+@customElement("gallery-icon")
 class GalleryIcon extends LitElement {
   static styles = icon_style;
 

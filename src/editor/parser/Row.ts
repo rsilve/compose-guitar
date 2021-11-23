@@ -1,4 +1,4 @@
-import Measure from './Measure';
+import Measure from "./Measure";
 
 const row_regexp = /(\|{1,2})?[^|]+(\|{1,2})?/g;
 const row_invalid_regexp = /\|\s\||\|\|\|/;

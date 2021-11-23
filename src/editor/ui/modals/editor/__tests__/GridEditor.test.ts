@@ -1,10 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import GridEditor from '../GridEditor';
+import { expect, fixture, html } from "@open-wc/testing";
+import GridEditor from "../GridEditor";
 
-suite('Grid Editor element', () => {
-  test('is defined', async () => {
-    const el: GridEditor = await fixture(html`
-            <grid-editor></grid-editor> `);
+suite("Grid Editor element", () => {
+  test("is defined", async () => {
+    const el: GridEditor = await fixture(html` <grid-editor></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -12,9 +11,10 @@ suite('Grid Editor element', () => {
         `);
   });
 
-  test('have value attribute', async () => {
+  test("have value attribute", async () => {
     const el: GridEditor = await fixture(html`
-            <grid-editor value="A | B"></grid-editor> `);
+      <grid-editor value="A | B"></grid-editor>
+    `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -22,9 +22,10 @@ suite('Grid Editor element', () => {
         `);
   });
 
-  test('validate value', async () => {
+  test("validate value", async () => {
     const el: GridEditor = await fixture(html`
-            <grid-editor value="invalid"></grid-editor> `);
+      <grid-editor value="invalid"></grid-editor>
+    `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -33,16 +34,19 @@ suite('Grid Editor element', () => {
         `);
   });
 
-  test('validate value on input change', async () => {
+  test("validate value on input change", async () => {
     const el: GridEditor = await fixture(html`
-            <grid-editor value="A"></grid-editor> `);
+      <grid-editor value="A"></grid-editor>
+    `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
 
-    const node = el.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
+    const node = el.shadowRoot?.querySelector(
+      "textarea"
+    ) as HTMLTextAreaElement;
     node.setSelectionRange(0, 1);
-    node.setRangeText('ek');
-    const e = new InputEvent('input');
+    node.setRangeText("ek");
+    const e = new InputEvent("input");
     node.dispatchEvent(e);
 
     await el.updateComplete;
@@ -52,7 +56,7 @@ suite('Grid Editor element', () => {
         `);
   });
 
-  test('notify on input change', async () => {
+  test("notify on input change", async () => {
     const thenable = new Promise<boolean>((resolve) => {
       resolve(true);
     });
@@ -62,12 +66,15 @@ suite('Grid Editor element', () => {
       thenable.then();
     };
     const el: GridEditor = await fixture(html`
-            <grid-editor value="A" @update-grid="${handler}"></grid-editor> `);
+      <grid-editor value="A" @update-grid="${handler}"></grid-editor>
+    `);
     await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector('textarea') as HTMLTextAreaElement;
+    const node = el.shadowRoot?.querySelector(
+      "textarea"
+    ) as HTMLTextAreaElement;
     node.setSelectionRange(0, 1);
-    node.setRangeText('ek');
-    const e = new InputEvent('input');
+    node.setRangeText("ek");
+    const e = new InputEvent("input");
     node.dispatchEvent(e);
 
     await el.updateComplete;

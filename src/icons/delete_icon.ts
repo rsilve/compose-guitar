@@ -1,8 +1,8 @@
-import { LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('delete-icon')
+@customElement("delete-icon")
 class DeleteIcon extends LitElement {
   static styles = icon_style;
 

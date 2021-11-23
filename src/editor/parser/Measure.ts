@@ -1,6 +1,7 @@
-import Chord from './Chord';
+import Chord from "./Chord";
 
-const measure_regexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]{1,32}\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/;
+const measure_regexp =
+  /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]{1,32}\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/;
 
 class Measure {
   private _raw: string;
@@ -40,16 +41,16 @@ class Measure {
   private extract_chords(chords: string[]) {
     let raw_length = chords.length;
     if (raw_length === 2) {
-      chords.splice(1, 0, '_');
-      chords.push('_');
+      chords.splice(1, 0, "_");
+      chords.push("_");
       raw_length = 4;
     }
-    for (let i = 0; i < (4 - raw_length); i++) {
-      chords.push('_');
+    for (let i = 0; i < 4 - raw_length; i++) {
+      chords.push("_");
     }
     let last_chord: Chord | null = null;
     for (const chord of chords) {
-      if (last_chord && chord === '_') {
+      if (last_chord && chord === "_") {
         last_chord.duration++;
       } else {
         last_chord = new Chord(chord);
@@ -66,31 +67,31 @@ class Measure {
     const count = this.chords.length;
     const { duration } = this.chords[0];
     let duration2 = 0;
-    if (count == 1) {
+    if (count === 1) {
       this.type = 1;
     }
-    if (count == 2 && duration == 1) {
+    if (count === 2 && duration === 1) {
       this.type = 2;
     }
-    if (count == 2 && duration == 2) {
+    if (count === 2 && duration === 2) {
       this.type = 3;
     }
-    if (count == 2 && duration == 3) {
+    if (count === 2 && duration === 3) {
       this.type = 4;
     }
-    if (count == 3) {
+    if (count === 3) {
       duration2 = this.chords[1].duration;
     }
-    if (count == 3 && duration == 1 && duration2 == 1) {
+    if (count === 3 && duration === 1 && duration2 === 1) {
       this.type = 5;
     }
-    if (count == 3 && duration == 1 && duration2 == 2) {
+    if (count === 3 && duration === 1 && duration2 === 2) {
       this.type = 6;
     }
-    if (count == 3 && duration == 2) {
+    if (count === 3 && duration === 2) {
       this.type = 7;
     }
-    if (count == 4) {
+    if (count === 4) {
       this.type = 8;
     }
   }

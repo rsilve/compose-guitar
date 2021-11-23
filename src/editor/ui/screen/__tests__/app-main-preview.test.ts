@@ -1,13 +1,22 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import AppMainPreview from '../app-main-preview';
-import { connect, register, reset_dispatcher } from '../../../../stores/dispatcher';
-import { track_callback } from '../../../stores/register/track';
-import { IState } from '../../../stores/state';
+import { expect, fixture, html } from "@open-wc/testing";
+import AppMainPreview from "../app-main-preview";
+import {
+  connect,
+  register,
+  reset_dispatcher,
+} from "../../../../stores/dispatcher";
+import { track_callback } from "../../../stores/register/track";
+import { IState } from "../../../stores/state";
 
-suite('app main preview element', () => {
-  test('is defined', async () => {
+suite("app main preview element", () => {
+  test("is defined", async () => {
     const el: AppMainPreview = await fixture(html`
-            <app-main-preview zoom="100" song_title="title" song_grid="A"></app-main-preview> `);
+      <app-main-preview
+        zoom="100"
+        song_title="title"
+        song_grid="A"
+      ></app-main-preview>
+    `);
     expect(el).to.instanceOf(AppMainPreview);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -21,7 +30,7 @@ suite('app main preview element', () => {
         `);
   });
 
-  test('handle edit', async () => {
+  test("handle edit", async () => {
     reset_dispatcher();
     register(track_callback);
     const promise: Promise<boolean> = new Promise((resolve) => {
@@ -30,9 +39,14 @@ suite('app main preview element', () => {
       });
     });
     const el: AppMainPreview = await fixture(html`
-            <app-main-preview zoom="100" song_title="title" song_grid="A"></app-main-preview> `);
+      <app-main-preview
+        zoom="100"
+        song_title="title"
+        song_grid="A"
+      ></app-main-preview>
+    `);
     expect(el).to.instanceOf(AppMainPreview);
-    const node = el.shadowRoot?.querySelector('div') as HTMLElement;
+    const node = el.shadowRoot?.querySelector("div") as HTMLElement;
     node.click();
     await el.updateComplete;
     await promise.then((value) => expect(value).to.be.true);

@@ -1,12 +1,10 @@
-import { LitElement, svg } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import icon_style from './icon_style';
+import { LitElement, svg } from "lit";
+import { customElement } from "lit/decorators.js";
+import icon_style from "./icon_style";
 
-@customElement('help-icon')
+@customElement("help-icon")
 class HelpIcon extends LitElement {
-  static styles = [
-    icon_style,
-  ];
+  static styles = [icon_style];
 
   render(): unknown {
     return svg`

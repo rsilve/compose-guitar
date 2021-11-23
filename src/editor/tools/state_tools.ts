@@ -1,4 +1,4 @@
-import { IStateTrack } from '../stores/state';
+import { IStateTrack } from "../stores/state";
 
 export function save_needed(track?: IStateTrack): boolean {
   if (!track) {

@@ -1,10 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
-import EditorMain from '../editor-main';
+import { expect, fixture, html } from "@open-wc/testing";
+import EditorMain from "../editor-main";
 
-suite('Main app element', () => {
-  test('is defined', async () => {
-    const el: EditorMain = await fixture(html`
-            <editor-main></editor-main> `);
+suite("Main app element", () => {
+  test("is defined", async () => {
+    const el: EditorMain = await fixture(html` <editor-main></editor-main> `);
     expect(el).to.instanceOf(EditorMain);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
