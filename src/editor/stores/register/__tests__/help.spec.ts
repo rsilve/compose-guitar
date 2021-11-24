@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import { HELP_CLOSE, HELP_OPEN } from "../../../actions/actions";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 import { help_callback } from "../help";
 
 suite("help callback", () => {

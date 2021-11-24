@@ -7,7 +7,7 @@ import { state_test } from "../../../../__tests__/TestHelpers";
 import { connect, register } from "../../../../stores/dispatcher";
 import { IState } from "../../state";
 import { uuid } from "../../../../tools/uuid";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 
 suite("Upload callback", () => {
   const st = state_test;

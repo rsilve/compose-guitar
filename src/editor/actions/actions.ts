@@ -1,4 +1,5 @@
-import { Action, publish_action } from "../../actions/Action";
+import Action from "../../actions/Action";
+import {publish_action} from "../../actions/publish_action";
 
 export const INIT_APP = "INIT_APP";
 export const action_init_app = (): Promise<void> => publish_action(new Action(INIT_APP));

@@ -12,7 +12,7 @@ import {
 } from "../../actions/actions";
 import { IState } from "../state";
 import { save_needed } from "../../tools/state_tools";
-import { Action } from "../../../actions/Action";
+import Action from "../../../actions/Action";
 import { uuid } from "../../../tools/uuid";
 
 export async function track_callback(action: Action, state: IState): Promise<IState> {

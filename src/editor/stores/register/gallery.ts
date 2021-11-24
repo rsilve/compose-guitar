@@ -1,7 +1,7 @@
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE, MODALS_CLOSE } from "../../actions/actions";
 import { remove_from_gallery } from "./gallery_tools";
 import { IState } from "../state";
-import { Action } from "../../../actions/Action";
+import Action from "../../../actions/Action";
 
 export function gallery_callback(action: Action, state: IState): Promise<IState> {
   if (action.action_type === GALLERY_OPEN) {

@@ -1,7 +1,7 @@
 import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../actions/actions";
 import { get_last_state } from "./gallery_tools";
 import { IState } from "../state";
-import { Action } from "../../../actions/Action";
+import Action from "../../../actions/Action";
 
 export function init_app_callback(action: Action, state: IState): Promise<IState> {
   if (action.action_type === INIT_APP) {

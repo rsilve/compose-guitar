@@ -3,7 +3,7 @@ import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../../actions/actions";
 import { save_as_callback } from "../save_as";
 import { get_from_gallery } from "../gallery_tools";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 
 suite("Register save_as", () => {
   const st = state_test;

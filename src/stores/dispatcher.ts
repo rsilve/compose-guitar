@@ -1,4 +1,4 @@
-import { Action } from "../actions/Action";
+import Action from "../actions/Action";
 import { default_state, IState } from "../editor/stores/state";
 
 let state: IState;

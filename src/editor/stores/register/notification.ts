@@ -1,6 +1,6 @@
 import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from "../../actions/actions";
 import { IState } from "../state";
-import { Action } from "../../../actions/Action";
+import Action from "../../../actions/Action";
 
 export function notification_callback(action: Action, state: IState): Promise<IState> {
   if (action.action_type === NOTIFICATION_OPEN) {

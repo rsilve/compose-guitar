@@ -1,7 +1,7 @@
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../actions/actions";
 import { add_to_gallery } from "./gallery_tools";
 import { IState, IStateTrack } from "../state";
-import { Action } from "../../../actions/Action";
+import Action from "../../../actions/Action";
 
 function save(state: IState): IState {
   if (state.track && state.track.title) {

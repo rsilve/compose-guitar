@@ -5,7 +5,7 @@ import { init_app_callback, transpose_change_callback, zoom_change_callback } fr
 import { save_last_state } from "../gallery_tools";
 import { state_test } from "../../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 
 suite("Register misc", () => {
   const st = state_test;

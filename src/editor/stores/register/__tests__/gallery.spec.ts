@@ -3,7 +3,7 @@ import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE } from "../../../actions/ac
 import { add_to_gallery, get_from_gallery } from "../gallery_tools";
 import { gallery_callback } from "../gallery";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 
 suite("Gallery callback", () => {
   const st = state_test;

@@ -10,7 +10,7 @@ import {
 } from "../../../actions/actions";
 import { state_test } from "../../../../__tests__/TestHelpers";
 import { track_callback } from "../track";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 
 suite("track callback", () => {
   const st = state_test;

@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import { SYNCHRO_ACTIVATION_REQUEST, SYNCHRO_DEACTIVATION_REQUEST } from "../../../actions/actions";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import { Action } from "../../../../actions/Action";
+import Action from "../../../../actions/Action";
 import { synchronize_callback } from "../synchronize";
 
 suite("synchronize callback", () => {
