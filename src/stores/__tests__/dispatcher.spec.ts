@@ -1,12 +1,5 @@
 import { expect } from "@open-wc/testing";
-import {
-  connect,
-  dispatch,
-  init,
-  register,
-  reset_dispatcher,
-  disconnect,
-} from "../dispatcher";
+import { connect, dispatch, init, register, reset_dispatcher, disconnect } from "../dispatcher";
 import { Action } from "../../actions/Action";
 import { state_test } from "../../__tests__/TestHelpers";
 import { IState } from "../../editor/stores/state";

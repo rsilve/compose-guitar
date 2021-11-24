@@ -28,19 +28,13 @@ suite("Parse row", () => {
     const measure = new Row("A | B");
     expect(measure.raw).to.be.equal("A | B");
     expect(measure.valid).to.be.true;
-    expect(measure.measure).to.deep.equal([
-      new Measure("A |"),
-      new Measure("B"),
-    ]);
+    expect(measure.measure).to.deep.equal([new Measure("A |"), new Measure("B")]);
   });
 
   test("Parse multiple with bar", () => {
     const measure = new Row("| A | B ||");
     expect(measure.raw).to.be.equal("| A | B ||");
     expect(measure.valid).to.be.true;
-    expect(measure.measure).to.deep.equal([
-      new Measure("| A |"),
-      new Measure("B ||"),
-    ]);
+    expect(measure.measure).to.deep.equal([new Measure("| A |"), new Measure("B ||")]);
   });
 });

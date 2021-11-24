@@ -7,9 +7,7 @@ suite("compose-notification element", () => {
   const st = state_test;
 
   test("is defined", async () => {
-    const el: ComposeNotification = await fixture(html`
-      <compose-notification></compose-notification>
-    `);
+    const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -19,9 +17,7 @@ suite("compose-notification element", () => {
 
   test("with message", async () => {
     reset_dispatcher({ ...st, notification: "test" });
-    const el: ComposeNotification = await fixture(html`
-      <compose-notification></compose-notification>
-    `);
+    const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -31,9 +27,7 @@ suite("compose-notification element", () => {
 
   test("with message after timeout", async () => {
     reset_dispatcher({ ...st, notification: "test" });
-    const el: ComposeNotification = await fixture(html`
-      <compose-notification delay="100"></compose-notification>
-    `);
+    const el: ComposeNotification = await fixture(html` <compose-notification delay="100"></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();
     const promise = new Promise<void>((resolve) => {

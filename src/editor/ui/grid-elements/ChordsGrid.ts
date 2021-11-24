@@ -54,11 +54,7 @@ class ChordsGrid extends LitElement {
   }
 
   renderRow(row: Row): unknown {
-    const map = row.measure.map(
-      (measure) => html` <td class="grid grid-measure">
-        ${this.renderMeasure(measure)}
-      </td>`
-    );
+    const map = row.measure.map((measure) => html` <td class="grid grid-measure">${this.renderMeasure(measure)}</td>`);
     return html`${map}`;
   }
 

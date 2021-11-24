@@ -4,8 +4,7 @@ import Measure from "../../../parser/Measure";
 
 suite("Measure2", () => {
   test("is defined", async () => {
-    const el =
-      await fixture(html` <chords-grid-measure2></chords-grid-measure2>`);
+    const el = await fixture(html` <chords-grid-measure2></chords-grid-measure2>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });

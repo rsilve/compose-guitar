@@ -1,10 +1,6 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import ComposeKeys from "../compose-keys";
-import {
-  connect,
-  register,
-  reset_dispatcher,
-} from "../../../stores/dispatcher";
+import { connect, register, reset_dispatcher } from "../../../stores/dispatcher";
 import { track_callback } from "../../stores/register/track";
 import { IState, IStateTrack } from "../../stores/state";
 import { state_test } from "../../../__tests__/TestHelpers";
@@ -17,9 +13,7 @@ suite("compose-key element", () => {
   const st = state_test;
 
   test("is defined", async () => {
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -37,9 +31,7 @@ suite("compose-key element", () => {
       });
     });
 
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     const e = new KeyboardEvent("keydown", {
@@ -60,9 +52,7 @@ suite("compose-key element", () => {
       });
     });
 
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     const e = new KeyboardEvent("keydown", {
@@ -86,9 +76,7 @@ suite("compose-key element", () => {
       });
     });
 
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     const e = new KeyboardEvent("keydown", {
@@ -111,9 +99,7 @@ suite("compose-key element", () => {
       });
     });
 
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     const e = new KeyboardEvent("keydown", {
@@ -130,9 +116,7 @@ suite("compose-key element", () => {
   test("zoom_incr event", async () => {
     reset_dispatcher(st);
     register(zoom_change_callback);
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).dom.to.be.accessible();
     await expect(el).shadowDom.to.be.accessible();
@@ -155,9 +139,7 @@ suite("compose-key element", () => {
   test("zoom_incr event 2", async () => {
     reset_dispatcher(st);
     register(zoom_change_callback);
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     await expect(el).dom.to.be.accessible();
@@ -180,9 +162,7 @@ suite("compose-key element", () => {
   test("zoom_decr event", async () => {
     reset_dispatcher(st);
     register(zoom_change_callback);
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     await expect(el).dom.to.be.accessible();
@@ -205,9 +185,7 @@ suite("compose-key element", () => {
   test("zoom_decr event 2", async () => {
     reset_dispatcher(st);
     register(zoom_change_callback);
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     await expect(el).dom.to.be.displayed;
@@ -236,9 +214,7 @@ suite("compose-key element", () => {
       });
     });
 
-    const el: ComposeKeys = await fixture(html`
-      <compose-keys></compose-keys>
-    `);
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
     await expect(el).dom.to.be.accessible();

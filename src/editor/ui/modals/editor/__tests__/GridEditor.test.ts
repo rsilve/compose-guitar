@@ -12,9 +12,7 @@ suite("Grid Editor element", () => {
   });
 
   test("have value attribute", async () => {
-    const el: GridEditor = await fixture(html`
-      <grid-editor value="A | B"></grid-editor>
-    `);
+    const el: GridEditor = await fixture(html` <grid-editor value="A | B"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -23,9 +21,7 @@ suite("Grid Editor element", () => {
   });
 
   test("validate value", async () => {
-    const el: GridEditor = await fixture(html`
-      <grid-editor value="invalid"></grid-editor>
-    `);
+    const el: GridEditor = await fixture(html` <grid-editor value="invalid"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -35,15 +31,11 @@ suite("Grid Editor element", () => {
   });
 
   test("validate value on input change", async () => {
-    const el: GridEditor = await fixture(html`
-      <grid-editor value="A"></grid-editor>
-    `);
+    const el: GridEditor = await fixture(html` <grid-editor value="A"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
 
-    const node = el.shadowRoot?.querySelector(
-      "textarea"
-    ) as HTMLTextAreaElement;
+    const node = el.shadowRoot?.querySelector("textarea") as HTMLTextAreaElement;
     node.setSelectionRange(0, 1);
     node.setRangeText("ek");
     const e = new InputEvent("input");
@@ -65,13 +57,9 @@ suite("Grid Editor element", () => {
     const handler = () => {
       thenable.then();
     };
-    const el: GridEditor = await fixture(html`
-      <grid-editor value="A" @update-grid="${handler}"></grid-editor>
-    `);
+    const el: GridEditor = await fixture(html` <grid-editor value="A" @update-grid="${handler}"></grid-editor> `);
     await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector(
-      "textarea"
-    ) as HTMLTextAreaElement;
+    const node = el.shadowRoot?.querySelector("textarea") as HTMLTextAreaElement;
     node.setSelectionRange(0, 1);
     node.setRangeText("ek");
     const e = new InputEvent("input");

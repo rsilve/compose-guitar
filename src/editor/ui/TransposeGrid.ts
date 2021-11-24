@@ -30,9 +30,7 @@ class TransposeGrid extends LitElement {
         appearance: none;
         width: 100%; /* Full-width */
         height: 8px; /* Specified height */
-        background-color: var(
-          --color-background-secondary
-        ); /* Grey background */
+        background-color: var(--color-background-secondary); /* Grey background */
         outline: none; /* Remove outline */
         opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
         -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
@@ -67,11 +65,7 @@ class TransposeGrid extends LitElement {
       }
 
       input:active {
-        background-color: hsl(
-          var(--input-focus-h),
-          var(--input-focus-s),
-          var(--input-focus-l)
-        );
+        background-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
       }
     `,
   ];
@@ -95,13 +89,7 @@ class TransposeGrid extends LitElement {
   render(): unknown {
     return html`
       <label title="transpose">
-        <input
-          type="range"
-          min="-11"
-          max="11"
-          @input="${this._handle_change}"
-          .value="${this._transpose}"
-        />
+        <input type="range" min="-11" max="11" @input="${this._handle_change}" .value="${this._transpose}" />
         <div>${this._transpose} tone</div>
       </label>
     `;

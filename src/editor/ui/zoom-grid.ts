@@ -77,22 +77,10 @@ class ZoomGrid extends LitElement {
   }
 
   render(): unknown {
-    return html` <div
-        class="zoom_in pill"
-        @click="${this._handle_incr}"
-        title="Zoom in - Atl++/Alt+="
-        ontouchstart=""
-      >
+    return html` <div class="zoom_in pill" @click="${this._handle_incr}" title="Zoom in - Atl++/Alt+=" ontouchstart="">
         +
       </div>
-      <div
-        class="zoom_out pill"
-        @click="${this._handle_decr}"
-        title="Zoom out - Alt+-"
-        ontouchstart=""
-      >
-        -
-      </div>
+      <div class="zoom_out pill" @click="${this._handle_decr}" title="Zoom out - Alt+-" ontouchstart="">-</div>
       <div class="text">${this._zoom}%</div>`;
   }
 }

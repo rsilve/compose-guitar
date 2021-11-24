@@ -38,9 +38,7 @@ class Menu extends LitElement {
   _need_save = false;
 
   _handle_save(): void {
-    action_save_as_start().then(() =>
-      action_notification_open("Save completed")
-    );
+    action_save_as_start().then(() => action_notification_open("Save completed"));
   }
 
   render(): unknown {
@@ -53,18 +51,10 @@ class Menu extends LitElement {
       >
         <save-icon></save-icon>
       </menu-item>
-      <menu-item
-        title="Open the Library - Ctrl+l"
-        class="_library"
-        @click="${action_gallery_open}"
-      >
+      <menu-item title="Open the Library - Ctrl+l" class="_library" @click="${action_gallery_open}">
         <gallery-icon></gallery-icon>
       </menu-item>
-      <menu-item
-        title="new track - Ctrl+n"
-        class="_new"
-        @click="${action_track_new}"
-      >
+      <menu-item title="new track - Ctrl+n" class="_new" @click="${action_track_new}">
         <new-track-icon></new-track-icon>
       </menu-item>
     `;

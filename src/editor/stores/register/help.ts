@@ -7,10 +7,7 @@ export function help_callback(action: Action, state: IState): Promise<IState> {
     state.help_open = true;
   }
 
-  if (
-    action.action_type === HELP_CLOSE ||
-    action.action_type === MODALS_CLOSE
-  ) {
+  if (action.action_type === HELP_CLOSE || action.action_type === MODALS_CLOSE) {
     state.help_open = undefined;
   }
 

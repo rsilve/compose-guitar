@@ -1,21 +1,13 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import AppMainPreview from "../app-main-preview";
-import {
-  connect,
-  register,
-  reset_dispatcher,
-} from "../../../../stores/dispatcher";
+import { connect, register, reset_dispatcher } from "../../../../stores/dispatcher";
 import { track_callback } from "../../../stores/register/track";
 import { IState } from "../../../stores/state";
 
 suite("app main preview element", () => {
   test("is defined", async () => {
     const el: AppMainPreview = await fixture(html`
-      <app-main-preview
-        zoom="100"
-        song_title="title"
-        song_grid="A"
-      ></app-main-preview>
+      <app-main-preview zoom="100" song_title="title" song_grid="A"></app-main-preview>
     `);
     expect(el).to.instanceOf(AppMainPreview);
     await expect(el).shadowDom.to.be.accessible();
@@ -39,11 +31,7 @@ suite("app main preview element", () => {
       });
     });
     const el: AppMainPreview = await fixture(html`
-      <app-main-preview
-        zoom="100"
-        song_title="title"
-        song_grid="A"
-      ></app-main-preview>
+      <app-main-preview zoom="100" song_title="title" song_grid="A"></app-main-preview>
     `);
     expect(el).to.instanceOf(AppMainPreview);
     const node = el.shadowRoot?.querySelector("div") as HTMLElement;

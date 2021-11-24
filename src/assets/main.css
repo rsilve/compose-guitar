@@ -2,11 +2,7 @@
   --color-error-h: 7;
   --color-error-s: 89%;
   --color-error-l: 62%;
-  --color-error: hsl(
-    var(--color-error-h),
-    var(--color-error-s),
-    var(--color-error-l)
-  );
+  --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
 
   --color-background: #fffffe;
   --color-background-secondary: #f2f2f2;
@@ -22,11 +18,7 @@
   --input-focus-h: 350;
   --input-focus-s: 67%;
   --input-focus-l: 60%;
-  --input-focus-color: hsl(
-    var(--input-focus-h),
-    var(--input-focus-s),
-    var(--input-focus-l)
-  );
+  --input-focus-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
 
   --grid-border-color: var(--color-headline);
 

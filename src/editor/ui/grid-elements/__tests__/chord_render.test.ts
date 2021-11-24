@@ -16,9 +16,7 @@ class ChordRenderTest extends LitElement {
 
 suite("chord render", () => {
   test("is defined", async () => {
-    const el = await fixture(
-      html`<chord-render-test .chord="${new Chord("A")}"></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("A")}"></chord-render-test>`);
     expect(el).to.be.instanceOf(ChordRenderTest);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -26,9 +24,7 @@ suite("chord render", () => {
   });
 
   test("is defined with modifier", async () => {
-    const el = await fixture(
-      html`<chord-render-test .chord="${new Chord("A#")}"></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("A#")}"></chord-render-test>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
         <div class="chord">
@@ -39,9 +35,7 @@ suite("chord render", () => {
   });
 
   test("is defined with color", async () => {
-    const el = await fixture(
-      html`<chord-render-test .chord="${new Chord("Am")}"></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("Am")}"></chord-render-test>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
         <div class="chord">
@@ -52,9 +46,7 @@ suite("chord render", () => {
   });
 
   test("is defined with extension", async () => {
-    const el = await fixture(
-      html`<chord-render-test .chord="${new Chord("A7")}"></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("A7")}"></chord-render-test>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
         <div class="chord">
@@ -64,9 +56,7 @@ suite("chord render", () => {
   });
 
   test("is defined with external base", async () => {
-    const el = await fixture(
-      html`<chord-render-test .chord="${new Chord("A/G")}"></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("A/G")}"></chord-render-test>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
         <div class="chord">
@@ -76,11 +66,7 @@ suite("chord render", () => {
   });
 
   test("is defined with external base and modifier", async () => {
-    const el = await fixture(
-      html`<chord-render-test
-        .chord="${new Chord("A/G#")}"
-      ></chord-render-test>`
-    );
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("A/G#")}"></chord-render-test>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
         <div class="chord">

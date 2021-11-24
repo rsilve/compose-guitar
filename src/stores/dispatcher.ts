@@ -4,8 +4,7 @@ import { default_state, IState } from "../editor/stores/state";
 let state: IState;
 
 let listeners: ((state: IState) => void)[] = [];
-let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] =
-  [];
+let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = [];
 
 function notify() {
   for (const listener of listeners) {
@@ -32,15 +31,11 @@ export function disconnect(callback: (state: IState) => void): void {
   }
 }
 
-export function register(
-  callback: (action: Action, state: IState) => Promise<IState>
-): void {
+export function register(callback: (action: Action, state: IState) => Promise<IState>): void {
   dispatch_callback.push(callback);
 }
 
-export function registered(
-  callback: (action: Action, state: IState) => Promise<IState>
-): boolean {
+export function registered(callback: (action: Action, state: IState) => Promise<IState>): boolean {
   return dispatch_callback.indexOf(callback) >= 0;
 }
 

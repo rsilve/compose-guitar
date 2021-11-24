@@ -1,8 +1,5 @@
 import { expect } from "@open-wc/testing";
-import {
-  NOTIFICATION_OPEN,
-  UPLOAD_FROM_GALLERY,
-} from "../../../actions/actions";
+import { NOTIFICATION_OPEN, UPLOAD_FROM_GALLERY } from "../../../actions/actions";
 
 import { upload_callback } from "../upload";
 import { add_to_gallery } from "../gallery_tools";
@@ -29,13 +26,10 @@ suite("Upload callback", () => {
 
     const track = { grid_text: "zz", title: "test", id: uuid() };
     add_to_gallery(track, { ...st, track });
-    const state = await upload_callback(
-      new Action(UPLOAD_FROM_GALLERY, { id: track.id }),
-      {
-        ...st,
-        gallery: true,
-      }
-    );
+    const state = await upload_callback(new Action(UPLOAD_FROM_GALLERY, { id: track.id }), {
+      ...st,
+      gallery: true,
+    });
     await promise;
 
     expect(state.track).to.deep.equal(track);

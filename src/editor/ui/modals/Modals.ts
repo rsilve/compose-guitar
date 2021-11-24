@@ -80,9 +80,7 @@ class Modals extends LitElement {
   }
 
   private _handle_save(): void {
-    action_save_as_start_and_new().then(() =>
-      action_notification_open("Save completed")
-    );
+    action_save_as_start_and_new().then(() => action_notification_open("Save completed"));
   }
 
   render(): unknown {
@@ -102,8 +100,7 @@ class Modals extends LitElement {
       return html`${overlay} <song-editor class="modal"></song-editor>`;
     }
     if (this._help_open) {
-      return html`${overlay}
-        <help-modal class="modal" @close="${action_help_close}"></help-modal>`;
+      return html`${overlay} <help-modal class="modal" @close="${action_help_close}"></help-modal>`;
     }
     if (this._confirm_save_enabled) {
       return html`${overlay}

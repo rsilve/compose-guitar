@@ -24,9 +24,7 @@ suite("Menu item element", () => {
   });
 
   test("has dot property", async () => {
-    const el: MenuItem = await fixture(html` <menu-item
-      .dotted="${true}"
-    ></menu-item>`);
+    const el: MenuItem = await fixture(html` <menu-item .dotted="${true}"></menu-item>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
             <div class="dot">
@@ -36,9 +34,7 @@ suite("Menu item element", () => {
   });
 
   test("has dot property with falsy value", async () => {
-    const el: MenuItem = await fixture(html` <menu-item
-      .dotted="${false}"
-    ></menu-item>`);
+    const el: MenuItem = await fixture(html` <menu-item .dotted="${false}"></menu-item>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
             <div>

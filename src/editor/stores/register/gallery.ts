@@ -1,17 +1,9 @@
-import {
-  GALLERY_CLOSE,
-  GALLERY_OPEN,
-  GALLERY_REMOVE,
-  MODALS_CLOSE,
-} from "../../actions/actions";
+import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE, MODALS_CLOSE } from "../../actions/actions";
 import { remove_from_gallery } from "./gallery_tools";
 import { IState } from "../state";
 import { Action } from "../../../actions/Action";
 
-export function gallery_callback(
-  action: Action,
-  state: IState
-): Promise<IState> {
+export function gallery_callback(action: Action, state: IState): Promise<IState> {
   if (action.action_type === GALLERY_OPEN) {
     state.gallery = true;
   }
@@ -22,10 +14,7 @@ export function gallery_callback(
     delete state.gallery;
   }
 
-  if (
-    action.action_type === GALLERY_CLOSE ||
-    action.action_type === MODALS_CLOSE
-  ) {
+  if (action.action_type === GALLERY_CLOSE || action.action_type === MODALS_CLOSE) {
     state.gallery = undefined;
   }
   return Promise.resolve(state);

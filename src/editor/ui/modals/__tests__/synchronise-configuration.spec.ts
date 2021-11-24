@@ -8,8 +8,7 @@ suite("synchronise configuration element", () => {
 
   test("is defined", async () => {
     reset_dispatcher();
-    const el: SynchronizeConfiguration =
-      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
   });
@@ -17,10 +16,9 @@ suite("synchronise configuration element", () => {
   test("have a close button", async () => {
     reset_dispatcher();
     let handle_close = false;
-    const el: SynchronizeConfiguration =
-      await fixture(html` <synchronize-configuration
-        @close="${() => (handle_close = true)}"
-      ></synchronize-configuration>`);
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration
+      @close="${() => (handle_close = true)}"
+    ></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
@@ -31,8 +29,7 @@ suite("synchronise configuration element", () => {
 
   test("has default state", async () => {
     reset_dispatcher();
-    const el: SynchronizeConfiguration =
-      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     expect(el._enabled).to.be.false;
@@ -46,8 +43,7 @@ suite("synchronise configuration element", () => {
 
   test("listen store", async () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
-    const el: SynchronizeConfiguration =
-      await fixture(html` <synchronize-configuration></synchronize-configuration>`);
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     expect(el._enabled).to.be.true;

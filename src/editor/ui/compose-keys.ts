@@ -79,9 +79,7 @@ class ComposeKeys extends LitElement {
   private copy_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "c" && this._state) {
       const { track: { title, grid_text } = {} } = this._state;
-      action_track_copy({ title, grid_text }).then(() =>
-        action_notification_open("Song copied")
-      );
+      action_track_copy({ title, grid_text }).then(() => action_notification_open("Song copied"));
     }
   }
 
@@ -112,9 +110,7 @@ class ComposeKeys extends LitElement {
 
   private save_as_start_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "s" && this._state) {
-      action_save_as_start().then(() =>
-        action_notification_open("Save completed")
-      );
+      action_save_as_start().then(() => action_notification_open("Save completed"));
       e.preventDefault();
     }
   }
@@ -127,9 +123,7 @@ class ComposeKeys extends LitElement {
   }
 
   render(): unknown {
-    return html`
-      <help-icon @click="${action_help_open}" title="Shortcut help"></help-icon>
-    `;
+    return html` <help-icon @click="${action_help_open}" title="Shortcut help"></help-icon> `;
   }
 }
 

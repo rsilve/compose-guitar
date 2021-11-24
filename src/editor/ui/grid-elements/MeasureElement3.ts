@@ -11,14 +11,10 @@ export default class MeasureElement3 extends MeasureElement {
       <table class="grid-measure-3">
         <tbody>
           <tr>
-            <td class="grid-measure-beat-12">
-              ${chord_render(measure.chords[0].transpose(transpose))}
-            </td>
+            <td class="grid-measure-beat-12">${chord_render(measure.chords[0].transpose(transpose))}</td>
           </tr>
           <tr>
-            <td class="grid-measure-beat-34">
-              ${chord_render(measure.chords[1].transpose(transpose))}
-            </td>
+            <td class="grid-measure-beat-34">${chord_render(measure.chords[1].transpose(transpose))}</td>
           </tr>
         </tbody>
       </table>

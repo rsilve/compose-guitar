@@ -1,7 +1,5 @@
-const chord_regexp =
-  /^([ABCDEFG])([b#])?(m)?([^\s/]{0,20})(\/([ABCDEFG])([b#])?)?$/;
-const chord_extension_regexp =
-  /^(-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5}$/;
+const chord_regexp = /^([ABCDEFG])([b#])?(m)?([^\s/]{0,20})(\/([ABCDEFG])([b#])?)?$/;
+const chord_extension_regexp = /^(-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5}$/;
 
 const base_score: Record<string, number> = {
   A: 0,
@@ -166,9 +164,7 @@ class Chord {
 
   tone(): number {
     if (this.base) {
-      const note = `${this.base}${
-        this.base_modifier ? this.base_modifier : ""
-      }`;
+      const note = `${this.base}${this.base_modifier ? this.base_modifier : ""}`;
       const score = base_score[note];
       if (score >= 0) {
         return score;
@@ -179,14 +175,10 @@ class Chord {
 
   transpose(tone: number): Chord {
     if (this.base) {
-      const note = `${this.base}${
-        this.base_modifier ? this.base_modifier : ""
-      }`;
+      const note = `${this.base}${this.base_modifier ? this.base_modifier : ""}`;
       let raw = this.name.replace(note, this._transpose(note, tone));
       if (this.external_base) {
-        const external_base = `${this.external_base}${
-          this.external_base_modifier ? this.external_base_modifier : ""
-        }`;
+        const external_base = `${this.external_base}${this.external_base_modifier ? this.external_base_modifier : ""}`;
         raw = raw.replace(external_base, this._transpose(external_base, tone));
       }
       return new Chord(raw);

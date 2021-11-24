@@ -5,8 +5,7 @@ import { transpose_change_callback } from "../../stores/register/misc";
 
 suite("transpose element", () => {
   test("is defined", async () => {
-    const el: TransposeGrid =
-      await fixture(html` <transpose-grid></transpose-grid>s`);
+    const el: TransposeGrid = await fixture(html` <transpose-grid></transpose-grid>s`);
     expect(el).to.instanceOf(TransposeGrid);
     await expect(el).shadowDom.to.be.accessible();
     await expect(el).shadowDom.to.equal(
@@ -21,8 +20,7 @@ suite("transpose element", () => {
   test("change", async () => {
     reset_dispatcher();
     register(transpose_change_callback);
-    const el: TransposeGrid =
-      await fixture(html` <transpose-grid></transpose-grid>s`);
+    const el: TransposeGrid = await fixture(html` <transpose-grid></transpose-grid>s`);
     expect(el).to.instanceOf(TransposeGrid);
     const node = el.shadowRoot?.querySelector("input") as HTMLInputElement;
     node.value = "1";

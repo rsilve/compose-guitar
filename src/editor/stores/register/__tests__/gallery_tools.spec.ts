@@ -70,10 +70,7 @@ suite("Gallery tools", () => {
     const track_b = { id: uuid(), grid_text: "bb", title: "test2" };
     add_to_gallery(track_a, { ...st, track: track_a });
     add_to_gallery(track_b, { ...st, track: track_b });
-    expect(Object.values(gallery_dict())).to.deep.equal([
-      track_a.title,
-      track_b.title,
-    ]);
+    expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id]);
     expect(gallery_list()).to.deep.equal(["test1", "test2"]);
     expect(get_from_gallery(track_a.id)).to.deep.equal({
@@ -87,10 +84,7 @@ suite("Gallery tools", () => {
 
     remove_from_gallery("unknown_id");
     expect(gallery_list()).to.deep.equal(["test1", "test2"]);
-    expect(Object.values(gallery_dict())).to.deep.equal([
-      track_a.title,
-      track_b.title,
-    ]);
+    expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id]);
     expect(get_from_gallery(track_a.id)).to.deep.equal({
       ...st,

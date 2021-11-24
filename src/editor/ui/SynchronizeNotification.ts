@@ -39,13 +39,9 @@ class SynchronizeNotification extends LitElement {
 
   render(): unknown {
     if (this._enabled) {
-      return html`<div @click="${action_synchronization_deactivation_request}">
-        sync active
-      </div>`;
+      return html`<div @click="${action_synchronization_deactivation_request}">sync active</div>`;
     }
-    return html`<div @click="${action_synchronization_activation_request}">
-      sync inactive
-    </div>`;
+    return html`<div @click="${action_synchronization_activation_request}">sync inactive</div>`;
   }
 }
 

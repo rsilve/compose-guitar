@@ -26,46 +26,30 @@ class RepeatEndTest extends LitElement {
 
 suite("part render", () => {
   test("start is defined", async () => {
-    const el = await fixture(
-      html`<repeat-start-test
-        .measure="${new Measure("A")}"
-      ></repeat-start-test>`
-    );
+    const el = await fixture(html`<repeat-start-test .measure="${new Measure("A")}"></repeat-start-test>`);
     expect(el).to.be.instanceOf(RepeatStartTest);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });
 
   test("start is defined with repeat", async () => {
-    const el = await fixture(
-      html`<repeat-start-test
-        .measure="${new Measure(": A")}"
-      ></repeat-start-test>`
-    );
+    const el = await fixture(html`<repeat-start-test .measure="${new Measure(": A")}"></repeat-start-test>`);
     expect(el).to.be.instanceOf(RepeatStartTest);
     await expect(el).shadowDom.to.be.accessible();
-    expect(el).shadowDom.to.be.equal(
-      '<div class="grid-measure-repeat-left"><span>∶</span></div>'
-    );
+    expect(el).shadowDom.to.be.equal('<div class="grid-measure-repeat-left"><span>∶</span></div>');
   });
 
   test("end is defined", async () => {
-    const el = await fixture(
-      html`<repeat-end-test .measure="${new Measure("A")}"></repeat-end-test>`
-    );
+    const el = await fixture(html`<repeat-end-test .measure="${new Measure("A")}"></repeat-end-test>`);
     expect(el).to.be.instanceOf(RepeatEndTest);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });
 
   test("end is defined with repeat", async () => {
-    const el = await fixture(
-      html`<repeat-end-test .measure="${new Measure("A :")}"></repeat-end-test>`
-    );
+    const el = await fixture(html`<repeat-end-test .measure="${new Measure("A :")}"></repeat-end-test>`);
     expect(el).to.be.instanceOf(RepeatEndTest);
     await expect(el).shadowDom.to.be.accessible();
-    expect(el).shadowDom.to.be.equal(
-      '<div class="grid-measure-repeat-right"><span>∶</span></div>'
-    );
+    expect(el).shadowDom.to.be.equal('<div class="grid-measure-repeat-right"><span>∶</span></div>');
   });
 });

@@ -45,11 +45,7 @@ class AppMainPreview extends LitElement {
     const styles = { "font-size": `${this.zoom / 100}em` };
     return html` <div @click="${this._handle_edit}" title="click to edit">
       <h1>${this.song_title}</h1>
-      <chords-grid
-        style="${styleMap(styles)}"
-        text_grid="${this.song_grid}"
-        transpose="${this.transpose}"
-      >
+      <chords-grid style="${styleMap(styles)}" text_grid="${this.song_grid}" transpose="${this.transpose}">
       </chords-grid>
       <p class="no_print">click to edit</p>
     </div>`;

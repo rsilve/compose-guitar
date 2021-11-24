@@ -4,16 +4,13 @@ import Measure from "../../../parser/Measure";
 
 suite("Measure3", () => {
   test("is defined", async () => {
-    const el =
-      await fixture(html` <chords-grid-measure3></chords-grid-measure3>`);
+    const el = await fixture(html` <chords-grid-measure3></chords-grid-measure3>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });
 
   test("is defined with measure", async () => {
-    const el = await fixture(html` <chords-grid-measure3
-      .measure="${new Measure("A B")}"
-    ></chords-grid-measure3>`);
+    const el = await fixture(html` <chords-grid-measure3 .measure="${new Measure("A B")}"></chords-grid-measure3>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
 <table class="grid-measure-3">

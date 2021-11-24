@@ -15,10 +15,7 @@ import { save_needed } from "../../tools/state_tools";
 import { Action } from "../../../actions/Action";
 import { uuid } from "../../../tools/uuid";
 
-export async function track_callback(
-  action: Action,
-  state: IState
-): Promise<IState> {
+export async function track_callback(action: Action, state: IState): Promise<IState> {
   if (action.action_type === TRACK_NEW) {
     const { track = {} } = state;
     if (save_needed(track)) {
@@ -42,10 +39,7 @@ export async function track_callback(
     };
   }
 
-  if (
-    action.action_type === TRACK_NEW_CANCEL ||
-    action.action_type === MODALS_CLOSE
-  ) {
+  if (action.action_type === TRACK_NEW_CANCEL || action.action_type === MODALS_CLOSE) {
     state.confirm_save = undefined;
     state.editor = undefined;
   }
@@ -55,10 +49,7 @@ export async function track_callback(
     state.editor = { title, grid_text };
   }
 
-  if (
-    action.action_type === TRACK_EDIT_CANCEL ||
-    action.action_type === MODALS_CLOSE
-  ) {
+  if (action.action_type === TRACK_EDIT_CANCEL || action.action_type === MODALS_CLOSE) {
     state.editor = undefined;
   }
 
@@ -83,9 +74,7 @@ export async function track_callback(
   }
 
   if (action.action_type === TRACK_PASTE) {
-    await navigator.clipboard
-      .readText()
-      .then((t) => (state.track = JSON.parse(t)));
+    await navigator.clipboard.readText().then((t) => (state.track = JSON.parse(t)));
   }
 
   return Promise.resolve(state);

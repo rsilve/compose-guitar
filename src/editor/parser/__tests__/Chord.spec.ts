@@ -114,20 +114,7 @@ suite("Parse chords", () => {
   });
 
   test("Parse extension", () => {
-    const modifier = [
-      "-",
-      "+",
-      "ø",
-      "°",
-      "5b",
-      "6",
-      "7",
-      "9",
-      "add",
-      "sus2",
-      "sus4",
-      "Maj7",
-    ];
+    const modifier = ["-", "+", "ø", "°", "5b", "6", "7", "9", "add", "sus2", "sus4", "Maj7"];
     for (const b of modifier) {
       const chord = new Chord(`A${b}`);
       expect(chord.name).to.be.equal(`A${b}`);

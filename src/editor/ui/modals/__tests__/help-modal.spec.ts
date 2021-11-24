@@ -14,9 +14,7 @@ suite("Help Modal element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.type === "close";
     };
-    const el: ConfirmSave = await fixture(html`
-      <help-modal @close="${handler}"></help-modal>
-    `);
+    const el: ConfirmSave = await fixture(html` <help-modal @close="${handler}"></help-modal> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
     node.click();

@@ -16,18 +16,8 @@ export const buttonStyles = css`
   }
 
   button:focus {
-    border-color: hsl(
-      var(--input-focus-h),
-      var(--input-focus-s),
-      var(--input-focus-l)
-    );
-    box-shadow: 0 0 0 2px
-      hsla(
-        var(--input-focus-h),
-        var(--input-focus-s),
-        calc(var(--input-focus-l) + 20%),
-        0.8
-      );
+    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+    box-shadow: 0 0 0 2px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 20%), 0.8);
     outline: 2px solid transparent;
   }
 

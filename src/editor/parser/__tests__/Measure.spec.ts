@@ -28,12 +28,7 @@ suite("Parse measure", () => {
   test("Parse multiple", () => {
     const measure = new Measure(" A B C D");
     expect(measure.raw).to.be.equal("A B C D");
-    expect(measure.chords).to.deep.equal([
-      new Chord("A"),
-      new Chord("B"),
-      new Chord("C"),
-      new Chord("D"),
-    ]);
+    expect(measure.chords).to.deep.equal([new Chord("A"), new Chord("B"), new Chord("C"), new Chord("D")]);
     expect(measure.valid).to.be.true;
   });
 

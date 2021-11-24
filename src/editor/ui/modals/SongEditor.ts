@@ -12,11 +12,7 @@ import "./editor/GridEditor";
 import { DispatcherController } from "../../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { exists_in_gallery } from "../../stores/register/gallery_tools";
-import {
-  action_notification_open,
-  action_track_edit_apply,
-  action_track_edit_cancel,
-} from "../../actions/actions";
+import { action_notification_open, action_track_edit_apply, action_track_edit_cancel } from "../../actions/actions";
 
 @customElement("song-editor")
 class SongEditor extends LitElement {
@@ -145,10 +141,7 @@ class SongEditor extends LitElement {
   _handle_change_title(e: Event): void {
     let { value } = e.target as HTMLInputElement;
     value = value.trim();
-    this._grid_title_already_exists = exists_in_gallery(
-      value,
-      this._original_title
-    );
+    this._grid_title_already_exists = exists_in_gallery(value, this._original_title);
     this._grid_title = value;
   }
 
@@ -191,10 +184,7 @@ class SongEditor extends LitElement {
             />
           </div>
           <div class="form-item">
-            <grid-editor
-              .value="${this._value}"
-              @update-grid="${this._handle_change_grid}"
-            ></grid-editor>
+            <grid-editor .value="${this._value}" @update-grid="${this._handle_change_grid}"></grid-editor>
           </div>
         </div>
         ${this.help_pane()}
@@ -214,29 +204,14 @@ class SongEditor extends LitElement {
         See examples
       </div>
 
-      <button
-        class="btn-secondary"
-        tabindex="-1"
-        ontouchstart=""
-        @click="${action_track_edit_cancel}"
-      >
-        Cancel
-      </button>
-      <button
-        .disabled="${disabled}"
-        ontouchstart=""
-        @click="${this._handle_apply}"
-      >
-        Apply
-      </button>
+      <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${action_track_edit_cancel}">Cancel</button>
+      <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">Apply</button>
     </div>`;
   }
 
   title_error_pane(): unknown {
     if (this._grid_title_already_exists) {
-      return html` <div class="song-editor-body-form-error-title">
-        This title already exists
-      </div>`;
+      return html` <div class="song-editor-body-form-error-title">This title already exists</div>`;
     }
     return html``;
   }

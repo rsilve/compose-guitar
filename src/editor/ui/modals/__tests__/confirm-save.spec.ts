@@ -3,9 +3,7 @@ import ConfirmSave from "../ConfirmSave";
 
 suite("Confirm save element", () => {
   test("is defined", async () => {
-    const el: ConfirmSave = await fixture(html`
-      <confirm-save></confirm-save>
-    `);
+    const el: ConfirmSave = await fixture(html` <confirm-save></confirm-save> `);
     expect(el).to.instanceOf(ConfirmSave);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -23,9 +21,7 @@ suite("Confirm save element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.type === "cancel";
     };
-    const el: ConfirmSave = await fixture(html`
-      <confirm-save @cancel="${handler}"></confirm-save>
-    `);
+    const el: ConfirmSave = await fixture(html` <confirm-save @cancel="${handler}"></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._cancel") as HTMLElement;
     node.click();
@@ -37,9 +33,7 @@ suite("Confirm save element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.type === "continue";
     };
-    const el: ConfirmSave = await fixture(html`
-      <confirm-save @continue="${handler}"></confirm-save>
-    `);
+    const el: ConfirmSave = await fixture(html` <confirm-save @continue="${handler}"></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._continue") as HTMLElement;
     node.click();
@@ -51,9 +45,7 @@ suite("Confirm save element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.type === "save";
     };
-    const el: ConfirmSave = await fixture(html`
-      <confirm-save @save="${handler}"></confirm-save>
-    `);
+    const el: ConfirmSave = await fixture(html` <confirm-save @save="${handler}"></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._save") as HTMLElement;
     node.click();

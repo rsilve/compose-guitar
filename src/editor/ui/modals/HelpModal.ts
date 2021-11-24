@@ -76,13 +76,7 @@ class HelpModal extends LitElement {
         </table>
       </div>
       <div class="modal-footer">
-        <button
-          tabindex="-1"
-          class="btn-primary _close"
-          @click="${this._dispatch_close}"
-        >
-          Close
-        </button>
+        <button tabindex="-1" class="btn-primary _close" @click="${this._dispatch_close}">Close</button>
       </div>
     `;
   }

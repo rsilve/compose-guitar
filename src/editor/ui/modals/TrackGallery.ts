@@ -89,13 +89,7 @@ class TrackGallery extends LitElement {
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
-        <button
-          tabindex="-1"
-          class="btn-secondary _close"
-          @click="${this._dispatch_close}"
-        >
-          Cancel
-        </button>
+        <button tabindex="-1" class="btn-secondary _close" @click="${this._dispatch_close}">Cancel</button>
       </div>
     `;
   }
@@ -104,13 +98,8 @@ class TrackGallery extends LitElement {
     return Object.keys(this.list).map((key) => {
       const title = this.list[key];
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(key)}"
-          >${title}</span
-        >
-        <div
-          @click="${this._generate_handler_remove(key)}"
-          class="gallery_trash _remove"
-        >
+        <span class="_select" @click="${this._generate_handler_select(key)}">${title}</span>
+        <div @click="${this._generate_handler_remove(key)}" class="gallery_trash _remove">
           <delete-icon title="Remove from the gallery" />
         </div>
       </li>`;

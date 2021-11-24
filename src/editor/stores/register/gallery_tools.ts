@@ -1,10 +1,7 @@
 import { default_state, IState, IStateTrack } from "../state";
 import { uuid } from "../../../tools/uuid";
 
-export function exists_in_gallery(
-  title: string,
-  old_title: string | undefined
-): boolean {
+export function exists_in_gallery(title: string, old_title: string | undefined): boolean {
   const index = gallery_list()
     .filter((t) => t !== old_title)
     .map((t) => t.toUpperCase())
@@ -23,9 +20,7 @@ export function gallery_dict(): Record<string, string> {
 
 export function add_to_gallery(track: IStateTrack, state: IState): IState {
   if (track.title) {
-    const track_index: Record<string, string> = JSON.parse(
-      localStorage.getItem("_gallery_list_dict_") || "{}"
-    );
+    const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
     if (!track.id) {
       track.id = uuid();
     }
@@ -75,9 +70,7 @@ export function get_from_gallery(id: string): IState | null {
 }
 
 export function remove_from_gallery(id: string): void {
-  const track_index: Record<string, string> = JSON.parse(
-    localStorage.getItem("_gallery_list_dict_") || "{}"
-  );
+  const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
   delete track_index[id];
   localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index));
   localStorage.removeItem(id);

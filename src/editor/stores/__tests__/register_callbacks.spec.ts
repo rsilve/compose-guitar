@@ -1,11 +1,7 @@
 import { expect } from "@open-wc/testing";
 import register_callbacks from "../register_callbacks";
 import { registered } from "../../../stores/dispatcher";
-import {
-  init_app_callback,
-  transpose_change_callback,
-  zoom_change_callback,
-} from "../register/misc";
+import { init_app_callback, transpose_change_callback, zoom_change_callback } from "../register/misc";
 import { gallery_callback } from "../register/gallery";
 import { save_as_callback } from "../register/save_as";
 import { upload_callback } from "../register/upload";

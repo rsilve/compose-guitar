@@ -1,9 +1,5 @@
 import { expect } from "@open-wc/testing";
-import {
-  GALLERY_CLOSE,
-  GALLERY_OPEN,
-  GALLERY_REMOVE,
-} from "../../../actions/actions";
+import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE } from "../../../actions/actions";
 import { add_to_gallery, get_from_gallery } from "../gallery_tools";
 import { gallery_callback } from "../gallery";
 import { state_test } from "../../../../__tests__/TestHelpers";
@@ -21,10 +17,7 @@ suite("Gallery callback", () => {
     let { track = {} } = st;
     track = { ...track, grid_text: "aa" };
     add_to_gallery(track, { ...st, track });
-    const state = await gallery_callback(
-      new Action(GALLERY_REMOVE, { id: track.id }),
-      { ...st }
-    );
+    const state = await gallery_callback(new Action(GALLERY_REMOVE, { id: track.id }), { ...st });
     expect(state.gallery).to.be.undefined;
     expect(state).to.deep.equal(st);
     const fromGallery = get_from_gallery("test1");

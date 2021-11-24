@@ -1,8 +1,5 @@
 import { expect } from "@open-wc/testing";
-import {
-  NOTIFICATION_CLOSE,
-  NOTIFICATION_OPEN,
-} from "../../../actions/actions";
+import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from "../../../actions/actions";
 import { notification_callback } from "../notification";
 import { state_test } from "../../../../__tests__/TestHelpers";
 import { Action } from "../../../../actions/Action";

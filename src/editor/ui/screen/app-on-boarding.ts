@@ -53,10 +53,7 @@ class AppOnBoarding extends LitElement {
     return html`
       <h1>Chords grid editor</h1>
       <h2>Your songs in a glance</h2>
-      <p>
-        Just write down your chord sequence and get a simple picture of your
-        song.
-      </p>
+      <p>Just write down your chord sequence and get a simple picture of your song.</p>
       <div class="example">
         <pre>
 | E7 | A7 Adim | E7 | % |
@@ -64,15 +61,10 @@ class AppOnBoarding extends LitElement {
 | B7 | A7 | E7 | Bb7 B7 |</pre
         >
         <div style="font-size: 2em; padding: 2em;">➡︎</div>
-        <chords-grid>
-          | E7 | A7 Adim | E7 | % |; | A7 | A7 | E7 | % |; | B7 | A7 | E7 | Bb7
-          B7 |;
-        </chords-grid>
+        <chords-grid> | E7 | A7 Adim | E7 | % |; | A7 | A7 | E7 | % |; | B7 | A7 | E7 | Bb7 B7 |; </chords-grid>
       </div>
 
-      <button @click="${action_track_new}">
-        Create your first chords grid
-      </button>
+      <button @click="${action_track_new}">Create your first chords grid</button>
     `;
   }
 }

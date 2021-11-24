@@ -6,9 +6,7 @@ import { TRACK_NEW } from "../../../actions/actions";
 
 suite("app on boarding element", () => {
   test("is defined", async () => {
-    const el: AppOnBoarding = await fixture(html`
-      <app-on-boarding></app-on-boarding>
-    `);
+    const el: AppOnBoarding = await fixture(html` <app-on-boarding></app-on-boarding> `);
     expect(el).to.instanceOf(AppOnBoarding);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -21,9 +19,7 @@ suite("app on boarding element", () => {
 | B7 | A7 | E7 | Bb7 B7 |</pre>
                 <div style="font-size: 2em; padding: 2em;">➡︎</div>
                 <chords-grid>
-                    | E7 | A7 Adim | E7 | % |;
-                    | A7 | A7 | E7 | % |;
-                    | B7 | A7 | E7 | Bb7 B7 |;
+                    | E7 | A7 Adim | E7 | % |; | A7 | A7 | E7 | % |; | B7 | A7 | E7 | Bb7 B7 |;
                 </chords-grid>
             </div>
 
@@ -39,9 +35,7 @@ suite("app on boarding element", () => {
       return Promise.resolve(state);
     });
 
-    const el: AppOnBoarding = await fixture(html`
-      <app-on-boarding></app-on-boarding>
-    `);
+    const el: AppOnBoarding = await fixture(html` <app-on-boarding></app-on-boarding> `);
     const node = el.shadowRoot?.querySelector("button") as HTMLElement;
     node.click();
     expect(click_handled).to.be.true;

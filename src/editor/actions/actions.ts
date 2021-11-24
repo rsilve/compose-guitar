@@ -1,8 +1,7 @@
 import { Action, publish_action } from "../../actions/Action";
 
 export const INIT_APP = "INIT_APP";
-export const action_init_app = (): Promise<void> =>
-  publish_action(new Action(INIT_APP));
+export const action_init_app = (): Promise<void> => publish_action(new Action(INIT_APP));
 
 export const UPLOAD_FROM_GALLERY = "UPLOAD_FROM_GALLERY";
 export const action_upload_from_gallery = (id: string): void => {
@@ -10,12 +9,10 @@ export const action_upload_from_gallery = (id: string): void => {
 };
 
 export const SAVE_AS_START = "SAVE_AS_START";
-export const action_save_as_start = (): Promise<void> =>
-  publish_action(new Action(SAVE_AS_START));
+export const action_save_as_start = (): Promise<void> => publish_action(new Action(SAVE_AS_START));
 
 export const SAVE_AS_START_AND_NEW = "SAVE_AS_START_AND_NEW";
-export const action_save_as_start_and_new = (): Promise<void> =>
-  publish_action(new Action(SAVE_AS_START_AND_NEW));
+export const action_save_as_start_and_new = (): Promise<void> => publish_action(new Action(SAVE_AS_START_AND_NEW));
 
 export const GALLERY_OPEN = "GALLERY_OPEN";
 export const action_gallery_open = (): void => {
@@ -75,9 +72,8 @@ export const action_track_new_cancel = (): void => {
 };
 
 export const TRACK_EDIT = "TRACK_EDIT";
-export const action_track_edit = (
-  track_payload: IPayloadEditor
-): Promise<void> => publish_action(new Action(TRACK_EDIT, track_payload));
+export const action_track_edit = (track_payload: IPayloadEditor): Promise<void> =>
+  publish_action(new Action(TRACK_EDIT, track_payload));
 
 export const TRACK_EDIT_CANCEL = "TRACK_EDIT_CANCEL";
 export const action_track_edit_cancel = (): void => {
@@ -85,18 +81,15 @@ export const action_track_edit_cancel = (): void => {
 };
 
 export const TRACK_EDIT_APPLY = "TRACK_EDIT_APPLY";
-export const action_track_edit_apply = (
-  track_payload: IPayloadEditor
-): Promise<void> => publish_action(new Action(TRACK_EDIT_APPLY, track_payload));
+export const action_track_edit_apply = (track_payload: IPayloadEditor): Promise<void> =>
+  publish_action(new Action(TRACK_EDIT_APPLY, track_payload));
 
 export const TRACK_COPY = "TRACK_COPY";
-export const action_track_copy = (
-  track_payload: IPayloadEditor
-): Promise<void> => publish_action(new Action(TRACK_COPY, track_payload));
+export const action_track_copy = (track_payload: IPayloadEditor): Promise<void> =>
+  publish_action(new Action(TRACK_COPY, track_payload));
 
 export const TRACK_PASTE = "TRACK_PASTE";
-export const action_track_paste = (): Promise<void> =>
-  publish_action(new Action(TRACK_PASTE));
+export const action_track_paste = (): Promise<void> => publish_action(new Action(TRACK_PASTE));
 
 export const HELP_OPEN = "HELP_OPEN";
 export const action_help_open = (): void => {
