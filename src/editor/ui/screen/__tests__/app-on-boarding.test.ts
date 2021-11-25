@@ -29,15 +29,18 @@ suite("app on boarding element", () => {
 
   test("is defined", async () => {
     reset_dispatcher();
-    let click_handled = false;
-    register((action, state) => {
-      click_handled = action.action_type === TRACK_NEW;
-      return Promise.resolve(state);
-    });
+    const promise = new Promise(resolve => {
+      register((action, state) => {
+        resolve(action.action_type === TRACK_NEW)
+        return Promise.resolve(state);
+      });
+
+    })
 
     const el: AppOnBoarding = await fixture(html` <app-on-boarding></app-on-boarding> `);
     const node = el.shadowRoot?.querySelector("button") as HTMLElement;
     node.click();
-    expect(click_handled).to.be.true;
+    const clickHandle = await promise;
+    expect(clickHandle).to.be.true;
   });
 });

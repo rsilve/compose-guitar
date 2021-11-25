@@ -14,14 +14,14 @@ class Grid {
       const trimmed = raw.trim();
       this._raw = trimmed;
       const rows = trimmed.split(/\n|;\s*\n?/);
-      for (const r of rows) {
+      rows.forEach(r => {
         const row = new Row(r);
         this.rows.push(row);
         this.valid = this.valid && row.valid;
         if (!row.valid) {
           this.reason = row.reason;
         }
-      }
+      })
     } else {
       this._raw = undefined;
     }

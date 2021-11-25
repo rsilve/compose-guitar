@@ -158,7 +158,7 @@ class SongEditor extends LitElement {
         updated_at: new Date().toISOString(),
       }).then(() => action_notification_open("Track updated"));
     } else {
-      console.log("grid text is empty: close");
+      console.info("grid text is empty: close");
       action_track_edit_cancel();
     }
   }

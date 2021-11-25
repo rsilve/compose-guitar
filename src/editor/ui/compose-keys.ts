@@ -118,7 +118,7 @@ class ComposeKeys extends LitElement {
   private edit_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "e" && this._state) {
       const { track = {} } = this._state;
-      action_track_edit(track).catch((reason) => console.log(reason));
+      action_track_edit(track).catch((reason) => console.warn(reason));
     }
   }
 

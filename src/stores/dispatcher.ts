@@ -7,9 +7,7 @@ let listeners: ((state: IState) => void)[] = [];
 let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = [];
 
 function notify() {
-  for (const listener of listeners) {
-    listener({ ...state });
-  }
+  listeners.forEach((listener) => listener({ ...state }));
 }
 
 export function initialize_state(st: IState): void {
@@ -40,9 +38,10 @@ export function registered(callback: (action: Action, state: IState) => Promise<
 }
 
 export async function dispatch(action: Action): Promise<void> {
-  for (const cb of dispatch_callback) {
+  dispatch_callback.forEach(cb => {
     state = await cb(action, { ...state });
-  }
+  })
+
   notify();
 }
 
