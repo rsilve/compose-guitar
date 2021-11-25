@@ -7,6 +7,7 @@ import { save_as_callback } from "../register/save_as";
 import { upload_callback } from "../register/upload";
 import { notification_callback } from "../register/notification";
 import { track_callback } from "../register/track";
+import {synchronize_callback} from "../register/synchronize";
 
 suite("Register", () => {
   test("init", () => {
@@ -19,5 +20,6 @@ suite("Register", () => {
     expect(registered(zoom_change_callback)).to.be.true;
     expect(registered(track_callback)).to.be.true;
     expect(registered(transpose_change_callback)).to.be.true;
+    expect(registered(synchronize_callback)).to.be.true;
   });
 });

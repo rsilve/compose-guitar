@@ -4,13 +4,14 @@ import "./TrackGallery";
 import "./SongEditor";
 import "./HelpModal";
 import "./ConfirmSave";
+import "./SynchronizeConfiguration"
 import { DispatcherController } from "../../../stores/lit_controller";
 import {
   action_gallery_close,
   action_gallery_remove,
   action_help_close,
   action_notification_open,
-  action_save_as_start_and_new,
+  action_save_as_start_and_new, action_synchronization_configuration_close,
   action_track_new_cancel,
   action_track_new_without_save,
   action_upload_from_gallery,
@@ -60,6 +61,12 @@ class Modals extends LitElement {
   @state()
   _confirm_save_enabled = false;
 
+  @state()
+  synchronizationConfigurationOpen = false;
+
+  @state()
+  synchronizationEnabled = false;
+
   constructor() {
     super();
     const cb = (st: IState) => {
@@ -67,6 +74,8 @@ class Modals extends LitElement {
       this._editor_enabled = st.editor !== undefined;
       this._help_open = !!st.help_open;
       this._confirm_save_enabled = !!st.confirm_save;
+      this.synchronizationConfigurationOpen = st.synchronization.open || false
+      this.synchronizationEnabled = st.synchronization.enabled || false
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -104,12 +113,21 @@ class Modals extends LitElement {
     }
     if (this._confirm_save_enabled) {
       return html`${overlay}
-        <confirm-save
+      <confirm-save
           class="modal"
           @cancel="${action_track_new_cancel}"
           @continue="${action_track_new_without_save}"
           @save="${this._handle_save}"
-        ></confirm-save>`;
+      ></confirm-save>`;
+    }
+
+    if (this.synchronizationConfigurationOpen) {
+      return html`${overlay}
+        <synchronize-configuration
+          class="modal"
+          .enabled="${this.synchronizationEnabled}"
+          @close="${action_synchronization_configuration_close}"
+        ></synchronize-configuration>`;
     }
     return html``;
   }

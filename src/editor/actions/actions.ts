@@ -119,4 +119,9 @@ export const SYNCHRO_ACTIVATION = "SYNCHRO_ACTIVATION";
 export const action_synchronization_activation = (): Promise<void> => publish_action(new Action(SYNCHRO_ACTIVATION));
 
 export const SYNCHRO_DEACTIVATION = "SYNCHRO_DEACTIVATION";
-export const action_synchronization_deactivation = (): Promise<void> => publish_action(new Action(SYNCHRO_DEACTIVATION));
+export const action_synchronization_deactivation = (): Promise<void> =>
+  publish_action(new Action(SYNCHRO_DEACTIVATION));
+
+export const SYNCHRO_CONFIGURATION_CLOSE = "SYNCHRO_CONFIGURATION_CLOSE";
+export const action_synchronization_configuration_close = (): Promise<void> =>
+  publish_action(new Action(SYNCHRO_CONFIGURATION_CLOSE));

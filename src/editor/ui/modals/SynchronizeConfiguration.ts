@@ -1,21 +1,15 @@
 import { html, LitElement } from "lit";
-import { customElement, state } from "lit/decorators.js";
-import { IState } from "../../stores/state";
-import { DispatcherController } from "../../../stores/lit_controller";
-import {action_synchronization_activation, action_synchronization_deactivation} from "../../actions/actions";
+import { customElement, property } from "lit/decorators.js";
+import { action_synchronization_activation, action_synchronization_deactivation } from "../../actions/actions";
+import { buttonStyles } from "../styles/button";
+import { modalStyles } from "../styles/modals";
 
 @customElement("synchronize-configuration")
 class SynchronizeConfiguration extends LitElement {
-  @state()
-  _enabled = false;
+  static styles = [buttonStyles, modalStyles];
 
-  constructor() {
-    super();
-    const cb = (st: IState) => {
-      this._enabled = st.synchronization.enabled;
-    };
-    this.addController(new DispatcherController(cb.bind(this)));
-  }
+  @property()
+  enabled = false;
 
   private _dispatch_close() {
     const options = {
@@ -26,13 +20,18 @@ class SynchronizeConfiguration extends LitElement {
   }
 
   render(): unknown {
-    let body = html`<div>Do you want to activate synchronization ? 
-      <button class="_activate" @click="${action_synchronization_activation}">activate</button></div>`;
-    if (this._enabled) {
-      body = html`<div>Do you want to deactivate synchronization ?
-        <button class="_deactivate" @click="${action_synchronization_deactivation}">deactivate</button></div>`;
+    let body = html` <div>
+      Do you want to activate synchronization ?
+      <button class="_activate" @click="${action_synchronization_activation}">activate</button>
+    </div>`;
+    if (this.enabled) {
+      body = html` <div>
+        Do you want to deactivate synchronization ?
+        <button class="_deactivate" @click="${action_synchronization_deactivation}">deactivate</button>
+      </div>`;
     }
     return html`
+      <h1>Synchronization</h1>
       ${body}
       <div class="modal-footer">
         <button tabindex="-1" class="btn-primary _close" @click="${this._dispatch_close}">Close</button>

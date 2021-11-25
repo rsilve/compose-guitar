@@ -59,9 +59,9 @@ class EditorMain extends LitElement {
       <zoom-grid class="no_print"></zoom-grid>
       <compose-keys class="no_print"></compose-keys>
       <transpose-grid class="no_print"></transpose-grid>
+      <synchronize-notification class="no_print"></synchronize-notification>
       <compose-modals class="no_print"></compose-modals>
       <compose-notification class="no_print"></compose-notification>
-      <synchronize-notification class="no_print"></synchronize-notification>
       <google-api class="no_print"></google-api>
     `;
   }
