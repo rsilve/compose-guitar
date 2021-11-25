@@ -16,13 +16,14 @@ import Action from "../../../actions/Action";
 import { uuid } from "../../../tools/uuid";
 
 export async function track_callback(action: Action, state: IState): Promise<IState> {
+  let result = { ...state};
   if (action.action_type === TRACK_NEW) {
-    const { track = {} } = state;
+    const { track = {} } = result;
     if (save_needed(track)) {
-      state = { ...state, confirm_save: true };
+      result = { ...result, confirm_save: true };
     } else {
-      state = {
-        ...state,
+      result = {
+        ...result,
         track: { ...track, id: undefined },
         editor: {},
         transpose: 0,
@@ -31,8 +32,8 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
   }
 
   if (action.action_type === TRACK_NEW_WITHOUT_SAVE) {
-    state = {
-      ...state,
+    result = {
+      ...result,
       editor: {},
       transpose: 0,
       confirm_save: undefined,
@@ -40,22 +41,22 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
   }
 
   if (action.action_type === TRACK_NEW_CANCEL || action.action_type === MODALS_CLOSE) {
-    state.confirm_save = undefined;
-    state.editor = undefined;
+    result.confirm_save = undefined;
+    result.editor = undefined;
   }
 
   if (action.action_type === TRACK_EDIT) {
     const { title, grid_text } = action.payload as IPayloadEditor;
-    state.editor = { title, grid_text };
+    result.editor = { title, grid_text };
   }
 
   if (action.action_type === TRACK_EDIT_CANCEL || action.action_type === MODALS_CLOSE) {
-    state.editor = undefined;
+    result.editor = undefined;
   }
 
   if (action.action_type === TRACK_EDIT_APPLY) {
     const { title, grid_text, updated_at } = action.payload as IPayloadEditor;
-    let { track = {} } = state;
+    let { track = {} } = result;
     track = {
       ...track,
       title,
@@ -65,7 +66,7 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
     if (!track.id) {
       track.id = uuid();
     }
-    state = { ...state, track, editor: undefined };
+    result = { ...result, track, editor: undefined };
   }
 
   if (action.action_type === TRACK_COPY) {
@@ -74,8 +75,10 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
   }
 
   if (action.action_type === TRACK_PASTE) {
-    await navigator.clipboard.readText().then((t) => (state.track = JSON.parse(t)));
+    await navigator.clipboard.readText().then((t) => {
+      result.track = JSON.parse(t)
+    });
   }
 
-  return Promise.resolve(state);
+  return Promise.resolve(result);
 }

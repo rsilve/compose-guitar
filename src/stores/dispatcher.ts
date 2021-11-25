@@ -38,10 +38,9 @@ export function registered(callback: (action: Action, state: IState) => Promise<
 }
 
 export async function dispatch(action: Action): Promise<void> {
-  dispatch_callback.forEach(cb => {
+  for (const cb of dispatch_callback) {
     state = await cb(action, { ...state });
-  })
-
+  }
   notify();
 }
 
