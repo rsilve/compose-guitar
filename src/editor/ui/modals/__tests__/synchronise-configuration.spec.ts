@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
 import {register, reset_dispatcher} from "../../../../stores/dispatcher";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import {SYNCHRO_ACTIVATION} from "../../../actions/actions";
+import {SYNCHRO_ACTIVATION, SYNCHRO_DEACTIVATION} from "../../../actions/actions";
 
 suite("synchronise configuration element", () => {
   const st = state_test;
@@ -49,7 +49,7 @@ suite("synchronise configuration element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el._enabled).to.be.true;
     expect(el).shadowDom.to.equals(`
-            <div>Do you want to deactivate synchronization ?</div>
+            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
             </div>
@@ -72,4 +72,23 @@ suite("synchronise configuration element", () => {
     const activated = await promise;
     expect(activated).to.be.true
   });
+
+  test("ha a deactivate button", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true } });
+    const promise = new Promise(resolve => {
+      register((action, state) => {
+        resolve(action.action_type === SYNCHRO_DEACTIVATION);
+        return Promise.resolve(state);
+      });
+    })
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
+    expect(el).to.instanceOf(SynchronizeConfiguration);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("._deactivate") as HTMLElement;
+    node.click();
+    const activated = await promise;
+    expect(activated).to.be.true
+  });
+
+
 });
