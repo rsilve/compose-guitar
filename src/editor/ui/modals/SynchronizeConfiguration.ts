@@ -2,6 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { IState } from "../../stores/state";
 import { DispatcherController } from "../../../stores/lit_controller";
+import {action_synchronization_activation} from "../../actions/actions";
 
 @customElement("synchronize-configuration")
 class SynchronizeConfiguration extends LitElement {
@@ -25,7 +26,8 @@ class SynchronizeConfiguration extends LitElement {
   }
 
   render(): unknown {
-    let body = html`<div>Do you want to activate synchronization ?</div>`;
+    let body = html`<div>Do you want to activate synchronization ? 
+      <button class="_activate" @click="${action_synchronization_activation}">activate</button></div>`;
     if (this._enabled) {
       body = html`<div>Do you want to deactivate synchronization ?</div>`;
     }

@@ -6,7 +6,7 @@ import {
   action_gallery_remove,
   action_init_app,
   action_save_as_start,
-  action_save_as_start_and_new,
+  action_save_as_start_and_new, action_synchronization_activation,
   action_synchronization_activation_request,
   action_synchronization_deactivation_request,
   action_transpose_change,
@@ -16,7 +16,7 @@ import {
   GALLERY_REMOVE,
   INIT_APP,
   SAVE_AS_START,
-  SAVE_AS_START_AND_NEW,
+  SAVE_AS_START_AND_NEW, SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_DEACTIVATION_REQUEST,
   TRANSPOSE_CHANGE,
@@ -139,4 +139,16 @@ suite("actions", () => {
     await action_synchronization_deactivation_request();
     expect(handle).to.be.true;
   });
+
+  test("action_synchronization_activation", async () => {
+    let handle = false;
+    reset_dispatcher(default_state());
+    register((action, state) => {
+      handle = action.action_type === SYNCHRO_ACTIVATION;
+      return Promise.resolve(state);
+    });
+    await action_synchronization_activation();
+    expect(handle).to.be.true;
+  });
+
 });

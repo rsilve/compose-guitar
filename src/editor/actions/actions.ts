@@ -1,5 +1,5 @@
 import Action from "../../actions/Action";
-import {publish_action} from "../../actions/publish_action";
+import { publish_action } from "../../actions/publish_action";
 
 export const INIT_APP = "INIT_APP";
 export const action_init_app = (): Promise<void> => publish_action(new Action(INIT_APP));
@@ -114,3 +114,6 @@ export const action_synchronization_activation_request = (): Promise<void> =>
 export const SYNCHRO_DEACTIVATION_REQUEST = "SYNCHRO_DEACTIVATION_REQUEST";
 export const action_synchronization_deactivation_request = (): Promise<void> =>
   publish_action(new Action(SYNCHRO_DEACTIVATION_REQUEST));
+
+export const SYNCHRO_ACTIVATION = "SYNCHRO_ACTIVATION";
+export const action_synchronization_activation = (): Promise<void> => publish_action(new Action(SYNCHRO_ACTIVATION));
