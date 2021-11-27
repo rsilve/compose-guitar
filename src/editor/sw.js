@@ -1,7 +1,7 @@
 const cacheName = `compose-guitar`;
 
 self.addEventListener("install", function (event) {
-  console.log("The service worker is being installed.");
+  console.info("The service worker is being installed.");
   event.waitUntil(
     caches.open(cacheName).then((cache) => {
       return cache
