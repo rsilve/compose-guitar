@@ -22,9 +22,15 @@ class GoogleApiWrapper {
               } else {
                 gapi.auth2
                     .getAuthInstance()
-                    .signIn()
-                    .then(() => console.info("signin completed"));
+                    .signIn({ ux_mode: "popup" /* "redirect" */ })
+                    .then((googleUser) => console.info("signin completed", googleUser))
+                    .catch(reason => {
+                        console.error("auth failure", reason)
+                    });
               }
+            })
+            .catch(reason => {
+                console.error("gapi client failure", reason)
             });
       });
     });
@@ -32,7 +38,7 @@ class GoogleApiWrapper {
 
   signOut(): void {
       const result = gapi.auth2.getAuthInstance().signOut();
-      console.log(result)
+      console.info(result)
   }
 }
 
