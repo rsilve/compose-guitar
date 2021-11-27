@@ -39,14 +39,20 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   }
 
   if (action.action_type === SYNCHRO_SIGN_IN) {
-    const { synchronization } = result;
+    let { synchronization } = result;
     if (synchronization.enabled) {
-      const valid = await googleApiWrapper.signIn();
-      const sync = { ...synchronization, signInValid: valid };
-      result = { ...result, synchronization: sync };
+      synchronization = await googleApiWrapper
+        .signIn()
+        .then((valid) => {
+          return { ...synchronization, signInValid: valid };
+        })
+        .catch((reason) => {
+          return { ...synchronization, signInValid: false, error: reason };
+        });
+      result = { ...result, synchronization };
     } else {
-      const sync = { ...synchronization, signInValid: undefined };
-      result = { ...result, synchronization: sync };
+      synchronization = { ...synchronization, signInValid: undefined };
+      result = { ...result, synchronization };
     }
   }
 
