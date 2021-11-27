@@ -6,50 +6,48 @@ class GoogleApiWrapper {
     return new Promise((resolve, reject) => {
       gapi.load("client:auth2", () => {
         gapi.client
-            .init({
-              apiKey: "__api_key__",
-              clientId: "__api_client_id__",
-              discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/translate/v2/rest"],
-              scope: "profile https://www.googleapis.com/auth/drive",
-            })
-            .then(() => {
-              gapi.auth2.getAuthInstance().isSignedIn.listen((signedIn) => {
-                resolve(signedIn);
-              });
-              if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                console.info("signin already valid on load");
-                resolve(true);
-              } else {
-                gapi.auth2
-                    .getAuthInstance()
-                    .signIn({ ux_mode: "popup" /* "redirect" */ })
-                    .then((googleUser) => {
-                        resolve(true)
-                        return googleUser
-                    })
-                    .then((googleUser) => console.info("signin completed", googleUser))
-                    .catch(reason => {
-                        console.error("auth failure", reason)
-                        reject(reason)
-                    });
-              }
-            })
-            .catch(reason => {
-                console.error("gapi client failure", reason)
-                reject(reason)
+          .init({
+            apiKey: "__api_key__",
+            clientId: "__api_client_id__",
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/translate/v2/rest"],
+            scope: "profile https://www.googleapis.com/auth/drive",
+          })
+          .then(() => {
+            gapi.auth2.getAuthInstance().isSignedIn.listen((signedIn) => {
+              resolve(signedIn);
             });
+            if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+              console.info("signin already valid on load");
+              resolve(true);
+            } else {
+              gapi.auth2
+                .getAuthInstance()
+                .signIn({ ux_mode: "popup" /* "redirect" */ })
+                .then((googleUser) => {
+                  resolve(true);
+                  return googleUser;
+                })
+                .then((googleUser) => console.info("signin completed", googleUser))
+                .catch((reason) => {
+                  console.error("auth failure", reason);
+                  reject(reason);
+                });
+            }
+          })
+          .catch((reason) => {
+            console.error("gapi client failure", reason);
+            reject(reason);
+          });
       });
     });
   }
 
   signOut(): void {
-      const result = gapi.auth2.getAuthInstance().signOut();
-      console.info(result)
+    gapi.auth2.getAuthInstance().signOut();
   }
 }
 
-export const googleApiWrapper = new GoogleApiWrapper()
-
+export const googleApiWrapper = new GoogleApiWrapper();
 
 export function googleApiSignOut(): void {
   gapi.auth2.getAuthInstance().signOut();
