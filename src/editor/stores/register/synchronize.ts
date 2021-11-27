@@ -2,7 +2,7 @@ import {
   MODALS_CLOSE, SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_CONFIGURATION_CLOSE, SYNCHRO_DEACTIVATION,
-  SYNCHRO_DEACTIVATION_REQUEST
+  SYNCHRO_DEACTIVATION_REQUEST, SYNCHRO_SIGN_IN
 } from "../../actions/actions";
 import { IState } from "../state";
 import Action from "../../../actions/Action";
@@ -31,6 +31,14 @@ export function synchronize_callback(action: Action, state: IState): Promise<ISt
     const { synchronization } = result;
     const sync = { ...synchronization, enabled: false };
     result = { ...result, synchronization: sync };
+  }
+
+  if (action.action_type === SYNCHRO_SIGN_IN) {
+    const { synchronization } = result;
+    if (synchronization.enabled) {
+      const sync = { ...synchronization, signInValid: true };
+      result = { ...result, synchronization: sync };
+    }
   }
 
   return Promise.resolve(result);

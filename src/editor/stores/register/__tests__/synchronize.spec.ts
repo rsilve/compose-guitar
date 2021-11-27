@@ -3,7 +3,7 @@ import {
   MODALS_CLOSE, SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_CONFIGURATION_CLOSE, SYNCHRO_DEACTIVATION,
-  SYNCHRO_DEACTIVATION_REQUEST
+  SYNCHRO_DEACTIVATION_REQUEST, SYNCHRO_SIGN_IN
 } from "../../../actions/actions";
 import { state_test } from "../../../../__tests__/TestHelpers";
 import Action from "../../../../actions/Action";
@@ -46,5 +46,12 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, enabled: true}
     const state = await synchronize_callback(new Action(SYNCHRO_DEACTIVATION), { ...st, synchronization});
     expect(state.synchronization.enabled).to.be.false;
+  });
+
+  test("sign_in", async () => {
+    let { synchronization } = st
+    synchronization = { ...synchronization, enabled: true}
+    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization});
+    expect(state.synchronization.signInValid).to.be.true;
   });
 });
