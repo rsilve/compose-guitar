@@ -2,7 +2,12 @@ import { expect, fixture, html } from "@open-wc/testing";
 import Modals from "../Modals";
 import { register, reset_dispatcher } from "../../../../stores/dispatcher";
 import { state_test } from "../../../../__tests__/TestHelpers";
-import { SYNCHRO_ACTIVATION, SYNCHRO_CONFIGURATION_CLOSE, SYNCHRO_DEACTIVATION } from "../../../actions/actions";
+import {
+  SYNCHRO_ACTIVATION,
+  SYNCHRO_CONFIGURATION_CLOSE,
+  SYNCHRO_DEACTIVATION,
+  SYNCHRO_SIGN_OUT
+} from "../../../actions/actions";
 
 suite("Modals element", () => {
   const st = state_test;
@@ -124,10 +129,34 @@ suite("Modals element", () => {
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("synchronize-configuration");
     node?.dispatchEvent(
-      new CustomEvent("deactivate", {
-        bubbles: true,
-        composed: true,
-      })
+        new CustomEvent("deactivate", {
+          bubbles: true,
+          composed: true,
+        })
+    );
+    const closed = await promise;
+    expect(closed).to.be.true;
+  });
+
+  test("synchronize sign out", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.action_type === SYNCHRO_SIGN_OUT) {
+          resolve(true)
+        }
+        return Promise.resolve(state);
+      });
+    });
+    const el: Modals = await fixture(html`<compose-modals></compose-modals>`);
+    expect(el).to.instanceOf(Modals);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("synchronize-configuration");
+    node?.dispatchEvent(
+        new CustomEvent("deactivate", {
+          bubbles: true,
+          composed: true,
+        })
     );
     const closed = await promise;
     expect(closed).to.be.true;

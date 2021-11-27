@@ -26,7 +26,7 @@ import {
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
   TRANSPOSE_CHANGE,
-  UPLOAD_FROM_GALLERY,
+  UPLOAD_FROM_GALLERY, SYNCHRO_SIGN_OUT, action_synchro_sign_out,
 } from "../actions";
 import { default_state } from "../../stores/state";
 
@@ -180,7 +180,7 @@ suite("actions", () => {
   });
 
 
-  test("action_remote_sign_in", async () => {
+  test("action_synchro_sign_in", async () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
@@ -188,6 +188,18 @@ suite("actions", () => {
       return Promise.resolve(state);
     });
     await action_synchro_sign_in();
+    expect(handle).to.be.true;
+  });
+
+
+  test("action_remote_sign_out", async () => {
+    let handle = false;
+    reset_dispatcher(default_state());
+    register((action, state) => {
+      handle = action.action_type === SYNCHRO_SIGN_OUT;
+      return Promise.resolve(state);
+    });
+    await action_synchro_sign_out();
     expect(handle).to.be.true;
   });
 
