@@ -6,6 +6,7 @@ import {
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
   SYNCHRO_SIGN_IN,
+  SYNCHRO_SIGN_OUT,
 } from "../../actions/actions";
 import { IState } from "../state";
 import Action from "../../../actions/Action";
@@ -47,6 +48,13 @@ export async function synchronize_callback(action: Action, state: IState): Promi
       const sync = { ...synchronization, signInValid: undefined };
       result = { ...result, synchronization: sync };
     }
+  }
+
+  if (action.action_type === SYNCHRO_SIGN_OUT) {
+    const { synchronization } = result;
+    googleApiWrapper.signOut();
+    const sync = { ...synchronization, signInValid: undefined };
+    result = { ...result, synchronization: sync };
   }
 
   return Promise.resolve(result);

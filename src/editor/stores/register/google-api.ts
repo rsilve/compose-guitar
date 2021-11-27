@@ -29,6 +29,11 @@ class GoogleApiWrapper {
       });
     });
   }
+
+  signOut(): void {
+      const result = gapi.auth2.getAuthInstance().signOut();
+      console.log(result)
+  }
 }
 
 export const googleApiWrapper = new GoogleApiWrapper()
