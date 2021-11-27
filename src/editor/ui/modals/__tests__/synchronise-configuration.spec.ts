@@ -37,7 +37,7 @@ suite("synchronise configuration element", () => {
   });
 
   test("has a synchronization attribute", async () => {
-    const sync: IStateSynchronisation = { enabled: true };
+    const sync: IStateSynchronisation = { enabled: true, signInValid: true };
     const el: SynchronizeConfiguration = await fixture(
       html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
     );
@@ -78,5 +78,22 @@ suite("synchronise configuration element", () => {
     const node = el.shadowRoot?.querySelector("._deactivate") as HTMLElement;
     node.click();
     expect(handle).to.be.true;
+  });
+
+  test("display warning if signin hav failed", async () => {
+    const sync: IStateSynchronisation = { enabled: true, signInValid: false };
+    const el: SynchronizeConfiguration = await fixture(
+      html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
+    );
+    expect(el).to.instanceOf(SynchronizeConfiguration);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.equals(`
+            <h1>Synchronization</h1>
+            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
+            <div>not connected</div>
+            <div class="modal-footer">
+                <button tabindex="-1" class="btn-primary _close">Close</button>
+            </div>
+        `);
   });
 });

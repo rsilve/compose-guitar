@@ -41,10 +41,17 @@ class SynchronizeConfiguration extends LitElement {
       <button class="_activate" @click="${this._dispatch_activate}">activate</button>
     </div>`;
     if (this.synchronisation?.enabled) {
-      body = html` <div>
-        Do you want to deactivate synchronization ?
-        <button class="_deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
-      </div>`;
+      let signInStatus = html`<div>not connected</div>`;
+      if (this.synchronisation?.signInValid) {
+        signInStatus = html``;
+      }
+      body = html`
+        <div>
+          Do you want to deactivate synchronization ?
+          <button class="_deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
+        </div>
+        ${signInStatus}
+      `;
     }
     return html`
       <h1>Synchronization</h1>
