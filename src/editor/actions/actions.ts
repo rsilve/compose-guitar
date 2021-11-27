@@ -58,8 +58,8 @@ export interface IPayloadEditor {
 }
 
 export const TRACK_NEW = "TRACK_NEW";
-export const action_track_new = (): void => {
-  publish_action(new Action(TRACK_NEW));
+export const action_track_new = (): Promise<void> => {
+  return publish_action(new Action(TRACK_NEW));
 };
 
 export const TRACK_NEW_WITHOUT_SAVE = "TRACK_NEW_WITHOUT_SAVE";
@@ -127,9 +127,7 @@ export const action_synchronization_configuration_close = (): Promise<void> =>
   publish_action(new Action(SYNCHRO_CONFIGURATION_CLOSE));
 
 export const SYNCHRO_SIGN_IN = "SYNCHRO_SIGN_IN";
-export const action_synchro_sign_in = (): Promise<void> =>
-    publish_action(new Action(SYNCHRO_SIGN_IN));
+export const action_synchro_sign_in = (): Promise<void> => publish_action(new Action(SYNCHRO_SIGN_IN));
 
 export const SYNCHRO_SIGN_OUT = "SYNCHRO_SIGN_OUT";
-export const action_synchro_sign_out = (): Promise<void> =>
-    publish_action(new Action(SYNCHRO_SIGN_OUT));
+export const action_synchro_sign_out = (): Promise<void> => publish_action(new Action(SYNCHRO_SIGN_OUT));

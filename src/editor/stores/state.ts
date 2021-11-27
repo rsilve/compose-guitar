@@ -19,7 +19,7 @@ export interface IStateTrack {
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 
-interface IStateSynchronisation {
+export interface IStateSynchronisation {
   enabled: boolean;
   open?: boolean;
   signInValid?: boolean;

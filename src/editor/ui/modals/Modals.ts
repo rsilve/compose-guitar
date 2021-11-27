@@ -11,7 +11,8 @@ import {
   action_gallery_remove,
   action_help_close,
   action_notification_open,
-  action_save_as_start_and_new, action_synchro_sign_out,
+  action_save_as_start_and_new,
+  action_synchro_sign_out,
   action_synchronization_activation,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
@@ -20,7 +21,7 @@ import {
   action_upload_from_gallery,
 } from "../../actions/actions";
 import { gallery_dict } from "../../stores/register/gallery_tools";
-import { IState } from "../../stores/state";
+import { IState, IStateSynchronisation } from "../../stores/state";
 
 @customElement("compose-modals")
 class Modals extends LitElement {
@@ -68,7 +69,7 @@ class Modals extends LitElement {
   synchronizationConfigurationOpen = false;
 
   @state()
-  synchronizationEnabled = false;
+  synchronisation: IStateSynchronisation | undefined;
 
   constructor() {
     super();
@@ -78,7 +79,7 @@ class Modals extends LitElement {
       this._help_open = !!st.help_open;
       this._confirm_save_enabled = !!st.confirm_save;
       this.synchronizationConfigurationOpen = st.synchronization.open || false;
-      this.synchronizationEnabled = st.synchronization.enabled || false;
+      this.synchronisation = st.synchronization;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -96,7 +97,7 @@ class Modals extends LitElement {
   }
 
   private static dispatchDeactivate() {
-    action_synchronization_deactivation().then(action_synchro_sign_out)
+    action_synchronization_deactivation().then(action_synchro_sign_out);
   }
 
   render(): unknown {
@@ -132,7 +133,7 @@ class Modals extends LitElement {
       return html`${overlay}
         <synchronize-configuration
           class="modal"
-          .enabled="${this.synchronizationEnabled}"
+          .synchronisation="${this.synchronisation}"
           @activate="${action_synchronization_activation}"
           @deactivate="${Modals.dispatchDeactivate}"
           @close="${action_synchronization_configuration_close}"

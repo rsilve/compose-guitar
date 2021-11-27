@@ -44,14 +44,14 @@ export async function synchronize_callback(action: Action, state: IState): Promi
       synchronization = await googleApiWrapper
         .signIn()
         .then((valid) => {
-          return { ...synchronization, signInValid: valid };
+          return { ...synchronization, signInValid: valid, error: undefined };
         })
         .catch((reason) => {
           return { ...synchronization, signInValid: false, error: reason };
         });
       result = { ...result, synchronization };
     } else {
-      synchronization = { ...synchronization, signInValid: undefined };
+      synchronization = { ...synchronization, signInValid: undefined, error: undefined };
       result = { ...result, synchronization };
     }
   }
@@ -59,7 +59,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   if (action.action_type === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
     googleApiWrapper.signOut();
-    const sync = { ...synchronization, signInValid: undefined };
+    const sync = { ...synchronization, signInValid: undefined, error: undefined };
     result = { ...result, synchronization: sync };
   }
 

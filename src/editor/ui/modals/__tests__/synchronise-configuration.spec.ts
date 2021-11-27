@@ -1,5 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
+import { IStateSynchronisation } from "../../../stores/state";
 
 suite("synchronise configuration element", () => {
   test("is defined", async () => {
@@ -25,7 +26,7 @@ suite("synchronise configuration element", () => {
     const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
-    expect(el.enabled).to.be.false;
+    expect(el.synchronisation).to.be.undefined;
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
             <div>Do you want to activate synchronization ? <button class="_activate">activate</button></div>
@@ -35,13 +36,13 @@ suite("synchronise configuration element", () => {
         `);
   });
 
-  test("has a enabled attribute", async () => {
+  test("has a synchronization attribute", async () => {
+    const sync: IStateSynchronisation = { enabled: true };
     const el: SynchronizeConfiguration = await fixture(
-      html` <synchronize-configuration .enabled="${true}"></synchronize-configuration>`
+      html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
     );
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
-    expect(el.enabled).to.be.true;
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
             <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
@@ -64,10 +65,11 @@ suite("synchronise configuration element", () => {
   });
 
   test("ha a deactivate button", async () => {
+    const sync: IStateSynchronisation = { enabled: true };
     let handle = false;
     const el: SynchronizeConfiguration = await fixture(
-      html`<synchronize-configuration
-        .enabled="${true}"
+      html` <synchronize-configuration
+        .synchronisation="${sync}"
         @deactivate="${() => (handle = true)}"
       ></synchronize-configuration>`
     );

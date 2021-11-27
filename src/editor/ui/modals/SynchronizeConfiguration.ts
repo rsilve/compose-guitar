@@ -2,13 +2,14 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { buttonStyles } from "../styles/button";
 import { modalStyles } from "../styles/modals";
+import { IStateSynchronisation } from "../../stores/state";
 
 @customElement("synchronize-configuration")
 class SynchronizeConfiguration extends LitElement {
   static styles = [buttonStyles, modalStyles];
 
   @property()
-  enabled = false;
+  synchronisation: IStateSynchronisation | undefined;
 
   private _dispatch_close() {
     const options = {
@@ -39,7 +40,7 @@ class SynchronizeConfiguration extends LitElement {
       Do you want to activate synchronization ?
       <button class="_activate" @click="${this._dispatch_activate}">activate</button>
     </div>`;
-    if (this.enabled) {
+    if (this.synchronisation?.enabled) {
       body = html` <div>
         Do you want to deactivate synchronization ?
         <button class="_deactivate" @click="${this._dispatch_deactivate}">deactivate</button>

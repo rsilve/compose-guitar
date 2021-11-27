@@ -46,6 +46,7 @@ suite("synchronize callback", () => {
   test("activate", async () => {
     const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION), { ...st });
     expect(state.synchronization.enabled).to.be.true;
+    expect(state.synchronization.error).to.be.undefined;
   });
 
   test("deactivate", async () => {
@@ -58,9 +59,10 @@ suite("synchronize callback", () => {
   test("sign_in", async () => {
     stub.signIn.returns(Promise.resolve(true));
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: true };
+    synchronization = { ...synchronization, enabled: true, error: "ee" };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.true;
+    expect(state.synchronization.error).to.be.undefined;
   });
 
   test("no sign_in if not enabled", async () => {
@@ -86,5 +88,6 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, enabled: false, signInValid: true };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_OUT), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.undefined;
+    expect(state.synchronization.error).to.be.undefined;
   });
 });
