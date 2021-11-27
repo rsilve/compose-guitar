@@ -49,10 +49,6 @@ class GoogleApiWrapper {
 
 export const googleApiWrapper = new GoogleApiWrapper();
 
-export function googleApiSignOut(): void {
-  gapi.auth2.getAuthInstance().signOut();
-}
-
 export function listFiles(): void {
   const restRequest = gapi.client.request({
     path: "/drive/v3/files",
@@ -61,8 +57,4 @@ export function listFiles(): void {
   restRequest.execute((response) => {
     console.info(response);
   });
-}
-
-export function login() {
-  gapi.auth2.getAuthInstance().signIn();
 }
