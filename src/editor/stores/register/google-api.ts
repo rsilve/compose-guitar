@@ -3,7 +3,7 @@
 
 class GoogleApiWrapper {
   signIn(): Promise<boolean> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       gapi.load("client:auth2", () => {
         gapi.client
             .init({
@@ -23,14 +23,20 @@ class GoogleApiWrapper {
                 gapi.auth2
                     .getAuthInstance()
                     .signIn({ ux_mode: "popup" /* "redirect" */ })
+                    .then((googleUser) => {
+                        resolve(true)
+                        return googleUser
+                    })
                     .then((googleUser) => console.info("signin completed", googleUser))
                     .catch(reason => {
                         console.error("auth failure", reason)
+                        reject(reason)
                     });
               }
             })
             .catch(reason => {
                 console.error("gapi client failure", reason)
+                reject(reason)
             });
       });
     });
