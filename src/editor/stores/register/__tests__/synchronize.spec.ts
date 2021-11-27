@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import {
-  MODALS_CLOSE,
+  MODALS_CLOSE, SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
-  SYNCHRO_CONFIGURATION_CLOSE,
+  SYNCHRO_CONFIGURATION_CLOSE, SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST
 } from "../../../actions/actions";
 import { state_test } from "../../../../__tests__/TestHelpers";
@@ -34,5 +34,17 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, open: true}
     const state = await synchronize_callback(new Action(SYNCHRO_CONFIGURATION_CLOSE), { ...st, synchronization });
     expect(state.synchronization.open).to.be.undefined;
+  });
+
+  test("activate", async () => {
+    const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION), { ...st});
+    expect(state.synchronization.enabled).to.be.true;
+  });
+
+  test("deactivate", async () => {
+    let { synchronization } = st
+    synchronization = { ...synchronization, enabled: true}
+    const state = await synchronize_callback(new Action(SYNCHRO_DEACTIVATION), { ...st, synchronization});
+    expect(state.synchronization.enabled).to.be.false;
   });
 });
