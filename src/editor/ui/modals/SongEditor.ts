@@ -89,10 +89,6 @@ class SongEditor extends LitElement {
         line-height: 0;
         cursor: pointer;
       }
-
-      button:active {
-        transform: scale(1.2);
-      }
     `,
   ];
 
