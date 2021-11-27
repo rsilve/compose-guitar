@@ -41,9 +41,15 @@ class SynchronizeConfiguration extends LitElement {
       <button class="_activate" @click="${this._dispatch_activate}">activate</button>
     </div>`;
     if (this.synchronisation?.enabled) {
+      let errorStatus = html``;
       let signInStatus = html`<div>not connected</div>`;
       if (this.synchronisation?.signInValid) {
         signInStatus = html``;
+      }
+
+      if (this.synchronisation?.error) {
+        const error = this.synchronisation?.error as {error: string}
+        errorStatus = html`<div>${error.error}</div>`;
       }
       body = html`
         <div>
@@ -51,6 +57,7 @@ class SynchronizeConfiguration extends LitElement {
           <button class="_deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
         </div>
         ${signInStatus}
+        ${errorStatus}
       `;
     }
     return html`

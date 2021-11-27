@@ -80,10 +80,10 @@ suite("synchronise configuration element", () => {
     expect(handle).to.be.true;
   });
 
-  test("display warning if signin hav failed", async () => {
-    const sync: IStateSynchronisation = { enabled: true, signInValid: false };
+  test("display warning if signin not active", async () => {
+    const sync: IStateSynchronisation = { enabled: true, signInValid: false};
     const el: SynchronizeConfiguration = await fixture(
-      html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
+        html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
     );
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
@@ -91,6 +91,24 @@ suite("synchronise configuration element", () => {
             <h1>Synchronization</h1>
             <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
             <div>not connected</div>
+            <div class="modal-footer">
+                <button tabindex="-1" class="btn-primary _close">Close</button>
+            </div>
+        `);
+  });
+
+  test("display warning if signin have failed", async () => {
+    const sync: IStateSynchronisation = { enabled: true, signInValid: false, error: {error: "blocked"}};
+    const el: SynchronizeConfiguration = await fixture(
+        html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
+    );
+    expect(el).to.instanceOf(SynchronizeConfiguration);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.equals(`
+            <h1>Synchronization</h1>
+            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
+            <div>not connected</div>
+            <div>blocked</div>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
             </div>
