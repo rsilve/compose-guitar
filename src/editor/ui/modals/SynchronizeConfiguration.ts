@@ -1,6 +1,5 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { action_synchronization_activation, action_synchronization_deactivation } from "../../actions/actions";
 import { buttonStyles } from "../styles/button";
 import { modalStyles } from "../styles/modals";
 
@@ -19,15 +18,31 @@ class SynchronizeConfiguration extends LitElement {
     this.dispatchEvent(new CustomEvent("close", options));
   }
 
+  private _dispatch_activate() {
+    const options = {
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent("activate", options));
+  }
+
+  private _dispatch_deactivate() {
+    const options = {
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent("deactivate", options));
+  }
+
   render(): unknown {
     let body = html` <div>
       Do you want to activate synchronization ?
-      <button class="_activate" @click="${action_synchronization_activation}">activate</button>
+      <button class="_activate" @click="${this._dispatch_activate}">activate</button>
     </div>`;
     if (this.enabled) {
       body = html` <div>
         Do you want to deactivate synchronization ?
-        <button class="_deactivate" @click="${action_synchronization_deactivation}">deactivate</button>
+        <button class="_deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
       </div>`;
     }
     return html`

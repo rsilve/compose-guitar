@@ -1,7 +1,5 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
-import { register } from "../../../../stores/dispatcher";
-import { SYNCHRO_ACTIVATION, SYNCHRO_DEACTIVATION } from "../../../actions/actions";
 
 suite("synchronise configuration element", () => {
   test("is defined", async () => {
@@ -54,36 +52,29 @@ suite("synchronise configuration element", () => {
   });
 
   test("has an activation button", async () => {
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        resolve(action.action_type === SYNCHRO_ACTIVATION);
-        return Promise.resolve(state);
-      });
-    });
-    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
+    let handle = false;
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration
+      @activate="${() => (handle = true)}"
+    ></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._activate") as HTMLElement;
     node.click();
-    const activated = await promise;
-    expect(activated).to.be.true;
+    expect(handle).to.be.true;
   });
 
   test("ha a deactivate button", async () => {
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        resolve(action.action_type === SYNCHRO_DEACTIVATION);
-        return Promise.resolve(state);
-      });
-    });
+    let handle = false;
     const el: SynchronizeConfiguration = await fixture(
-      html` <synchronize-configuration .enabled="${true}"></synchronize-configuration>`
+      html`<synchronize-configuration
+        .enabled="${true}"
+        @deactivate="${() => (handle = true)}"
+      ></synchronize-configuration>`
     );
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._deactivate") as HTMLElement;
     node.click();
-    const activated = await promise;
-    expect(activated).to.be.true;
+    expect(handle).to.be.true;
   });
 });

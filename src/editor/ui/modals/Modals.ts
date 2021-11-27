@@ -11,7 +11,10 @@ import {
   action_gallery_remove,
   action_help_close,
   action_notification_open,
-  action_save_as_start_and_new, action_synchronization_configuration_close,
+  action_save_as_start_and_new,
+  action_synchronization_activation,
+  action_synchronization_configuration_close,
+  action_synchronization_deactivation,
   action_track_new_cancel,
   action_track_new_without_save,
   action_upload_from_gallery,
@@ -126,6 +129,8 @@ class Modals extends LitElement {
         <synchronize-configuration
           class="modal"
           .enabled="${this.synchronizationEnabled}"
+          @activate="${action_synchronization_activation}"
+          @deactivate="${action_synchronization_deactivation}"
           @close="${action_synchronization_configuration_close}"
         ></synchronize-configuration>`;
     }
