@@ -11,7 +11,7 @@ import {
   action_gallery_remove,
   action_help_close,
   action_notification_open,
-  action_save_as_start_and_new,
+  action_save_as_start_and_new, action_synchro_sign_in,
   action_synchronization_activation,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
@@ -95,6 +95,10 @@ class Modals extends LitElement {
     action_save_as_start_and_new().then(() => action_notification_open("Save completed"));
   }
 
+  private static handleActivate(): void {
+    action_synchronization_activation().then(action_synchro_sign_in)
+  }
+
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -129,7 +133,7 @@ class Modals extends LitElement {
         <synchronize-configuration
           class="modal"
           .enabled="${this.synchronizationEnabled}"
-          @activate="${action_synchronization_activation}"
+          @activate="${Modals.handleActivate}"
           @deactivate="${action_synchronization_deactivation}"
           @close="${action_synchronization_configuration_close}"
         ></synchronize-configuration>`;
