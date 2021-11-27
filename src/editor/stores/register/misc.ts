@@ -10,6 +10,7 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
         if (st) {
             result = {...result, ...st};
         }
+        console.info("initialized with", result)
     }
 
     return Promise.resolve(result);

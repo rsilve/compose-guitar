@@ -8,9 +8,12 @@ import {
 import { state_test } from "../../../../__tests__/TestHelpers";
 import Action from "../../../../actions/Action";
 import { synchronize_callback } from "../synchronize";
+import sinon from "sinon";
+import {googleApiWrapper} from "../google-api";
 
 suite("synchronize callback", () => {
   const st = state_test;
+  const stub = sinon.stub(googleApiWrapper);
 
   test("activation request", async () => {
     const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION_REQUEST), { ...st });
@@ -49,9 +52,18 @@ suite("synchronize callback", () => {
   });
 
   test("sign_in", async () => {
+    stub.signIn.returns(Promise.resolve(true))
     let { synchronization } = st
     synchronization = { ...synchronization, enabled: true}
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization});
     expect(state.synchronization.signInValid).to.be.true;
+  });
+
+  test("no sign_in if not enabled", async () => {
+    stub.signIn.returns(Promise.resolve(true))
+    let { synchronization } = st
+    synchronization = { ...synchronization, enabled: false}
+    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization});
+    expect(state.synchronization.signInValid).to.be.undefined;
   });
 });

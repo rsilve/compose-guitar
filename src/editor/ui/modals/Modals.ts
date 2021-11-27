@@ -4,14 +4,14 @@ import "./TrackGallery";
 import "./SongEditor";
 import "./HelpModal";
 import "./ConfirmSave";
-import "./SynchronizeConfiguration"
+import "./SynchronizeConfiguration";
 import { DispatcherController } from "../../../stores/lit_controller";
 import {
   action_gallery_close,
   action_gallery_remove,
   action_help_close,
   action_notification_open,
-  action_save_as_start_and_new, action_synchro_sign_in,
+  action_save_as_start_and_new,
   action_synchronization_activation,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
@@ -77,8 +77,8 @@ class Modals extends LitElement {
       this._editor_enabled = st.editor !== undefined;
       this._help_open = !!st.help_open;
       this._confirm_save_enabled = !!st.confirm_save;
-      this.synchronizationConfigurationOpen = st.synchronization.open || false
-      this.synchronizationEnabled = st.synchronization.enabled || false
+      this.synchronizationConfigurationOpen = st.synchronization.open || false;
+      this.synchronizationEnabled = st.synchronization.enabled || false;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -93,10 +93,6 @@ class Modals extends LitElement {
 
   private _handle_save(): void {
     action_save_as_start_and_new().then(() => action_notification_open("Save completed"));
-  }
-
-  private static handleActivate(): void {
-    action_synchronization_activation().then(action_synchro_sign_in)
   }
 
   render(): unknown {
@@ -120,12 +116,12 @@ class Modals extends LitElement {
     }
     if (this._confirm_save_enabled) {
       return html`${overlay}
-      <confirm-save
+        <confirm-save
           class="modal"
           @cancel="${action_track_new_cancel}"
           @continue="${action_track_new_without_save}"
           @save="${this._handle_save}"
-      ></confirm-save>`;
+        ></confirm-save>`;
     }
 
     if (this.synchronizationConfigurationOpen) {
@@ -133,7 +129,7 @@ class Modals extends LitElement {
         <synchronize-configuration
           class="modal"
           .enabled="${this.synchronizationEnabled}"
-          @activate="${Modals.handleActivate}"
+          @activate="${action_synchronization_activation}"
           @deactivate="${action_synchronization_deactivation}"
           @close="${action_synchronization_configuration_close}"
         ></synchronize-configuration>`;
