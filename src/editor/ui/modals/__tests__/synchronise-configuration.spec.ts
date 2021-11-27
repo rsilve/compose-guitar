@@ -29,7 +29,8 @@ suite("synchronise configuration element", () => {
     expect(el.synchronisation).to.be.undefined;
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
-            <div>Do you want to activate synchronization ? <button class="_activate">activate</button></div>
+            <div>The synchronization between devices is not activated.
+                <button class="btn-secondary btn-activate _activate">activate</button></div>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
             </div>
@@ -45,7 +46,8 @@ suite("synchronise configuration element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
-            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
+            <div>Do you want to deactivate synchronization ?
+                 <button class="btn-secondary _deactivate">deactivate</button></div>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
             </div>
@@ -89,7 +91,8 @@ suite("synchronise configuration element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
-            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
+            <div>Do you want to deactivate synchronization ?
+                 <button class="btn-secondary _deactivate">deactivate</button></div>
             <div>not connected</div>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
@@ -106,7 +109,8 @@ suite("synchronise configuration element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
-            <div>Do you want to deactivate synchronization ? <button class="_deactivate">deactivate</button></div>
+            <div>Do you want to deactivate synchronization ?
+                 <button class="btn-secondary _deactivate">deactivate</button></div>
             <div>not connected</div>
             <div>blocked</div>
             <div class="modal-footer">
