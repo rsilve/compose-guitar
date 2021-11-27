@@ -4,7 +4,7 @@ import {
   action_gallery_close,
   action_gallery_open,
   action_gallery_remove,
-  action_init_app,
+  action_init_app, action_synchro_sign_in,
   action_save_as_start,
   action_save_as_start_and_new,
   action_synchronization_activation,
@@ -17,7 +17,7 @@ import {
   GALLERY_CLOSE,
   GALLERY_OPEN,
   GALLERY_REMOVE,
-  INIT_APP,
+  INIT_APP, SYNCHRO_SIGN_IN,
   SAVE_AS_START,
   SAVE_AS_START_AND_NEW,
   SYNCHRO_ACTIVATION,
@@ -176,6 +176,18 @@ suite("actions", () => {
       return Promise.resolve(state);
     });
     await action_synchronization_configuration_close();
+    expect(handle).to.be.true;
+  });
+
+
+  test("action_remote_sign_in", async () => {
+    let handle = false;
+    reset_dispatcher(default_state());
+    register((action, state) => {
+      handle = action.action_type === SYNCHRO_SIGN_IN;
+      return Promise.resolve(state);
+    });
+    await action_synchro_sign_in();
     expect(handle).to.be.true;
   });
 
