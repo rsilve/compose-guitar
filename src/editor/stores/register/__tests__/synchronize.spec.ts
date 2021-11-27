@@ -47,6 +47,7 @@ suite("synchronize callback", () => {
     const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION), { ...st });
     expect(state.synchronization.enabled).to.be.true;
     expect(state.synchronization.error).to.be.undefined;
+    expect(state.synchronization.inProgress).to.be.true;
   });
 
   test("deactivate", async () => {
@@ -54,40 +55,45 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, enabled: true };
     const state = await synchronize_callback(new Action(SYNCHRO_DEACTIVATION), { ...st, synchronization });
     expect(state.synchronization.enabled).to.be.false;
+    expect(state.synchronization.inProgress).to.be.undefined;
   });
 
   test("sign_in", async () => {
     stub.signIn.returns(Promise.resolve(true));
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: true, error: "ee" };
+    synchronization = { ...synchronization, enabled: true, error: "ee", inProgress: true };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.true;
     expect(state.synchronization.error).to.be.undefined;
+    expect(state.synchronization.inProgress).to.be.undefined;
   });
 
   test("no sign_in if not enabled", async () => {
     stub.signIn.returns(Promise.resolve(true));
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: false };
+    synchronization = { ...synchronization, enabled: false, inProgress: true };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.undefined;
+    expect(state.synchronization.inProgress).to.be.undefined;
   });
 
   test("no sign_in if error", async () => {
     stub.signIn.returns(Promise.reject({ reason: "error" }));
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: true };
+    synchronization = { ...synchronization, enabled: true, inProgress: true};
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.false;
     const error = state.synchronization.error as { reason: string };
     expect(error.reason).to.be.equal("error");
+    expect(state.synchronization.inProgress).to.be.undefined;
   });
 
   test("sign_out", async () => {
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: false, signInValid: true };
+    synchronization = { ...synchronization, enabled: false, signInValid: true, inProgress: true };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_OUT), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.undefined;
     expect(state.synchronization.error).to.be.undefined;
+    expect(state.synchronization.inProgress).to.be.undefined;
   });
 });

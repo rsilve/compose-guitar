@@ -60,7 +60,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   if (action.action_type === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
     googleApiWrapper.signOut();
-    const sync = { ...synchronization, signInValid: undefined, error: undefined };
+    const sync = { ...synchronization, signInValid: undefined, error: undefined, inProgress: undefined };
     result = { ...result, synchronization: sync };
   }
 

@@ -80,9 +80,13 @@ class SynchronizeConfiguration extends LitElement {
   }
 
   private renderActivatePanel() {
+    let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this._dispatch_activate}">activate</button>`
+    if (this.synchronisation?.inProgress) {
+      cta = html`<div class="btn-activate">Please wait during authentication...</div>`
+    }
     return html` <div>
       The synchronization between devices is not activated.
-      <button class="btn-secondary btn-activate _activate" @click="${this._dispatch_activate}">activate</button>
+      ${cta}
     </div>`;
   }
 }
