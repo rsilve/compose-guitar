@@ -53,7 +53,7 @@ suite("synchronise configuration activate element", () => {
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
-            <div>Synchronization between devices is enabled but does not work.</div>
+            <div>Synchronization between devices is enabled but does not work ⚠️.</div>
             <div>You are not connected</div>
             <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
@@ -69,9 +69,11 @@ suite("synchronise configuration activate element", () => {
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
-            <div>Synchronization between devices is enabled but does not work.</div>
+            <div>Synchronization between devices is enabled but does not work ⚠️.</div>
             <div>You are not connected</div>
-            <div>blocked</div>
+            <div class="error">
+        The error message was
+        <div class="error-message">blocked</div></div>
             <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
   });

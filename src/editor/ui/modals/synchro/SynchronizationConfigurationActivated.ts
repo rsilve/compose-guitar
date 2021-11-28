@@ -13,6 +13,18 @@ class SynchronizationConfigurationActivated extends LitElement {
         width: 100%;
         margin: 2em 0;
       }
+      
+      .error {
+        padding-top: 0.5em;
+      }
+      
+      .error-message {
+        margin-top: 0.3em;
+        padding: 0.5em 1em;
+        border-radius: var(--border-radius);
+        background-color: var(--color-error-light);
+        border: 1px solid var(--color-error);
+      }
     `,
   ];
 
@@ -30,7 +42,7 @@ class SynchronizationConfigurationActivated extends LitElement {
   render(): unknown {
     let errorStatus = html``;
     let signInStatus = html`<div>You are not connected</div>`;
-    let workingStatus = html` but does not work`
+    let workingStatus = html` but does not work ⚠️`
     if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
       signInStatus = html`<div>You are connected</div>`;
       workingStatus = html``
@@ -38,7 +50,10 @@ class SynchronizationConfigurationActivated extends LitElement {
 
     if (this.synchronization?.error) {
       const error = this.synchronization?.error as { error: string };
-      errorStatus = html`<div>${error.error}</div>`;
+      errorStatus = html`<div class="error">
+        The error message was
+        <div class="error-message">${error.error}</div>
+      </div>`;
     }
 
     return html`
@@ -47,6 +62,7 @@ class SynchronizationConfigurationActivated extends LitElement {
       <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
     `;
   }
+
 }
 
 export default SynchronizationConfigurationActivated;

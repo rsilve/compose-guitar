@@ -3,6 +3,7 @@
   --color-error-s: 89%;
   --color-error-l: 62%;
   --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
+  --color-error-light: hsl(var(--color-error-h), var(--color-error-s), calc(var(--color-error-l) + 14%));
 
   --color-background: #fffffe;
   --color-background-secondary: #f2f2f2;
