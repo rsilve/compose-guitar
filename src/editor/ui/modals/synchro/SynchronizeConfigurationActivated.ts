@@ -3,12 +3,12 @@ import { customElement, property } from "lit/decorators.js";
 import { buttonStyles } from "../../styles/button";
 import { IStateSynchronization } from "../../../stores/state";
 
-@customElement("synchronize-configuration-activate")
-class SynchronizeConfigurationActivate extends LitElement {
+@customElement("synchronization-configuration-activated")
+class SynchronizeConfigurationActivated extends LitElement {
   static styles = [
     buttonStyles,
     css`
-      .btn-activate {
+      .btn-deactivate {
         display: block;
         width: 100%;
         margin: 2em 0;
@@ -39,13 +39,11 @@ class SynchronizeConfigurationActivate extends LitElement {
       errorStatus = html`<div>${error.error}</div>`;
     }
     return html`
-      <div>
-        Do you want to deactivate synchronization ?
-        <button class="btn-secondary _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
-      </div>
+      <div>The synchronization between devices is activated.</div>
       ${signInStatus} ${errorStatus}
+      <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
     `;
   }
 }
 
-export default SynchronizeConfigurationActivate;
+export default SynchronizeConfigurationActivated;
