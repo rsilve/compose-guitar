@@ -54,7 +54,7 @@ suite("synchronise configuration activate element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled but does not work ⚠️.</div>
-            <div>You are not connected</div>
+            <div>You are not connected. <a href="">Retry ?</a></div>
             <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
   });
@@ -70,10 +70,11 @@ suite("synchronise configuration activate element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled but does not work ⚠️.</div>
-            <div>You are not connected</div>
             <div class="error">
-        The error message was
-        <div class="error-message">blocked</div></div>
+              The error message was
+              <div class="error-message">blocked</div>
+            </div>
+            <div>You are not connected. <a href="">Retry ?</a></div>
             <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
   });

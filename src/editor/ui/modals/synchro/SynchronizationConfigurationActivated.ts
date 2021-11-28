@@ -15,7 +15,7 @@ class SynchronizationConfigurationActivated extends LitElement {
       }
       
       .error {
-        padding-top: 0.5em;
+        padding: 0.5em 0 0.8em 0;
       }
       
       .error-message {
@@ -41,7 +41,7 @@ class SynchronizationConfigurationActivated extends LitElement {
 
   render(): unknown {
     let errorStatus = html``;
-    let signInStatus = html`<div>You are not connected</div>`;
+    let signInStatus = html`<div>You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a></div>`;
     let workingStatus = html` but does not work ⚠️`
     if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
       signInStatus = html`<div>You are connected</div>`;
@@ -58,7 +58,7 @@ class SynchronizationConfigurationActivated extends LitElement {
 
     return html`
       <div>Synchronization between devices is enabled${workingStatus}.</div>
-      ${signInStatus} ${errorStatus}
+       ${errorStatus} ${signInStatus}
       <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
     `;
   }
