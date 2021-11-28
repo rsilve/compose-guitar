@@ -9,7 +9,7 @@ import "./TransposeGrid";
 import "./modals/Modals";
 import "./notification/compose-notification";
 import "./compose-keys";
-import "./SynchronizeNotification";
+import "./AccountStatus";
 import "./sync/GoogleAPI";
 
 @customElement("editor-main")
@@ -59,7 +59,7 @@ class EditorMain extends LitElement {
       <zoom-grid class="no_print"></zoom-grid>
       <compose-keys class="no_print"></compose-keys>
       <transpose-grid class="no_print"></transpose-grid>
-      <synchronize-notification class="no_print"></synchronize-notification>
+      <account-status class="no_print"></account-status>
       <compose-modals class="no_print"></compose-modals>
       <compose-notification class="no_print"></compose-notification>
       <google-api class="no_print"></google-api>

@@ -1,5 +1,5 @@
 import { expect, fixture, html } from "@open-wc/testing";
-import SynchronizeNotification from "../SynchronizeNotification";
+import AccountStatus from "../AccountStatus";
 import { register, reset_dispatcher } from "../../../stores/dispatcher";
 import { state_test } from "../../../__tests__/TestHelpers";
 import { SYNCHRO_ACTIVATION_REQUEST, SYNCHRO_DEACTIVATION_REQUEST } from "../../actions/actions";
@@ -8,20 +8,20 @@ suite("synchronize-notification element", () => {
   const st = state_test;
 
   test("is defined", async () => {
-    const el: SynchronizeNotification = await fixture(html` <synchronize-notification></synchronize-notification>`);
-    expect(el).to.instanceOf(SynchronizeNotification);
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    expect(el).to.instanceOf(AccountStatus);
     await expect(el).shadowDom.to.be.accessible();
   });
 
   test("is inactive", async () => {
-    const el: SynchronizeNotification = await fixture(html` <synchronize-notification></synchronize-notification>`);
-    await expect(el).shadowDom.to.equal("<div>sync inactive</div>");
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    await expect(el).shadowDom.to.equal("<div><person-off-icon></person-off-icon></div>");
   });
 
   test("is active", async () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
-    const el: SynchronizeNotification = await fixture(html` <synchronize-notification></synchronize-notification>`);
-    await expect(el).shadowDom.to.equal("<div>sync active</div>");
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    await expect(el).shadowDom.to.equal("<div><account-circle-icon></account-circle-icon></div>");
   });
 
   test("has an active action", async () => {
@@ -32,8 +32,8 @@ suite("synchronize-notification element", () => {
         return Promise.resolve(state);
       });
     });
-    const el: SynchronizeNotification = await fixture(html` <synchronize-notification></synchronize-notification>`);
-    await expect(el).shadowDom.to.equal("<div>sync inactive</div>");
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    await expect(el).shadowDom.to.equal("<div><person-off-icon></person-off-icon></div>");
     const div = el.shadowRoot?.querySelector("div");
     div?.click();
     const res = await promise;
@@ -48,8 +48,8 @@ suite("synchronize-notification element", () => {
         return Promise.resolve(state);
       });
     });
-    const el: SynchronizeNotification = await fixture(html` <synchronize-notification></synchronize-notification>`);
-    await expect(el).shadowDom.to.equal("<div>sync active</div>");
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    await expect(el).shadowDom.to.equal("<div><account-circle-icon></account-circle-icon></div>");
     const div = el.shadowRoot?.querySelector("div");
     div?.click();
     const res = await promise;

@@ -7,19 +7,23 @@ import {
   action_synchronization_deactivation_request,
 } from "../actions/actions";
 
-@customElement("synchronize-notification")
-class SynchronizeNotification extends LitElement {
+import '../../icons/PersonOffIcon'
+import '../../icons/AccountCircleIcon'
+
+@customElement("account-status")
+class AccountStatus extends LitElement {
   static styles = [
     css`
       :host {
         position: absolute;
-        bottom: 0;
-        left: 25em;
-        padding: 0 0 0.5ex 0.5ex;
-        align-items: center;
-        height: 1.6em;
+        top: 0.25em;
+        right: .25em;
       }
-
+      :active {
+        transform: scale(1.2) translateX(-1ex);
+        background-color: var(--color-background-secondary);
+        border-radius: 5px;
+      }
       div {
         cursor: pointer;
       }
@@ -39,10 +43,10 @@ class SynchronizeNotification extends LitElement {
 
   render(): unknown {
     if (this._enabled) {
-      return html`<div @click="${action_synchronization_deactivation_request}">sync active</div>`;
+      return html`<div @click="${action_synchronization_deactivation_request}"><account-circle-icon></account-circle-icon></div>`;
     }
-    return html`<div @click="${action_synchronization_activation_request}">sync inactive</div>`;
+    return html`<div @click="${action_synchronization_activation_request}"><person-off-icon></person-off-icon></div>`;
   }
 }
 
-export default SynchronizeNotification;
+export default AccountStatus;
