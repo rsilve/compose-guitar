@@ -7,5 +7,4 @@ export default function init(): void {
   initialize_state(default_state());
   connect(save_last_state);
   action_init_app().catch(() => console.info("initialization failed"));
-
 }

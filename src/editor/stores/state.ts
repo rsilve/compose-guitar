@@ -21,7 +21,7 @@ export const STATE_VERSION: IStateVersion = "v2";
 
 export interface IStateSynchronization {
   enabled: boolean;
-  inProgress?: boolean
+  inProgress?: boolean;
   open?: boolean;
   signInValid?: boolean;
   error?: unknown;

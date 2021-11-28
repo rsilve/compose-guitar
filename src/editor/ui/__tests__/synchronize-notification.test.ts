@@ -22,7 +22,7 @@ suite("synchronize-notification element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     await expect(el).shadowDom.to.equal(
-        '<div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>'
+      '<div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>'
     );
   });
 
@@ -30,7 +30,7 @@ suite("synchronize-notification element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, signInValid: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     await expect(el).shadowDom.to.equal(
-        '<div><account-circle-icon title="Synchronization on "></account-circle-icon></div>'
+      '<div><account-circle-icon title="Synchronization on "></account-circle-icon></div>'
     );
   });
 

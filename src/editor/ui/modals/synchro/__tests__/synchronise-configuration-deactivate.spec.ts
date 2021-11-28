@@ -12,10 +12,9 @@ suite("synchronise configuration deactivate element", () => {
 
   test("has an activate button", async () => {
     let handle = false;
-    const el: SynchronizationConfigurationDeactivated = await fixture(html`
-      <synchronization-configuration-deactivated 
-          @activate="${() => (handle = true)}"
-          ></synchronization-configuration-deactivated>`);
+    const el: SynchronizationConfigurationDeactivated = await fixture(html` <synchronization-configuration-deactivated
+      @activate="${() => (handle = true)}"
+    ></synchronization-configuration-deactivated>`);
     expect(el).to.instanceOf(SynchronizationConfigurationDeactivated);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._activate") as HTMLElement;

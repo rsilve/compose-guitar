@@ -80,7 +80,7 @@ suite("synchronize callback", () => {
   test("no sign_in if error", async () => {
     stub.signIn.returns(Promise.reject({ reason: "error" }));
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: true, inProgress: true};
+    synchronization = { ...synchronization, enabled: true, inProgress: true };
     const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.false;
     const error = state.synchronization.error as { reason: string };

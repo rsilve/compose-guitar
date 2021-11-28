@@ -7,7 +7,7 @@ import { save_as_callback } from "../register/save_as";
 import { upload_callback } from "../register/upload";
 import { notification_callback } from "../register/notification";
 import { track_callback } from "../register/track";
-import {synchronize_callback} from "../register/synchronize";
+import { synchronize_callback } from "../register/synchronize";
 
 suite("Register", () => {
   test("init", () => {

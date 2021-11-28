@@ -13,11 +13,11 @@ class SynchronizationConfigurationActivated extends LitElement {
         width: 100%;
         margin: 2em 0;
       }
-      
+
       .error {
         padding: 0.5em 0 0.8em 0;
       }
-      
+
       .error-message {
         margin-top: 0.3em;
         padding: 0.5em 1em;
@@ -41,11 +41,13 @@ class SynchronizationConfigurationActivated extends LitElement {
 
   render(): unknown {
     let errorStatus = html``;
-    let signInStatus = html`<div>You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a></div>`;
-    let workingStatus = html` but does not work ⚠️`
+    let signInStatus = html`<div>
+      You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a>
+    </div>`;
+    let workingStatus = html` but does not work ⚠️`;
     if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
       signInStatus = html`<div>You are connected</div>`;
-      workingStatus = html``
+      workingStatus = html``;
     }
 
     if (this.synchronization?.error) {
@@ -58,11 +60,10 @@ class SynchronizationConfigurationActivated extends LitElement {
 
     return html`
       <div>Synchronization between devices is enabled${workingStatus}.</div>
-       ${errorStatus} ${signInStatus}
+      ${errorStatus} ${signInStatus}
       <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
     `;
   }
-
 }
 
 export default SynchronizationConfigurationActivated;

@@ -4,7 +4,8 @@ import {
   action_gallery_close,
   action_gallery_open,
   action_gallery_remove,
-  action_init_app, action_synchro_sign_in,
+  action_init_app,
+  action_synchro_sign_in,
   action_save_as_start,
   action_save_as_start_and_new,
   action_synchronization_activation,
@@ -17,7 +18,8 @@ import {
   GALLERY_CLOSE,
   GALLERY_OPEN,
   GALLERY_REMOVE,
-  INIT_APP, SYNCHRO_SIGN_IN,
+  INIT_APP,
+  SYNCHRO_SIGN_IN,
   SAVE_AS_START,
   SAVE_AS_START_AND_NEW,
   SYNCHRO_ACTIVATION,
@@ -26,7 +28,9 @@ import {
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
   TRANSPOSE_CHANGE,
-  UPLOAD_FROM_GALLERY, SYNCHRO_SIGN_OUT, action_synchro_sign_out,
+  UPLOAD_FROM_GALLERY,
+  SYNCHRO_SIGN_OUT,
+  action_synchro_sign_out,
 } from "../actions";
 import { default_state } from "../../stores/state";
 
@@ -179,7 +183,6 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-
   test("action_synchro_sign_in", async () => {
     let handle = false;
     reset_dispatcher(default_state());
@@ -191,7 +194,6 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-
   test("action_remote_sign_out", async () => {
     let handle = false;
     reset_dispatcher(default_state());
@@ -202,5 +204,4 @@ suite("actions", () => {
     await action_synchro_sign_out();
     expect(handle).to.be.true;
   });
-
 });

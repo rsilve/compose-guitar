@@ -51,6 +51,4 @@ suite("synchronise configuration element", () => {
             </div>
         `);
   });
-
-
 });

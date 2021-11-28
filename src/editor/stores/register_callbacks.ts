@@ -6,7 +6,7 @@ import { upload_callback } from "./register/upload";
 import { notification_callback } from "./register/notification";
 import { track_callback } from "./register/track";
 import { help_callback } from "./register/help";
-import {synchronize_callback} from "./register/synchronize";
+import { synchronize_callback } from "./register/synchronize";
 
 export default function register_callbacks(): void {
   register(init_app_callback);

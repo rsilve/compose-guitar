@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import {buttonStyles} from "../../styles/button";
-import {IStateSynchronization} from "../../../stores/state";
+import { buttonStyles } from "../../styles/button";
+import { IStateSynchronization } from "../../../stores/state";
 
 @customElement("synchronization-configuration-deactivated")
 class SynchronizationConfigurationDeactivated extends LitElement {
@@ -34,10 +34,7 @@ class SynchronizationConfigurationDeactivated extends LitElement {
     if (this.synchronization?.inProgress) {
       cta = html`<div class="btn-activate">Please wait during authentication...</div>`;
     }
-    return html`<div>
-      The synchronization between devices is not activated. 
-      ${cta}
-    </div>`;
+    return html`<div>The synchronization between devices is not activated. ${cta}</div>`;
   }
 }
 

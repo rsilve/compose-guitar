@@ -28,8 +28,8 @@ export const buttonStyles = css`
   button.btn-small {
     padding: 0.15em 0.3em;
   }
-  
+
   button:active {
-     transform: scale(1.2);
+    transform: scale(1.2);
   }
 `;

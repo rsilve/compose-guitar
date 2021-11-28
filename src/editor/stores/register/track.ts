@@ -16,7 +16,7 @@ import Action from "../../../actions/Action";
 import { uuid } from "../../../tools/uuid";
 
 export async function track_callback(action: Action, state: IState): Promise<IState> {
-  let result = { ...state};
+  let result = { ...state };
   if (action.action_type === TRACK_NEW) {
     const { track = {} } = result;
     if (save_needed(track)) {
@@ -76,7 +76,7 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
 
   if (action.action_type === TRACK_PASTE) {
     await navigator.clipboard.readText().then((t) => {
-      result.track = JSON.parse(t)
+      result.track = JSON.parse(t);
     });
   }
 

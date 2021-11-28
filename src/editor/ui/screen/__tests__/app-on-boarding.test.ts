@@ -29,13 +29,12 @@ suite("app on boarding element", () => {
 
   test("is defined", async () => {
     reset_dispatcher();
-    const promise = new Promise(resolve => {
+    const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === TRACK_NEW)
+        resolve(action.action_type === TRACK_NEW);
         return Promise.resolve(state);
       });
-
-    })
+    });
 
     const el: AppOnBoarding = await fixture(html` <app-on-boarding></app-on-boarding> `);
     const node = el.shadowRoot?.querySelector("button") as HTMLElement;

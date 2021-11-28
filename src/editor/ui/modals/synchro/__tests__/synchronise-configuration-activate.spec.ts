@@ -30,9 +30,9 @@ suite("synchronise configuration activate element", () => {
   test("display status if signin is active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: true };
     const el: SynchronizationConfigurationActivated = await fixture(
-        html`<synchronization-configuration-activated
-            .synchronization="${sync}"
-        ></synchronization-configuration-activated>`
+      html`<synchronization-configuration-activated
+        .synchronization="${sync}"
+      ></synchronization-configuration-activated>`
     );
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
