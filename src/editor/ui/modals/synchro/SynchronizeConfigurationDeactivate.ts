@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import {buttonStyles} from "../../styles/button";
-import {IStateSynchronisation} from "../../../stores/state";
+import {IStateSynchronization} from "../../../stores/state";
 
 @customElement("synchronize-configuration-deactivate")
 class SynchronizeConfigurationDeactivate extends LitElement {
@@ -17,7 +17,7 @@ class SynchronizeConfigurationDeactivate extends LitElement {
   ];
 
   @property()
-  synchronisation: IStateSynchronisation | undefined;
+  synchronization: IStateSynchronization | undefined;
 
   private _dispatch_activate() {
     const options = {
@@ -31,7 +31,7 @@ class SynchronizeConfigurationDeactivate extends LitElement {
     let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this._dispatch_activate}">
       activate
     </button>`;
-    if (this.synchronisation?.inProgress) {
+    if (this.synchronization?.inProgress) {
       cta = html`<div class="btn-activate">Please wait during authentication...</div>`;
     }
     return html`<div>

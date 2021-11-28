@@ -21,7 +21,7 @@ import {
   action_upload_from_gallery,
 } from "../../actions/actions";
 import { gallery_dict } from "../../stores/register/gallery_tools";
-import { IState, IStateSynchronisation } from "../../stores/state";
+import { IState, IStateSynchronization } from "../../stores/state";
 
 @customElement("compose-modals")
 class Modals extends LitElement {
@@ -69,7 +69,7 @@ class Modals extends LitElement {
   synchronizationConfigurationOpen = false;
 
   @state()
-  synchronisation: IStateSynchronisation | undefined;
+  synchronisation: IStateSynchronization | undefined;
 
   constructor() {
     super();
@@ -133,7 +133,7 @@ class Modals extends LitElement {
       return html`${overlay}
         <synchronize-configuration
           class="modal"
-          .synchronisation="${this.synchronisation}"
+          .synchronization="${this.synchronisation}"
           @activate="${action_synchronization_activation}"
           @deactivate="${Modals.dispatchDeactivate}"
           @close="${action_synchronization_configuration_close}"

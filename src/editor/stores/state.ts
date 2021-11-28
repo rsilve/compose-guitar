@@ -19,7 +19,7 @@ export interface IStateTrack {
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 
-export interface IStateSynchronisation {
+export interface IStateSynchronization {
   enabled: boolean;
   inProgress?: boolean
   open?: boolean;
@@ -38,7 +38,7 @@ export interface IState {
   help_open?: boolean;
   confirm_save?: boolean;
   transpose: number;
-  synchronization: IStateSynchronisation;
+  synchronization: IStateSynchronization;
 }
 
 export function default_state(): IState {

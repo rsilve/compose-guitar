@@ -2,7 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { buttonStyles } from "../styles/button";
 import { modalStyles } from "../styles/modals";
-import { IStateSynchronisation } from "../../stores/state";
+import { IStateSynchronization } from "../../stores/state";
 import "./synchro/SynchronizeConfigurationActivate";
 import "./synchro/SynchronizeConfigurationDeactivate";
 
@@ -11,7 +11,7 @@ class SynchronizeConfiguration extends LitElement {
   static styles = [buttonStyles, modalStyles];
 
   @property()
-  synchronisation: IStateSynchronisation | undefined;
+  synchronization: IStateSynchronization | undefined;
 
   private _dispatch_close() {
     const options = {
@@ -23,11 +23,11 @@ class SynchronizeConfiguration extends LitElement {
 
   render(): unknown {
     let body = html` <synchronize-configuration-deactivate
-      .synchronisation="${this.synchronisation}"
+      .synchronization="${this.synchronization}"
     ></synchronize-configuration-deactivate>`;
-    if (this.synchronisation?.enabled && !this.synchronisation?.inProgress) {
+    if (this.synchronization?.enabled && !this.synchronization?.inProgress) {
       body = html` <synchronize-configuration-activate
-        .synchronisation="${this.synchronisation}"
+        .synchronization="${this.synchronization}"
       ></synchronize-configuration-activate>`;
     }
     return html`

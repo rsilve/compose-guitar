@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfigurationActivate from "../SynchronizeConfigurationActivate";
-import { IStateSynchronisation } from "../../../../stores/state";
+import { IStateSynchronization } from "../../../../stores/state";
 
 suite("synchronise configuration activate element", () => {
   test("is defined", async () => {
@@ -12,7 +12,7 @@ suite("synchronise configuration activate element", () => {
   });
 
   test("has a deactivate button", async () => {
-    const sync: IStateSynchronisation = { enabled: true };
+    const sync: IStateSynchronization = { enabled: true };
     let handle = false;
     const el: SynchronizeConfigurationActivate = await fixture(
       html` <synchronize-configuration-activate
@@ -28,9 +28,9 @@ suite("synchronise configuration activate element", () => {
   });
 
   test("display warning if signin not active", async () => {
-    const sync: IStateSynchronisation = { enabled: true, signInValid: false };
+    const sync: IStateSynchronization = { enabled: true, signInValid: false };
     const el: SynchronizeConfigurationActivate = await fixture(
-      html` <synchronize-configuration-activate .synchronisation="${sync}"></synchronize-configuration-activate>`
+      html` <synchronize-configuration-activate .synchronization="${sync}"></synchronize-configuration-activate>`
     );
     expect(el).to.instanceOf(SynchronizeConfigurationActivate);
     await expect(el).shadowDom.to.be.accessible();
@@ -42,9 +42,9 @@ suite("synchronise configuration activate element", () => {
   });
 
   test("display warning if signin have failed", async () => {
-    const sync: IStateSynchronisation = { enabled: true, signInValid: false, error: { error: "blocked" } };
+    const sync: IStateSynchronization = { enabled: true, signInValid: false, error: { error: "blocked" } };
     const el: SynchronizeConfigurationActivate = await fixture(
-      html` <synchronize-configuration-activate .synchronisation="${sync}"></synchronize-configuration-activate>`
+      html` <synchronize-configuration-activate .synchronization="${sync}"></synchronize-configuration-activate>`
     );
     expect(el).to.instanceOf(SynchronizeConfigurationActivate);
     await expect(el).shadowDom.to.be.accessible();

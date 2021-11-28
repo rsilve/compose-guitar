@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
-import { IStateSynchronisation } from "../../../stores/state";
+import { IStateSynchronization } from "../../../stores/state";
 
 suite("synchronise configuration element", () => {
   test("is defined", async () => {
@@ -26,7 +26,7 @@ suite("synchronise configuration element", () => {
     const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
-    expect(el.synchronisation).to.be.undefined;
+    expect(el.synchronization).to.be.undefined;
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
             <synchronize-configuration-deactivate></synchronize-configuration-deactivate>
@@ -37,9 +37,9 @@ suite("synchronise configuration element", () => {
   });
 
   test("has a enabled attribute", async () => {
-    const sync: IStateSynchronisation = { enabled: true, signInValid: true };
+    const sync: IStateSynchronization = { enabled: true, signInValid: true };
     const el: SynchronizeConfiguration = await fixture(
-      html` <synchronize-configuration .synchronisation="${sync}"></synchronize-configuration>`
+      html` <synchronize-configuration .synchronization="${sync}"></synchronize-configuration>`
     );
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();

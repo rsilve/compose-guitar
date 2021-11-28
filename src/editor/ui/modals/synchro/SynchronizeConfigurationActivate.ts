@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { buttonStyles } from "../../styles/button";
-import { IStateSynchronisation } from "../../../stores/state";
+import { IStateSynchronization } from "../../../stores/state";
 
 @customElement("synchronize-configuration-activate")
 class SynchronizeConfigurationActivate extends LitElement {
@@ -17,7 +17,7 @@ class SynchronizeConfigurationActivate extends LitElement {
   ];
 
   @property()
-  synchronisation: IStateSynchronisation | undefined;
+  synchronization: IStateSynchronization | undefined;
 
   private _dispatch_deactivate() {
     const options = {
@@ -30,12 +30,12 @@ class SynchronizeConfigurationActivate extends LitElement {
   render(): unknown {
     let errorStatus = html``;
     let signInStatus = html`<div>not connected</div>`;
-    if (this.synchronisation?.signInValid || this.synchronisation?.inProgress) {
+    if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
       signInStatus = html``;
     }
 
-    if (this.synchronisation?.error) {
-      const error = this.synchronisation?.error as { error: string };
+    if (this.synchronization?.error) {
+      const error = this.synchronization?.error as { error: string };
       errorStatus = html`<div>${error.error}</div>`;
     }
     return html`
