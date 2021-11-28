@@ -1,6 +1,11 @@
 import { default_state, IState, IStateTrack } from "../state";
 import { uuid } from "../../../tools/uuid";
 
+export function gallery_list(): string[] {
+  const dict = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
+  return Object.values(dict);
+}
+
 export function exists_in_gallery(title: string, old_title: string | undefined): boolean {
   const index = gallery_list()
     .filter((t) => t !== old_title)
@@ -9,27 +14,24 @@ export function exists_in_gallery(title: string, old_title: string | undefined):
   return index >= 0;
 }
 
-export function gallery_list(): string[] {
-  const dict = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
-  return Object.values(dict);
-}
-
 export function gallery_dict(): Record<string, string> {
   return JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
 }
 
 export function add_to_gallery(track: IStateTrack, state: IState): IState {
-  if (track.title) {
+  let newState = { ...state };
+  const newTrack = { ...track };
+  if (newTrack.title) {
     const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
-    if (!track.id) {
-      track.id = uuid();
+    if (!newTrack.id) {
+      newTrack.id = uuid();
     }
-    track_index[track.id] = track.title;
-    state = { ...state, track };
+    track_index[newTrack.id] = newTrack.title;
+    newState = { ...newState, track: newTrack };
     localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index));
-    localStorage.setItem(track.id, JSON.stringify(state));
+    localStorage.setItem(newTrack.id, JSON.stringify(newState));
   }
-  return state;
+  return newState;
 }
 
 function stateFromString(str: string): IState {
