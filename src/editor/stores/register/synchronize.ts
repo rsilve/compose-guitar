@@ -43,12 +43,8 @@ export async function synchronize_callback(action: Action, state: IState): Promi
     if (synchronization.enabled) {
       synchronization = await googleApiWrapper
         .signIn()
-        .then((valid) => {
-          return { ...synchronization, signInValid: valid, error: undefined };
-        })
-        .catch((reason) => {
-          return { ...synchronization, signInValid: false, error: reason };
-        });
+        .then((valid) => ({ ...synchronization, signInValid: valid, error: undefined }))
+        .catch((reason) => ({ ...synchronization, signInValid: false, error: reason }));
       synchronization = { ...synchronization, inProgress: undefined };
       result = { ...result, synchronization };
     } else {

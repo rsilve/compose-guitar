@@ -58,9 +58,7 @@ export interface IPayloadEditor {
 }
 
 export const TRACK_NEW = "TRACK_NEW";
-export const action_track_new = (): Promise<void> => {
-  return publish_action(new Action(TRACK_NEW));
-};
+export const action_track_new = (): Promise<void> => publish_action(new Action(TRACK_NEW));
 
 export const TRACK_NEW_WITHOUT_SAVE = "TRACK_NEW_WITHOUT_SAVE";
 export const action_track_new_without_save = (): void => {

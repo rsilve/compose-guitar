@@ -4,18 +4,19 @@ import { IState } from "../state";
 import Action from "../../../actions/Action";
 
 export function gallery_callback(action: Action, state: IState): Promise<IState> {
+  const result = state;
   if (action.action_type === GALLERY_OPEN) {
-    state.gallery = true;
+    result.gallery = true;
   }
 
   if (action.action_type === GALLERY_REMOVE) {
     const { id } = action.payload as { id: string };
     remove_from_gallery(id);
-    delete state.gallery;
+    delete result.gallery;
   }
 
   if (action.action_type === GALLERY_CLOSE || action.action_type === MODALS_CLOSE) {
-    state.gallery = undefined;
+    result.gallery = undefined;
   }
-  return Promise.resolve(state);
+  return Promise.resolve(result);
 }

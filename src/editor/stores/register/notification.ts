@@ -3,13 +3,14 @@ import { IState } from "../state";
 import Action from "../../../actions/Action";
 
 export function notification_callback(action: Action, state: IState): Promise<IState> {
+  const result = state;
   if (action.action_type === NOTIFICATION_OPEN) {
     const { message } = action.payload as { message: string };
-    state.notification = message;
+    result.notification = message;
   }
   if (action.action_type === NOTIFICATION_CLOSE) {
-    state.notification = undefined;
+    result.notification = undefined;
   }
 
-  return Promise.resolve(state);
+  return Promise.resolve(result);
 }

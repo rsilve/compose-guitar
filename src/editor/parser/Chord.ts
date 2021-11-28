@@ -52,6 +52,7 @@ class Chord {
     if (match) {
       const extension_match = this._parse_extension(match[4] || null);
       if (extension_match) {
+        // eslint-disable-next-line prefer-destructuring
         this.base = match[1];
         this.base_modifier = match[2] || null;
         this.color = match[3] || null;
@@ -81,7 +82,7 @@ class Chord {
     }
     const match = extension.match(chord_extension_regexp);
     if (match) {
-      this.extension = match[0];
+      [this.extension] = match;
     }
     return !!match;
   }

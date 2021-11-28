@@ -1,21 +1,21 @@
 import Action from "../actions/Action";
 import { default_state, IState } from "../editor/stores/state";
 
-let state: IState;
+let _state: IState;
 
 let listeners: ((state: IState) => void)[] = [];
 let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = [];
 
 function notify() {
-  listeners.forEach((listener) => listener({ ...state }));
+  listeners.forEach((listener) => listener({ ..._state }));
 }
 
 export function initialize_state(st: IState): void {
-  state = st;
+  _state = st;
 }
 
 export function init(callback: (state: IState) => void): void {
-  callback({ ...state });
+  callback({ ..._state });
 }
 
 export function connect(callback: (state: IState) => void): void {
@@ -39,7 +39,7 @@ export function registered(callback: (action: Action, state: IState) => Promise<
 
 export async function dispatch(action: Action): Promise<void> {
   for (const cb of dispatch_callback) {
-    state = await cb(action, { ...state });
+    _state = await cb(action, { ..._state });
   }
   notify();
 }
@@ -47,9 +47,9 @@ export async function dispatch(action: Action): Promise<void> {
 // for tests
 export function reset_dispatcher(st: IState | undefined = undefined): void {
   if (st) {
-    state = { ...st };
+    _state = { ...st };
   } else {
-    state = { ...default_state() };
+    _state = { ...default_state() };
   }
   listeners = [];
   dispatch_callback = [];
