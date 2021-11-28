@@ -66,8 +66,8 @@ suite("Modals element", () => {
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
     expect(el.synchronizationConfigurationOpen).to.be.true;
-    expect(el.synchronisation?.enabled).to.be.true;
-    expect(el.synchronisation?.open).to.be.true;
+    expect(el.synchronization?.enabled).to.be.true;
+    expect(el.synchronization?.open).to.be.true;
     expect(el).shadowDom.to.be.equal(`
         <div class="overlay"></div>
         <synchronize-configuration class="modal"></synchronize-configuration>`);

@@ -69,7 +69,7 @@ class Modals extends LitElement {
   synchronizationConfigurationOpen = false;
 
   @state()
-  synchronisation: IStateSynchronization | undefined;
+  synchronization: IStateSynchronization | undefined;
 
   constructor() {
     super();
@@ -79,7 +79,7 @@ class Modals extends LitElement {
       this._help_open = !!st.help_open;
       this._confirm_save_enabled = !!st.confirm_save;
       this.synchronizationConfigurationOpen = st.synchronization.open || false;
-      this.synchronisation = st.synchronization;
+      this.synchronization = st.synchronization;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -133,7 +133,7 @@ class Modals extends LitElement {
       return html`${overlay}
         <synchronize-configuration
           class="modal"
-          .synchronization="${this.synchronisation}"
+          .synchronization="${this.synchronization}"
           @activate="${action_synchronization_activation}"
           @deactivate="${Modals.dispatchDeactivate}"
           @close="${action_synchronization_configuration_close}"

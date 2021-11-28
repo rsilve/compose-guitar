@@ -16,7 +16,7 @@ suite("synchronise configuration activate element", () => {
     let handle = false;
     const el: SynchronizeConfigurationActivate = await fixture(
       html` <synchronize-configuration-activate
-        .synchronisation="${sync}"
+        .synchronization="${sync}"
         @deactivate="${() => (handle = true)}"
       ></synchronize-configuration-activate>`
     );
