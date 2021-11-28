@@ -95,15 +95,15 @@ class TrackGallery extends LitElement {
   }
 
   render_list(): unknown {
-    return Object.keys(this.list).map((key) => {
-      const title = this.list[key];
+    return  Object.entries(this.list).map(entry => {
+      const title = entry[1];
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(key)}">${title}</span>
-        <div @click="${this._generate_handler_remove(key)}" class="gallery_trash _remove">
+        <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}</span>
+        <div @click="${this._generate_handler_remove(entry[0])}" class="gallery_trash _remove">
           <delete-icon title="Remove from the gallery" />
         </div>
       </li>`;
-    });
+    })
   }
 }
 
