@@ -34,7 +34,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          npm ci
+          npm ci --no-audit
+          npx audit-ci --high
           npm run build
           npm run test:ci
       - name: SonarCloud Scan
