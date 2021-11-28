@@ -3,8 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import {buttonStyles} from "../../styles/button";
 import {IStateSynchronization} from "../../../stores/state";
 
-@customElement("synchronize-configuration-deactivate")
-class SynchronizeConfigurationDeactivate extends LitElement {
+@customElement("synchronization-configuration-deactivated")
+class SynchronizationConfigurationDeactivated extends LitElement {
   static styles = [
     buttonStyles,
     css`
@@ -41,4 +41,4 @@ class SynchronizeConfigurationDeactivate extends LitElement {
   }
 }
 
-export default SynchronizeConfigurationDeactivate;
+export default SynchronizationConfigurationDeactivated;

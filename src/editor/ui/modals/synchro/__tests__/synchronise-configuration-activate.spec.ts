@@ -1,26 +1,26 @@
 import { expect, fixture, html } from "@open-wc/testing";
-import SynchronizeConfigurationActivated from "../SynchronizeConfigurationActivated";
+import SynchronizationConfigurationActivated from "../SynchronizationConfigurationActivated";
 import { IStateSynchronization } from "../../../../stores/state";
 
 suite("synchronise configuration activate element", () => {
   test("is defined", async () => {
-    const el: SynchronizeConfigurationActivated = await fixture(
+    const el: SynchronizationConfigurationActivated = await fixture(
       html`<synchronization-configuration-activated></synchronization-configuration-activated>`
     );
-    expect(el).to.instanceOf(SynchronizeConfigurationActivated);
+    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
   });
 
   test("has a deactivate button", async () => {
     const sync: IStateSynchronization = { enabled: true };
     let handle = false;
-    const el: SynchronizeConfigurationActivated = await fixture(
+    const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated
         .synchronization="${sync}"
         @deactivate="${() => (handle = true)}"
       ></synchronization-configuration-activated>`
     );
-    expect(el).to.instanceOf(SynchronizeConfigurationActivated);
+    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._deactivate") as HTMLElement;
     node.click();
@@ -29,10 +29,10 @@ suite("synchronise configuration activate element", () => {
 
   test("display warning if signin not active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false };
-    const el: SynchronizeConfigurationActivated = await fixture(
+    const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated .synchronization="${sync}"></synchronization-configuration-activated>`
     );
-    expect(el).to.instanceOf(SynchronizeConfigurationActivated);
+    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <div>The synchronization between devices is activated.</div>
@@ -43,10 +43,10 @@ suite("synchronise configuration activate element", () => {
 
   test("display warning if signin have failed", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false, error: { error: "blocked" } };
-    const el: SynchronizeConfigurationActivated = await fixture(
+    const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated .synchronization="${sync}"></synchronize-configuration-activate>`
     );
-    expect(el).to.instanceOf(SynchronizeConfigurationActivated);
+    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`
             <div>The synchronization between devices is activated.</div>

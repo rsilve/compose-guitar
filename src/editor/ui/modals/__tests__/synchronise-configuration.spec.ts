@@ -29,7 +29,7 @@ suite("synchronise configuration element", () => {
     expect(el.synchronization).to.be.undefined;
     expect(el).shadowDom.to.equals(`
             <h1>Synchronization</h1>
-            <synchronize-configuration-deactivate></synchronize-configuration-deactivate>
+            <synchronization-configuration-deactivated></synchronization-configuration-deactivated>
             <div class="modal-footer">
                 <button tabindex="-1" class="btn-primary _close">Close</button>
             </div>

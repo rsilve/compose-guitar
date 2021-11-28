@@ -4,7 +4,7 @@ import { buttonStyles } from "../../styles/button";
 import { IStateSynchronization } from "../../../stores/state";
 
 @customElement("synchronization-configuration-activated")
-class SynchronizeConfigurationActivated extends LitElement {
+class SynchronizationConfigurationActivated extends LitElement {
   static styles = [
     buttonStyles,
     css`
@@ -46,4 +46,4 @@ class SynchronizeConfigurationActivated extends LitElement {
   }
 }
 
-export default SynchronizeConfigurationActivated;
+export default SynchronizationConfigurationActivated;
