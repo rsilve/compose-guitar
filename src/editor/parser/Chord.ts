@@ -187,21 +187,15 @@ class Chord {
     return this;
   }
 
-  _transpose(orig: string, tone: number): string {
+  _transpose(noteOrig: string, tone: number): string {
     let score = 0;
-    for (const n of Object.keys(base_score)) {
-      if (orig === n) {
-        score = base_score[n];
-      }
-    }
+    score = Object.keys(base_score)
+      .filter((note) => noteOrig === note)
+      .reduce((_, note) => base_score[note], score);
     score += tone;
     score %= 12;
-    for (const n of Object.keys(base_score)) {
-      if (score === base_score[n]) {
-        return n;
-      }
-    }
-    return orig;
+    const notes = Object.keys(base_score).filter((note) => score === base_score[note]);
+    return notes.length > 0 ? notes[0] : noteOrig;
   }
 }
 
