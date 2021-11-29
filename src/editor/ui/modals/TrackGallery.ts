@@ -95,7 +95,7 @@ class TrackGallery extends LitElement {
   }
 
   render_list(): unknown {
-    return  Object.entries(this.list).map(entry => {
+    return Object.entries(this.list).map((entry) => {
       const title = entry[1];
       return html` <li>
         <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}</span>
@@ -103,7 +103,7 @@ class TrackGallery extends LitElement {
           <delete-icon title="Remove from the gallery" />
         </div>
       </li>`;
-    })
+    });
   }
 }
 

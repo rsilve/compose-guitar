@@ -14,6 +14,7 @@ export default {
         replace({ preventAssignment: true, include: ['**/*.js'],
             __api_key__: process.env.API_KEY,
             __api_client_id__: process.env.API_CLIENT_ID,
+            __synchro_enabled__: process.env.SYNCHRO_ENABLED,
         }),
         legacyPlugin({
             polyfills: {

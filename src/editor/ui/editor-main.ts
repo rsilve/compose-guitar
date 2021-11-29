@@ -11,6 +11,7 @@ import "./notification/compose-notification";
 import "./compose-keys";
 import "./AccountStatus";
 import "./sync/GoogleAPI";
+import { FeatureFlag } from "../tools/FeatureFlag";
 
 @customElement("editor-main")
 class EditorMain extends LitElement {
@@ -53,13 +54,17 @@ class EditorMain extends LitElement {
   ];
 
   protected render(): unknown {
+    let account = html``;
+    if (FeatureFlag.synchro_enabled) {
+      account = html`<account-status class="no_print"></account-status>`;
+    }
     return html`
       <compose-menu class="no_print"></compose-menu>
       <main-screen></main-screen>
       <zoom-grid class="no_print"></zoom-grid>
       <compose-keys class="no_print"></compose-keys>
       <transpose-grid class="no_print"></transpose-grid>
-      <account-status class="no_print"></account-status>
+      ${account}
       <compose-modals class="no_print"></compose-modals>
       <compose-notification class="no_print"></compose-notification>
       <google-api class="no_print"></google-api>

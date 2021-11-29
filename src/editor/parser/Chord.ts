@@ -190,13 +190,13 @@ class Chord {
   _transpose(noteOrig: string, tone: number): string {
     let score = 0;
     score = Object.entries(base_score)
-        .filter(entry => entry[0] === noteOrig)
-        .reduce((_, entry) => entry[1], score);
+      .filter((entry) => entry[0] === noteOrig)
+      .reduce((_, entry) => entry[1], score);
     score += tone;
     score %= 12;
     const notes = Object.entries(base_score)
-        .filter(entry => score === entry[1])
-        .map(entry => entry[0])
+      .filter((entry) => score === entry[1])
+      .map((entry) => entry[0]);
     return notes.length > 0 ? notes[0] : noteOrig;
   }
 }
