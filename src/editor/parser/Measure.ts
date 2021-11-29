@@ -44,13 +44,13 @@ class Measure {
       chords.push("_");
       raw_length = 4;
     }
-    for (let i = 0; i < 4 - raw_length; i++) {
+    for (let i = 0; i < 4 - raw_length; i += 1) {
       chords.push("_");
     }
     let last_chord: Chord | null = null;
-    for (const chord of chords) {
+    chords.forEach((chord) => {
       if (last_chord && chord === "_") {
-        last_chord.duration++;
+        last_chord.duration += 1;
       } else {
         last_chord = new Chord(chord);
         this.valid = this.valid && last_chord.valid;
@@ -59,7 +59,7 @@ class Measure {
         }
         this.chords.push(last_chord);
       }
-    }
+    });
   }
 
   private computeMeasureType() {

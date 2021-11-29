@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { modalStyles } from "../styles/modals";
-import { buttonStyles } from "../styles/button";
+import buttonStyles from "../styles/buttonStyles";
 import "../../../icons/delete_icon";
 
 @customElement("track-gallery")
@@ -100,7 +100,7 @@ class TrackGallery extends LitElement {
       return html` <li>
         <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}</span>
         <div @click="${this._generate_handler_remove(entry[0])}" class="gallery_trash _remove">
-          <delete-icon title="Remove from the gallery" />
+          <delete-icon title="Remove from the gallery"></delete-icon>
         </div>
       </li>`;
     });

@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import { modalStyles } from "../styles/modals";
-import { buttonStyles } from "../styles/button";
+import buttonStyles from "../styles/buttonStyles";
 
 @customElement("confirm-save")
 class ConfirmSave extends LitElement {

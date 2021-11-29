@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import { buttonStyles } from "../styles/button";
+import buttonStyles from "../styles/buttonStyles";
 import { action_track_new } from "../../actions/actions";
 
 @customElement("app-on-boarding")

@@ -9,13 +9,13 @@ suite("Menu element", () => {
     expect(el).to.instanceOf(Menu);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-            <menu-item title="save the track - Ctrl+s" class="_save">
+            <menu-item title="save the track - Ctrl+s" class="_save" ontouchstart="">
                 <save-icon/>
             </menu-item>
-            <menu-item title="Open the Library - Ctrl+l" class="_library">
+            <menu-item title="Open the Library - Ctrl+l" class="_library" ontouchstart="">
                 <gallery-icon/>
             </menu-item>
-            <menu-item title="new track - Ctrl+n" class="_new">
+            <menu-item title="new track - Ctrl+n" class="_new" ontouchstart="">
                 <new-track-icon/>
             </menu-item>
         `);

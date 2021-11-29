@@ -3,7 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { classMap } from "lit/directives/class-map.js";
 import Grid from "../../../parser/Grid";
-import { inputStyles } from "../../styles/input";
+import inputStyles from "../../styles/inputStyles";
 import { auto_correct, normalize } from "./tools";
 
 @customElement("grid-editor")

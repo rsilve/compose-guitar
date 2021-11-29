@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { buttonStyles } from "../../styles/button";
+import buttonStyles from "../../styles/buttonStyles";
 import { IStateSynchronization } from "../../../stores/state";
 
 @customElement("synchronization-configuration-deactivated")
