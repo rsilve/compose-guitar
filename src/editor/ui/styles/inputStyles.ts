@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-export const inputStyles = css`
+const inputStyles = css`
   input,
   textarea {
     font-size: 1em;
@@ -39,3 +39,5 @@ export const inputStyles = css`
     position: relative;
   }
 `;
+
+export default inputStyles;

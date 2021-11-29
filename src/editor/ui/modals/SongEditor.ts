@@ -2,9 +2,9 @@ import { css, html, LitElement, PropertyValues } from "lit";
 import { customElement, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { buttonStyles } from "../styles/button";
+import buttonStyles from "../styles/buttonStyles";
 import { modalStyles } from "../styles/modals";
-import { inputStyles } from "../styles/input";
+import inputStyles from "../styles/inputStyles";
 
 import "../../../icons/info_icon";
 import "./editor/GridEditor";

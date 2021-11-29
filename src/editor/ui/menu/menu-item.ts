@@ -31,8 +31,8 @@ class MenuItem extends LitElement {
     }
   `;
 
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback();
     this.setAttribute("ontouchstart", "");
   }
 

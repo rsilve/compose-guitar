@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { buttonStyles } from "../styles/button";
+import buttonStyles from "../styles/buttonStyles";
 import { modalStyles } from "../styles/modals";
 import { IStateSynchronization } from "../../stores/state";
 import "./synchro/SynchronizationConfigurationActivated";

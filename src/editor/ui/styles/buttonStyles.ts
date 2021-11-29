@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-export const buttonStyles = css`
+const buttonStyles = css`
   button {
     background-color: var(--color-button);
     color: var(--color-button-text);
@@ -33,3 +33,5 @@ export const buttonStyles = css`
     transform: scale(1.2);
   }
 `;
+
+export default buttonStyles;
