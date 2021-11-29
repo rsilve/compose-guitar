@@ -1,12 +1,12 @@
 import { html, LitElement, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../stores/state";
 import {
   action_synchronization_activation_request,
   action_synchronization_deactivation_request,
 } from "../actions/actions";
-import { classMap } from "lit/directives/class-map.js";
 
 import "../../icons/PersonOffIcon";
 import "../../icons/AccountCircleIcon";

@@ -109,6 +109,8 @@ class ChordsGrid extends LitElement {
           transpose="${this.transpose}"
         ></chords-grid-measure8>`;
         break;
+      default:
+        element = html``;
     }
     const part_element = part(measure);
     const repeat_start_el = repeat_start(measure);
