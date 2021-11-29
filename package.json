@@ -27,7 +27,8 @@
     "test:ci": "web-test-runner --concurrency 1  --concurrent-browsers 1",
     "test:watch": "web-test-runner --watch",
     "lint": "eslint src --ext .ts ",
-    "prettier:check": "prettier --check src"
+    "prettier:check": "prettier --check src",
+    "prepare": "husky install"
   },
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
@@ -51,6 +52,8 @@
     "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "npm-watch": "^0.10.0",
     "prettier": "^2.5.0",
     "rollup": "^2.60.1",
