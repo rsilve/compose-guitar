@@ -6,6 +6,10 @@ export default {
     nodeResolve: true,
     preserveSymlinks: true,
     coverage: true,
+    coverageConfig: {
+        include: ['./build/**/*.js'],
+        exclude: ['**/api.js', '**/__tests__/**']
+    },
     browsers: [
         playwrightLauncher({ product: 'chromium' })
     ],

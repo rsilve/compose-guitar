@@ -24,9 +24,7 @@
     {
       "action": "/",
       "accept": {
-        "application/vnd.grid+text": [
-          ".grid"
-        ]
+        "application/vnd.grid+text": [".grid"]
       }
     }
   ],

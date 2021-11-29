@@ -1,21 +1,18 @@
-import {expect, fixture, html} from "@open-wc/testing";
+import { expect, fixture, html } from "@open-wc/testing";
 import "../MeasureElement6";
 import Measure from "../../../parser/Measure";
 
 suite("Measure6", () => {
+  test("is defined", async () => {
+    const el = await fixture(html` <chords-grid-measure6></chords-grid-measure6>`);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal("");
+  });
 
-    test('is defined', async () => {
-        const el = await fixture(html`
-            <chords-grid-measure6></chords-grid-measure6>`)
-        await expect(el).shadowDom.to.be.accessible();
-        expect(el).shadowDom.to.be.equal(``)
-    });
-
-    test('is defined with measure', async () => {
-        const el = await fixture(html`
-            <chords-grid-measure6 .measure="${new Measure("A B _ C")}"></chords-grid-measure6>`)
-        await expect(el).shadowDom.to.be.accessible();
-        expect(el).shadowDom.to.be.equal(`
+  test("is defined with measure", async () => {
+    const el = await fixture(html` <chords-grid-measure6 .measure="${new Measure("A B _ C")}"></chords-grid-measure6>`);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal(`
  <table class="grid-measure-6">
                 <tbody>
                 <tr>
@@ -28,15 +25,16 @@ suite("Measure6", () => {
                 </tr>
                 </tbody>
             </table>
-       `)
-    });
+       `);
+  });
 
-
-    test('is defined with measure and transpose', async () => {
-        const el = await fixture(html`
-            <chords-grid-measure6 .measure="${new Measure("C D _ G")}" transpose="2"></chords-grid-measure6>`)
-        await expect(el).shadowDom.to.be.accessible();
-        expect(el).shadowDom.to.be.equal(`
+  test("is defined with measure and transpose", async () => {
+    const el = await fixture(html` <chords-grid-measure6
+      .measure="${new Measure("C D _ G")}"
+      transpose="2"
+    ></chords-grid-measure6>`);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal(`
         <table class="grid-measure-6">
                 <tbody>
                 <tr>
@@ -49,9 +47,6 @@ suite("Measure6", () => {
                 </tr>
                 </tbody>
             </table>
-`)
-    });
-
-
-})
-
+`);
+  });
+});
