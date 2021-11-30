@@ -1,6 +1,6 @@
 import { ReactiveController } from "lit";
 import { connect, disconnect, init } from "./dispatcher";
-import { IState } from "../editor/stores/state";
+import { IState } from "./state";
 
 export class DispatcherController implements ReactiveController {
   private readonly _dispatch_callback: (st: IState) => void;

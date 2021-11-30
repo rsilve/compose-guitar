@@ -18,7 +18,7 @@
   "scripts": {
     "clean": "rm -rf build dist",
     "build": "rm -rf build/; npm run build:assets; tsc",
-    "build:assets": "mkdir -p build; cp -R src/index.html src/editor/sw.js src/robots.txt src/assets build/",
+    "build:assets": "mkdir -p build; cp -R src/index.html src/sw.js src/robots.txt src/assets build/",
     "build:assets:watch": "npm-watch",
     "build:watch": "rm -rf build/; npm run build:assets; tsc --watch",
     "build:prod": "rm -rf dist/; npm run build; rollup -c",

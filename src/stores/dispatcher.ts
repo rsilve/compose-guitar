@@ -1,5 +1,5 @@
 import Action from "../actions/Action";
-import { default_state, IState } from "../editor/stores/state";
+import { default_state, IState } from "./state";
 
 let _state: IState;
 
