@@ -8,7 +8,7 @@ self.addEventListener("install", function (event) {
         .addAll([
           `/`,
           `/index.html`,
-          `/editor/editor.js`,
+          `/editor.js`,
           `/assets/main.css`,
           `/assets/print.css`,
           `/assets/favicon.ico`,
