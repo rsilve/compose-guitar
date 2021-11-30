@@ -1,4 +1,4 @@
-import { IState, STATE_VERSION } from "../editor/stores/state";
+import { IState, STATE_VERSION } from "../stores/state";
 
 export const state_test: IState = {
   version: STATE_VERSION,
