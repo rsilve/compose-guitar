@@ -6,20 +6,8 @@ suite("tools normalize", () => {
     expect(normalize("A")).to.be.equal("A");
   });
 
-  test("add space between A and |", () => {
-    expect(normalize("A|")).to.be.equal("A |");
-  });
-
-  test("add space between | and A", () => {
-    expect(normalize("|A")).to.be.equal("| A");
-  });
-
-  test("do not add space between : and |", () => {
-    expect(normalize(":|")).to.be.equal(":|");
-  });
-
-  test("do not add space between | and :", () => {
-    expect(normalize("|:")).to.be.equal("|:");
+  test("remove trailing orphan |", () => {
+    expect(normalize("A\n|")).to.be.equal("A");
   });
 
   test("trim text", () => {
@@ -36,19 +24,47 @@ suite("tools auto_correct", () => {
     expect(auto_correct(",")).to.be.equal("|");
   });
 
-  test("replace . by _", () => {
-    expect(auto_correct("A.B")).to.be.equal("A _ B");
+  test("replace ; by |", () => {
+    expect(auto_correct(";")).to.be.equal("|");
   });
 
   test("replace . by _", () => {
-    expect(auto_correct("A. B")).to.be.equal("A _ B");
+    expect(auto_correct("A.B")).to.be.equal("| A _ B");
+  });
+
+  test("replace . by _", () => {
+    expect(auto_correct("A. B")).to.be.equal("| A _ B");
   });
 
   test("capitalize first letter for chord", () => {
-    expect(auto_correct("|a")).to.be.equal("|A");
+    expect(auto_correct("|a")).to.be.equal("| A");
   });
 
   test("capitalize first letter for chord", () => {
-    expect(auto_correct("am")).to.be.equal("Am");
+    expect(auto_correct("am")).to.be.equal("| Am");
+  });
+
+  test("add | at begin of input", () => {
+    expect(auto_correct("Am")).to.be.equal("| Am");
+  });
+
+  test("add | at begin and end of line", () => {
+    expect(auto_correct("Am\nB")).to.be.equal("| Am |\n| B");
+  });
+
+  test("add space between A and |", () => {
+    expect(auto_correct("A|")).to.be.equal("| A |");
+  });
+
+  test("add space between | and A", () => {
+    expect(auto_correct("|A")).to.be.equal("| A");
+  });
+
+  test("do not add space between : and |", () => {
+    expect(auto_correct(":|")).to.be.equal(":|");
+  });
+
+  test("do not add space between | and :", () => {
+    expect(auto_correct("|:")).to.be.equal("|:");
   });
 });

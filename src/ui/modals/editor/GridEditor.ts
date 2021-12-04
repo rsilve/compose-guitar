@@ -59,6 +59,7 @@ class GridEditor extends LitElement {
   _handle_change_grid(e: Event): void {
     let raw = (e.target as HTMLTextAreaElement).value;
     raw = auto_correct(raw);
+    (e.target as HTMLTextAreaElement).value = raw;
     raw = normalize(raw);
 
     this.validate(raw);
@@ -72,9 +73,10 @@ class GridEditor extends LitElement {
   }
 
   render(): unknown {
+    const normalized = this.value || "";
     return html`
       <textarea
-        .value="${ifDefined(this.value)}"
+        .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
         required
         placeholder="Chords (required)"
