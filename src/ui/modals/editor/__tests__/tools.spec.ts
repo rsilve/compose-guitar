@@ -22,6 +22,10 @@ suite("tools normalize", () => {
     expect(normalize("|:")).to.be.equal("|:");
   });
 
+  test("remove trailing orphan |", () => {
+    expect(normalize("A\n|")).to.be.equal("A");
+  });
+
   test("trim text", () => {
     expect(normalize(" A ")).to.be.equal("A");
   });
@@ -37,11 +41,11 @@ suite("tools auto_correct", () => {
   });
 
   test("replace . by _", () => {
-    expect(auto_correct("A.B")).to.be.equal("A _ B");
+    expect(auto_correct("A.B")).to.be.equal("|A _ B");
   });
 
   test("replace . by _", () => {
-    expect(auto_correct("A. B")).to.be.equal("A _ B");
+    expect(auto_correct("A. B")).to.be.equal("|A _ B");
   });
 
   test("capitalize first letter for chord", () => {
@@ -49,6 +53,18 @@ suite("tools auto_correct", () => {
   });
 
   test("capitalize first letter for chord", () => {
-    expect(auto_correct("am")).to.be.equal("Am");
+    expect(auto_correct("am")).to.be.equal("|Am");
+  });
+
+  test("add | at begin of input", () => {
+    expect(auto_correct("Am")).to.be.equal("|Am");
+  });
+
+  test("add | at begin of line", () => {
+    expect(auto_correct("Am\nB")).to.be.equal("|Am\n|B");
+  });
+
+  test("add | at end of line", () => {
+    expect(auto_correct("Am\nB")).to.be.equal("|Am|\n|B");
   });
 });

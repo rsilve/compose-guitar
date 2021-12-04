@@ -72,9 +72,10 @@ class GridEditor extends LitElement {
   }
 
   render(): unknown {
+    const normalized = this.value || "";
     return html`
       <textarea
-        .value="${ifDefined(this.value)}"
+        .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
         required
         placeholder="Chords (required)"
