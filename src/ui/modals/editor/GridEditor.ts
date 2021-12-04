@@ -59,6 +59,7 @@ class GridEditor extends LitElement {
   _handle_change_grid(e: Event): void {
     let raw = (e.target as HTMLTextAreaElement).value;
     raw = auto_correct(raw);
+    (e.target as HTMLTextAreaElement).value = raw;
     raw = normalize(raw);
 
     this.validate(raw);
