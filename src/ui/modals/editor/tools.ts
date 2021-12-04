@@ -1,5 +1,5 @@
 export function normalize(value: string): string {
-  return value.replace(/\n\s*\|\s*$/s, "").trim();
+  return value.trim().replace(/\n\|$/s, "").trim();
 }
 
 export function auto_correct(value: string): string {
