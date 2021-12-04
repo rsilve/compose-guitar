@@ -6,10 +6,11 @@ import { terser } from "rollup-plugin-terser";
 import minifyHTML from "rollup-plugin-minify-html-literals";
 import summary from "rollup-plugin-summary";
 import replace from "@rollup/plugin-replace";
+import sri from "rollup-plugin-sri";
 import dotenv from "dotenv";
 
 dotenv.config({ path: ".env.production" });
-console.log(process.env.API_KEY);
+
 export default {
   plugins: [
     // Entry point for application build; can specify a glob to build multiple
@@ -18,7 +19,9 @@ export default {
       input: ["build/index.html"],
       extractAssets: true,
       minify: true,
+      strictCSPInlineScripts: true,
     }),
+    sri(),
     // Resolve bare module specifiers to relative paths
     resolve(),
     // replace
