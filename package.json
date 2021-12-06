@@ -5,7 +5,7 @@
   "main": "index.html",
   "type": "module",
   "watch": {
-    "build:assets": {
+    "start:assets": {
       "patterns": [
         "src/index.html",
         "src/sw.js",
@@ -17,18 +17,35 @@
   },
   "scripts": {
     "clean": "rm -rf build dist",
-    "build": "rm -rf build/; npm run build:assets; tsc",
-    "build:assets": "mkdir -p build; cp -R src/index.html src/sw.js src/robots.txt src/assets build/",
-    "build:assets:watch": "npm-watch",
-    "build:watch": "rm -rf build/; npm run build:assets; tsc --watch",
-    "build:prod": "rm -rf dist/; npm run build; rollup -c",
-    "serve": "wds --watch",
+    "build:compile": "tsc",
+    "build:dist": "rollup -c",
+    "build:assets": "copyfiles -u 1 src/index.html src/sw.js src/robots.txt src/assets/** build/",
+    "build:all": "npm-run-all clean build:assets build:compile",
+    "build:compile:watch": "npm run build:compile -- --watch",
+    "build:prod": "npm-run-all build:all build:dist",
+    
+    "start:assets:watch": "npm-watch build:assets",
+    "start:build:watch": "npm-run-all clean build:assets build:compile:watch",
+    "start:serve:watch": "wds --watch",
+
+    "start": "concurrently --kill-others 'npm:start:*'",
+    
     "test": "web-test-runner",
     "test:ci": "web-test-runner --concurrency 1  --concurrent-browsers 1",
     "test:watch": "web-test-runner --watch",
-    "lint": "eslint src --ext .ts ",
-    "prettier:check": "prettier --check src",
-    "prepare": "husky install"
+    
+    "verify": "npm-run-all verify:*",
+    "verify:lint": "eslint src --ext .ts ",
+    "verify:prettier": "prettier --check src",
+    
+    "prepare": "husky install",
+
+    "prepare:playwright": "playwright install chromium",
+    "prepare:playwright-deps": "playwright install-deps chromium",
+    
+    "pretest": "npm-run-all prepare:playwright",
+    "pretest:watch": "npm-run-all prepare:playwright"
+    
   },
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
@@ -46,6 +63,7 @@
     "@web/test-runner": "^0.13.22",
     "@web/test-runner-playwright": "^0.8.8",
     "audit-ci": "^5.1.2",
+    "copyfiles": "^2.4.1",
     "dotenv": "^10.0.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -58,6 +76,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "lit-html": "^2.0.2",
+    "npm-run-all": "^4.1.5",
     "npm-watch": "^0.10.0",
     "prettier": "^2.5.0",
     "rollup": "^2.60.1",
