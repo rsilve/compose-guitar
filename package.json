@@ -26,8 +26,8 @@
     "test": "web-test-runner",
     "test:ci": "web-test-runner --concurrency 1  --concurrent-browsers 1",
     "test:watch": "web-test-runner --watch",
-    "lint": "eslint src --ext .ts ",
-    "prettier:check": "prettier --check src",
+    "verify:lint": "eslint src --ext .ts ",
+    "verify:prettier": "prettier --check src",
     "prepare": "husky install"
   },
   "author": "Robert Silve <robert@silve.net>",
