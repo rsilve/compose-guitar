@@ -11,15 +11,15 @@ tasks:
       gp sync-done bundle
   - name: run build watch asset
     init: gp sync-await bundle
-    command: npm run build:assets:watch
+    command: npm run start:assets:watch
     openMode: tab-after
   - name: run build watch
     init: gp sync-await bundle
-    command: npm run build:watch
+    command: npm run start:build:watch
     openMode: tab-after
   - name: run serve
     init: gp sync-await bundle
-    command: npm run serve
+    command: npm run start:serve:watch
     openMode: tab-after
 
 
