@@ -32,13 +32,17 @@ jobs:
           npm ci --no-audit
           npm run build:prod
           echo "$SSH_PRIVATE_KEY"
-      - name: Deploy to Staging server
-        uses: easingthemes/ssh-deploy@main
+      - name: Create SSH key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO"
-          SOURCE: "dist/"
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Deploy with rsync
+        env:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-
+        run: rsync -avz --delete dist/ ${REMOTE_USER}@${REMOTE_HOST}:${TARGET}
