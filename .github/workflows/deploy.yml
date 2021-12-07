@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - prod
+      - feature/deploy
 jobs:
   build:
     name: Build
@@ -40,4 +41,4 @@ jobs:
             ssh-add /home/runner/.ssh/github_actions
       - name: Deploy
         run: |
-          ssh ${{ secrest.USER_PROD }}@${{ secrets.HOST_PROD }} ls
+          ssh ${{ secrets.USER_PROD }}@${{ secrets.HOST_PROD }} ls
