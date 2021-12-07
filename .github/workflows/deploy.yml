@@ -29,14 +29,15 @@ jobs:
         run: |
           npm ci --no-audit
           npm run build:prod
+          echo ${{ env.prod.USER_PROD}}
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@main
         env:
-          SSH_PRIVATE_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ env.prod.SSH_PRIVATE_KEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "dist/"
-          REMOTE_HOST: ${{ env.HOST_PROD }}
-          REMOTE_USER: ${{ env.USER_PROD }}
-          TARGET: ${{ env.REMOTE_TARGET }}
+          REMOTE_HOST: ${{ env.prod.HOST_PROD }}
+          REMOTE_USER: ${{ env.prod.USER_PROD }}
+          TARGET: ${{ env.prod.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
 
