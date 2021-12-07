@@ -13,15 +13,18 @@ dotenv.config({ path: ".env.production" });
 
 export default {
   plugins: [
+    
     // Entry point for application build; can specify a glob to build multiple
     // HTML files for non-SPA app
     html({
-      input: ["build/index.html"],
+      input: ["index.html"],
+      rootDir: "build",
+      publicPath: "/",
       extractAssets: true,
       minify: true,
       strictCSPInlineScripts: true,
+      absoluteBaseUrl: 'https://compose-guitar.com',
     }),
-    sri(),
     // Resolve bare module specifiers to relative paths
     resolve(),
     // replace
@@ -40,6 +43,7 @@ export default {
       module: true,
       warnings: true,
     }),
+    sri({publicPath: "/"}),
     // Print bundle summary
     summary(),
     // Optional: copy any static assets to build directory
