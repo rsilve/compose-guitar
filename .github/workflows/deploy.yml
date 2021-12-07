@@ -29,16 +29,14 @@ jobs:
         run: |
           npm ci --no-audit
           npm run build:prod
-      - name: Add SSH key
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
         env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-            mkdir -p /home/runner/.ssh
-            echo "${{ secrets.SSH_KNOW_HOST }}" >> /home/runner/.ssh/known_hosts
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
-            chmod 600 /home/runner/.ssh/github_actions
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
-            ssh-add /home/runner/.ssh/github_actions
-      - name: Deploy
-        run: |
-          ssh ${{ secrets.USER_PROD }}@${{ secrets.HOST_PROD }} ls
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rltgoDzvO"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.HOST_PROD }}
+          REMOTE_USER: ${{ secrets.USER_PROD }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"
+
