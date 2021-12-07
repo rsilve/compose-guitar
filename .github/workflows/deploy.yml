@@ -1,0 +1,49 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - prod
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.node_modules
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node_modules
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          npm ci --no-audit
+          npm run build:prod
+      - name: Add SSH key
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p /home/runner/.ssh
+            echo "${{ secrets.SSH_KNOW_HOST }}" >> /home/runner/.ssh/known_hosts
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
+            chmod 600 /home/runner/.ssh/github_actions
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+            ssh-add /home/runner/.ssh/github_actions
+      - name: deploy
+        run: |
+          ssh ${{ secrest.USER_PROD }}@${{ secrets.HOST_PROD }} ls
