@@ -29,6 +29,7 @@ jobs:
         run: |
           npm ci --no-audit
           npm run build:prod
+          echo "${{ secrets.SSH_PRIVATE_KEY }}""
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@main
         env:
