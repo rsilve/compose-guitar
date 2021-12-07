@@ -26,20 +26,16 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules
       - name: Build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           npm ci --no-audit
           npm run build:prod
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@main
         env:
-          SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rltgoDzvO"
           SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.HOST_PROD }}
-          REMOTE_USER: ${{ secrets.USER_PROD }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/dist/, /node_modules/"
 
