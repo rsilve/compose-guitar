@@ -26,12 +26,9 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules
       - name: Build
-        env:
-           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           npm ci --no-audit
           npm run build:prod
-          echo "$SSH_PRIVATE_KEY"
       - name: Create SSH key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
