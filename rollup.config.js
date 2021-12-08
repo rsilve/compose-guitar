@@ -6,7 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import minifyHTML from "rollup-plugin-minify-html-literals";
 import summary from "rollup-plugin-summary";
 import replace from "@rollup/plugin-replace";
-import sri from "rollup-plugin-sri";
+
 import dotenv from "dotenv";
 
 dotenv.config({ path: ".env.production" });
@@ -43,7 +43,7 @@ export default {
       module: true,
       warnings: true,
     }),
-    sri({publicPath: "/"}),
+    // sri({publicPath: "/"}), /* disable because conflict with cloudflare
     // Print bundle summary
     summary(),
     // Optional: copy any static assets to build directory
