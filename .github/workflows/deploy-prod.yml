@@ -3,7 +3,6 @@ on:
   push:
     tags:
       - prod*
-      - beta*
 jobs:
   to_prod:
     name: Deploy prod
@@ -11,45 +10,6 @@ jobs:
     environment: 
       name: prod
       url: https://compose-guitar.com
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.node_modules
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node_modules
-      - name: Build
-        run: |
-          npm ci --no-audit
-          npm run build:prod
-      - name: Create SSH key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-        run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-      - name: Deploy with rsync
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-        run: rsync -avz --delete dist/ ${REMOTE_USER}@${REMOTE_HOST}:${TARGET}
-
-  to_beta:
-    name: Deploy beta
-    runs-on: ubuntu-latest
-    environment: 
-      name: beta
-      url: https://beta.compose-guitar.com
     steps:
       - uses: actions/checkout@v2
         with:
