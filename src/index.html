@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html translate="no" lang="en">
   <head>
-    <meta name="description" content="Create chord grids for your guitar or piano back tracks." />
     <meta charset="UTF-8" />
     <meta name="google" content="notranslate" />
 
-    <meta property="og:title" content="Create chords grid" />
+    <!-- HTML Meta Tags -->
+    <title>Chords grid editor for guitar back tracks</title>
+    <meta name="description" content="Create chord grids for your guitar or piano back tracks." />
+    <meta name="title" content="Chords grid editor for guitar back tracks" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://compose-guitar.com/" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://compose-guitar.com" />
-    <meta property="og:image" content="https://compose-guitar.com/assets/android-chrome-192x192.png" />
+    <meta property="og:title" content="Chords grid editor for guitar back tracks" />
+    <meta property="og:description" content="Create chord grids for your guitar or piano back tracks." />
+    <meta property="og:image" content="assets/compose-guitar.jpg" />
+    <meta property="og:site_name" content="Chords grid editor" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="compose-guitar.com" />
+    <meta property="twitter:url" content="https://compose-guitar.com/" />
+    <meta property="twitter:title" content="Chords grid editor for guitar back tracks" />
+    <meta property="twitter:description" content="Create chord grids for your guitar or piano back tracks." />
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 
@@ -19,13 +36,37 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
     <link rel="icon" href="assets/favicon.ico" />
     <link rel="manifest" href="assets/manifest.json" />
+    <link rel="canonical" href="https://compose-guitar.com/" />
+    <link rel="shortcut icon" href="assets/favicon-32x32.png" />
     <meta name="theme-color" content="#ffffff" />
 
-    <title>Guitar grid composer</title>
+    <script type="application/ld+json" nonce="oB2CTfmpn">
+      {
+        "description": "Create chord grids for your guitar or piano back tracks.",
+        "url": "https://compose-guitar.com/",
+        "@type": "WebSite",
+        "headline": "Chords grid editor for guitar back tracks",
+        "image" : "assets/compose-guitar.jpg",
+        "publisher": {
+          "@type": "Organization",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://compose-guitar.com/assets/favicon-32x32.png"
+            "name" : "compose-guitar.com"
+          }
+        },
+        "name": "Compose Guitar Grid",
+        "screenshot" : "assets/compose-guitar.jpg",
+        "@context": "https://schema.org",
+        "softwareVersion" : "%"
+      }
+    </script>
+
     <script async type="module" src="editor.js"></script>
     <link href="assets/main.css" rel="stylesheet" />
     <link href="assets/print.css" rel="stylesheet" media="print" />
   </head>
+
   <body>
     <noscript>
       <h1>Chords grid editor</h1>
@@ -34,7 +75,9 @@
 
       You need to enable JavaScript to run this app.
     </noscript>
-    <header><h1 class="visually-hidden">Compose chord grid</h1></header>
+    <header>
+      <h1 class="visually-hidden">Compose chord grid</h1>
+    </header>
 
     <editor-main></editor-main>
   </body>
