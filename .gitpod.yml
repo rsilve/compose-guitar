@@ -1,4 +1,3 @@
-
 image:
   file: .gitpod.Dockerfile
 
@@ -21,7 +20,6 @@ tasks:
     init: gp sync-await bundle
     command: npm run start:serve:watch
     openMode: tab-after
-
 
 ports:
   - port: 8000
@@ -46,3 +44,4 @@ github:
 vscode:
   extensions:
     - sonarsource.sonarlint-vscode
+    - esbenp.prettier-vscode
