@@ -38,7 +38,8 @@
     "verify:lint": "eslint src --ext .ts ",
     "verify:prettier": "prettier --check src",
     
-    "deploy:beta": "git tag -f beta && git push --delete origin beta && git push --tags",
+    "deploy:beta": "git tag -f beta && git push --tags -f",
+    "deploy:prod": "git tag -f prod.$(date +%Y%m%d) && git push --tags -f",
 
     "prepare": "husky install",
 
