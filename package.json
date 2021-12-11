@@ -38,6 +38,8 @@
     "verify:lint": "eslint src --ext .ts ",
     "verify:prettier": "prettier --check src",
     
+    "deploy:beta": "git tag -f beta && git push --delete origin beta && git push --tags",
+
     "prepare": "husky install",
 
     "prepare:playwright": "playwright install chromium",
@@ -46,6 +48,7 @@
     "pretest": "npm-run-all prepare:playwright",
     "pretest:watch": "npm-run-all prepare:playwright"
     
+
   },
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
