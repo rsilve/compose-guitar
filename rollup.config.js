@@ -32,7 +32,7 @@ export default {
       minify: true,
       strictCSPInlineScripts: false,
       absoluteBaseUrl: process.env.BASE_URL,
-      transformHtml: [html => html.replaceAll('__base_url__', process.env.BASE_URL)],
+      transformHtml: [html => html.replace(/__base_url__/g, process.env.BASE_URL)],
     }),
     // Resolve bare module specifiers to relative paths
     resolve(),
