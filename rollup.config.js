@@ -30,7 +30,7 @@ export default {
     // replace
     replace({
       preventAssignment: true,
-      include: ["**/*.js"],
+      include: ["**/*.js", "**/*.html", "**/*.css"],
       __base_url__: process.env.BASE_URL,
       __api_key__: process.env.API_KEY,
       __api_client_id__: process.env.API_CLIENT_ID,
