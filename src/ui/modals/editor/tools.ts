@@ -4,7 +4,7 @@ export function normalize(value: string): string {
 
 export function auto_correct(value: string): string {
   return value
-    .replace(/,|;/g, "|")
+    .replace(/[,;]/g, "|")
     .replace(/\|{3,}/g, "||")
     .replace(/^\s*([^:|])/, "|$1") // | at the begining
     .replace(/([^|])\n/g, "$1|\n") // | at end of line
