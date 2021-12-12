@@ -22,7 +22,7 @@ export default {
       publicPath: "/",
       extractAssets: true,
       minify: true,
-      strictCSPInlineScripts: true,
+      strictCSPInlineScripts: false,
       absoluteBaseUrl: 'https://compose-guitar.com',
     }),
     // Resolve bare module specifiers to relative paths
