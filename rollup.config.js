@@ -13,7 +13,15 @@ dotenv.config({ path: ".env.production" });
 
 export default {
   plugins: [
-    
+    // replace
+    replace({
+      preventAssignment: false,
+      delimiters: ['', ''],
+      include: ["**/*.js", "**/*.html", "**/*.css"],
+      __api_key__: process.env.API_KEY,
+      __api_client_id__: process.env.API_CLIENT_ID,
+      __synchro_enabled__: process.env.SYNCHRO_ENABLED,
+    }),
     // Entry point for application build; can specify a glob to build multiple
     // HTML files for non-SPA app
     html({
@@ -24,18 +32,10 @@ export default {
       minify: true,
       strictCSPInlineScripts: false,
       absoluteBaseUrl: process.env.BASE_URL,
+      transformHtml: [html => html.replaceAll('__base_url__', process.env.BASE_URL)],
     }),
     // Resolve bare module specifiers to relative paths
     resolve(),
-    // replace
-    replace({
-      preventAssignment: true,
-      include: ["**/*.js", "**/*.html", "**/*.css"],
-      __base_url__: process.env.BASE_URL,
-      __api_key__: process.env.API_KEY,
-      __api_client_id__: process.env.API_CLIENT_ID,
-      __synchro_enabled__: process.env.SYNCHRO_ENABLED,
-    }),
     // Minify HTML template literals
     minifyHTML(),
     // Minify JS
@@ -53,7 +53,7 @@ export default {
       rootDir: "build",
     }),
   ],
-  output: {
+  output: {  
     dir: "dist",
     chunkFileNames: "[name]-[hash].js",
     entryFileNames: "[name]-[hash].js",
