@@ -25,6 +25,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules
       - name: Build
+        env: 
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           npm ci --no-audit
           npm run build:prod
