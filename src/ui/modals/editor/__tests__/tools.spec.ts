@@ -60,6 +60,14 @@ suite("tools auto_correct", () => {
     expect(auto_correct("|A")).to.be.equal("| A");
   });
 
+  test("not add space between | and (", () => {
+    expect(auto_correct("|(")).to.be.equal("|(");
+  });
+
+  test(" add space between |(x) and A", () => {
+    expect(auto_correct("|(x)A")).to.be.equal("|(x) A");
+  });
+
   test("do not add space between : and |", () => {
     expect(auto_correct(":|")).to.be.equal(":|");
   });
