@@ -8,6 +8,7 @@ import inputStyles from "../styles/inputStyles";
 
 import "../../icons/info_icon";
 import "./editor/GridEditor";
+import "./editor/GridEditorTitle";
 
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
@@ -65,13 +66,6 @@ class SongEditor extends LitElement {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-      }
-
-      input {
-        display: block;
-        font-family: monospace;
-        font-size: 2em;
-        width: 30em;
       }
 
       textarea {
@@ -134,8 +128,8 @@ class SongEditor extends LitElement {
     this._value = raw;
   }
 
-  _handle_change_title(e: Event): void {
-    let { value } = e.target as HTMLInputElement;
+  _handle_change_title(e: CustomEvent): void {
+    let { value } = e.detail;
     value = value.trim();
     this._grid_title_already_exists = exists_in_gallery(value, this._original_title);
     this._grid_title = value;
@@ -169,15 +163,11 @@ class SongEditor extends LitElement {
         <div class="song-editor-body-form">
           <div class="form-item">
             ${this.title_error_pane()}
-            <input
-              id="title_input"
-              type="text"
+            <grid-editor-title
               .value="${ifDefined(this._grid_title)}"
-              class="${classMap({ invalid: this._grid_title_already_exists })}"
-              required
-              placeholder="Title (required)"
-              @input="${this._handle_change_title}"
-            />
+              .invalid="${this._grid_title_already_exists}"
+              @input-title="${this._handle_change_title}"
+            ></grid-editor-title>
           </div>
           <div class="form-item">
             <grid-editor .value="${this._value}" @update-grid="${this._handle_change_grid}"></grid-editor>
