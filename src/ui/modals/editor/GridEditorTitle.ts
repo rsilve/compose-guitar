@@ -12,15 +12,15 @@ class GridEditorTitle extends LitElement {
       input {
         display: block;
         font-family: monospace;
-        font-size: 1.5em;
-        width: 40em;
-        padding-top: 0.9em;
+        font-size: 2em;
+        width: 30em;
+        padding-top: 0.7em;
       }
 
       .title {
         position: absolute;
-        top: 1px;
-        left: 0.7em;
+        top: 2px;
+        left: 1em;
         font-size: 0.9em;
         font-weight: lighter;
       }
