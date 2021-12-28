@@ -89,7 +89,7 @@ class GridEditor extends LitElement {
         .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
         required
-        placeholder="| Am7 Am7M | Am6 Am6 |&#10;| F Dm7 | Dm6 E7 | Dm E7 |&#10;  ..."
+        placeholder="| Am7 Am7M | Am7 Am6 |&#10;| F Dm7 | Dm6 E7 | Dm E7 |&#10;  ..."
         @input="${this._handle_change_grid}"
       ></textarea>
       ${this.grid_error_pane()}
