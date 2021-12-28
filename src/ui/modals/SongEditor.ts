@@ -1,5 +1,5 @@
-import { css, html, LitElement, PropertyValues } from "lit";
-import { customElement, query, state } from "lit/decorators.js";
+import { css, html, LitElement } from "lit";
+import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import buttonStyles from "../styles/buttonStyles";
@@ -29,17 +29,6 @@ class SongEditor extends LitElement {
 
       .song-editor-body-form {
         position: relative;
-      }
-
-      .song-editor-body-form-error-title {
-        position: absolute;
-        box-sizing: border-box;
-        bottom: 2px;
-        right: 2px;
-        padding: 0.5ex 1.5ex;
-        background-color: var(--color-background-secondary);
-        color: var(--color-text);
-        border-radius: var(--border-radius) 0 var(--border-radius) 0;
       }
 
       .song-editor-body-help {
@@ -86,9 +75,6 @@ class SongEditor extends LitElement {
     `,
   ];
 
-  @query("#title_input")
-  _el_title: HTMLInputElement | undefined;
-
   @state()
   _value: string | undefined;
 
@@ -117,11 +103,6 @@ class SongEditor extends LitElement {
       this._original_title = this._grid_title;
     };
     this.addController(new DispatcherController(cb.bind(this)));
-  }
-
-  protected firstUpdated(_changedProperties: PropertyValues): void {
-    super.firstUpdated(_changedProperties);
-    this._el_title?.focus();
   }
 
   _update_grid(raw: string | undefined): void {
@@ -162,11 +143,10 @@ class SongEditor extends LitElement {
       <div class="song-editor-body">
         <div class="song-editor-body-form">
           <div class="form-item">
-            ${this.title_error_pane()}
             <grid-editor-title
               .value="${ifDefined(this._grid_title)}"
               .invalid="${this._grid_title_already_exists}"
-              @input-title="${this._handle_change_title}"
+              @input="${this._handle_change_title}"
             ></grid-editor-title>
           </div>
           <div class="form-item">
@@ -193,13 +173,6 @@ class SongEditor extends LitElement {
       <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${action_track_edit_cancel}">Cancel</button>
       <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">Apply</button>
     </div>`;
-  }
-
-  title_error_pane(): unknown {
-    if (this._grid_title_already_exists) {
-      return html` <div class="song-editor-body-form-error-title">This title already exists</div>`;
-    }
-    return html``;
   }
 
   help_pane(): unknown {
