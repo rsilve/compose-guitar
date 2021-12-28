@@ -17,6 +17,15 @@ class GridEditor extends LitElement {
         font-family: monospace;
         font-size: 2em;
         width: 30em;
+        padding-top: 1em;
+      }
+
+      .title {
+        position: absolute;
+        top: 1px;
+        left: 0.7em;
+        font-size: 0.9em;
+        font-weight: lighter;
       }
 
       textarea {
@@ -75,11 +84,12 @@ class GridEditor extends LitElement {
   render(): unknown {
     const normalized = this.value || "";
     return html`
+      <div class="title">Chords progession (required)</div>
       <textarea
         .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
         required
-        placeholder="Chords (required)"
+        placeholder="| Am7 Am7M | Am6 Am6 |&#10;| F Dm7 | Dm6 E7 | Dm E7 |&#10;  ..."
         @input="${this._handle_change_grid}"
       ></textarea>
       ${this.grid_error_pane()}
