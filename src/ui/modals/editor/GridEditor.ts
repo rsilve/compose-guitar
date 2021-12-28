@@ -13,11 +13,12 @@ class GridEditor extends LitElement {
     css`
       input,
       textarea {
+        font-family: "Open Sans", sans-serif;
         display: block;
-        font-family: monospace;
-        font-size: 2em;
+        font-size: 1.5em;
+        line-height: 1.4em;
         width: 30em;
-        padding-top: 0.7em;
+        padding-top: 0.9em;
       }
 
       .title {

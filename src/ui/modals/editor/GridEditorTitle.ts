@@ -11,10 +11,9 @@ class GridEditorTitle extends LitElement {
     css`
       input {
         display: block;
-        font-family: monospace;
-        font-size: 2em;
+        font-size: 1.5em;
         width: 30em;
-        padding-top: 0.7em;
+        padding-top: 0.9em;
       }
 
       .title {
