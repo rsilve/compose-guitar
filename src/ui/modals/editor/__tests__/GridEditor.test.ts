@@ -7,7 +7,10 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-        <textarea required placeholder="Chords (required)"></textarea>
+        <div class="title">Chords progession (required)</div>
+        <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
+| F Dm7 | Dm6 E7 | Dm E7 |
+  ..."></textarea>
         `);
   });
 
@@ -16,7 +19,10 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-        <textarea required placeholder="Chords (required)"></textarea>
+        <div class="title">Chords progession (required)</div>
+        <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
+| F Dm7 | Dm6 E7 | Dm E7 |
+  ..."></textarea>
         `);
   });
 
@@ -25,7 +31,10 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-        <textarea required placeholder="Chords (required)" class="invalid"></textarea>
+    <div class="title">Chords progession (required)</div>
+        <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
+| F Dm7 | Dm6 E7 | Dm E7 |
+  ..." class="invalid"></textarea>
         <div class="song-editor-body-form-error">Invalid syntax : invalid</div>
         `);
   });
@@ -43,7 +52,10 @@ suite("Grid Editor element", () => {
 
     await el.updateComplete;
     expect(el).shadowDom.to.be.equal(`
-        <textarea required placeholder="Chords (required)" class="invalid"></textarea>
+        <div class="title">Chords progession (required)</div>
+        <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
+| F Dm7 | Dm6 E7 | Dm E7 |
+  ..." class="invalid"></textarea>
         <div class="song-editor-body-form-error">Invalid syntax : Ek</div>
         `);
   });
@@ -67,7 +79,10 @@ suite("Grid Editor element", () => {
 
     await el.updateComplete;
     expect(el).shadowDom.to.be.equal(`
-        <textarea required placeholder="Chords (required)" class="invalid"></textarea>
+        <div class="title">Chords progession (required)</div>
+        <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
+| F Dm7 | Dm6 E7 | Dm E7 |
+  ..." class="invalid"></textarea>
         <div class="song-editor-body-form-error">Invalid syntax : Ek</div>
         `);
     const res = await promise;
