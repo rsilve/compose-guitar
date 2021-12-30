@@ -10,7 +10,7 @@ import {
 } from "../../actions/actions";
 import { IState } from "../state";
 import Action from "../../actions/Action";
-import { googleApiWrapper } from "./google-api";
+import { synchronizer } from "./synchronizer";
 
 export async function synchronize_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
@@ -41,7 +41,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   if (action.action_type === SYNCHRO_SIGN_IN) {
     let { synchronization } = result;
     if (synchronization.enabled) {
-      synchronization = await googleApiWrapper
+      synchronization = await synchronizer
         .signIn()
         .then((valid) => ({ ...synchronization, signInValid: valid, error: undefined }))
         .catch((reason) => ({ ...synchronization, signInValid: false, error: reason }));
@@ -55,7 +55,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
 
   if (action.action_type === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
-    googleApiWrapper.signOut();
+    synchronizer.signOut();
     const sync = { ...synchronization, signInValid: undefined, error: undefined, inProgress: undefined };
     result = { ...result, synchronization: sync };
   }

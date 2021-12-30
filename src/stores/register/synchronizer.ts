@@ -3,6 +3,12 @@ import { add_to_synchronized_index, get_synchronized_index } from "./gallery_too
 import { googleApiWrapper } from "./google-api";
 
 class Synchronizer {
+  signIn(): Promise<boolean> {
+    return googleApiWrapper.signIn();
+  }
+  signOut(): void {
+    return googleApiWrapper.signOut();
+  }
   upload(track: IStateTrack): Promise<IStateTrack> {
     const index = get_synchronized_index(track);
     let promise;
