@@ -30,7 +30,7 @@ suite("synchronise configuration activate element", () => {
   test("display status if signin is active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: true };
     const el: SynchronizationConfigurationActivated = await fixture(
-      html`<synchronization-configuration-activated
+      html` <synchronization-configuration-activated
         .synchronization="${sync}"
       ></synchronization-configuration-activated>`
     );
@@ -39,14 +39,17 @@ suite("synchronise configuration activate element", () => {
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled.</div>
             <div>You are connected</div>
-            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
+            <div class="actions">
+                <button class="btn-secondary _sync">force sync</button>
+                <button class="btn-secondary _deactivate">deactivate</button>
+            </div>
         `);
   });
 
   test("display warning if signin not active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false };
     const el: SynchronizationConfigurationActivated = await fixture(
-      html`<synchronization-configuration-activated
+      html` <synchronization-configuration-activated
         .synchronization="${sync}"
       ></synchronization-configuration-activated>`
     );
@@ -55,7 +58,10 @@ suite("synchronise configuration activate element", () => {
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled but does not work ⚠️.</div>
             <div>You are not connected. <a href="">Retry ?</a></div>
-            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
+            <div class="actions">
+                <button class="btn-secondary _sync">force sync</button>
+                <button class="btn-secondary _deactivate">deactivate</button>
+            </div>
         `);
   });
 
@@ -63,8 +69,8 @@ suite("synchronise configuration activate element", () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false, error: { error: "blocked" } };
     const el: SynchronizationConfigurationActivated = await fixture(
       html`
-                <synchronization-configuration-activated
-                        .synchronization="${sync}"></synchronize-configuration-activate>`
+        <synchronization-configuration-activated
+          .synchronization="${sync}"></synchronize-configuration-activate>`
     );
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
@@ -75,7 +81,26 @@ suite("synchronise configuration activate element", () => {
               <div class="error-message">blocked</div>
             </div>
             <div>You are not connected. <a href="">Retry ?</a></div>
-            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
+            <div class="actions">
+                <button class="btn-secondary _sync">force sync</button>
+                <button class="btn-secondary _deactivate">deactivate</button>
+            </div>
         `);
+  });
+
+  test("has a force sync button", async () => {
+    const sync: IStateSynchronization = { enabled: true };
+    let handle = false;
+    const el: SynchronizationConfigurationActivated = await fixture(
+      html` <synchronization-configuration-activated
+        .synchronization="${sync}"
+        @synchronize="${() => (handle = true)}"
+      ></synchronization-configuration-activated>`
+    );
+    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("._sync") as HTMLElement;
+    node.click();
+    expect(handle).to.be.true;
   });
 });

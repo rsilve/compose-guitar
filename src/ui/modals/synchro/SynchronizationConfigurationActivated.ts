@@ -8,8 +8,7 @@ class SynchronizationConfigurationActivated extends LitElement {
   static styles = [
     buttonStyles,
     css`
-      .btn-deactivate {
-        display: block;
+      .actions {
         width: 100%;
         margin: 2em 0;
       }
@@ -39,20 +38,28 @@ class SynchronizationConfigurationActivated extends LitElement {
     this.dispatchEvent(new CustomEvent("deactivate", options));
   }
 
+  private _dispatch_synchronize() {
+    const options = {
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent("synchronize", options));
+  }
+
   render(): unknown {
     let errorStatus = html``;
-    let signInStatus = html`<div>
+    let signInStatus = html` <div>
       You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a>
     </div>`;
     let workingStatus = html` but does not work ⚠️`;
     if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
-      signInStatus = html`<div>You are connected</div>`;
+      signInStatus = html` <div>You are connected</div>`;
       workingStatus = html``;
     }
 
     if (this.synchronization?.error) {
       const error = this.synchronization?.error as { error: string };
-      errorStatus = html`<div class="error">
+      errorStatus = html` <div class="error">
         The error message was
         <div class="error-message">${error.error}</div>
       </div>`;
@@ -61,7 +68,10 @@ class SynchronizationConfigurationActivated extends LitElement {
     return html`
       <div>Synchronization between devices is enabled${workingStatus}.</div>
       ${errorStatus} ${signInStatus}
-      <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
+      <div class="actions">
+        <button class="btn-secondary _sync" @click="${this._dispatch_synchronize}">force sync</button>
+        <button class="btn-secondary _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
+      </div>
     `;
   }
 }
