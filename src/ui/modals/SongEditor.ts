@@ -146,7 +146,7 @@ class SongEditor extends LitElement {
             <grid-editor-title
               .value="${ifDefined(this._grid_title)}"
               .invalid="${this._grid_title_already_exists}"
-              @input="${this._handle_change_title}"
+              @change-title="${this._handle_change_title}"
             ></grid-editor-title>
           </div>
           <div class="form-item">
