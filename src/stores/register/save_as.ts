@@ -2,7 +2,7 @@ import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../actions/actions";
 import { add_to_gallery } from "./gallery_tools";
 import { IState, IStateTrack } from "../state";
 import Action from "../../actions/Action";
-import { synchronize } from "./synchronize_tools";
+import { synchronizer } from "./synchronizer";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };
@@ -11,7 +11,7 @@ async function save(state: IState): Promise<IState> {
     const tr: IStateTrack = { ...track, saved_at: new Date().toISOString() };
     result = add_to_gallery(tr, result);
     if (result.synchronization.enabled) {
-      await synchronize(tr);
+      await synchronizer.upload(tr);
     }
     result = { ...result, confirm_save: undefined };
   }
