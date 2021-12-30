@@ -129,3 +129,6 @@ export const action_synchro_sign_in = (): Promise<void> => publish_action(new Ac
 
 export const SYNCHRO_SIGN_OUT = "SYNCHRO_SIGN_OUT";
 export const action_synchro_sign_out = (): Promise<void> => publish_action(new Action(SYNCHRO_SIGN_OUT));
+
+export const SYNCHRO_FORCE = "SYNCHRO_FORCE";
+export const action_synchro_force = (): Promise<void> => publish_action(new Action(SYNCHRO_FORCE));

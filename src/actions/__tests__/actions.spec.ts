@@ -30,6 +30,8 @@ import {
   UPLOAD_FROM_GALLERY,
   SYNCHRO_SIGN_OUT,
   action_synchro_sign_out,
+  SYNCHRO_FORCE,
+  action_synchro_force,
 } from "../actions";
 import { default_state } from "../../stores/state";
 import { reset_dispatcher, register } from "../../stores/dispatcher";
@@ -202,6 +204,17 @@ suite("actions", () => {
       return Promise.resolve(state);
     });
     await action_synchro_sign_out();
+    expect(handle).to.be.true;
+  });
+
+  test("action_synchro_force", async () => {
+    let handle = false;
+    reset_dispatcher(default_state());
+    register((action, state) => {
+      handle = action.action_type === SYNCHRO_FORCE;
+      return Promise.resolve(state);
+    });
+    await action_synchro_force();
     expect(handle).to.be.true;
   });
 });
