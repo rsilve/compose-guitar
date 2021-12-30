@@ -2,10 +2,12 @@ import { expect } from "@open-wc/testing";
 
 import {
   add_to_gallery,
+  add_to_synchronized_index,
   exists_in_gallery,
   gallery_dict,
   gallery_list,
   get_from_gallery,
+  get_synchronized_index,
   remove_from_gallery,
 } from "../gallery_tools";
 import { STATE_VERSION } from "../../state";
@@ -224,5 +226,20 @@ suite("Gallery tools", () => {
     expect(exists_in_gallery("other", undefined)).to.be.false;
     remove_from_gallery("title");
     remove_from_gallery("title2");
+  });
+
+  test("add to synchronize index", () => {
+    localStorage.clear();
+    const track = add_to_synchronized_index({ grid_text: "A", title: "title2" }, "my_id");
+    const id = get_synchronized_index(track);
+    expect(id).to.be.equal("my_id");
+  });
+
+  test("add to synchronize index with existing id", () => {
+    localStorage.clear();
+    const track = add_to_synchronized_index({ id: "my_song", grid_text: "A", title: "title2" }, "my_id");
+    expect(track.id).to.be.equal("my_song");
+    const id = get_synchronized_index(track);
+    expect(id).to.be.equal("my_id");
   });
 });
