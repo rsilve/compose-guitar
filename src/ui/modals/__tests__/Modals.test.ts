@@ -6,6 +6,7 @@ import {
   SYNCHRO_ACTIVATION,
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
+  SYNCHRO_FORCE,
   SYNCHRO_SIGN_OUT,
 } from "../../../actions/actions";
 
@@ -155,6 +156,30 @@ suite("Modals element", () => {
     const node = el.shadowRoot?.querySelector("synchronize-configuration");
     node?.dispatchEvent(
       new CustomEvent("deactivate", {
+        bubbles: true,
+        composed: true,
+      })
+    );
+    const closed = await promise;
+    expect(closed).to.be.true;
+  });
+
+  test("force synchronize", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.action_type === SYNCHRO_FORCE) {
+          resolve(true);
+        }
+        return Promise.resolve(state);
+      });
+    });
+    const el: Modals = await fixture(html` <compose-modals></compose-modals>`);
+    expect(el).to.instanceOf(Modals);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("synchronize-configuration");
+    node?.dispatchEvent(
+      new CustomEvent("synchronize", {
         bubbles: true,
         composed: true,
       })

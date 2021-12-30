@@ -12,6 +12,7 @@ import {
   action_help_close,
   action_notification_open,
   action_save_as_start_and_new,
+  action_synchro_force,
   action_synchro_sign_out,
   action_synchronization_activation,
   action_synchronization_configuration_close,
@@ -100,6 +101,10 @@ class Modals extends LitElement {
     action_synchronization_deactivation().then(action_synchro_sign_out);
   }
 
+  private static dispatchForceSync() {
+    action_synchro_force().then(() => action_notification_open("Synchronisation completed"));
+  }
+
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -136,6 +141,7 @@ class Modals extends LitElement {
           .synchronization="${this.synchronization}"
           @activate="${action_synchronization_activation}"
           @deactivate="${Modals.dispatchDeactivate}"
+          @synchronize="${Modals.dispatchForceSync}"
           @close="${action_synchronization_configuration_close}"
         ></synchronize-configuration>`;
     }
