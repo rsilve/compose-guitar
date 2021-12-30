@@ -25,7 +25,7 @@ class SynchronizeConfiguration extends LitElement {
     let body = html` <synchronization-configuration-deactivated
       .synchronization="${this.synchronization}"
     ></synchronize-configuration-deactivate>`;
-    if (this.synchronization?.enabled && !this.synchronization?.inProgress) {
+    if (this.synchronization?.enabled && !this.synchronization?.signInProgress) {
       body = html` <synchronization-configuration-activated
         .synchronization="${this.synchronization}"
       ></synchronization-configuration-activated>`;

@@ -28,7 +28,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
 
   if (action.action_type === SYNCHRO_ACTIVATION) {
     const { synchronization } = result;
-    const sync = { ...synchronization, enabled: true, inProgress: true };
+    const sync = { ...synchronization, enabled: true, signInProgress: true };
     result = { ...result, synchronization: sync };
   }
 
@@ -45,10 +45,10 @@ export async function synchronize_callback(action: Action, state: IState): Promi
         .signIn()
         .then((valid) => ({ ...synchronization, signInValid: valid, error: undefined }))
         .catch((reason) => ({ ...synchronization, signInValid: false, error: reason }));
-      synchronization = { ...synchronization, inProgress: undefined };
+      synchronization = { ...synchronization, signInProgress: undefined };
       result = { ...result, synchronization };
     } else {
-      synchronization = { ...synchronization, signInValid: undefined, error: undefined, inProgress: undefined };
+      synchronization = { ...synchronization, signInValid: undefined, error: undefined, signInProgress: undefined };
       result = { ...result, synchronization };
     }
   }
@@ -56,7 +56,7 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   if (action.action_type === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
     synchronizer.signOut();
-    const sync = { ...synchronization, signInValid: undefined, error: undefined, inProgress: undefined };
+    const sync = { ...synchronization, signInValid: undefined, error: undefined, signInProgress: undefined };
     result = { ...result, synchronization: sync };
   }
 

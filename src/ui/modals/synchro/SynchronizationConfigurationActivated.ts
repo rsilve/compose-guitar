@@ -52,7 +52,7 @@ class SynchronizationConfigurationActivated extends LitElement {
       You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a>
     </div>`;
     let workingStatus = html` but does not work ⚠️`;
-    if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
+    if (this.synchronization?.signInValid || this.synchronization?.signInProgress) {
       signInStatus = html` <div>You are connected</div>`;
       workingStatus = html``;
     }
