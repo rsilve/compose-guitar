@@ -6,7 +6,7 @@ import {
   SYNCHRO_ACTIVATION,
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
-  SYNCHRO_FORCE,
+  SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_OUT,
 } from "../../../actions/actions";
 
@@ -168,7 +168,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === SYNCHRO_FORCE) {
+        if (action.action_type === SYNCHRO_FORCE_START) {
           resolve(true);
         }
         return Promise.resolve(state);

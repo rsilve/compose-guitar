@@ -5,6 +5,7 @@ import {
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
+  SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
 } from "../../actions/actions";
@@ -57,6 +58,12 @@ export async function synchronize_callback(action: Action, state: IState): Promi
     const { synchronization } = result;
     synchronizer.signOut();
     const sync = { ...synchronization, signInValid: undefined, error: undefined, signInProgress: undefined };
+    result = { ...result, synchronization: sync };
+  }
+
+  if (action.action_type === SYNCHRO_FORCE_START) {
+    const { synchronization } = result;
+    const sync = { ...synchronization, syncInProgress: true };
     result = { ...result, synchronization: sync };
   }
 

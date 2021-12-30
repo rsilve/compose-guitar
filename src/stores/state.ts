@@ -25,6 +25,7 @@ export interface IStateSynchronization {
   open?: boolean;
   signInValid?: boolean;
   error?: unknown;
+  syncInProgress?: boolean;
 }
 
 export interface IState {
