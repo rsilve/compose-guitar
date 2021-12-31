@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import GoogleAPI from "../GoogleAPI";
 import { register, reset_dispatcher } from "../../../stores/dispatcher";
 import { state_test } from "../../../__tests__/TestHelpers";
-import { SYNCHRO_SIGN_IN } from "../../../actions/actions";
+import { SYNCHRO_FORCE, SYNCHRO_FORCE_START, SYNCHRO_SIGN_IN } from "../../../actions/actions";
 
 suite("google-api element", () => {
   const st = state_test;
@@ -35,6 +35,38 @@ suite("google-api element", () => {
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.action_type === SYNCHRO_SIGN_IN);
+        return Promise.resolve(state);
+      });
+    });
+    const el: GoogleAPI = await fixture(html` <google-api></google-api>`);
+    await expect(el).shadowDom.to.be.accessible();
+    const loaded = await promise;
+    expect(loaded).to.be.true;
+  });
+
+  test("synchro start on script load", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true } });
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.action_type === SYNCHRO_FORCE_START) {
+          resolve(true);
+        }
+        return Promise.resolve(state);
+      });
+    });
+    const el: GoogleAPI = await fixture(html` <google-api></google-api>`);
+    await expect(el).shadowDom.to.be.accessible();
+    const loaded = await promise;
+    expect(loaded).to.be.true;
+  });
+
+  test("synchro on script load", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true } });
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.action_type === SYNCHRO_FORCE) {
+          resolve(true);
+        }
         return Promise.resolve(state);
       });
     });
