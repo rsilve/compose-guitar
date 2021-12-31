@@ -102,7 +102,7 @@ suite("synchronize callback", () => {
 
   test("force_sync start", async () => {
     let { synchronization } = st;
-    synchronization = { ...synchronization };
+    synchronization = { ...synchronization, enabled: true };
     const state = await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.true;
   });
@@ -112,8 +112,9 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, syncInProgress: true };
     try {
       await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
-    } catch (e: DispatcherError) {
-      expect(e.message).to.be.equal("Synchronization in progress");
+    } catch (e: unknown) {
+      const dispatchErr = e as DispatcherError;
+      expect(dispatchErr.message).to.be.equal("Synchronization in progress");
     }
   });
 
