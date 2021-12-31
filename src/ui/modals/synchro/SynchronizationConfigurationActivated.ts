@@ -8,7 +8,8 @@ class SynchronizationConfigurationActivated extends LitElement {
   static styles = [
     buttonStyles,
     css`
-      .actions {
+      .btn-deactivate {
+        display: block;
         width: 100%;
         margin: 2em 0;
       }
@@ -38,14 +39,6 @@ class SynchronizationConfigurationActivated extends LitElement {
     this.dispatchEvent(new CustomEvent("deactivate", options));
   }
 
-  private _dispatch_synchronize() {
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("synchronize", options));
-  }
-
   render(): unknown {
     let errorStatus = html``;
     let signInStatus = html` <div>
@@ -68,10 +61,7 @@ class SynchronizationConfigurationActivated extends LitElement {
     return html`
       <div>Synchronization between devices is enabled${workingStatus}.</div>
       ${errorStatus} ${signInStatus}
-      <div class="actions">
-        <button class="btn-secondary _sync" @click="${this._dispatch_synchronize}">force sync</button>
-        <button class="btn-secondary _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
-      </div>
+      <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
     `;
   }
 }

@@ -4,6 +4,9 @@ import { classMap } from "lit/directives/class-map.js";
 import { DispatcherController } from "../stores/lit_controller";
 import { IState } from "../stores/state";
 import {
+  action_notification_open,
+  action_synchro_force,
+  action_synchro_force_start,
   action_synchronization_activation_request,
   action_synchronization_deactivation_request,
 } from "../actions/actions";
@@ -61,6 +64,12 @@ class AccountStatus extends LitElement {
   @state()
   syncInProgress: boolean | undefined = false;
 
+  dispatchSynchroEvent(): void {
+    action_synchro_force_start()
+      .then(action_synchro_force)
+      .then(() => action_notification_open("Synchronisation completed"));
+  }
+
   render(): unknown {
     if (this.enabled) {
       const className = classMap({ dot: !this.valid });
@@ -68,7 +77,10 @@ class AccountStatus extends LitElement {
       return html` <div @click="${action_synchronization_deactivation_request}" class="${className}">
           <account-circle-icon title="Synchronization on ${message}"></account-circle-icon>
         </div>
-        <synchronization-status .active="${this.syncInProgress}"></synchronization-status>`;
+        <synchronization-status
+          .active="${this.syncInProgress}"
+          @click="${this.dispatchSynchroEvent}"
+        ></synchronization-status>`;
     }
     return html` <div @click="${action_synchronization_activation_request}">
       <person-off-icon title="Synchronization off"></person-off-icon>

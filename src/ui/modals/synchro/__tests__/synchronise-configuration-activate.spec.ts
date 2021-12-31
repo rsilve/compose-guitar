@@ -39,10 +39,7 @@ suite("synchronise configuration activate element", () => {
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled.</div>
             <div>You are connected</div>
-            <div class="actions">
-                <button class="btn-secondary _sync">force sync</button>
-                <button class="btn-secondary _deactivate">deactivate</button>
-            </div>
+            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
   });
 
@@ -58,10 +55,7 @@ suite("synchronise configuration activate element", () => {
     expect(el).shadowDom.to.equals(`
             <div>Synchronization between devices is enabled but does not work ⚠️.</div>
             <div>You are not connected. <a href="">Retry ?</a></div>
-            <div class="actions">
-                <button class="btn-secondary _sync">force sync</button>
-                <button class="btn-secondary _deactivate">deactivate</button>
-            </div>
+            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
   });
 
@@ -81,26 +75,7 @@ suite("synchronise configuration activate element", () => {
               <div class="error-message">blocked</div>
             </div>
             <div>You are not connected. <a href="">Retry ?</a></div>
-            <div class="actions">
-                <button class="btn-secondary _sync">force sync</button>
-                <button class="btn-secondary _deactivate">deactivate</button>
-            </div>
+            <button class="btn-secondary btn-deactivate _deactivate">deactivate</button></div>
         `);
-  });
-
-  test("has a force sync button", async () => {
-    const sync: IStateSynchronization = { enabled: true };
-    let handle = false;
-    const el: SynchronizationConfigurationActivated = await fixture(
-      html` <synchronization-configuration-activated
-        .synchronization="${sync}"
-        @synchronize="${() => (handle = true)}"
-      ></synchronization-configuration-activated>`
-    );
-    expect(el).to.instanceOf(SynchronizationConfigurationActivated);
-    await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector("._sync") as HTMLElement;
-    node.click();
-    expect(handle).to.be.true;
   });
 });

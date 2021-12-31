@@ -12,6 +12,7 @@ class SynchronizationStatus extends LitElement {
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
 
     @keyframes rotating {
