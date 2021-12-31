@@ -1,5 +1,5 @@
-import { IStateTrack } from "../state";
-import { add_to_synchronized_index, get_synchronized_index } from "./gallery_tools";
+import { IState, IStateTrack } from "../state";
+import { add_to_gallery, add_to_synchronized_index, get_synchronized_index } from "./gallery_tools";
 import { googleApiWrapper } from "./google-api";
 
 class Synchronizer {
@@ -20,8 +20,17 @@ class Synchronizer {
     return promise.then((id) => add_to_synchronized_index(track, id));
   }
 
-  download(): Promise<void> {
-    return googleApiWrapper.listFiles();
+  download(state: IState): Promise<void> {
+    return googleApiWrapper.listFiles().then((values) => {
+      let st = { ...state };
+      let { synchronization } = st;
+      synchronization = { ...synchronization, syncInProgress: undefined, open: undefined };
+      st = { ...st, synchronization };
+      values.forEach((uploaded) => {
+        st = add_to_gallery(uploaded.track, st);
+        add_to_synchronized_index(uploaded.track, uploaded.id);
+      });
+    });
   }
 }
 

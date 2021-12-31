@@ -16,6 +16,11 @@ export interface IStateTrack {
   id?: string;
 }
 
+export interface IStateTrackUploaded {
+  id: string;
+  track: IStateTrack;
+}
+
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 

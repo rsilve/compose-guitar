@@ -73,7 +73,13 @@ function synchroSignOut(action: Action, result: IState) {
   if (action.action_type === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
     synchronizer.signOut();
-    const sync = { ...synchronization, signInValid: undefined, error: undefined, signInProgress: undefined };
+    const sync = {
+      ...synchronization,
+      signInValid: undefined,
+      error: undefined,
+      signInProgress: undefined,
+      syncInProgress: undefined,
+    };
     result = { ...result, synchronization: sync };
   }
   return result;
@@ -97,7 +103,7 @@ function synchroForceStart(action: Action, result: IState) {
 async function synchroForce(action: Action, result: IState) {
   if (action.action_type === SYNCHRO_FORCE) {
     const { synchronization } = result;
-    await synchronizer.download();
+    await synchronizer.download(result);
     const sync = { ...synchronization, syncInProgress: undefined };
     result = { ...result, synchronization: sync };
   }

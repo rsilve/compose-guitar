@@ -59,7 +59,6 @@ suite("Grid Editor Title element", () => {
   test("have a value property", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
-      console.log(e);
       handled = e.detail.value == "toto";
     };
     const el: GridEditorTitle = await fixture(

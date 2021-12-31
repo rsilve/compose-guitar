@@ -1,7 +1,7 @@
 // https://developers.google.com/drive/api/v3/reference/files/create
 // https://github.com/google/google-api-javascript-client
 
-import { IStateTrack } from "../state";
+import { IStateTrack, IStateTrackUploaded } from "../state";
 
 class GoogleApiWrapper {
   signIn(): Promise<boolean> {
@@ -89,15 +89,15 @@ class GoogleApiWrapper {
     });
   }
 
-  getSong(id: string): Promise<IStateTrack> {
+  getSong(id: string): Promise<IStateTrackUploaded> {
     return new Promise((resolve) => {
       return gapi.client.drive.files.get({ fileId: id, alt: "media" }).execute((response) => {
-        resolve(response.result as IStateTrack);
+        resolve({ id: id, track: response.result as IStateTrack });
       });
     });
   }
 
-  listFiles(): Promise<void> {
+  listFiles(): Promise<IStateTrackUploaded[]> {
     return new Promise((resolve) => {
       gapi.client.drive.files
         .list({
@@ -107,10 +107,16 @@ class GoogleApiWrapper {
           q: "appProperties has { key='type' and value='song' }",
         })
         .execute((response) => {
-          response.result.files?.forEach((value) => {
-            this.getSong(value.id || "").then((value1) => console.info(value1));
+          const songs = response.result.files?.map((value) => {
+            return this.getSong(value.id || "");
           });
-          resolve();
+          if (songs) {
+            Promise.all(songs).then((values) => {
+              resolve(values);
+            });
+          } else {
+            resolve([]);
+          }
         });
     });
   }
