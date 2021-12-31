@@ -26,6 +26,7 @@ class SynchronizationStatus extends LitElement {
     .rotating {
       animation: rotating 3s linear infinite;
       padding-bottom: 0.15em;
+      cursor: wait;
     }
   `;
 

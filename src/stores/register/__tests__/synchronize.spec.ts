@@ -16,6 +16,7 @@ import Action from "../../../actions/Action";
 import { synchronize_callback } from "../synchronize";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
+import DispatcherError from "../../DispatcherError";
 
 suite("synchronize callback", () => {
   const st = state_test;
@@ -104,6 +105,16 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization };
     const state = await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.true;
+  });
+
+  test("force_sync start failed if already running", async () => {
+    let { synchronization } = st;
+    synchronization = { ...synchronization, syncInProgress: true };
+    try {
+      await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
+    } catch (e: DispatcherError) {
+      expect(e.message).to.be.equal("Synchronization in progress");
+    }
   });
 
   test("force_sync", async () => {

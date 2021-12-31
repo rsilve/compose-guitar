@@ -13,6 +13,7 @@ import {
 import { IState } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
+import DispatcherError from "../DispatcherError";
 
 export async function synchronize_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
@@ -64,6 +65,9 @@ export async function synchronize_callback(action: Action, state: IState): Promi
 
   if (action.action_type === SYNCHRO_FORCE_START) {
     const { synchronization } = result;
+    if (synchronization.syncInProgress) {
+      throw new DispatcherError("Synchronization in progress");
+    }
     const sync = { ...synchronization, syncInProgress: true };
     result = { ...result, synchronization: sync };
   }

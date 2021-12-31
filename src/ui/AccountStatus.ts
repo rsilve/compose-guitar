@@ -65,9 +65,14 @@ class AccountStatus extends LitElement {
   syncInProgress: boolean | undefined = false;
 
   dispatchSynchroEvent(): void {
-    action_synchro_force_start()
-      .then(action_synchro_force)
-      .then(() => action_notification_open("Synchronisation completed"));
+    if (!this.syncInProgress) {
+      action_synchro_force_start()
+        .then(action_synchro_force)
+        .then(() => action_notification_open("Synchronisation completed"))
+        .catch((reason) => {
+          console.info(reason);
+        });
+    }
   }
 
   render(): unknown {

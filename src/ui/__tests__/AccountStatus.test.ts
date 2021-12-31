@@ -133,4 +133,21 @@ suite("account status element", () => {
     const res = await promise;
     expect(res).to.be.true;
   });
+
+  test("synchro start action does nothing if already started", async () => {
+    reset_dispatcher({ ...st, synchronization: { enabled: true, syncInProgress: true } });
+    const promiseStart = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.action_type === SYNCHRO_FORCE_START);
+        return Promise.resolve(state);
+      });
+    });
+
+    const el: AccountStatus = await fixture(html` <account-status></account-status>`);
+    await expect(el).shadowDom.to.be.accessible();
+    const div = el.shadowRoot?.querySelector("synchronization-status");
+    div?.dispatchEvent(new MouseEvent("click"));
+    const resStart = await promiseStart;
+    expect(resStart).to.be.false;
+  });
 });
