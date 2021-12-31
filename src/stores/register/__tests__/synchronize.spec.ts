@@ -6,6 +6,7 @@ import {
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
+  SYNCHRO_FORCE,
   SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
@@ -98,10 +99,17 @@ suite("synchronize callback", () => {
     expect(state.synchronization.signInProgress).to.be.undefined;
   });
 
-  test("force_sync", async () => {
+  test("force_sync start", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization };
     const state = await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.true;
+  });
+
+  test("force_sync", async () => {
+    let { synchronization } = st;
+    synchronization = { ...synchronization, syncInProgress: true };
+    const state = await synchronize_callback(new Action(SYNCHRO_FORCE), { ...st, synchronization });
+    expect(state.synchronization.syncInProgress).to.be.undefined;
   });
 });

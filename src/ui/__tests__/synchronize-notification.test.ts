@@ -21,17 +21,19 @@ suite("synchronize-notification element", () => {
   test("is active", async () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
-    await expect(el).shadowDom.to.equal(
-      '<div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>'
-    );
+    await expect(el).shadowDom.to.equal(`
+      <div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>
+      <synchronization-status></synchronization-status>
+`);
   });
 
   test("is active without warning", async () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, signInValid: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
-    await expect(el).shadowDom.to.equal(
-      '<div><account-circle-icon title="Synchronization on "></account-circle-icon></div>'
-    );
+    await expect(el).shadowDom.to.equal(`
+        <div><account-circle-icon title="Synchronization on "></account-circle-icon></div>
+        <synchronization-status></synchronization-status>
+`);
   });
 
   test("has an active action", async () => {
@@ -59,9 +61,10 @@ suite("synchronize-notification element", () => {
       });
     });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
-    await expect(el).shadowDom.to.equal(
-      '<div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>'
-    );
+    await expect(el).shadowDom.to.equal(`
+      <div class="dot"><account-circle-icon title="Synchronization on (not working)"></account-circle-icon></div>
+      <synchronization-status></synchronization-status>
+      `);
     const div = el.shadowRoot?.querySelector("div");
     div?.click();
     const res = await promise;
