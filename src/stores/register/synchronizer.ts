@@ -19,6 +19,10 @@ class Synchronizer {
     }
     return promise.then((id) => add_to_synchronized_index(track, id));
   }
+
+  download(): Promise<void> {
+    return googleApiWrapper.listFiles();
+  }
 }
 
 export const synchronizer = new Synchronizer();

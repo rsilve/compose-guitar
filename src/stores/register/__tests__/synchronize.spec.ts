@@ -102,7 +102,7 @@ suite("synchronize callback", () => {
 
   test("force_sync start", async () => {
     let { synchronization } = st;
-    synchronization = { ...synchronization, enabled: true };
+    synchronization = { ...synchronization, enabled: true, signInValid: true };
     const state = await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.true;
   });

@@ -20,7 +20,6 @@ class GoogleApiWrapper {
             });
             if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
               console.info("signin already valid on load");
-              this.listFiles();
               resolve(true);
             } else {
               gapi.auth2
@@ -98,19 +97,22 @@ class GoogleApiWrapper {
     });
   }
 
-  listFiles(): void {
-    gapi.client.drive.files
-      .list({
-        alt: "json",
-        spaces: "appDataFolder",
-        fields: "files/id",
-        q: "appProperties has { key='type' and value='song' }",
-      })
-      .execute((response) => {
-        response.result.files?.forEach((value) => {
-          this.getSong(value.id || "").then((value1) => console.info(value1));
+  listFiles(): Promise<void> {
+    return new Promise((resolve) => {
+      gapi.client.drive.files
+        .list({
+          alt: "json",
+          spaces: "appDataFolder",
+          fields: "files/id",
+          q: "appProperties has { key='type' and value='song' }",
+        })
+        .execute((response) => {
+          response.result.files?.forEach((value) => {
+            this.getSong(value.id || "").then((value1) => console.info(value1));
+          });
+          resolve();
         });
-      });
+    });
   }
 }
 

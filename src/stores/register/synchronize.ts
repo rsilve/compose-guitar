@@ -86,7 +86,7 @@ function synchroForceStart(action: Action, result: IState) {
       throw new DispatcherError("Synchronization in progress");
     }
     let sync = { ...synchronization };
-    if (synchronization.enabled) {
+    if (synchronization.enabled && synchronization.signInValid) {
       sync = { ...synchronization, syncInProgress: true };
     }
     result = { ...result, synchronization: sync };
@@ -97,10 +97,7 @@ function synchroForceStart(action: Action, result: IState) {
 async function synchroForce(action: Action, result: IState) {
   if (action.action_type === SYNCHRO_FORCE) {
     const { synchronization } = result;
-    const promise = new Promise((resolve) => {
-      setTimeout(() => resolve(true), 1000);
-    });
-    await promise;
+    await synchronizer.download();
     const sync = { ...synchronization, syncInProgress: undefined };
     result = { ...result, synchronization: sync };
   }
