@@ -6,7 +6,8 @@ import { classMap } from "lit/directives/class-map.js";
 class SynchronizationStatus extends LitElement {
   static styles = css`
     :host {
-      font-size: 1.5em;
+      font-size: 1.2em;
+      color: var(--theme-secondary);
       width: 1em;
       height: 1em;
       display: flex;

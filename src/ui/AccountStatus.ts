@@ -39,7 +39,7 @@ class AccountStatus extends LitElement {
         font-family: "Open Sans", sans-serif;
         display: block;
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
         content: "●";
         font-size: 1.2em;
@@ -80,7 +80,7 @@ class AccountStatus extends LitElement {
 
   render(): unknown {
     if (this.enabled) {
-      const className = classMap({ dot: !this.valid });
+      const className = classMap({ dot: true });
       const message = this.valid ? "" : "(not working)";
       return html` <div @click="${action_synchronization_deactivation_request}" class="${className}">
           <account-circle-icon title="Synchronization on ${message}"></account-circle-icon>
