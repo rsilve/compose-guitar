@@ -38,8 +38,7 @@ class SongEditor extends LitElement {
         box-sizing: border-box;
         min-width: 20em;
         padding: 0.5em;
-        background-color: var(--color-background);
-        border: 1px solid var(--color-headline);
+        border: 1px solid var(--theme-surface-darker);
         border-radius: 4px;
       }
 

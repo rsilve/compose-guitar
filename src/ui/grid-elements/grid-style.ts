@@ -2,7 +2,7 @@ import { css } from "lit";
 
 export default css`
   table.grid {
-    text-shadow: 0 0 1px var(--color-background);
+    text-shadow: 0 0 1px var(--theme-on-background);
   }
   table.grid,
   td.grid {
@@ -19,7 +19,7 @@ export default css`
     height: var(--measure-height);
     min-height: var(--measure-height);
     max-height: var(--measure-height);
-    border: 2px var(--grid-border-color) solid;
+    border: 2px var(--theme-on-background) solid;
   }
 
   td.grid-measure {
@@ -60,27 +60,27 @@ export default css`
   }
 
   .grid-measure-beat-1 {
-    border-right: 1px var(--grid-border-color) solid;
-    border-bottom: 1px var(--grid-border-color) solid;
+    border-right: 1px var(--theme-on-background) solid;
+    border-bottom: 1px var(--theme-on-background) solid;
     height: 50%;
   }
 
   .grid-measure-beat-2 {
-    border-left: 1px var(--grid-border-color) solid;
-    border-bottom: 1px var(--grid-border-color) solid;
+    border-left: 1px var(--theme-on-background) solid;
+    border-bottom: 1px var(--theme-on-background) solid;
     height: 50%;
   }
 
   .grid-measure-beat-3 {
-    border-right: 1px var(--grid-border-color) solid;
-    border-top: 1px var(--grid-border-color) solid;
+    border-right: 1px var(--theme-on-background) solid;
+    border-top: 1px var(--theme-on-background) solid;
     width: 50%;
     height: 50%;
   }
 
   .grid-measure-beat-4 {
-    border-left: 1px var(--grid-border-color) solid;
-    border-top: 1px var(--grid-border-color) solid;
+    border-left: 1px var(--theme-on-background) solid;
+    border-top: 1px var(--theme-on-background) solid;
     height: 50%;
   }
 
@@ -91,7 +91,7 @@ export default css`
 
   .grid-measure-beat-34 {
     padding-left: 30%;
-    border-top: 1px var(--grid-border-color) solid;
+    border-top: 1px var(--theme-on-background) solid;
     height: 50%;
   }
 
@@ -104,15 +104,15 @@ export default css`
     padding-right: 4px;
     padding-bottom: 2px;
     border-radius: 0 0 3px 0;
-    background-color: var(--grid-border-color);
-    color: transparent;
+    background-color: var(--theme-on-background);
+    color: var(--theme-background);
   }
 
   @media print {
     .grid-measure-part {
       background-color: transparent;
-      color: var(--grid-border-color);
-      border: 1px solid var(--grid-border-color);
+      color: var(--theme-on-background);
+      border: 1px solid var(--theme-on-background);
     }
   }
 
@@ -122,9 +122,9 @@ export default css`
     right: 3px;
     height: var(--measure-height);
     line-height: var(--measure-height);
-    color: var(--grid-border-color);
+    color: var(--theme-on-background);
     font-weight: bold;
-    border-right: 2px var(--grid-border-color) solid;
+    border-right: 2px var(--theme-on-background) solid;
   }
 
   .grid-measure-repeat-left > span,
@@ -141,9 +141,9 @@ export default css`
     left: 3px;
     height: var(--measure-height);
     line-height: var(--measure-height);
-    color: var(--grid-border-color);
+    color: var(--theme-on-background);
     font-weight: bold;
-    border-left: 2px var(--grid-border-color) solid;
+    border-left: 2px var(--theme-on-background) solid;
   }
 
   .chord_note_detail {

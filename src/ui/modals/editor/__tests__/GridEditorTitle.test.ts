@@ -7,7 +7,7 @@ suite("Grid Editor Title element", () => {
     expect(el).to.instanceOf(GridEditorTitle);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-    <div class="title">Song title (required)</div>
+    <div class="input-label">Song title (required)</div>
     <input
       id="title_input"
       type="text"
@@ -23,7 +23,7 @@ suite("Grid Editor Title element", () => {
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
     <div class="error-title">This title already exists</div>
-    <div class="title">Song title (required)</div>
+    <div class="input-label">Song title (required)</div>
     <input
       id="title_input"
       class="invalid"

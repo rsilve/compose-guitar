@@ -12,22 +12,23 @@ class MenuItem extends LitElement {
       display: block;
       cursor: pointer;
       font-size: 1.2em;
+      padding: 0.5ex;
     }
 
-    :active {
-      transform: scale(1.2) translateX(1ex);
-      background-color: var(--color-background-secondary);
+    :host(:active) {
+      background-color: var(--theme-surface);
       border-radius: 5px;
     }
 
     .dot::after {
+      font-family: "Open Sans", sans-serif;
       display: block;
       position: absolute;
       top: -0.3ex;
       right: -0.2ex;
       content: "●";
       font-size: 1.2em;
-      color: var(--color-error);
+      color: var(--theme-error);
     }
   `;
 

@@ -18,7 +18,6 @@ class GridEditor extends LitElement {
         font-size: 1.5em;
         line-height: 1.4em;
         width: 30em;
-        padding-top: 0.9em;
       }
 
       .title {
@@ -45,8 +44,8 @@ class GridEditor extends LitElement {
         width: 100%;
         padding: 1ex;
         bottom: 0;
-        background-color: hsla(var(--color-error-h), var(--color-error-s), var(--color-error-l), 0.9);
-        color: var(--color-background);
+        background-color: var(--theme-error);
+        color: var(--theme-on-surface);
         border-radius: 0 0 var(--border-radius) var(--border-radius);
       }
     `,
@@ -85,7 +84,7 @@ class GridEditor extends LitElement {
   render(): unknown {
     const normalized = this.value || "";
     return html`
-      <div class="title">Chords progession (required)</div>
+      <div class="input-label">Chords progession (required)</div>
       <textarea
         .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"

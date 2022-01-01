@@ -21,6 +21,7 @@ class EditorMain extends LitElement {
       compose-menu {
         padding-left: 0.3em;
         padding-top: 0.3em;
+        position: fixed;
       }
 
       main-screen {
@@ -45,10 +46,6 @@ class EditorMain extends LitElement {
         bottom: 0;
         right: 0;
         padding-right: 0.3em;
-      }
-
-      compose-menu {
-        position: fixed;
       }
     `,
   ];

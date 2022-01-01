@@ -16,7 +16,7 @@ class HelpModal extends LitElement {
         display: inline-block;
         padding: 0.2ex 0.6ex;
         border-radius: var(--border-radius);
-        background-color: #ccc;
+        background-color: var(--theme-secondary);
       }
       td + td {
         padding-left: 1ex;
