@@ -1,112 +1,109 @@
 :root {
+  --color-grey-dark: #121212;
+  --color-grey-900: #212121;
+  --color-grey-800: #424242;
+  --color-grey-700: #424242;
+  --color-grey-600: #616161;
+  --color-grey-500: #9e9e9e;
+  --color-grey-400: #bdbdbd;
+  --color-grey-300: #e0e0e0;
+  --color-grey-200: #eeeeee;
+  --color-grey-100: #f5f5f5;
+  --color-grey-50: #fafafa;
 
-    --color-grey-dark: #121212;
-    --color-grey-900: #212121;
-    --color-grey-800: #424242;
-    --color-grey-700: #424242;
-    --color-grey-600: #616161;
-    --color-grey-500: #9E9E9E;
-    --color-grey-400: #BDBDBD;
-    --color-grey-300: #E0E0E0;
-    --color-grey-200: #EEEEEE;
-    --color-grey-100: #F5F5F5;
-    --color-grey-50: #FAFAFA;
+  --color-grey-cool-900: #1f2933;
+  --color-grey-cool-800: #323f4b;
+  --color-grey-cool-700: #3e4c59;
+  --color-grey-cool-600: #52606d;
+  --color-grey-cool-500: #616e7c;
+  --color-grey-cool-400: #7b8794;
+  --color-grey-cool-300: #9aa5b1;
+  --color-grey-cool-200: #cbd2d9;
+  --color-grey-cool-100: #e4e7eb;
+  --color-grey-cool-50: #f5f7fa;
 
-    --color-grey-cool-900: #1F2933;
-    --color-grey-cool-800: #323F4B;
-    --color-grey-cool-700: #3E4C59;
-    --color-grey-cool-600: #52606D;
-    --color-grey-cool-500: #616E7C;
-    --color-grey-cool-400: #7B8794;
-    --color-grey-cool-300: #9AA5B1;
-    --color-grey-cool-200: #CBD2D9;
-    --color-grey-cool-100: #E4E7EB;
-    --color-grey-cool-50: #F5F7FA;
+  --color-blue-500: #4f5a9e;
+  --color-blue-700: #303f9f;
+  --color-blue-800: #202a6b;
+  --color-green-400: #00897b;
+  --color-amber-700: #ffb200;
+  --color-red-800: #c62828;
+  --color-red-900: #991f1f;
+  --color-purple-500: #673ab7;
 
-    --color-blue-500: #4f5a9e;
-    --color-blue-700: #303F9F;
-    --color-blue-800: #202a6b;
-    --color-green-400: #00897B;
-    --color-amber-700: #ffb200;
-    --color-red-800: #C62828;
-    --color-red-900: #991f1f;
-    --color-purple-500: #673AB7;
+  --theme-background: var(--color-grey-dark);
+  --theme-on-background: var(--color-grey-cool-200);
+  --theme-surface: var(--color-grey-cool-700);
+  --theme-surface-darker: var(--color-grey-cool-900);
+  --theme-surface-lighter: var(--color-grey-cool-500);
+  --theme-on-surface: var(--color-grey-cool-100);
+  --theme-primary: var(--color-blue-700);
+  --theme-primary-darker: var(--color-blue-800);
+  --theme-primary-lighter: var(--color-blue-500);
+  --theme-on-primary: var(--color-grey-cool-300);
+  --theme-secondary: var(--color-grey-cool-400);
+  --theme-secondary-darker: var(--color-grey-cool-600);
+  --theme-secondary-lighter: var(--color-grey-cool-200);
+  --theme-on-secondary: var(--color-grey-900);
 
+  --theme-confirm: var(--color-green-400);
+  --theme-warning: var(--color-amber-700);
+  --theme-error: var(--color-red-800);
+  --theme-help: var(--color-purple-500);
 
-    --theme-background: var(--color-grey-dark);
-    --theme-on-background: var(--color-grey-cool-200);
-    --theme-surface: var(--color-grey-cool-700);
-    --theme-surface-darker: var(--color-grey-cool-900);
-    --theme-surface-lighter: var(--color-grey-cool-500);
-    --theme-on-surface: var(--color-grey-cool-100);
-    --theme-primary: var(--color-blue-700);
-    --theme-primary-darker: var(--color-blue-800);
-    --theme-primary-lighter: var(--color-blue-500);
-    --theme-on-primary: var(--color-grey-cool-300);
-    --theme-secondary: var(--color-grey-cool-400);
-    --theme-secondary-darker: var(--color-grey-cool-600);
-    --theme-secondary-lighter: var(--color-grey-cool-200);
-    --theme-on-secondary: var(--color-grey-900);
+  --color-error-h: 7;
+  --color-error-s: 89%;
+  --color-error-l: 62%;
+  --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
+  --color-error-light: hsl(var(--color-error-h), var(--color-error-s), calc(var(--color-error-l) + 14%));
 
-    --theme-confirm: var(--color-green-400);
-    --theme-warning: var(--color-amber-700);
-    --theme-error: var(--color-red-800);
-    --theme-help: var(--color-purple-500);
+  --color-background: #fffffe;
+  --color-background-secondary: #f2f2f2;
+  --color-text: #1b2d45;
+  --color-text-secondary: #fde24f;
+  --color-headline: #00214d;
+  --color-button: #00ebc7;
+  --color-button-text: var(--color-headline);
+  --color-button-text-disabled: #ff5470;
+  --border-radius: 4px;
 
+  --input-border: var(--color-headline);
+  --input-focus-h: 350;
+  --input-focus-s: 67%;
+  --input-focus-l: 60%;
+  --input-focus-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
 
-    --color-error-h: 7;
-    --color-error-s: 89%;
-    --color-error-l: 62%;
-    --color-error: hsl(var(--color-error-h), var(--color-error-s), var(--color-error-l));
-    --color-error-light: hsl(var(--color-error-h), var(--color-error-s), calc(var(--color-error-l) + 14%));
-
-    --color-background: #fffffe;
-    --color-background-secondary: #f2f2f2;
-    --color-text: #1b2d45;
-    --color-text-secondary: #fde24f;
-    --color-headline: #00214d;
-    --color-button: #00ebc7;
-    --color-button-text: var(--color-headline);
-    --color-button-text-disabled: #ff5470;
-    --border-radius: 4px;
-
-    --input-border: var(--color-headline);
-    --input-focus-h: 350;
-    --input-focus-s: 67%;
-    --input-focus-l: 60%;
-    --input-focus-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
-
-    --icon-size: 1.5em;
+  --icon-size: 1.5em;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Open Sans", sans-serif;
-    font-size: 1.5em;
-    margin: 0;
-    padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Open Sans", sans-serif;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
 
-    background-color: var(--theme-background);
-    color: var(--theme-on-background);
+  background-color: var(--theme-background);
+  color: var(--theme-on-background);
 }
 
 @media only screen and (max-width: 900px) {
-    body {
-        font-size: 1em;
-    }
+  body {
+    font-size: 1em;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    body {
-        font-size: 0.8em;
-    }
+  body {
+    font-size: 0.8em;
+  }
 }
 
 .visually-hidden {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
-    -webkit-user-select: none;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  -webkit-user-select: none;
 }
