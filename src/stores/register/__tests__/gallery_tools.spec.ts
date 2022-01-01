@@ -9,6 +9,7 @@ import {
   get_from_gallery,
   get_synchronized_index,
   remove_from_gallery,
+  remove_from_synchronized_index,
 } from "../gallery_tools";
 import { STATE_VERSION } from "../../state";
 import { state_test } from "../../../__tests__/TestHelpers";
@@ -231,7 +232,7 @@ suite("Gallery tools", () => {
   test("add to synchronize index", () => {
     localStorage.clear();
     const track = add_to_synchronized_index({ grid_text: "A", title: "title2" }, "my_id");
-    const id = get_synchronized_index(track);
+    const id = get_synchronized_index(track.id || "undef");
     expect(id).to.be.equal("my_id");
   });
 
@@ -239,7 +240,15 @@ suite("Gallery tools", () => {
     localStorage.clear();
     const track = add_to_synchronized_index({ id: "my_song", grid_text: "A", title: "title2" }, "my_id");
     expect(track.id).to.be.equal("my_song");
-    const id = get_synchronized_index(track);
+    const id = get_synchronized_index(track.id || "undef");
     expect(id).to.be.equal("my_id");
+  });
+
+  test("remove from synchronize index", () => {
+    localStorage.clear();
+    const track = add_to_synchronized_index({ grid_text: "A", title: "title2" }, "my_id");
+    remove_from_synchronized_index(track.id || "undef");
+    const id = get_synchronized_index(track.id || "undef");
+    expect(id).to.be.undefined;
   });
 });

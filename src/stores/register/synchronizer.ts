@@ -1,5 +1,10 @@
 import { IState, IStateTrack } from "../state";
-import { add_to_gallery, add_to_synchronized_index, get_synchronized_index } from "./gallery_tools";
+import {
+  add_to_gallery,
+  add_to_synchronized_index,
+  get_synchronized_index,
+  remove_from_synchronized_index,
+} from "./gallery_tools";
 import { googleApiWrapper } from "./google-api";
 
 class Synchronizer {
@@ -10,7 +15,7 @@ class Synchronizer {
     return googleApiWrapper.signOut();
   }
   upload(track: IStateTrack): Promise<IStateTrack> {
-    const index = get_synchronized_index(track);
+    const index = track.id ? get_synchronized_index(track.id) : undefined;
     let promise;
     if (index) {
       promise = googleApiWrapper.updateSong(track, index);
@@ -31,6 +36,16 @@ class Synchronizer {
         add_to_synchronized_index(uploaded.track, uploaded.id);
       });
     });
+  }
+
+  async remove(id: string): Promise<void> {
+    const index = get_synchronized_index(id);
+    if (index) {
+      return googleApiWrapper.delete(index).then(() => {
+        remove_from_synchronized_index(id);
+      });
+    }
+    return Promise.resolve();
   }
 }
 

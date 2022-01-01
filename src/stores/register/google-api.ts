@@ -120,6 +120,14 @@ class GoogleApiWrapper {
         });
     });
   }
+
+  delete(index: string): Promise<void> {
+    return new Promise((resolve) => {
+      return gapi.client.drive.files.delete({ fileId: index }).execute(() => {
+        resolve();
+      });
+    });
+  }
 }
 
 export const googleApiWrapper = new GoogleApiWrapper();
