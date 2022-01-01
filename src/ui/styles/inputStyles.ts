@@ -25,7 +25,7 @@ const inputStyles = css`
   input + textarea,
   textarea + input,
   .form-item + .form-item {
-    margin-top: 0.6ex;
+    margin-top: 1.2ex;
   }
 
   input:focus,
@@ -36,6 +36,22 @@ const inputStyles = css`
 
   .form-item {
     position: relative;
+  }
+
+  .input-label {
+    position: absolute;
+    top: -1ex;
+    left: 1em;
+    font-size: 0.9em;
+    font-weight: lighter;
+    background-color: var(--theme-surface);
+    padding: 0 4px;
+  }
+
+  .input-label + input,
+  .input-label + textarea {
+    display: block;
+    padding-top: 0.3em;
   }
 `;
 

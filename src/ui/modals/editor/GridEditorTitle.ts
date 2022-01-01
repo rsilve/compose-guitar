@@ -13,15 +13,7 @@ class GridEditorTitle extends LitElement {
         display: block;
         font-size: 1.5em;
         width: 30em;
-        padding-top: 0.9em;
-      }
-
-      .title {
-        position: absolute;
-        top: 2px;
-        left: 1em;
-        font-size: 0.9em;
-        font-weight: lighter;
+        padding-top: 0.3em;
       }
 
       .error-title {
@@ -64,7 +56,7 @@ class GridEditorTitle extends LitElement {
   render(): unknown {
     return html`
       ${this.title_error_pane()}
-      <div class="title">Song title (required)</div>
+      <div class="input-label">Song title (required)</div>
       <input
         id="title_input"
         type="text"
