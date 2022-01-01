@@ -45,8 +45,8 @@ class GridEditor extends LitElement {
         width: 100%;
         padding: 1ex;
         bottom: 0;
-        background-color: hsla(var(--color-error-h), var(--color-error-s), var(--color-error-l), 0.9);
-        color: var(--color-background);
+        background-color: var(--theme-error);
+        color: var(--theme-on-surface);
         border-radius: 0 0 var(--border-radius) var(--border-radius);
       }
     `,

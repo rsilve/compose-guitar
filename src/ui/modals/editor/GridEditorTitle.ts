@@ -30,8 +30,8 @@ class GridEditorTitle extends LitElement {
         bottom: 2px;
         right: 2px;
         padding: 0.5ex 1.5ex;
-        background-color: var(--color-background-secondary);
-        color: var(--color-text);
+        background-color: var(--theme-error);
+        color: var(--theme-on-surface);
         border-radius: var(--border-radius) 0 var(--border-radius) 0;
       }
     `,
