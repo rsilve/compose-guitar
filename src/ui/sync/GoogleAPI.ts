@@ -2,7 +2,12 @@ import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { IState } from "../../stores/state";
 import { DispatcherController } from "../../stores/lit_controller";
-import { action_synchro_sign_in } from "../../actions/actions";
+import {
+  action_notification_open,
+  action_synchro_force,
+  action_synchro_force_start,
+  action_synchro_sign_in,
+} from "../../actions/actions";
 
 @customElement("google-api")
 class GoogleAPI extends LitElement {
@@ -24,11 +29,18 @@ class GoogleAPI extends LitElement {
     return html``;
   }
 
+  dispatchSignIn(): void {
+    action_synchro_sign_in()
+      .then(action_synchro_force_start)
+      .then(action_synchro_force)
+      .then(() => action_notification_open("Synchronisation completed"));
+  }
+
   script() {
     const script = document.createElement("script");
     script.src = "https://apis.google.com/js/api.js";
     script.crossOrigin = "anonymous";
-    script.onload = action_synchro_sign_in;
+    script.onload = this.dispatchSignIn;
     return script;
   }
 }

@@ -13,7 +13,7 @@ suite("Grid Editor Title element", () => {
       type="text"
       required
       placeholder="My little valentine (Franck Sinatra)"
-    ></input>
+    />
         `);
   });
 
@@ -30,7 +30,7 @@ suite("Grid Editor Title element", () => {
       type="text"
       required
       placeholder="My little valentine (Franck Sinatra)"
-    ></input>
+    />
         `);
   });
 
@@ -39,12 +39,19 @@ suite("Grid Editor Title element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.detail.value == "toto";
     };
-    const el: GridEditorTitle = await fixture(html` <grid-editor-title @input="${handler}"></grid-editor-title> `);
+    const el: GridEditorTitle = await fixture(
+      html` <grid-editor-title @change-title="${handler}"></grid-editor-title> `
+    );
     expect(el).to.instanceOf(GridEditorTitle);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("input") as HTMLInputElement;
     node.value = "toto";
-    const e = new InputEvent("input");
+    const options = {
+      detail: { value: "toto" },
+      bubbles: true,
+      composed: true,
+    };
+    const e = new CustomEvent("change-title", options);
     node.dispatchEvent(e);
     expect(handled).to.be.true;
   });
@@ -52,15 +59,20 @@ suite("Grid Editor Title element", () => {
   test("have a value property", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
-      handled = e.detail.value == "titi";
+      handled = e.detail.value == "toto";
     };
     const el: GridEditorTitle = await fixture(
-      html` <grid-editor-title value="titi" @input="${handler}"></grid-editor-title> `
+      html` <grid-editor-title value="titi" @change-title="${handler}"></grid-editor-title> `
     );
     expect(el).to.instanceOf(GridEditorTitle);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("input") as HTMLInputElement;
-    const e = new InputEvent("input");
+    const options = {
+      detail: { value: "toto" },
+      bubbles: true,
+      composed: true,
+    };
+    const e = new CustomEvent("change-title", options);
     node.dispatchEvent(e);
     expect(handled).to.be.true;
   });

@@ -2,8 +2,9 @@ import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE, MODALS_CLOSE } from "../..
 import { remove_from_gallery } from "./gallery_tools";
 import { IState } from "../state";
 import Action from "../../actions/Action";
+import { synchronizer } from "./synchronizer";
 
-export function gallery_callback(action: Action, state: IState): Promise<IState> {
+export async function gallery_callback(action: Action, state: IState): Promise<IState> {
   const result = state;
   if (action.action_type === GALLERY_OPEN) {
     result.gallery = true;
@@ -12,6 +13,9 @@ export function gallery_callback(action: Action, state: IState): Promise<IState>
   if (action.action_type === GALLERY_REMOVE) {
     const { id } = action.payload as { id: string };
     remove_from_gallery(id);
+    if (result.synchronization.enabled) {
+      await synchronizer.remove(id);
+    }
     delete result.gallery;
   }
 

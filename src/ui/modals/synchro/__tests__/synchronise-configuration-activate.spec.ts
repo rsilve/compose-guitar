@@ -30,7 +30,7 @@ suite("synchronise configuration activate element", () => {
   test("display status if signin is active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: true };
     const el: SynchronizationConfigurationActivated = await fixture(
-      html`<synchronization-configuration-activated
+      html` <synchronization-configuration-activated
         .synchronization="${sync}"
       ></synchronization-configuration-activated>`
     );
@@ -46,7 +46,7 @@ suite("synchronise configuration activate element", () => {
   test("display warning if signin not active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false };
     const el: SynchronizationConfigurationActivated = await fixture(
-      html`<synchronization-configuration-activated
+      html` <synchronization-configuration-activated
         .synchronization="${sync}"
       ></synchronization-configuration-activated>`
     );
@@ -63,8 +63,8 @@ suite("synchronise configuration activate element", () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false, error: { error: "blocked" } };
     const el: SynchronizationConfigurationActivated = await fixture(
       html`
-                <synchronization-configuration-activated
-                        .synchronization="${sync}"></synchronize-configuration-activate>`
+        <synchronization-configuration-activated
+          .synchronization="${sync}"></synchronize-configuration-activate>`
     );
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();

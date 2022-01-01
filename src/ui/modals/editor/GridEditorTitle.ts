@@ -50,7 +50,7 @@ class GridEditorTitle extends LitElement {
       bubbles: true,
       composed: true,
     };
-    this.dispatchEvent(new CustomEvent("input", options));
+    this.dispatchEvent(new CustomEvent("change-title", options));
   }
 
   render(): unknown {
@@ -65,7 +65,7 @@ class GridEditorTitle extends LitElement {
         required
         placeholder="My little valentine (Franck Sinatra)"
         @input="${this.handle_change}"
-      ></input>
+      />
     `;
   }
 

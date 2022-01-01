@@ -4,9 +4,12 @@ import { save_as_callback } from "../save_as";
 import { get_from_gallery } from "../gallery_tools";
 import { state_test } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
+import sinon from "sinon";
+import { synchronizer } from "../synchronizer";
 
 suite("Register save_as", () => {
   const st = state_test;
+  const stub = sinon.stub(synchronizer);
 
   test("save as start", async () => {
     const state = await save_as_callback(new Action(SAVE_AS_START), { ...st });
@@ -44,5 +47,17 @@ suite("Register save_as", () => {
     expect(state.editor).not.to.be.undefined;
     expect(state.confirm_save).to.be.undefined;
     expect(state.transpose).to.be.equal(0);
+  });
+
+  test("save as start and upload", async () => {
+    stub.upload.resolves(st.track);
+    const state = await save_as_callback(new Action(SAVE_AS_START), { ...st, synchronization: { enabled: true } });
+    const fromGallery = get_from_gallery(state.track?.id || "");
+    expect(fromGallery?.track).to.be.not.null;
+    expect(fromGallery?.track?.id).to.be.not.null;
+    expect(fromGallery?.track?.saved_at).to.be.not.null;
+    delete state?.confirm_save;
+    expect(fromGallery).to.deep.equal(state);
+    sinon.assert.calledOnce(stub.upload);
   });
 });

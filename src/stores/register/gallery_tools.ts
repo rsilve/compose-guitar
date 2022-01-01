@@ -34,6 +34,32 @@ export function add_to_gallery(track: IStateTrack, state: IState): IState {
   return newState;
 }
 
+function parseSynchronizedIndexDict() {
+  const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_synchronized_") || "{}");
+  return track_index;
+}
+
+export function get_synchronized_index(id: string): string | undefined {
+  const track_index: Record<string, string> = parseSynchronizedIndexDict();
+  return track_index[id];
+}
+
+export function add_to_synchronized_index(track: IStateTrack, id: string): IStateTrack {
+  if (!track.id) {
+    track.id = uuid();
+  }
+  const track_index = parseSynchronizedIndexDict();
+  track_index[track.id] = id;
+  localStorage.setItem("_gallery_list_synchronized_", JSON.stringify(track_index));
+  return track;
+}
+
+export function remove_from_synchronized_index(trackId: string): void {
+  const track_index: Record<string, string> = parseSynchronizedIndexDict();
+  delete track_index[trackId];
+  localStorage.setItem("_gallery_list_synchronized_", JSON.stringify(track_index));
+}
+
 function stateFromString(str: string): IState {
   const state = default_state();
   state.track = undefined;

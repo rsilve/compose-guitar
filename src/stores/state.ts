@@ -16,15 +16,21 @@ export interface IStateTrack {
   id?: string;
 }
 
+export interface IStateTrackUploaded {
+  id: string;
+  track: IStateTrack;
+}
+
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 
 export interface IStateSynchronization {
   enabled: boolean;
-  inProgress?: boolean;
+  signInProgress?: boolean;
   open?: boolean;
   signInValid?: boolean;
   error?: unknown;
+  syncInProgress?: boolean;
 }
 
 export interface IState {

@@ -31,7 +31,7 @@ class SynchronizationConfigurationDeactivated extends LitElement {
     let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this._dispatch_activate}">
       activate
     </button>`;
-    if (this.synchronization?.inProgress) {
+    if (this.synchronization?.signInProgress) {
       cta = html`<div class="btn-activate">Please wait during authentication...</div>`;
     }
     return html`<div>The synchronization between devices is not activated. ${cta}</div>`;

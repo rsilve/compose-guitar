@@ -41,18 +41,18 @@ class SynchronizationConfigurationActivated extends LitElement {
 
   render(): unknown {
     let errorStatus = html``;
-    let signInStatus = html`<div>
+    let signInStatus = html` <div>
       You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a>
     </div>`;
     let workingStatus = html` but does not work ⚠️`;
-    if (this.synchronization?.signInValid || this.synchronization?.inProgress) {
-      signInStatus = html`<div>You are connected</div>`;
+    if (this.synchronization?.signInValid || this.synchronization?.signInProgress) {
+      signInStatus = html` <div>You are connected</div>`;
       workingStatus = html``;
     }
 
     if (this.synchronization?.error) {
       const error = this.synchronization?.error as { error: string };
-      errorStatus = html`<div class="error">
+      errorStatus = html` <div class="error">
         The error message was
         <div class="error-message">${error.error}</div>
       </div>`;
