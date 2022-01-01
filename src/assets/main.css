@@ -40,11 +40,11 @@
   --theme-primary: var(--color-blue-700);
   --theme-primary-darker: var(--color-blue-800);
   --theme-primary-lighter: var(--color-blue-500);
-  --theme-on-primary: var(--color-grey-cool-300);
+  --theme-on-primary: var(--color-grey-100);
   --theme-secondary: var(--color-grey-cool-400);
   --theme-secondary-darker: var(--color-grey-cool-600);
   --theme-secondary-lighter: var(--color-grey-cool-200);
-  --theme-on-secondary: var(--color-grey-900);
+  --theme-on-secondary: var(--color-grey-dark);
 
   --theme-confirm: var(--color-green-400);
   --theme-warning: var(--color-amber-700);
