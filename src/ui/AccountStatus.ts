@@ -17,14 +17,16 @@ class AccountStatus extends LitElement {
     css`
       :host {
         position: absolute;
-        top: 0.25em;
-        right: 0.25em;
+        top: 0.3em;
+        right: 0.3em;
+        padding: 0.5ex;
       }
-      :active {
-        transform: scale(1.2) translateX(-1ex);
+
+      :host(:active) {
         background-color: var(--theme-surface);
         border-radius: 5px;
       }
+
       div {
         cursor: pointer;
       }
