@@ -30,6 +30,7 @@ class AccountStatus extends LitElement {
       }
 
       .dot::after {
+        font-family: "Open Sans", sans-serif;
         display: block;
         position: absolute;
         bottom: 0;

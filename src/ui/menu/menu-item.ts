@@ -21,6 +21,7 @@ class MenuItem extends LitElement {
     }
 
     .dot::after {
+      font-family: "Open Sans", sans-serif;
       display: block;
       position: absolute;
       top: -0.3ex;
