@@ -15,6 +15,7 @@ class AppMainPreview extends LitElement {
     css`
       h1 {
         font-size: 1.5em;
+        font-weight: normal;
         margin: 0 0 0.4em 0;
       }
 
