@@ -25,10 +25,11 @@ class TrackGallery extends LitElement {
         line-height: 1.8em;
         padding: 0 4px;
         cursor: pointer;
+        border-radius: var(--border-radius);
       }
 
       li:hover {
-        outline: thin dotted var(--color-headline);
+        outline: thin dotted var(--theme-secondary);
       }
 
       li > span {

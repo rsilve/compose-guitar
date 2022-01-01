@@ -16,7 +16,7 @@ class MenuItem extends LitElement {
 
     :active {
       transform: scale(1.2) translateX(1ex);
-      background-color: var(--color-background-secondary);
+      background-color: var(--theme-surface);
       border-radius: 5px;
     }
 
@@ -27,7 +27,7 @@ class MenuItem extends LitElement {
       right: -0.2ex;
       content: "●";
       font-size: 1.2em;
-      color: var(--color-error);
+      color: var(--theme-error);
     }
   `;
 

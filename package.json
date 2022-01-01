@@ -5,7 +5,7 @@
   "main": "index.html",
   "type": "module",
   "watch": {
-    "start:assets": {
+    "build:assets": {
       "patterns": [
         "src/index.html",
         "src/sw.js",

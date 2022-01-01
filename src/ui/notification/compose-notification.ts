@@ -18,9 +18,9 @@ class ComposeNotification extends LitElement {
       }
 
       li {
-        color: var(--color-background);
+        color: var(--theme-on-surface);
         display: block;
-        background-color: var(--color-text);
+        background-color: var(--theme-confirm);
         padding: 0.5em 1em;
         margin: 0.5em;
         border-radius: var(--border-radius);
