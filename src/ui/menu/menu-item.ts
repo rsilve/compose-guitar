@@ -12,10 +12,10 @@ class MenuItem extends LitElement {
       display: block;
       cursor: pointer;
       font-size: 1.2em;
+      padding: 0.5ex;
     }
 
-    :active {
-      transform: scale(1.2) translateX(1ex);
+    :host(:active) {
       background-color: var(--theme-surface);
       border-radius: 5px;
     }

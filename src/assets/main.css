@@ -73,7 +73,7 @@
   --input-focus-l: 60%;
   --input-focus-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
 
-  --icon-size: 1.5em;
+  --icon-size: 1.2em;
 }
 
 body {
