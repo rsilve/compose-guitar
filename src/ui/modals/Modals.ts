@@ -34,8 +34,9 @@ class Modals extends LitElement {
       transform: translate(-50%, -50%);
 
       padding: 1em;
-      background-color: var(--color-background-secondary);
-      border: 1px solid var(--color-headline);
+      background-color: var(--theme-surface);
+      color: var(--theme-on-surface);
+      border: 1px solid var(--theme-surface-lighter);
       border-radius: var(--border-radius);
 
       font-size: 0.7em;
@@ -45,7 +46,7 @@ class Modals extends LitElement {
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(0, 0, 0, 0.85);
     }
 
     .hide {

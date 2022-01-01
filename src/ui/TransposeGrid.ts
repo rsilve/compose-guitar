@@ -15,6 +15,7 @@ class TransposeGrid extends LitElement {
         padding: 0 0 0.5ex 0.5ex;
         align-items: center;
         height: 1.6em;
+        color: var(--theme-secondary);
       }
 
       label {
@@ -30,7 +31,7 @@ class TransposeGrid extends LitElement {
         appearance: none;
         width: 100%; /* Full-width */
         height: 8px; /* Specified height */
-        background-color: var(--color-background-secondary); /* Grey background */
+        background-color: var(--theme-secondary); /* Grey background */
         outline: none; /* Remove outline */
         opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
         -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
@@ -52,7 +53,7 @@ class TransposeGrid extends LitElement {
         width: 16px; /* Set a specific slider handle width */
         height: 16px; /* Slider handle height */
         border-radius: 8px;
-        background: var(--color-text); /* Green background */
+        background: var(--theme-secondary-darker); /* Green background */
         cursor: pointer; /* Cursor on hover */
       }
 
@@ -60,12 +61,12 @@ class TransposeGrid extends LitElement {
         width: 16px; /* Set a specific slider handle width */
         height: 16px; /* Slider handle height */
         border-radius: 8px;
-        background: var(--color-text); /* Green background */
+        background: var(--theme-secondary-darker); /* Green background */
         cursor: pointer; /* Cursor on hover */
       }
 
       input:active {
-        background-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+        background-color: var(--theme-secondary-lighter);
       }
     `,
   ];

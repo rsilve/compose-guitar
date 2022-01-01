@@ -36,7 +36,8 @@ class ZoomGrid extends LitElement {
         width: 1.4em;
         height: 1.4em;
         padding-top: 0.65em;
-        background-color: var(--color-background-secondary);
+        color: var(--theme-on-secondary);
+        background-color: var(--theme-secondary);
         border-radius: var(--border-radius);
         text-align: center;
         line-height: 0;
@@ -51,6 +52,7 @@ class ZoomGrid extends LitElement {
 
       .text {
         font-size: 1em;
+        color: var(--theme-secondary);
       }
     `,
   ];

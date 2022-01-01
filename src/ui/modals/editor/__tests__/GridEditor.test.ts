@@ -7,7 +7,7 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-        <div class="title">Chords progession (required)</div>
+        <div class="input-label">Chords progession (required)</div>
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..."></textarea>
@@ -19,7 +19,7 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-        <div class="title">Chords progession (required)</div>
+        <div class="input-label">Chords progession (required)</div>
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..."></textarea>
@@ -31,7 +31,7 @@ suite("Grid Editor element", () => {
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
-    <div class="title">Chords progession (required)</div>
+    <div class="input-label">Chords progession (required)</div>
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>
@@ -52,7 +52,7 @@ suite("Grid Editor element", () => {
 
     await el.updateComplete;
     expect(el).shadowDom.to.be.equal(`
-        <div class="title">Chords progession (required)</div>
+        <div class="input-label">Chords progession (required)</div>
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>
@@ -79,7 +79,7 @@ suite("Grid Editor element", () => {
 
     await el.updateComplete;
     expect(el).shadowDom.to.be.equal(`
-        <div class="title">Chords progession (required)</div>
+        <div class="input-label">Chords progession (required)</div>
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>

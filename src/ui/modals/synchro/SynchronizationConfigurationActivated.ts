@@ -22,8 +22,8 @@ class SynchronizationConfigurationActivated extends LitElement {
         margin-top: 0.3em;
         padding: 0.5em 1em;
         border-radius: var(--border-radius);
-        background-color: var(--color-error-light);
-        border: 1px solid var(--color-error);
+        background-color: var(--theme-error);
+        border: 1px solid var(--theme-error);
       }
     `,
   ];

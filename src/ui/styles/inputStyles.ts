@@ -4,10 +4,10 @@ const inputStyles = css`
   input,
   textarea {
     font-size: 1em;
-    color: var(--color-text);
+    color: var(--theme-on-surface);
     padding: 0.25em 0.5em;
-    background-color: var(--color-background);
-    border: 2px solid var(--input-border);
+    background-color: var(--theme-surface);
+    border: 2px solid var(--theme-surface-darker);
     border-radius: 4px;
     transition: 180ms box-shadow ease-in-out;
     autocomplete: off;
@@ -18,25 +18,40 @@ const inputStyles = css`
   input.invalid,
   textarea:invalid,
   textarea.invalid {
-    border: 2px solid var(--color-error);
+    border: 2px solid var(--theme-error);
   }
 
   input + input,
   input + textarea,
   textarea + input,
   .form-item + .form-item {
-    margin-top: 0.6ex;
+    margin-top: 1.2ex;
   }
 
   input:focus,
   textarea:focus {
-    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
-    box-shadow: 0 0 0 2px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 20%), 0.8);
+    box-shadow: 0 0 0 2px var(--theme-surface-lighter);
     outline: 2px solid transparent;
   }
 
   .form-item {
     position: relative;
+  }
+
+  .input-label {
+    position: absolute;
+    top: -1ex;
+    left: 1em;
+    font-size: 0.9em;
+    font-weight: lighter;
+    background-color: var(--theme-surface);
+    padding: 0 4px;
+  }
+
+  .input-label + input,
+  .input-label + textarea {
+    display: block;
+    padding-top: 0.3em;
   }
 `;
 
