@@ -35,7 +35,7 @@ suite("Main app element", () => {
             <zoom-grid class="no_print"></zoom-grid>
             <compose-keys class="no_print"></compose-keys>
             <transpose-grid class="no_print"></transpose-grid>
-            <account-status class="no_print"></account-status>
+            <account-status class="no_print" ontouchstart=""></account-status>
             <compose-modals class="no_print"></compose-modals>
             <compose-notification class="no_print"></compose-notification>
             <google-api class="no_print"></google-api>

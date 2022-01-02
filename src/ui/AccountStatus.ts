@@ -67,6 +67,11 @@ class AccountStatus extends LitElement {
   @state()
   syncInProgress: boolean | undefined = false;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("ontouchstart", "");
+  }
+
   dispatchSynchroEvent(): void {
     if (!this.syncInProgress) {
       action_synchro_force_start()

@@ -90,7 +90,9 @@ class TrackGallery extends LitElement {
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-secondary _close" @click="${this._dispatch_close}">Cancel</button>
+        <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this._dispatch_close}">
+          Cancel
+        </button>
       </div>
     `;
   }

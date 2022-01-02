@@ -35,9 +35,13 @@ class ConfirmSave extends LitElement {
     return html`
       <p>Some changes have not been recorded. Do you want to continue anyway?</p>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-secondary _cancel" @click="${this._dispatch_cancel}">Cancel</button>
-        <button tabindex="-1" class="btn-secondary _continue" @click="${this._dispatch_continue}">Continue</button>
-        <button class="_save" @click="${this._dispatch_save}">Save and continue</button>
+        <button tabindex="-1" class="btn-secondary _cancel" ontouchstart="" @click="${this._dispatch_cancel}">
+          Cancel
+        </button>
+        <button tabindex="-1" class="btn-secondary _continue" ontouchstart="" @click="${this._dispatch_continue}">
+          Continue
+        </button>
+        <button class="_save" ontouchstart="" @click="${this._dispatch_save}">Save and continue</button>
       </div>
     `;
   }

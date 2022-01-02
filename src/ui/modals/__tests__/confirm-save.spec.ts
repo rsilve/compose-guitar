@@ -9,9 +9,9 @@ suite("Confirm save element", () => {
     expect(el).shadowDom.to.be.equal(`
 <p>Some changes have not been recorded. Do you want to continue anyway?</p>
             <div class="modal-footer">
-                <button tabindex="-1" class="btn-secondary _cancel">Cancel</button>
-                <button tabindex="-1" class="btn-secondary _continue">Continue</button>
-                <button class="_save">Save and continue</button>
+                <button tabindex="-1" class="btn-secondary _cancel" ontouchstart="">Cancel</button>
+                <button tabindex="-1" class="btn-secondary _continue" ontouchstart="">Continue</button>
+                <button class="_save" ontouchstart="">Save and continue</button>
             </div>        
         `);
   });
