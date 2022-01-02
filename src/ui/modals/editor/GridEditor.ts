@@ -4,7 +4,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { classMap } from "lit/directives/class-map.js";
 import Grid from "../../../parser/Grid";
 import inputStyles from "../../styles/inputStyles";
-import { auto_correct, normalize } from "./tools";
+import { AutoCorrect, normalize } from "./tools";
 
 @customElement("grid-editor")
 class GridEditor extends LitElement {
@@ -66,15 +66,17 @@ class GridEditor extends LitElement {
   _grid_error_reason: string | undefined = undefined;
 
   _handle_change_grid(e: Event): void {
-    let raw = (e.target as HTMLTextAreaElement).value;
-    raw = auto_correct(raw);
-    (e.target as HTMLTextAreaElement).value = raw;
-    raw = normalize(raw);
+    const el = e.target as HTMLTextAreaElement;
+    let raw = el.value;
+    const autoCorrect = new AutoCorrect(raw, el.selectionEnd);
+    el.value = autoCorrect.value;
+    el.selectionEnd = autoCorrect.position;
 
+    raw = normalize(autoCorrect.value);
     this.validate(raw);
 
     const options = {
-      detail: { value: raw, valid: this._grid_valid },
+      detail: { value: autoCorrect.value, valid: this._grid_valid },
       bubbles: true,
       composed: true,
     };
@@ -84,7 +86,7 @@ class GridEditor extends LitElement {
   render(): unknown {
     const normalized = this.value || "";
     return html`
-      <div class="input-label">Chords progession (required)</div>
+      <div class="input-label">Chord sequence (required)</div>
       <textarea
         .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
