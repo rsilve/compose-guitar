@@ -31,7 +31,7 @@ suite("synchronise configuration element", () => {
             <h1>Synchronization</h1>
             <synchronization-configuration-deactivated></synchronization-configuration-deactivated>
             <div class="modal-footer">
-                <button tabindex="-1" class="btn-primary _close">Close</button>
+                <button tabindex="-1" class="btn-primary _close" ontouchstart="">Close</button>
             </div>
         `);
   });
@@ -47,7 +47,7 @@ suite("synchronise configuration element", () => {
             <h1>Synchronization</h1>
             <synchronization-configuration-activated></synchronization-configuration-activated>
             <div class="modal-footer">
-                <button tabindex="-1" class="btn-primary _close">Close</button>
+                <button tabindex="-1" class="btn-primary _close" ontouchstart="">Close</button>
             </div>
         `);
   });
