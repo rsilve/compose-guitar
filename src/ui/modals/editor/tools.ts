@@ -34,7 +34,7 @@ export class AutoCorrect {
     this._value = (head + tail)
       .replace(/[ \t]+/g, " ")
       .replace(/\| +\|/g, "|")
-      .replace(/([^\n|])\s*$/, "$1 |");
+      .replace(/([^\n|])$/, "$1 |");
     this._position = head.length;
   }
 
