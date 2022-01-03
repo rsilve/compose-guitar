@@ -123,7 +123,8 @@ class ComposeKeys extends LitElement {
   }
 
   render(): unknown {
-    return html` <help-icon @click="${action_help_open}" title="Shortcut help"></help-icon> `;
+    const color = getComputedStyle(this).getPropertyValue("--theme-help");
+    return html` <help-icon @click="${action_help_open}" .fill="${color}" title="Shortcut help"></help-icon> `;
   }
 }
 
