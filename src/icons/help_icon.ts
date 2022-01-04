@@ -1,11 +1,11 @@
 import { svg } from "lit";
 import { customElement } from "lit/decorators.js";
 import icon_style from "./icon_style";
-import StyleMixin from "./StyleMixin";
 import { styleMap } from "lit/directives/style-map.js";
+import StyledIcon from "./StyledIcon";
 
 @customElement("help-icon")
-class HelpIcon extends StyleMixin {
+class HelpIcon extends StyledIcon {
   static styles = [icon_style];
 
   render(): unknown {
