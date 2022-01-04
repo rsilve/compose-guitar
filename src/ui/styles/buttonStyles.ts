@@ -10,8 +10,12 @@ const buttonStyles = css`
     border: 1px solid var(--theme-primary-lighter);
     border-radius: var(--border-radius);
     font-size: 1em;
-    padding: 0.5em 1em;
+    padding: 0 1em;
     min-width: 7em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: center;
+    box-sizing: border-box;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
 
     outline: 2px solid transparent;

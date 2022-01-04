@@ -66,10 +66,7 @@ class SongEditor extends LitElement {
       }
 
       .help_toggle {
-        display: block;
-        position: absolute;
-        line-height: 0;
-        cursor: pointer;
+        float: left;
       }
     `,
   ];
@@ -163,11 +160,12 @@ class SongEditor extends LitElement {
     if (!this._grid_valid || !this._grid_title || !this._value) {
       disabled = "disabled";
     }
+    const color = getComputedStyle(this).getPropertyValue("--theme-help");
     return html` <div class="modal-footer">
-      <div class="help_toggle" @click="${this._toggle_help}">
-        <info-icon></info-icon>
+      <button class="btn-secondary help_toggle" @click="${this._toggle_help}">
+        <info-icon .fill="${color}"></info-icon>
         See examples
-      </div>
+      </button>
 
       <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${action_track_edit_cancel}">Cancel</button>
       <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">Apply</button>
