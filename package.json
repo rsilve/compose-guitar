@@ -46,8 +46,7 @@
     "prepare:playwright": "playwright install chromium",
     "prepare:playwright-deps": "playwright install-deps chromium",
     
-    "pretest": "npm-run-all prepare:playwright",
-    "pretest:watch": "npm-run-all prepare:playwright"
+    "pretest": "npm-run-all prepare:playwright prepare:playwright-deps"
     
 
   },

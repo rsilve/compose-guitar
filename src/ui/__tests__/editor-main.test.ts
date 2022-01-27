@@ -3,7 +3,7 @@ import EditorMain from "../editor-main";
 import { reset_dispatcher } from "../../stores/dispatcher";
 import { state_test } from "../../__tests__/TestHelpers";
 import sinon from "sinon";
-import { FeatureFlag } from "../../tools/FeatureFlag";
+import FeatureFlag from "../../tools/FeatureFlag";
 
 suite("Main app element", () => {
   test("is defined", async () => {
@@ -24,7 +24,9 @@ suite("Main app element", () => {
   });
 
   test("is defined with synchro enabled", async () => {
-    sinon.replace(FeatureFlag, "synchro_enabled", true);
+    sinon.stub(FeatureFlag, "get").callsFake(() => {
+      return { synchro_enabled: true };
+    });
     reset_dispatcher(state_test);
     const el: EditorMain = await fixture(html` <editor-main></editor-main> `);
     expect(el).to.instanceOf(EditorMain);
