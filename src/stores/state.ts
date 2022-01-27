@@ -21,6 +21,10 @@ export interface IStateTrackUploaded {
   track: IStateTrack;
 }
 
+export interface IStateFeatureFlag {
+  synchro_enabled: boolean;
+}
+
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 

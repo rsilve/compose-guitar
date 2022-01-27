@@ -1,3 +1,5 @@
+import { IStateFeatureFlag } from "src/stores/state";
+
 function getBoolean(value: string): boolean {
   try {
     return JSON.parse(value);
@@ -6,16 +8,12 @@ function getBoolean(value: string): boolean {
   }
 }
 
-type FeatureFlagType = {
-  synchro_enabled: boolean;
-};
-
-const featureFlag: FeatureFlagType = {
+const featureFlag: IStateFeatureFlag = {
   synchro_enabled: getBoolean("__synchro_enabled__"),
 };
 
 class FeatureFlag {
-  get(): FeatureFlagType {
+  get(): IStateFeatureFlag {
     return featureFlag;
   }
 }
