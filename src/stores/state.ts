@@ -49,6 +49,7 @@ export interface IState {
   confirm_save?: boolean;
   transpose: number;
   synchronization: IStateSynchronization;
+  featureFlags?: IStateFeatureFlag;
 }
 
 export function default_state(): IState {
