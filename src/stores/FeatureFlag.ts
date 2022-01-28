@@ -1,4 +1,4 @@
-import { IStateFeatureFlag } from "src/stores/state";
+import { IState, IStateFeatureFlag } from "src/stores/state";
 
 function getBoolean(value: string): boolean {
   try {
@@ -8,13 +8,19 @@ function getBoolean(value: string): boolean {
   }
 }
 
-const featureFlag: IStateFeatureFlag = {
+const _featureFlag: IStateFeatureFlag = {
   synchro_enabled: getBoolean("__synchro_enabled__"),
 };
 
+let aggregatedFeatureFlag = { ..._featureFlag };
+
 class FeatureFlag {
   get(): IStateFeatureFlag {
-    return featureFlag;
+    return aggregatedFeatureFlag;
+  }
+
+  init(state: IState): void {
+    aggregatedFeatureFlag = { ...aggregatedFeatureFlag, ...state.featureFlags };
   }
 }
 
