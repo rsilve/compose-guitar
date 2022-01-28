@@ -3,7 +3,7 @@ import EditorMain from "../editor-main";
 import { reset_dispatcher } from "../../stores/dispatcher";
 import { state_test } from "../../__tests__/TestHelpers";
 import sinon from "sinon";
-import FeatureFlag from "../../tools/FeatureFlag";
+import FeatureFlag from "../../stores/FeatureFlag";
 
 suite("Main app element", () => {
   test("is defined", async () => {

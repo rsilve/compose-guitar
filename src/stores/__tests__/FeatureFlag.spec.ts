@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import FeatureFlag from "../FeatureFlag";
+import FeatureFlag from "../../stores/FeatureFlag";
 
 suite("FeatureFlag", () => {
   test("has getter", () => {

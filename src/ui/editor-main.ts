@@ -11,7 +11,7 @@ import "./notification/compose-notification";
 import "./compose-keys";
 import "./AccountStatus";
 import "./sync/GoogleAPI";
-import FeatureFlag from "../tools/FeatureFlag";
+import FeatureFlag from "../stores/FeatureFlag";
 
 @customElement("editor-main")
 class EditorMain extends LitElement {
