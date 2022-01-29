@@ -21,6 +21,10 @@ export interface IStateTrackUploaded {
   track: IStateTrack;
 }
 
+export interface IStateFeatureFlag {
+  synchro_enabled: boolean;
+}
+
 type IStateVersion = "v2";
 export const STATE_VERSION: IStateVersion = "v2";
 
@@ -45,6 +49,7 @@ export interface IState {
   confirm_save?: boolean;
   transpose: number;
   synchronization: IStateSynchronization;
+  featureFlags?: IStateFeatureFlag;
 }
 
 export function default_state(): IState {

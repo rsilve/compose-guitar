@@ -11,7 +11,7 @@ import "./notification/compose-notification";
 import "./compose-keys";
 import "./AccountStatus";
 import "./sync/GoogleAPI";
-import { FeatureFlag } from "../tools/FeatureFlag";
+import FeatureFlag from "../stores/FeatureFlag";
 
 @customElement("editor-main")
 class EditorMain extends LitElement {
@@ -52,7 +52,7 @@ class EditorMain extends LitElement {
 
   protected render(): unknown {
     let account = html``;
-    if (FeatureFlag.synchro_enabled) {
+    if (FeatureFlag.get().synchro_enabled) {
       account = html`<account-status class="no_print"></account-status>`;
     }
     return html`

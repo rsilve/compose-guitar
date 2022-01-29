@@ -6,6 +6,7 @@ import { save_last_state } from "../gallery_tools";
 import { state_test } from "../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
 import Action from "../../../actions/Action";
+import FeatureFlag from "../../FeatureFlag";
 
 suite("Register misc", () => {
   const st = state_test;
@@ -22,10 +23,14 @@ suite("Register misc", () => {
       synchronization: {
         enabled: false,
       },
+      featureFlags: {
+        synchro_enabled: true,
+      },
     };
     save_last_state(last_state);
     const state = await init_app_callback(new Action(INIT_APP), { ...st });
     expect(state).to.deep.equal(last_state);
+    expect(FeatureFlag.get().synchro_enabled).to.be.true;
   });
 
   test("zoom_change_callback", async () => {

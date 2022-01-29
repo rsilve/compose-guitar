@@ -2,6 +2,7 @@ import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../actions/actions";
 import { get_last_state } from "./gallery_tools";
 import { IState } from "../state";
 import Action from "../../actions/Action";
+import FeatureFlag from "../FeatureFlag";
 
 export function init_app_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
@@ -10,6 +11,7 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
     if (st) {
       result = { ...result, ...st };
     }
+    FeatureFlag.init(result);
     console.info("initialized with", result);
   }
 
