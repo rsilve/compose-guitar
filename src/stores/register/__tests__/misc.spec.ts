@@ -30,7 +30,7 @@ suite("Register misc", () => {
     save_last_state(last_state);
     const state = await init_app_callback(new Action(INIT_APP), { ...st });
     expect(state).to.deep.equal(last_state);
-    expect(FeatureFlag.get().synchro_enabled).to.be.false;
+    expect(FeatureFlag.get().synchro_enabled).to.be.true;
   });
 
   test("zoom_change_callback", async () => {
