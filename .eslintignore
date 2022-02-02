@@ -3,3 +3,4 @@ dist
 build
 **/*.spec.ts
 **/*.test.ts
+vite.config.js
