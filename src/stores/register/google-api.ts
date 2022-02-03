@@ -19,8 +19,8 @@ class GoogleApiWrapper {
       gapi.load("client:auth2", () => {
         gapi.client
           .init({
-            apiKey: getString(import.meta.env.VITE_API_KEY),
-            clientId: getString(import.meta.env.VITE_API_CLIENT_ID),
+            apiKey: getString(import.meta.env?.VITE_API_KEY || ""),
+            clientId: getString(import.meta.env?.VITE_API_CLIENT_ID || ""),
             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
             scope: "profile https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.appdata",
           })

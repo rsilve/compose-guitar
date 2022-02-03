@@ -15,7 +15,7 @@ function getBoolean(value: string | boolean | undefined): boolean {
 }
 
 const _featureFlag: IStateFeatureFlag = {
-  synchro_enabled: getBoolean(import.meta.env.VITE_SYNCHRO_ENABLED),
+  synchro_enabled: getBoolean(import.meta.env?.VITE_SYNCHRO_ENABLED || false),
 };
 
 let aggregatedFeatureFlag = { ..._featureFlag };
