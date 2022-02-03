@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "ESNext",
+    "types": ["vite/client", "gapi", "gapi.auth2", "gapi.client.drive"],
     "module": "es2020",
     "lib": ["es2020", "DOM", "DOM.Iterable"],
     "declaration": true,
