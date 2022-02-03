@@ -18,7 +18,9 @@ tasks:
     openMode: tab-after
   - name: run test watch
     init: gp sync-await bundle
-    command: npm run test:watch
+    command: |
+      npm run pretest
+      npm run test:watch
     openMode: tab-after
 
 ports:
