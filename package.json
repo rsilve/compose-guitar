@@ -19,7 +19,7 @@
     "clean": "rm -rf build out dist",
     "build:compile": "tsc",
     "build:dist": "rollup -c",
-    "build:assets": "copyfiles -u 1 src/index.html src/sw.js src/robots.txt src/assets/** out/",
+    "build:assets": "copyfiles -u 1 src/index.html src/sw.js src/public/robots.txt src/assets/** out/",
     "build:all": "npm-run-all clean build:assets build:compile",
     "build:compile:watch": "npm run build:compile -- --watch",
     "build:prod": "vite build",
@@ -29,8 +29,9 @@
     "start:serve:watch": "wds --watch",
     "test": "npm-run-all build:compile test:wtr",
     "test:wtr": "web-test-runner",
-    "test:wtr:watch": "web-test-runner --watch",
+    "test:wtr:watch": "npm run test:wtr -- --watch",
     "test:ci": "npm-run-all build:compile test:wtr",
+    "preview": "vite preview",
     "verify": "npm-run-all verify:*",
     "verify:lint": "eslint src --ext .ts ",
     "verify:prettier": "prettier --check src",
@@ -75,7 +76,8 @@
     "prettier": "^2.5.0",
     "sinon": "^12.0.1",
     "typescript": "^4.5.2",
-    "vite": "^2.7.13"
+    "vite": "^2.7.13",
+    "vite-plugin-pwa": "^0.11.13"
   },
   "dependencies": {
     "@types/gapi": "^0.0.41",
