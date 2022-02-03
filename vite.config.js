@@ -1,11 +1,19 @@
 import { VitePWA } from "vite-plugin-pwa";
 
+let hmr = {};
+if (process.env.GITPOD_GIT_USER_EMAIL) {
+  hmr = { port: 443};
+}
+
 export default {
   root: "src",
   public: "src",
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+  },
+  server: {
+    hmr: hmr,
   },
   plugins: [
     VitePWA({
