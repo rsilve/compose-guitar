@@ -1,6 +1,12 @@
 import { IState, IStateFeatureFlag } from "src/stores/state";
 
-function getBoolean(value: string): boolean {
+function getBoolean(value: string | boolean | undefined): boolean {
+  if (typeof value === "boolean") {
+    return value;
+  }
+  if (value === undefined) {
+    return false;
+  }
   try {
     return JSON.parse(value);
   } catch (e) {
@@ -9,7 +15,7 @@ function getBoolean(value: string): boolean {
 }
 
 const _featureFlag: IStateFeatureFlag = {
-  synchro_enabled: getBoolean("__synchro_enabled__"),
+  synchro_enabled: getBoolean(import.meta.env?.VITE_SYNCHRO_ENABLED || false),
 };
 
 let aggregatedFeatureFlag = { ..._featureFlag };

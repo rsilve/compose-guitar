@@ -3,14 +3,24 @@
 
 import { IStateTrack, IStateTrackUploaded } from "../state";
 
+function getString(value: string | boolean | undefined): string {
+  if (typeof value === "boolean") {
+    return "";
+  }
+  if (value === undefined) {
+    return "";
+  }
+  return value;
+}
+
 class GoogleApiWrapper {
   signIn(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       gapi.load("client:auth2", () => {
         gapi.client
           .init({
-            apiKey: "__api_key__",
-            clientId: "__api_client_id__",
+            apiKey: getString(import.meta.env?.VITE_API_KEY || ""),
+            clientId: getString(import.meta.env?.VITE_API_CLIENT_ID || ""),
             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
             scope: "profile https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.appdata",
           })

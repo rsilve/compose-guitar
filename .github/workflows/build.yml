@@ -36,7 +36,7 @@ jobs:
         run: |
           npm ci --no-audit
           npx audit-ci --high
-          npm run build:all
+          npm run build:compile
           npm run verify
           npm run test:ci
       - name: SonarCloud Scan

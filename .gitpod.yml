@@ -8,21 +8,23 @@ tasks:
       yes y | npx playwright install
       yes y | npx playwright install-deps
       gp sync-done bundle
-  - name: run build watch asset
-    init: gp sync-await bundle
-    command: npm run start:assets:watch
-    openMode: tab-after
-  - name: run build watch
-    init: gp sync-await bundle
-    command: npm run start:build:watch
-    openMode: tab-after
   - name: run serve
     init: gp sync-await bundle
-    command: npm run start:serve:watch
+    command: npm run start
+    openMode: tab-after
+  - name: run compile watch
+    init: gp sync-await bundle
+    command: npm run build:compile:watch
+    openMode: tab-after
+  - name: run test watch
+    init: gp sync-await bundle
+    command: |
+      npm run pretest
+      npm run test:watch
     openMode: tab-after
 
 ports:
-  - port: 8000
+  - port: 3000
 
 github:
   prebuilds:

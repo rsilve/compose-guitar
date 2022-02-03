@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es2020",
+    "types": ["vite/client", "gapi", "gapi.auth2", "gapi.client.drive", "mocha", "node"],
     "module": "es2020",
     "lib": ["es2020", "DOM", "DOM.Iterable"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "inlineSources": true,
-    "outDir": "./build",
+    "outDir": "./out",
     "rootDir": "./src",
     "baseUrl": "./",
     "strict": true,
