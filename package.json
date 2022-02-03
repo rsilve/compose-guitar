@@ -4,32 +4,16 @@
   "description": "",
   "main": "index.html",
   "type": "module",
-  "watch": {
-    "build:assets": {
-      "patterns": [
-        "src/index.html",
-        "src/sw.js",
-        "src/robots.txt",
-        "src/assets/*"
-      ],
-      "extensions": "ts,js,css,png"
-    }
-  },
   "scripts": {
     "clean": "rm -rf build out dist",
     "build:compile": "tsc",
-    "build:dist": "rollup -c",
-    "build:assets": "copyfiles -u 1 src/index.html src/sw.js src/public/robots.txt src/assets/** out/",
-    "build:all": "npm-run-all clean build:assets build:compile",
     "build:compile:watch": "npm run build:compile -- --watch",
     "build:prod": "vite build",
     "start": "vite",
-    "start:assets:watch": "npm-watch build:assets",
-    "start:build:watch": "npm-run-all clean build:assets build:compile:watch",
     "start:serve:watch": "wds --watch",
     "test": "npm-run-all build:compile test:wtr",
     "test:wtr": "web-test-runner",
-    "test:wtr:watch": "npm run test:wtr -- --watch",
+    "test:watch": "npm run test:wtr -- --watch",
     "test:ci": "npm-run-all build:compile test:wtr",
     "preview": "vite preview",
     "verify": "npm-run-all verify:*",
@@ -46,15 +30,8 @@
   "license": "ISC",
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
-    "@rollup/plugin-node-resolve": "^13.0.6",
-    "@rollup/plugin-replace": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
-    "@web/dev-server": "^0.1.28",
-    "@web/dev-server-legacy": "^0.1.7",
-    "@web/dev-server-rollup": "^0.3.13",
-    "@web/rollup-plugin-copy": "^0.3.0",
-    "@web/rollup-plugin-html": "^1.10.1",
     "@web/test-runner": "^0.13.22",
     "@web/test-runner-playwright": "^0.8.8",
     "audit-ci": "^5.1.2",
@@ -72,7 +49,6 @@
     "lint-staged": "^12.1.2",
     "lit-html": "^2.0.2",
     "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.10.0",
     "prettier": "^2.5.0",
     "sinon": "^12.0.1",
     "typescript": "^4.5.2",
