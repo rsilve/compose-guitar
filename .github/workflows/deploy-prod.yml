@@ -27,6 +27,9 @@ jobs:
       - name: Build
         env: 
             BASE_URL: ${{ secrets.BASE_URL }}
+            VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+            VITE_API_CLIENT_ID: ${{ secrets.VITE_API_CLIENT_ID }}
+            VITE_SYNCHRO_ENABLED: ${{ secrets.VITE_SYNCHRO_ENABLED }}
         run: |
           npm ci --no-audit
           npm run build:prod
