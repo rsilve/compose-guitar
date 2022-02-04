@@ -76,4 +76,12 @@ suite("chord render", () => {
         </span>
         </div>`);
   });
+
+  test("same", async () => {
+    const el = await fixture(html`<chord-render-test .chord="${new Chord("%")}"></chord-render-test>`);
+    expect(el).to.be.instanceOf(ChordRenderTest);
+    await expect(el).shadowDom.to.be.accessible();
+    expect(el).shadowDom.to.be.equal(`
+        <div class="chord"><span class="chord_note">%</span></div>`);
+  });
 });

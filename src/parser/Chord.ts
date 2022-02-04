@@ -175,6 +175,9 @@ class Chord {
   }
 
   transpose(tone: number): Chord {
+    if (this.same) {
+      return this;
+    }
     if (this.base) {
       const note = `${this.base}${this.base_modifier ? this.base_modifier : ""}`;
       let raw = this.name.replace(note, this._transpose(note, tone));
