@@ -227,4 +227,29 @@ suite("compose-key element", () => {
     });
     fixtureCleanup();
   });
+
+  test("toogle_synchro event", async () => {
+    reset_dispatcher(st);
+    register(help_callback);
+    const promise = new Promise((resolve) => {
+      connect(() => {
+        resolve(true);
+      });
+    });
+
+    const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
+    expect(el).to.instanceOf(ComposeKeys);
+    await expect(el).shadowDom.to.be.accessible();
+    await expect(el).dom.to.be.accessible();
+    const e = new KeyboardEvent("keydown", {
+      ctrlKey: true,
+      altKey: true,
+      key: "s",
+    });
+    document.dispatchEvent(e);
+    await promise.then((value) => {
+      expect(value).to.be.true;
+    });
+    fixtureCleanup();
+  });
 });
