@@ -10,7 +10,6 @@ import {
   action_modals_close,
   action_notification_open,
   action_save_as_start,
-  action_synchro_toggle_enable,
   action_track_copy,
   action_track_edit,
   action_track_new,
@@ -60,8 +59,6 @@ class ComposeKeys extends LitElement {
     this.copy_key(e);
 
     this.paste_key(e);
-
-    this.toggle_synchro_enable(e);
 
     ComposeKeys.close_modal_key(e);
   }
@@ -122,13 +119,6 @@ class ComposeKeys extends LitElement {
     if (e.ctrlKey && e.key === "e" && this._state) {
       const { track = {} } = this._state;
       action_track_edit(track).catch((reason) => console.warn(reason));
-    }
-  }
-
-  private toggle_synchro_enable(e: KeyboardEvent) {
-    if (e.ctrlKey && e.altKey && e.key === "s" && this._state) {
-      action_synchro_toggle_enable().catch((reason) => console.warn(reason));
-      e.preventDefault();
     }
   }
 

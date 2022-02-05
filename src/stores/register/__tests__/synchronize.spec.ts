@@ -10,6 +10,7 @@ import {
   SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
+  SYNCHRO_TOGGLE_ENABLED,
 } from "../../../actions/actions";
 import { state_test } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
@@ -123,5 +124,19 @@ suite("synchronize callback", () => {
     synchronization = { ...synchronization, syncInProgress: true };
     const state = await synchronize_callback(new Action(SYNCHRO_FORCE), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.undefined;
+  });
+
+  test("toggle sync on", async () => {
+    const state = await synchronize_callback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st });
+    expect(state.synchronization.enabled).to.be.false;
+    expect(state.featureFlags?.synchro_enabled).to.be.true;
+  });
+
+  test("toggle sync off", async () => {
+    let { featureFlags } = st;
+    featureFlags = { ...featureFlags, synchro_enabled: true };
+    const state = await synchronize_callback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st, featureFlags });
+    expect(state.synchronization.enabled).to.be.false;
+    expect(state.featureFlags?.synchro_enabled).to.be.false;
   });
 });

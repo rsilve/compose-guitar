@@ -20,4 +20,16 @@ suite("Help Modal element", () => {
     node.click();
     expect(handled).to.be.true;
   });
+
+  test("toggle sync event", async () => {
+    let handled = false;
+    const handler = (e: CustomEvent) => {
+      handled = e.type === "toggleSyncEnable";
+    };
+    const el: ConfirmSave = await fixture(html` <help-modal @toggleSyncEnable="${handler}"></help-modal> `);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("[data-testid=featureSynchronizationEnabled]") as HTMLInputElement;
+    node.click();
+    expect(handled).to.be.true;
+  });
 });

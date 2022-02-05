@@ -9,6 +9,7 @@ import {
   SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
+  SYNCHRO_TOGGLE_ENABLED,
 } from "../../actions/actions";
 import { IState } from "../state";
 import Action from "../../actions/Action";
@@ -110,6 +111,30 @@ async function synchroForce(action: Action, result: IState) {
   return result;
 }
 
+function synchroToggle(action: Action, result: IState) {
+  if (action.action_type === SYNCHRO_TOGGLE_ENABLED) {
+    const { synchronization, featureFlags } = result;
+    const enabled = !featureFlags?.synchro_enabled;
+    if (!enabled && synchronization.signInValid) {
+      synchronizer.signOut();
+    }
+    const sync = {
+      ...synchronization,
+      enabled: false,
+      signInValid: undefined,
+      error: undefined,
+      signInProgress: undefined,
+      syncInProgress: undefined,
+    };
+    const flags = {
+      ...featureFlags,
+      synchro_enabled: enabled,
+    };
+    result = { ...result, synchronization: sync, featureFlags: flags };
+  }
+  return result;
+}
+
 export async function synchronize_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   result = synchroActivationRequest(action, result);
@@ -127,6 +152,8 @@ export async function synchronize_callback(action: Action, state: IState): Promi
   result = synchroForceStart(action, result);
 
   result = await synchroForce(action, result);
+
+  result = synchroToggle(action, result);
 
   return Promise.resolve(result);
 }

@@ -12,7 +12,7 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
       result = { ...result, ...st };
     }
     FeatureFlag.init(result);
-    console.info("initialized with", result);
+    console.info("initialized with local configuration");
   }
 
   return Promise.resolve(result);

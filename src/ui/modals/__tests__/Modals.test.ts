@@ -7,6 +7,7 @@ import {
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
   SYNCHRO_SIGN_OUT,
+  SYNCHRO_TOGGLE_ENABLED,
 } from "../../../actions/actions";
 
 suite("Modals element", () => {
@@ -155,6 +156,28 @@ suite("Modals element", () => {
     const node = el.shadowRoot?.querySelector("synchronize-configuration");
     node?.dispatchEvent(
       new CustomEvent("deactivate", {
+        bubbles: true,
+        composed: true,
+      })
+    );
+    const closed = await promise;
+    expect(closed).to.be.true;
+  });
+
+  test("synchronize enable feature", async () => {
+    reset_dispatcher({ ...st, help_open: true });
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.action_type === SYNCHRO_TOGGLE_ENABLED);
+        return Promise.resolve(state);
+      });
+    });
+    const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
+    expect(el).to.instanceOf(Modals);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("help-modal");
+    node?.dispatchEvent(
+      new CustomEvent("toggleSyncEnable", {
         bubbles: true,
         composed: true,
       })
