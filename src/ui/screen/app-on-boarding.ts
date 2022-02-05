@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import buttonStyles from "../styles/buttonStyles";
-import { action_track_new } from "../../actions/actions";
+import { actionTrackNew } from "../../actions/actions";
 
 @customElement("app-on-boarding")
 class AppOnBoarding extends LitElement {
@@ -64,7 +64,7 @@ class AppOnBoarding extends LitElement {
         <chords-grid> | E7 | A7 Adim | E7 | % |; | A7 | A7 | E7 | % |; | B7 | A7 | E7 | Bb7 B7 |; </chords-grid>
       </div>
 
-      <button @click="${action_track_new}">Create your first chords grid</button>
+      <button @click="${actionTrackNew}">Create your first chords grid</button>
     `;
   }
 }

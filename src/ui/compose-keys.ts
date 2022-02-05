@@ -5,16 +5,16 @@ import "../icons/help_icon";
 import { IState } from "../stores/state";
 import { DispatcherController } from "../stores/lit_controller";
 import {
-  action_gallery_open,
+  actionGalleryOpen,
   action_help_open,
   action_modals_close,
-  action_notification_open,
-  action_save_as_start,
+  actionNotificationOpen,
+  actionSaveAsStart,
   action_track_copy,
-  action_track_edit,
-  action_track_new,
+  actionTrackEdit,
+  actionTrackNew,
   action_track_paste,
-  action_zoom_change,
+  actionZoomChange,
 } from "../actions/actions";
 
 @customElement("compose-keys")
@@ -72,45 +72,45 @@ class ComposeKeys extends LitElement {
 
   private paste_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "v" && this._state) {
-      action_track_paste().then(() => action_notification_open("Pasted"));
+      action_track_paste().then(() => actionNotificationOpen("Pasted"));
     }
   }
 
   private copy_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "c" && this._state) {
       const { track: { title, grid_text } = {} } = this._state;
-      action_track_copy({ title, grid_text }).then(() => action_notification_open("Song copied"));
+      action_track_copy({ title, grid_text }).then(() => actionNotificationOpen("Song copied"));
     }
   }
 
   private zoom_decr_key(e: KeyboardEvent) {
     if (e.altKey && (e.key === "—" || e.key === "-") && this._state) {
-      action_zoom_change(this._state.zoom - 10);
+      actionZoomChange(this._state.zoom - 10);
     }
   }
 
   private zoom_incr_key(e: KeyboardEvent) {
     if (e.altKey && (e.key === "≠" || e.key === "+") && this._state) {
-      action_zoom_change(this._state.zoom + 10);
+      actionZoomChange(this._state.zoom + 10);
     }
   }
 
   private track_new_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "n" && this._state) {
-      action_track_new();
+      actionTrackNew();
     }
   }
 
   private gallery_open_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "l" && this._state) {
-      action_gallery_open();
+      actionGalleryOpen();
       e.preventDefault();
     }
   }
 
   private save_as_start_key(e: KeyboardEvent) {
     if (!e.altKey && e.ctrlKey && e.key === "s" && this._state) {
-      action_save_as_start().then(() => action_notification_open("Save completed"));
+      actionSaveAsStart().then(() => actionNotificationOpen("Save completed"));
       e.preventDefault();
     }
   }
@@ -118,7 +118,7 @@ class ComposeKeys extends LitElement {
   private edit_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "e" && this._state) {
       const { track = {} } = this._state;
-      action_track_edit(track).catch((reason) => console.warn(reason));
+      actionTrackEdit(track).catch((reason) => console.warn(reason));
     }
   }
 

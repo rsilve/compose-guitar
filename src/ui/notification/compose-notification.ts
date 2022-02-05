@@ -1,7 +1,7 @@
 import { customElement, property, state } from "lit/decorators.js";
 import { css, html, LitElement } from "lit";
 import { DispatcherController } from "../../stores/lit_controller";
-import { action_notification_close } from "../../actions/actions";
+import { actionNotificationClose } from "../../actions/actions";
 import { IState } from "../../stores/state";
 
 @customElement("compose-notification")
@@ -37,7 +37,7 @@ class ComposeNotification extends LitElement {
         const event = st.notification;
         this._message.push(event);
         this._message = [...this._message];
-        action_notification_close();
+        actionNotificationClose();
         setTimeout(() => {
           this._message.shift();
           this._message = [...this._message];

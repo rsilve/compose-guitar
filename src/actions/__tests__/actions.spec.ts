@@ -1,19 +1,19 @@
 import { expect } from "@open-wc/testing";
 import {
-  action_gallery_close,
-  action_gallery_open,
-  action_gallery_remove,
-  action_init_app,
+  actionGalleryClose,
+  actionGalleryOpen,
+  actionGalleryRemove,
+  actionInitApp,
   action_synchro_sign_in,
-  action_save_as_start,
-  action_save_as_start_and_new,
+  actionSaveAsStart,
+  actionSaveAsStartAndNew,
   action_synchronization_activation,
   action_synchronization_activation_request,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
   action_synchronization_deactivation_request,
-  action_transpose_change,
-  action_upload_from_gallery,
+  actionTransposeChange,
+  actionUploadFromGallery,
   GALLERY_CLOSE,
   GALLERY_OPEN,
   GALLERY_REMOVE,
@@ -51,7 +51,7 @@ suite("actions", () => {
       }
       return Promise.resolve(state);
     });
-    await action_transpose_change(2);
+    await actionTransposeChange(2);
     expect(handle).to.be.equal(2);
   });
 
@@ -62,7 +62,7 @@ suite("actions", () => {
       handle = action.action_type === INIT_APP;
       return Promise.resolve(state);
     });
-    await action_init_app();
+    await actionInitApp();
     expect(handle).to.be.true;
   });
 
@@ -74,7 +74,7 @@ suite("actions", () => {
       handle = action.action_type === UPLOAD_FROM_GALLERY ? id : "";
       return Promise.resolve(state);
     });
-    await action_upload_from_gallery("id");
+    await actionUploadFromGallery("id");
     expect(handle).to.be.equal("id");
   });
 
@@ -85,7 +85,7 @@ suite("actions", () => {
       handle = action.action_type === SAVE_AS_START;
       return Promise.resolve(state);
     });
-    await action_save_as_start();
+    await actionSaveAsStart();
     expect(handle).to.be.true;
   });
 
@@ -96,7 +96,7 @@ suite("actions", () => {
       handle = action.action_type === SAVE_AS_START_AND_NEW;
       return Promise.resolve(state);
     });
-    await action_save_as_start_and_new();
+    await actionSaveAsStartAndNew();
     expect(handle).to.be.true;
   });
 
@@ -107,7 +107,7 @@ suite("actions", () => {
       handle = action.action_type === GALLERY_OPEN;
       return Promise.resolve(state);
     });
-    await action_gallery_open();
+    await actionGalleryOpen();
     expect(handle).to.be.true;
   });
 
@@ -119,7 +119,7 @@ suite("actions", () => {
       handle = action.action_type === GALLERY_REMOVE ? id : "";
       return Promise.resolve(state);
     });
-    await action_gallery_remove("id");
+    await actionGalleryRemove("id");
     expect(handle).to.be.equal("id");
   });
 
@@ -130,7 +130,7 @@ suite("actions", () => {
       handle = action.action_type === GALLERY_CLOSE;
       return Promise.resolve(state);
     });
-    await action_gallery_close();
+    await actionGalleryClose();
     expect(handle).to.be.true;
   });
 

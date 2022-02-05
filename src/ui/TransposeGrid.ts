@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { action_transpose_change } from "../actions/actions";
+import { actionTransposeChange } from "../actions/actions";
 import { IState } from "../stores/state";
 import { DispatcherController } from "../stores/lit_controller";
 
@@ -84,7 +84,7 @@ class TransposeGrid extends LitElement {
 
   _handle_change(e: Event): void {
     this._transpose = +(e.target as HTMLInputElement).value;
-    action_transpose_change(this._transpose);
+    actionTransposeChange(this._transpose);
   }
 
   render(): unknown {

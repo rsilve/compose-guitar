@@ -5,7 +5,7 @@ import buttonStyles from "../styles/buttonStyles";
 import { noPrintStyles } from "../styles/no_print";
 
 import "../grid-elements/ChordsGrid";
-import { action_track_edit } from "../../actions/actions";
+import { actionTrackEdit } from "../../actions/actions";
 
 @customElement("app-main-preview")
 class AppMainPreview extends LitElement {
@@ -39,7 +39,7 @@ class AppMainPreview extends LitElement {
   transpose = 0;
 
   _handle_edit(): void {
-    action_track_edit({ title: this.song_title, grid_text: this.song_grid });
+    actionTrackEdit({ title: this.song_title, grid_text: this.song_grid });
   }
 
   render(): unknown {

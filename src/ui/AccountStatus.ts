@@ -4,7 +4,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { DispatcherController } from "../stores/lit_controller";
 import { IState } from "../stores/state";
 import {
-  action_notification_open,
+  actionNotificationOpen,
   action_synchro_force,
   action_synchro_force_start,
   action_synchronization_activation_request,
@@ -76,7 +76,7 @@ class AccountStatus extends LitElement {
     if (!this.syncInProgress) {
       action_synchro_force_start()
         .then(action_synchro_force)
-        .then(() => action_notification_open("Synchronisation completed"))
+        .then(() => actionNotificationOpen("Synchronisation completed"))
         .catch((reason) => {
           console.info(reason);
         });

@@ -3,7 +3,7 @@ import { customElement, state } from "lit/decorators.js";
 import { IState } from "../../stores/state";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
-  action_notification_open,
+  actionNotificationOpen,
   action_synchro_force,
   action_synchro_force_start,
   action_synchro_sign_in,
@@ -33,7 +33,7 @@ class GoogleAPI extends LitElement {
     action_synchro_sign_in()
       .then(action_synchro_force_start)
       .then(action_synchro_force)
-      .then(() => action_notification_open("Synchronisation completed"));
+      .then(() => actionNotificationOpen("Synchronisation completed"));
   }
 
   script() {

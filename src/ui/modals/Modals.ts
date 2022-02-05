@@ -7,19 +7,19 @@ import "./ConfirmSave";
 import "./SynchronizeConfiguration";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
-  action_gallery_close,
-  action_gallery_remove,
+  actionGalleryClose,
+  actionGalleryRemove,
   action_help_close,
-  action_notification_open,
-  action_save_as_start_and_new,
+  actionNotificationOpen,
+  actionSaveAsStartAndNew,
   action_synchro_sign_out,
   action_synchro_toggle_enable,
   action_synchronization_activation,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
-  action_track_new_cancel,
-  action_track_new_without_save,
-  action_upload_from_gallery,
+  actionTrackNewCancel,
+  actionTrackNewWithoutSave,
+  actionUploadFromGallery,
 } from "../../actions/actions";
 import { gallery_dict_extended } from "../../stores/register/gallery_tools";
 import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
@@ -91,15 +91,15 @@ class Modals extends LitElement {
   }
 
   private static _dispatch_library_select(e: CustomEvent): void {
-    action_upload_from_gallery(e.detail.id);
+    actionUploadFromGallery(e.detail.id);
   }
 
   private static _dispatch_library_remove(e: CustomEvent): void {
-    action_gallery_remove(e.detail.id);
+    actionGalleryRemove(e.detail.id);
   }
 
   private _handle_save(): void {
-    action_save_as_start_and_new().then(() => action_notification_open("Save completed"));
+    actionSaveAsStartAndNew().then(() => actionNotificationOpen("Save completed"));
   }
 
   private static dispatchDeactivate() {
@@ -124,7 +124,7 @@ class Modals extends LitElement {
           .list="${gallery_dict_extended()}"
           @select="${Modals._dispatch_library_select}"
           @remove="${Modals._dispatch_library_remove}"
-          @close="${action_gallery_close}"
+          @close="${actionGalleryClose}"
         ></track-gallery>`;
     }
     if (this._editor_enabled) {
@@ -143,8 +143,8 @@ class Modals extends LitElement {
       return html`${overlay}
         <confirm-save
           class="modal"
-          @cancel="${action_track_new_cancel}"
-          @continue="${action_track_new_without_save}"
+          @cancel="${actionTrackNewCancel}"
+          @continue="${actionTrackNewWithoutSave}"
           @save="${this._handle_save}"
         ></confirm-save>`;
     }

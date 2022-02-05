@@ -13,7 +13,7 @@ import "./editor/GridEditorTitle";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { exists_in_gallery } from "../../stores/register/gallery_tools";
-import { action_notification_open, action_track_edit_apply, action_track_edit_cancel } from "../../actions/actions";
+import { actionNotificationOpen, action_track_edit_apply, actionTrackEditCancel } from "../../actions/actions";
 
 @customElement("song-editor")
 class SongEditor extends LitElement {
@@ -123,10 +123,10 @@ class SongEditor extends LitElement {
         title: this._grid_title,
         grid_text: this._value,
         updated_at: new Date().toISOString(),
-      }).then(() => action_notification_open("Track updated"));
+      }).then(() => actionNotificationOpen("Track updated"));
     } else {
       console.info("grid text is empty: close");
-      action_track_edit_cancel();
+      actionTrackEditCancel();
     }
   }
 
@@ -167,7 +167,7 @@ class SongEditor extends LitElement {
         See examples
       </button>
 
-      <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${action_track_edit_cancel}">Cancel</button>
+      <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${actionTrackEditCancel}">Cancel</button>
       <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">Apply</button>
     </div>`;
   }

@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { action_zoom_change } from "../actions/actions";
+import { actionZoomChange } from "../actions/actions";
 import { DispatcherController } from "../stores/lit_controller";
 import { IState } from "../stores/state";
 
@@ -70,12 +70,12 @@ class ZoomGrid extends LitElement {
 
   _handle_incr(): void {
     const z = this._zoom + 10;
-    action_zoom_change(z);
+    actionZoomChange(z);
   }
 
   _handle_decr(): void {
     const z = this._zoom - 10;
-    action_zoom_change(z);
+    actionZoomChange(z);
   }
 
   render(): unknown {
