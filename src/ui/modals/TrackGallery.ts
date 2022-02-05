@@ -106,7 +106,7 @@ class TrackGallery extends LitElement {
 
   render_list(): unknown {
     return Object.entries(this.list).map((entry) => {
-      const title = entry[1].title;
+      const { title } = entry[1];
       const synchronized = this.render_cloud(entry[1].synchronized);
       return html` <li>
         <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
@@ -120,9 +120,8 @@ class TrackGallery extends LitElement {
   render_cloud(synchronized: boolean): unknown {
     if (synchronized) {
       return html`<span class="cloud">☁</span>`;
-    } else {
-      return html``;
     }
+    return html``;
   }
 }
 

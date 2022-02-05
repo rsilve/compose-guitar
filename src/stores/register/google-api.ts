@@ -74,9 +74,7 @@ class GoogleApiWrapper {
       headers: new Headers({ Authorization: `Bearer ${gapi.auth.getToken().access_token}` }),
       body: form,
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((body: unknown) => {
         const { id } = body as { id: string };
         return id;
@@ -101,9 +99,12 @@ class GoogleApiWrapper {
 
   getSong(id: string): Promise<IStateTrackUploaded> {
     return new Promise((resolve) => {
-      return gapi.client.drive.files.get({ fileId: id, alt: "media" }).execute((response) => {
-        resolve({ id: id, track: response.result as IStateTrack });
-      });
+      return gapi.client.drive.files.get({ fileId: id, alt: "media" }).execute((response) =>
+        resolve({
+          id: id,
+          track: response.result as IStateTrack,
+        })
+      );
     });
   }
 
@@ -133,9 +134,7 @@ class GoogleApiWrapper {
 
   delete(index: string): Promise<void> {
     return new Promise((resolve) => {
-      return gapi.client.drive.files.delete({ fileId: index }).execute(() => {
-        resolve();
-      });
+      return gapi.client.drive.files.delete({ fileId: index }).execute(() => resolve());
     });
   }
 }

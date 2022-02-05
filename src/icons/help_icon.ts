@@ -1,7 +1,7 @@
 import { svg } from "lit";
 import { customElement } from "lit/decorators.js";
-import icon_style from "./icon_style";
 import { styleMap } from "lit/directives/style-map.js";
+import icon_style from "./icon_style";
 import StyledIcon from "./StyledIcon";
 
 @customElement("help-icon")

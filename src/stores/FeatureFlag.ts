@@ -1,4 +1,4 @@
-import { IState, IStateFeatureFlag } from "src/stores/state";
+import { IState, IStateFeatureFlag } from "./state";
 
 function getBoolean(value: string | boolean | undefined): boolean {
   if (typeof value === "boolean") {

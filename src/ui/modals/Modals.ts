@@ -113,6 +113,7 @@ class Modals extends LitElement {
       }
     });
   }
+
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
