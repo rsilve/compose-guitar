@@ -98,14 +98,14 @@ class GoogleApiWrapper {
   }
 
   getSong(id: string): Promise<IStateTrackUploaded> {
-    return new Promise((resolve) => {
-      return gapi.client.drive.files.get({ fileId: id, alt: "media" }).execute((response) =>
+    return new Promise((resolve) =>
+      gapi.client.drive.files.get({ fileId: id, alt: "media" }).execute((response) =>
         resolve({
-          id: id,
+          id,
           track: response.result as IStateTrack,
         })
-      );
-    });
+      )
+    );
   }
 
   listFiles(): Promise<IStateTrackUploaded[]> {
@@ -118,13 +118,9 @@ class GoogleApiWrapper {
           q: "appProperties has { key='type' and value='song' }",
         })
         .execute((response) => {
-          const songs = response.result.files?.map((value) => {
-            return this.getSong(value.id || "");
-          });
+          const songs = response.result.files?.map((value) => this.getSong(value.id || ""));
           if (songs) {
-            Promise.all(songs).then((values) => {
-              resolve(values);
-            });
+            Promise.all(songs).then((values) => resolve(values));
           } else {
             resolve([]);
           }
@@ -133,9 +129,7 @@ class GoogleApiWrapper {
   }
 
   delete(index: string): Promise<void> {
-    return new Promise((resolve) => {
-      return gapi.client.drive.files.delete({ fileId: index }).execute(() => resolve());
-    });
+    return new Promise((resolve) => gapi.client.drive.files.delete({ fileId: index }).execute(() => resolve()));
   }
 }
 

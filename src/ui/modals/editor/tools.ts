@@ -18,6 +18,7 @@ function auto_correct(value: string): string {
 
 export class AutoCorrect {
   private readonly _value: string;
+
   private readonly _position: number;
 
   constructor(value: string, pos: number) {

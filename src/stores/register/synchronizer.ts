@@ -11,9 +11,11 @@ class Synchronizer {
   signIn(): Promise<boolean> {
     return googleApiWrapper.signIn();
   }
+
   signOut(): void {
     return googleApiWrapper.signOut();
   }
+
   upload(track: IStateTrack): Promise<IStateTrack> {
     const index = track.id ? get_synchronized_index(track.id) : undefined;
     let promise;
