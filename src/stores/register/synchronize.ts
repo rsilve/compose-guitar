@@ -104,7 +104,8 @@ function synchroForceStart(action: Action, result: IState) {
 async function synchroForce(action: Action, result: IState) {
   if (action.action_type === SYNCHRO_FORCE) {
     const { synchronization } = result;
-    await synchronizer.download(result);
+    const count = await synchronizer.download(result);
+    console.info("Synchronized songs", count);
     const sync = { ...synchronization, syncInProgress: undefined };
     result = { ...result, synchronization: sync };
   }

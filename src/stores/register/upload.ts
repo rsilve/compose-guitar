@@ -4,12 +4,12 @@ import Action from "../../actions/Action";
 import { IState } from "../state";
 
 export function upload_callback(action: Action, state: IState): Promise<IState> {
-  let result = state;
+  let result = { ...state };
   if (action.action_type === UPLOAD_FROM_GALLERY) {
     const { id } = action.payload as { id: string };
     const grid = get_from_gallery(id);
-    result = { ...result, ...grid };
-    result.gallery = undefined;
+    const { synchronization, featureFlags } = result;
+    result = { ...result, ...grid, synchronization, featureFlags, gallery: undefined };
     action_notification_open("Track loaded");
   }
 
