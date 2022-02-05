@@ -1,7 +1,8 @@
 import { css, html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import buttonStyles from "../styles/buttonStyles";
 import { modalStyles } from "../styles/modals";
+import { IStateFeatureFlag } from "../../stores/state";
 
 @customElement("help-modal")
 class HelpModal extends LitElement {
@@ -9,6 +10,9 @@ class HelpModal extends LitElement {
     buttonStyles,
     modalStyles,
     css`
+      .shortcuts {
+        padding-bottom: 1em;
+      }
       .shortcuts p {
         margin: 0.6ex 0;
       }
@@ -24,12 +28,23 @@ class HelpModal extends LitElement {
     `,
   ];
 
+  @property()
+  featureFlags: IStateFeatureFlag | undefined;
+
   private _dispatch_close() {
     const options = {
       bubbles: true,
       composed: true,
     };
     this.dispatchEvent(new CustomEvent("close", options));
+  }
+
+  private _dispatch_toggle_sync_enable() {
+    const options = {
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent("toggleSyncEnable", options));
   }
 
   render(): unknown {
@@ -74,6 +89,17 @@ class HelpModal extends LitElement {
             <td>Replace the current song with the one from the clipboard</td>
           </tr>
         </table>
+      </div>
+      <h1>Synchronization</h1>
+      <div class="google-sync">
+        <label for="featureSynchronizationEnabled">Save your song on google drive</label>
+        <input
+          data-testid="featureSynchronizationEnabled"
+          id="featureSynchronizationEnabled"
+          type="checkbox"
+          .checked="${this.featureFlags?.synchro_enabled}"
+          @change="${this._dispatch_toggle_sync_enable}"
+        />
       </div>
       <div class="modal-footer">
         <button tabindex="-1" class="btn-primary _close" @click="${this._dispatch_close}">Close</button>

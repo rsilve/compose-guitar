@@ -109,7 +109,7 @@ class ComposeKeys extends LitElement {
   }
 
   private save_as_start_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "s" && this._state) {
+    if (!e.altKey && e.ctrlKey && e.key === "s" && this._state) {
       action_save_as_start().then(() => action_notification_open("Save completed"));
       e.preventDefault();
     }

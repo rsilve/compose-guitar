@@ -13,6 +13,7 @@ import {
   action_notification_open,
   action_save_as_start_and_new,
   action_synchro_sign_out,
+  action_synchro_toggle_enable,
   action_synchronization_activation,
   action_synchronization_configuration_close,
   action_synchronization_deactivation,
@@ -21,7 +22,7 @@ import {
   action_upload_from_gallery,
 } from "../../actions/actions";
 import { gallery_dict } from "../../stores/register/gallery_tools";
-import { IState, IStateSynchronization } from "../../stores/state";
+import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
 
 @customElement("compose-modals")
 class Modals extends LitElement {
@@ -72,6 +73,9 @@ class Modals extends LitElement {
   @state()
   synchronization: IStateSynchronization | undefined;
 
+  @state()
+  featureFlags: IStateFeatureFlag | undefined;
+
   constructor() {
     super();
     const cb = (st: IState) => {
@@ -81,6 +85,7 @@ class Modals extends LitElement {
       this._confirm_save_enabled = !!st.confirm_save;
       this.synchronizationConfigurationOpen = st.synchronization.open || false;
       this.synchronization = st.synchronization;
+      this.featureFlags = st.featureFlags;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -101,6 +106,13 @@ class Modals extends LitElement {
     action_synchronization_deactivation().then(action_synchro_sign_out);
   }
 
+  private toggle_synchro_feature() {
+    action_synchro_toggle_enable().then(() => {
+      if (import.meta.env?.PROD) {
+        document.location.reload();
+      }
+    });
+  }
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -118,7 +130,13 @@ class Modals extends LitElement {
       return html`${overlay} <song-editor class="modal"></song-editor>`;
     }
     if (this._help_open) {
-      return html`${overlay} <help-modal class="modal" @close="${action_help_close}"></help-modal>`;
+      return html`${overlay}
+        <help-modal
+          class="modal"
+          .featureFlags="${this.featureFlags}"
+          @toggleSyncEnable="${this.toggle_synchro_feature}"
+          @close="${action_help_close}"
+        ></help-modal>`;
     }
     if (this._confirm_save_enabled) {
       return html`${overlay}

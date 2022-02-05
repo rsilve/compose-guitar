@@ -34,6 +34,8 @@ import {
   action_synchro_force_start,
   SYNCHRO_FORCE,
   action_synchro_force,
+  SYNCHRO_TOGGLE_ENABLED,
+  action_synchro_toggle_enable,
 } from "../actions";
 import { default_state } from "../../stores/state";
 import { reset_dispatcher, register } from "../../stores/dispatcher";
@@ -228,6 +230,17 @@ suite("actions", () => {
       return Promise.resolve(state);
     });
     await action_synchro_force();
+    expect(handle).to.be.true;
+  });
+
+  test("action_synchro_toggle_enable", async () => {
+    let handle = false;
+    reset_dispatcher(default_state());
+    register((action, state) => {
+      handle = action.action_type === SYNCHRO_TOGGLE_ENABLED;
+      return Promise.resolve(state);
+    });
+    await action_synchro_toggle_enable();
     expect(handle).to.be.true;
   });
 });

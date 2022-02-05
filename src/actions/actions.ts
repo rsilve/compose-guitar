@@ -135,3 +135,6 @@ export const action_synchro_force_start = (): Promise<void> => publish_action(ne
 
 export const SYNCHRO_FORCE = "SYNCHRO_FORCE";
 export const action_synchro_force = (): Promise<void> => publish_action(new Action(SYNCHRO_FORCE));
+
+export const SYNCHRO_TOGGLE_ENABLED = "SYNCHRO_TOGGLE_ENABLED";
+export const action_synchro_toggle_enable = (): Promise<void> => publish_action(new Action(SYNCHRO_TOGGLE_ENABLED));
