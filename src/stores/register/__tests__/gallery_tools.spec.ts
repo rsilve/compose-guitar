@@ -5,6 +5,7 @@ import {
   add_to_synchronized_index,
   exists_in_gallery,
   gallery_dict,
+  gallery_dict_extended,
   gallery_list,
   get_from_gallery,
   get_synchronized_index,
@@ -250,5 +251,35 @@ suite("Gallery tools", () => {
     remove_from_synchronized_index(track.id || "undef");
     const id = get_synchronized_index(track.id || "undef");
     expect(id).to.be.undefined;
+  });
+
+  test("get extended index", () => {
+    localStorage.clear();
+    add_to_gallery(
+      { grid_text: "A", title: "title", id: "my_id" },
+      {
+        ...st,
+        version: STATE_VERSION,
+        track: { grid_text: "A", title: "title", id: "my_id" },
+        zoom: 100,
+        transpose: 0,
+      }
+    );
+
+    add_to_gallery(
+      { grid_text: "A", title: "title_2", id: "my_id2" },
+      {
+        ...st,
+        version: STATE_VERSION,
+        track: { grid_text: "A", title: "title_2", id: "my_id2" },
+        zoom: 100,
+        transpose: 0,
+      }
+    );
+    add_to_synchronized_index({ grid_text: "A", title: "title2", id: "my_id" }, "my_id");
+    const dict = gallery_dict_extended();
+    expect(dict).to.be.not.null;
+    expect(dict["my_id"]).to.be.deep.equal({ title: "title", synchronized: true });
+    expect(dict["my_id2"]).to.be.deep.equal({ title: "title_2", synchronized: false });
   });
 });

@@ -18,13 +18,31 @@ suite("Track gallery element", () => {
   });
 
   test("render list", async () => {
-    const list = ["1", "2"];
+    const list = [
+      { title: "1", synchronized: false },
+      { title: "2", synchronized: false },
+    ];
     const el: ConfirmSave = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
     let label = node.children[0]?.querySelector("span") as HTMLElement;
     expect(label.innerText).to.be.equal("1");
+    label = node.children[1]?.querySelector("span") as HTMLElement;
+    expect(label.innerText).to.be.equal("2");
+  });
+
+  test("render list with sync state", async () => {
+    const list = [
+      { title: "1", synchronized: true },
+      { title: "2", synchronized: false },
+    ];
+    const el: ConfirmSave = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
+    await expect(el).shadowDom.to.be.accessible();
+    const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
+    expect(node.childElementCount).to.be.equal(2);
+    let label = node.children[0]?.querySelector("span") as HTMLElement;
+    expect(label).lightDom.to.be.equal(`1<span class="cloud">☁</span>`);
     label = node.children[1]?.querySelector("span") as HTMLElement;
     expect(label.innerText).to.be.equal("2");
   });

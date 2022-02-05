@@ -21,7 +21,7 @@ import {
   action_track_new_without_save,
   action_upload_from_gallery,
 } from "../../actions/actions";
-import { gallery_dict } from "../../stores/register/gallery_tools";
+import { gallery_dict_extended } from "../../stores/register/gallery_tools";
 import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
 
 @customElement("compose-modals")
@@ -120,7 +120,7 @@ class Modals extends LitElement {
       return html`${overlay}
         <track-gallery
           class="modal"
-          .list="${gallery_dict()}"
+          .list="${gallery_dict_extended()}"
           @select="${Modals._dispatch_library_select}"
           @remove="${Modals._dispatch_library_remove}"
           @close="${action_gallery_close}"

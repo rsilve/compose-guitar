@@ -1,4 +1,4 @@
-import { default_state, IState, IStateTrack } from "../state";
+import { default_state, IGalleryTrack, IState, IStateTrack } from "../state";
 import { uuid } from "../../tools/uuid";
 
 export function gallery_list(): string[] {
@@ -114,4 +114,14 @@ export function get_last_state(): IState | undefined {
     return stateFromString(last_state_str);
   }
   return undefined;
+}
+
+export function gallery_dict_extended(): Record<string, IGalleryTrack> {
+  const res: Record<string, IGalleryTrack> = {};
+  const localDict = gallery_dict();
+  const synchronizedDict = parseSynchronizedIndexDict();
+  Object.keys(localDict).forEach((key) => {
+    res[key] = { title: localDict[key], synchronized: !!synchronizedDict[key] };
+  });
+  return res;
 }

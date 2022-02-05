@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { modalStyles } from "../styles/modals";
 import buttonStyles from "../styles/buttonStyles";
 import "../../icons/delete_icon";
+import { IGalleryTrack } from "../../stores/state";
 
 @customElement("track-gallery")
 class TrackGallery extends LitElement {
@@ -41,11 +42,17 @@ class TrackGallery extends LitElement {
         margin-bottom: -1em;
         font-size: 0.8em;
       }
+
+      .cloud {
+        padding-left: 1ex;
+        font-size: 1.1em;
+        color: var(--theme-secondary);
+      }
     `,
   ];
 
   @property({ attribute: false })
-  list: Record<string, string> = {};
+  list: Record<string, IGalleryTrack> = {};
 
   @property({ attribute: false })
   remove_handler: (id: string) => void = () => {
@@ -99,14 +106,23 @@ class TrackGallery extends LitElement {
 
   render_list(): unknown {
     return Object.entries(this.list).map((entry) => {
-      const title = entry[1];
+      const title = entry[1].title;
+      const synchronized = this.render_cloud(entry[1].synchronized);
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}</span>
+        <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
         <div @click="${this._generate_handler_remove(entry[0])}" class="gallery_trash _remove">
           <delete-icon title="Remove from the gallery"></delete-icon>
         </div>
       </li>`;
     });
+  }
+
+  render_cloud(synchronized: boolean): unknown {
+    if (synchronized) {
+      return html`<span class="cloud">☁</span>`;
+    } else {
+      return html``;
+    }
   }
 }
 
