@@ -39,7 +39,6 @@ suite("Track gallery element", () => {
     ];
     const el: ConfirmSave = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
-    //expect(el).shadowDom.to.be.equal("1");
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
     let label = node.children[0]?.querySelector("span") as HTMLElement;
