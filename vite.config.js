@@ -45,9 +45,9 @@ export default {
           },
           {
             src: "maskable_icon_x192.png",
-            sizes: "512x512",
+            sizes: "192x192",
             type: "image/png",
-            purpose: "any maskable",
+            purpose: "maskable",
           },
         ],
         file_handlers: [
