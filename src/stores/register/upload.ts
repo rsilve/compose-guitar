@@ -8,8 +8,8 @@ export function upload_callback(action: Action, state: IState): Promise<IState> 
   if (action.action_type === UPLOAD_FROM_GALLERY) {
     const { id } = action.payload as { id: string };
     const grid = get_from_gallery(id);
-    const { synchronization } = result;
-    result = { ...result, ...grid, synchronization: synchronization, gallery: undefined };
+    const { synchronization, featureFlags } = result;
+    result = { ...result, ...grid, synchronization, featureFlags, gallery: undefined };
     action_notification_open("Track loaded");
   }
 
