@@ -37,7 +37,8 @@ suite("synchronize tools", () => {
         },
       ])
     );
-    await synchronizer.download(state_test);
+    const count = await synchronizer.download(state_test);
+    expect(count).to.be.equal(1);
     expect(gallery_dict()).to.be.deep.equal({ my_id: "title2" });
   });
 

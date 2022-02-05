@@ -25,7 +25,7 @@ class Synchronizer {
     return promise.then((id) => add_to_synchronized_index(track, id));
   }
 
-  download(state: IState): Promise<void> {
+  download(state: IState): Promise<number> {
     return googleApiWrapper.listFiles().then((values) => {
       let st = { ...state };
       let { synchronization } = st;
@@ -35,6 +35,7 @@ class Synchronizer {
         st = add_to_gallery(uploaded.track, st);
         add_to_synchronized_index(uploaded.track, uploaded.id);
       });
+      return values.length;
     });
   }
 

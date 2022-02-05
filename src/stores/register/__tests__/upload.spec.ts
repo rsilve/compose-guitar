@@ -37,4 +37,17 @@ suite("Upload callback", () => {
     expect(state.zoom).to.equal(100);
     expect(action_notification_open_send).to.be.true;
   });
+
+  test("upload from gallery does not update syn state", async () => {
+    const st_with_sync = { ...st, synchronization: { enabled: true } };
+
+    const track = { grid_text: "zz", title: "test", id: uuid() };
+    add_to_gallery(track, { ...st, track });
+    const state = await upload_callback(new Action(UPLOAD_FROM_GALLERY, { id: track.id }), {
+      ...st_with_sync,
+      gallery: true,
+    });
+
+    expect(state.synchronization).to.be.deep.equals(st_with_sync.synchronization);
+  });
 });
