@@ -3,7 +3,7 @@ import { add_to_synchronized_index, gallery_dict, get_synchronized_index } from 
 import { googleApiWrapper } from "../google-api";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { IStateTrack } from "../../state";
 
 suite("synchronize tools", () => {
@@ -37,7 +37,7 @@ suite("synchronize tools", () => {
         },
       ])
     );
-    const count = await synchronizer.download(state_test);
+    const count = await synchronizer.download(stateTest);
     expect(count).to.be.equal(1);
     expect(gallery_dict()).to.be.deep.equal({ my_id: "title2" });
   });

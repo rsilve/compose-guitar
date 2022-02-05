@@ -5,10 +5,10 @@ import { DispatcherController } from "../stores/lit_controller";
 import { IState } from "../stores/state";
 import {
   actionNotificationOpen,
-  action_synchro_force,
-  action_synchro_force_start,
-  action_synchronization_activation_request,
-  action_synchronization_deactivation_request,
+  actionSynchroForce,
+  actionSynchroForceStart,
+  actionSynchronizationActivationRequest,
+  actionSynchronizationDeactivationRequest,
 } from "../actions/actions";
 
 import "../icons/PersonOffIcon";
@@ -74,8 +74,8 @@ class AccountStatus extends LitElement {
 
   dispatchSynchroEvent(): void {
     if (!this.syncInProgress) {
-      action_synchro_force_start()
-        .then(action_synchro_force)
+      actionSynchroForceStart()
+        .then(actionSynchroForce)
         .then(() => actionNotificationOpen("Synchronisation completed"))
         .catch((reason) => {
           console.info(reason);
@@ -87,7 +87,7 @@ class AccountStatus extends LitElement {
     if (this.enabled) {
       const className = classMap({ dot: !this.valid });
       const message = this.valid ? "" : "(not working)";
-      return html` <div @click="${action_synchronization_deactivation_request}" class="${className}">
+      return html` <div @click="${actionSynchronizationDeactivationRequest}" class="${className}">
           <account-circle-icon title="Synchronization on ${message}"></account-circle-icon>
         </div>
         <synchronization-status
@@ -95,7 +95,7 @@ class AccountStatus extends LitElement {
           @click="${this.dispatchSynchroEvent}"
         ></synchronization-status>`;
     }
-    return html` <div @click="${action_synchronization_activation_request}">
+    return html` <div @click="${actionSynchronizationActivationRequest}">
       <person-off-icon title="Synchronization off"></person-off-icon>
     </div>`;
   }

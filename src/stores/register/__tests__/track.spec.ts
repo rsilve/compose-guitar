@@ -8,12 +8,12 @@ import {
   TRACK_NEW_CANCEL,
   TRACK_NEW_WITHOUT_SAVE,
 } from "../../../actions/actions";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { track_callback } from "../track";
 import Action from "../../../actions/Action";
 
 suite("track callback", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("new track", async () => {
     const state = await track_callback(new Action(TRACK_NEW), {

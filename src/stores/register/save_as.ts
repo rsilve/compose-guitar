@@ -20,11 +20,11 @@ async function save(state: IState): Promise<IState> {
 
 export async function save_as_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === SAVE_AS_START) {
+  if (action.actionType === SAVE_AS_START) {
     result = await save(result);
   }
 
-  if (action.action_type === SAVE_AS_START_AND_NEW) {
+  if (action.actionType === SAVE_AS_START_AND_NEW) {
     result = await save(result);
     result = { ...result, editor: {}, transpose: 0 };
   }

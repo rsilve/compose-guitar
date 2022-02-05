@@ -80,60 +80,60 @@ export const actionTrackEditCancel = (): void => {
 };
 
 export const TRACK_EDIT_APPLY = "TRACK_EDIT_APPLY";
-export const action_track_edit_apply = (track_payload: IPayloadEditor): Promise<void> =>
+export const actionTrackEditApply = (track_payload: IPayloadEditor): Promise<void> =>
   publishAction(new Action(TRACK_EDIT_APPLY, track_payload));
 
 export const TRACK_COPY = "TRACK_COPY";
-export const action_track_copy = (track_payload: IPayloadEditor): Promise<void> =>
+export const actionTrackCopy = (track_payload: IPayloadEditor): Promise<void> =>
   publishAction(new Action(TRACK_COPY, track_payload));
 
 export const TRACK_PASTE = "TRACK_PASTE";
-export const action_track_paste = (): Promise<void> => publishAction(new Action(TRACK_PASTE));
+export const actionTrackPaste = (): Promise<void> => publishAction(new Action(TRACK_PASTE));
 
 export const HELP_OPEN = "HELP_OPEN";
-export const action_help_open = (): void => {
+export const actionHelpOpen = (): void => {
   publishAction(new Action(HELP_OPEN));
 };
 
 export const HELP_CLOSE = "HELP_CLOSE";
-export const action_help_close = (): void => {
+export const actionHelpClose = (): void => {
   publishAction(new Action(HELP_CLOSE));
 };
 
 export const MODALS_CLOSE = "MODALS_CLOSE";
-export const action_modals_close = (): void => {
+export const actionModalsClose = (): void => {
   publishAction(new Action(MODALS_CLOSE));
 };
 
 export const SYNCHRO_ACTIVATION_REQUEST = "SYNCHRO_ACTIVATION_REQUEST";
-export const action_synchronization_activation_request = (): Promise<void> =>
+export const actionSynchronizationActivationRequest = (): Promise<void> =>
   publishAction(new Action(SYNCHRO_ACTIVATION_REQUEST));
 
 export const SYNCHRO_DEACTIVATION_REQUEST = "SYNCHRO_DEACTIVATION_REQUEST";
-export const action_synchronization_deactivation_request = (): Promise<void> =>
+export const actionSynchronizationDeactivationRequest = (): Promise<void> =>
   publishAction(new Action(SYNCHRO_DEACTIVATION_REQUEST));
 
 export const SYNCHRO_ACTIVATION = "SYNCHRO_ACTIVATION";
-export const action_synchronization_activation = (): Promise<void> => publishAction(new Action(SYNCHRO_ACTIVATION));
+export const actionSynchronizationActivation = (): Promise<void> => publishAction(new Action(SYNCHRO_ACTIVATION));
 
 export const SYNCHRO_DEACTIVATION = "SYNCHRO_DEACTIVATION";
-export const action_synchronization_deactivation = (): Promise<void> => publishAction(new Action(SYNCHRO_DEACTIVATION));
+export const actionSynchronizationDeactivation = (): Promise<void> => publishAction(new Action(SYNCHRO_DEACTIVATION));
 
 export const SYNCHRO_CONFIGURATION_CLOSE = "SYNCHRO_CONFIGURATION_CLOSE";
-export const action_synchronization_configuration_close = (): Promise<void> =>
+export const actionSynchronizationConfigurationClose = (): Promise<void> =>
   publishAction(new Action(SYNCHRO_CONFIGURATION_CLOSE));
 
 export const SYNCHRO_SIGN_IN = "SYNCHRO_SIGN_IN";
-export const action_synchro_sign_in = (): Promise<void> => publishAction(new Action(SYNCHRO_SIGN_IN));
+export const actionSynchroSignIn = (): Promise<void> => publishAction(new Action(SYNCHRO_SIGN_IN));
 
 export const SYNCHRO_SIGN_OUT = "SYNCHRO_SIGN_OUT";
-export const action_synchro_sign_out = (): Promise<void> => publishAction(new Action(SYNCHRO_SIGN_OUT));
+export const actionSynchroSignOut = (): Promise<void> => publishAction(new Action(SYNCHRO_SIGN_OUT));
 
 export const SYNCHRO_FORCE_START = "SYNCHRO_FORCE_START";
-export const action_synchro_force_start = (): Promise<void> => publishAction(new Action(SYNCHRO_FORCE_START));
+export const actionSynchroForceStart = (): Promise<void> => publishAction(new Action(SYNCHRO_FORCE_START));
 
 export const SYNCHRO_FORCE = "SYNCHRO_FORCE";
-export const action_synchro_force = (): Promise<void> => publishAction(new Action(SYNCHRO_FORCE));
+export const actionSynchroForce = (): Promise<void> => publishAction(new Action(SYNCHRO_FORCE));
 
 export const SYNCHRO_TOGGLE_ENABLED = "SYNCHRO_TOGGLE_ENABLED";
-export const action_synchro_toggle_enable = (): Promise<void> => publishAction(new Action(SYNCHRO_TOGGLE_ENABLED));
+export const actionSynchroToggleEnable = (): Promise<void> => publishAction(new Action(SYNCHRO_TOGGLE_ENABLED));

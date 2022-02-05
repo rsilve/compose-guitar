@@ -5,7 +5,7 @@ import { IState } from "../state";
 
 export function upload_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === UPLOAD_FROM_GALLERY) {
+  if (action.actionType === UPLOAD_FROM_GALLERY) {
     const { id } = action.payload as { id: string };
     const grid = get_from_gallery(id);
     const { synchronization, featureFlags } = result;

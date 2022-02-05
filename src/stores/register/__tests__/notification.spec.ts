@@ -1,11 +1,11 @@
 import { expect } from "@open-wc/testing";
 import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from "../../../actions/actions";
 import { notification_callback } from "../notification";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 
 suite("Notification callback", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("notification open", async () => {
     const action = new Action(NOTIFICATION_OPEN, { message: "message" });

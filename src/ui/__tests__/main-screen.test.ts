@@ -1,10 +1,10 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import MainScreen from "../main-screen";
-import { state_test } from "../../__tests__/TestHelpers";
+import { stateTest } from "../../__tests__/TestHelpers";
 import { reset_dispatcher } from "../../stores/dispatcher";
 
 suite("Main screen element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     const el: MainScreen = await fixture(html` <main-screen></main-screen> `);

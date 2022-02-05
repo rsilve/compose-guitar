@@ -1,13 +1,13 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import EditorMain from "../editor-main";
 import { reset_dispatcher } from "../../stores/dispatcher";
-import { state_test } from "../../__tests__/TestHelpers";
+import { stateTest } from "../../__tests__/TestHelpers";
 import sinon from "sinon";
 import FeatureFlag from "../../stores/FeatureFlag";
 
 suite("Main app element", () => {
   test("is defined", async () => {
-    reset_dispatcher(state_test);
+    reset_dispatcher(stateTest);
     const el: EditorMain = await fixture(html` <editor-main></editor-main> `);
     expect(el).to.instanceOf(EditorMain);
     await expect(el).shadowDom.to.be.accessible();
@@ -27,7 +27,7 @@ suite("Main app element", () => {
     sinon.stub(FeatureFlag, "get").callsFake(() => {
       return { synchro_enabled: true };
     });
-    reset_dispatcher(state_test);
+    reset_dispatcher(stateTest);
     const el: EditorMain = await fixture(html` <editor-main></editor-main> `);
     expect(el).to.instanceOf(EditorMain);
     await expect(el).shadowDom.to.be.accessible();

@@ -6,11 +6,11 @@ import { synchronizer } from "./synchronizer";
 
 export async function gallery_callback(action: Action, state: IState): Promise<IState> {
   const result = state;
-  if (action.action_type === GALLERY_OPEN) {
+  if (action.actionType === GALLERY_OPEN) {
     result.gallery = true;
   }
 
-  if (action.action_type === GALLERY_REMOVE) {
+  if (action.actionType === GALLERY_REMOVE) {
     const { id } = action.payload as { id: string };
     remove_from_gallery(id);
     if (result.synchronization.enabled) {
@@ -19,7 +19,7 @@ export async function gallery_callback(action: Action, state: IState): Promise<I
     delete result.gallery;
   }
 
-  if (action.action_type === GALLERY_CLOSE || action.action_type === MODALS_CLOSE) {
+  if (action.actionType === GALLERY_CLOSE || action.actionType === MODALS_CLOSE) {
     result.gallery = undefined;
   }
   return Promise.resolve(result);

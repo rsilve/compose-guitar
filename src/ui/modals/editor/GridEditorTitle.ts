@@ -30,7 +30,7 @@ class GridEditorTitle extends LitElement {
   ];
 
   @query("#title_input")
-  _el_title: HTMLInputElement | undefined;
+  private elTitle: HTMLInputElement | undefined;
 
   @property()
   value: string | undefined = undefined;
@@ -40,10 +40,10 @@ class GridEditorTitle extends LitElement {
 
   protected firstUpdated(_changedProperties: PropertyValues): void {
     super.firstUpdated(_changedProperties);
-    this._el_title?.focus();
+    this.elTitle?.focus();
   }
 
-  handle_change(e: Event): void {
+  private handleChange(e: Event): void {
     const raw = (e.target as HTMLInputElement).value;
     const options = {
       detail: { value: raw },
@@ -55,7 +55,7 @@ class GridEditorTitle extends LitElement {
 
   render(): unknown {
     return html`
-      ${this.title_error_pane()}
+      ${this.titleErrorPane()}
       <div class="input-label">Song title (required)</div>
       <input
         id="title_input"
@@ -64,12 +64,12 @@ class GridEditorTitle extends LitElement {
         class="${classMap({ invalid: this.invalid })}"
         required
         placeholder="My little valentine (Franck Sinatra)"
-        @input="${this.handle_change}"
+        @input="${this.handleChange}"
       />
     `;
   }
 
-  title_error_pane(): unknown {
+  titleErrorPane(): unknown {
     if (this.invalid) {
       return html` <div class="error-title">This title already exists</div>`;
     }

@@ -4,11 +4,11 @@ import Action from "../../actions/Action";
 
 export function help_callback(action: Action, state: IState): Promise<IState> {
   const result = state;
-  if (action.action_type === HELP_OPEN) {
+  if (action.actionType === HELP_OPEN) {
     result.help_open = true;
   }
 
-  if (action.action_type === HELP_CLOSE || action.action_type === MODALS_CLOSE) {
+  if (action.actionType === HELP_CLOSE || action.actionType === MODALS_CLOSE) {
     result.help_open = undefined;
   }
 

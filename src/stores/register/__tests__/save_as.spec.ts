@@ -2,13 +2,13 @@ import { expect } from "@open-wc/testing";
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../../actions/actions";
 import { save_as_callback } from "../save_as";
 import { get_from_gallery } from "../gallery_tools";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
 
 suite("Register save_as", () => {
-  const st = state_test;
+  const st = stateTest;
   const stub = sinon.stub(synchronizer);
 
   test("save as start", async () => {

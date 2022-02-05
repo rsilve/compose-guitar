@@ -38,13 +38,13 @@ class AppMainPreview extends LitElement {
   @property({ type: Number })
   transpose = 0;
 
-  _handle_edit(): void {
+  private handleEdit(): void {
     actionTrackEdit({ title: this.song_title, grid_text: this.song_grid });
   }
 
   render(): unknown {
     const styles = { "font-size": `${this.zoom / 100}em` };
-    return html` <div @click="${this._handle_edit}" title="click to edit">
+    return html` <div @click="${this.handleEdit}" title="click to edit">
       <h1>${this.song_title}</h1>
       <chords-grid style="${styleMap(styles)}" text_grid="${this.song_grid}" transpose="${this.transpose}">
       </chords-grid>

@@ -31,7 +31,7 @@ class SynchronizationConfigurationActivated extends LitElement {
   @property()
   synchronization: IStateSynchronization | undefined;
 
-  private _dispatch_deactivate() {
+  private dispatchDeactivate() {
     const options = {
       bubbles: true,
       composed: true,
@@ -42,7 +42,7 @@ class SynchronizationConfigurationActivated extends LitElement {
   render(): unknown {
     let errorStatus = html``;
     let signInStatus = html` <div>
-      You are not connected. <a href="" @click="${this._dispatch_deactivate}">Retry ?</a>
+      You are not connected. <a href="" @click="${this.dispatchDeactivate}">Retry ?</a>
     </div>`;
     let workingStatus = html` but does not work ⚠️`;
     if (this.synchronization?.signInValid || this.synchronization?.signInProgress) {
@@ -61,7 +61,7 @@ class SynchronizationConfigurationActivated extends LitElement {
     return html`
       <div>Synchronization between devices is enabled${workingStatus}.</div>
       ${errorStatus} ${signInStatus}
-      <button class="btn-secondary btn-deactivate _deactivate" @click="${this._dispatch_deactivate}">deactivate</button>
+      <button class="btn-secondary btn-deactivate _deactivate" @click="${this.dispatchDeactivate}">deactivate</button>
     `;
   }
 }

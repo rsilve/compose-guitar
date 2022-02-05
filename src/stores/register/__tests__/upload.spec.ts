@@ -3,19 +3,19 @@ import { NOTIFICATION_OPEN, UPLOAD_FROM_GALLERY } from "../../../actions/actions
 
 import { upload_callback } from "../upload";
 import { add_to_gallery } from "../gallery_tools";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { connect, register } from "../../dispatcher";
 import { IState } from "../../state";
 import { uuid } from "../../../tools/uuid";
 import Action from "../../../actions/Action";
 
 suite("Upload callback", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("upload from gallery", async () => {
     let action_notification_open_send = false;
     register((action, state): Promise<IState> => {
-      action_notification_open_send = action.action_type === NOTIFICATION_OPEN;
+      action_notification_open_send = action.actionType === NOTIFICATION_OPEN;
       return Promise.resolve(state);
     });
     const promise = new Promise<void>((resolve) => {

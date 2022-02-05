@@ -6,14 +6,14 @@ import { IState } from "../stores/state";
 import { DispatcherController } from "../stores/lit_controller";
 import {
   actionGalleryOpen,
-  action_help_open,
-  action_modals_close,
+  actionHelpOpen,
+  actionModalsClose,
   actionNotificationOpen,
   actionSaveAsStart,
-  action_track_copy,
+  actionTrackCopy,
   actionTrackEdit,
   actionTrackNew,
-  action_track_paste,
+  actionTrackPaste,
   actionZoomChange,
 } from "../actions/actions";
 
@@ -65,21 +65,21 @@ class ComposeKeys extends LitElement {
 
   private static close_modal_key(e: KeyboardEvent) {
     if (e.key === "Escape") {
-      action_modals_close();
+      actionModalsClose();
       e.preventDefault();
     }
   }
 
   private paste_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "v" && this._state) {
-      action_track_paste().then(() => actionNotificationOpen("Pasted"));
+      actionTrackPaste().then(() => actionNotificationOpen("Pasted"));
     }
   }
 
   private copy_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "c" && this._state) {
       const { track: { title, grid_text } = {} } = this._state;
-      action_track_copy({ title, grid_text }).then(() => actionNotificationOpen("Song copied"));
+      actionTrackCopy({ title, grid_text }).then(() => actionNotificationOpen("Song copied"));
     }
   }
 
@@ -124,7 +124,7 @@ class ComposeKeys extends LitElement {
 
   render(): unknown {
     const color = getComputedStyle(this).getPropertyValue("--theme-help");
-    return html` <help-icon @click="${action_help_open}" .fill="${color}" title="Shortcut help"></help-icon> `;
+    return html` <help-icon @click="${actionHelpOpen}" .fill="${color}" title="Shortcut help"></help-icon> `;
   }
 }
 

@@ -19,7 +19,7 @@ class SynchronizationConfigurationDeactivated extends LitElement {
   @property()
   synchronization: IStateSynchronization | undefined;
 
-  private _dispatch_activate() {
+  private dispatchActivate() {
     const options = {
       bubbles: true,
       composed: true,
@@ -28,7 +28,7 @@ class SynchronizationConfigurationDeactivated extends LitElement {
   }
 
   render(): unknown {
-    let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this._dispatch_activate}">
+    let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this.dispatchActivate}">
       activate
     </button>`;
     if (this.synchronization?.signInProgress) {

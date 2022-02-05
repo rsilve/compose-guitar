@@ -3,14 +3,14 @@ import ComposeKeys from "../compose-keys";
 import { connect, register, reset_dispatcher } from "../../stores/dispatcher";
 import { track_callback } from "../../stores/register/track";
 import { IState, IStateTrack } from "../../stores/state";
-import { state_test } from "../../__tests__/TestHelpers";
+import { stateTest } from "../../__tests__/TestHelpers";
 import { save_as_callback } from "../../stores/register/save_as";
 import { gallery_callback } from "../../stores/register/gallery";
 import { zoom_change_callback } from "../../stores/register/misc";
 import { help_callback } from "../../stores/register/help";
 
 suite("compose-key element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);

@@ -1,11 +1,11 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import GoogleAPI from "../GoogleAPI";
 import { register, reset_dispatcher } from "../../../stores/dispatcher";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { SYNCHRO_FORCE, SYNCHRO_FORCE_START, SYNCHRO_SIGN_IN } from "../../../actions/actions";
 
 suite("google-api element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     reset_dispatcher({ ...st });
@@ -34,7 +34,7 @@ suite("google-api element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_SIGN_IN);
+        resolve(action.actionType === SYNCHRO_SIGN_IN);
         return Promise.resolve(state);
       });
     });
@@ -48,7 +48,7 @@ suite("google-api element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === SYNCHRO_FORCE_START) {
+        if (action.actionType === SYNCHRO_FORCE_START) {
           resolve(true);
         }
         return Promise.resolve(state);
@@ -64,7 +64,7 @@ suite("google-api element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === SYNCHRO_FORCE) {
+        if (action.actionType === SYNCHRO_FORCE) {
           resolve(true);
         }
         return Promise.resolve(state);

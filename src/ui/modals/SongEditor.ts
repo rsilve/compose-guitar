@@ -13,7 +13,7 @@ import "./editor/GridEditorTitle";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { exists_in_gallery } from "../../stores/register/gallery_tools";
-import { actionNotificationOpen, action_track_edit_apply, actionTrackEditCancel } from "../../actions/actions";
+import { actionNotificationOpen, actionTrackEditApply, actionTrackEditCancel } from "../../actions/actions";
 
 @customElement("song-editor")
 class SongEditor extends LitElement {
@@ -119,7 +119,7 @@ class SongEditor extends LitElement {
 
   _handle_apply(): void {
     if (this._value) {
-      action_track_edit_apply({
+      actionTrackEditApply({
         title: this._grid_title,
         grid_text: this._value,
         updated_at: new Date().toISOString(),

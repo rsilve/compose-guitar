@@ -17,7 +17,7 @@ import { synchronizer } from "./synchronizer";
 import DispatcherError from "../DispatcherError";
 
 function synchroActivationRequest(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_ACTIVATION_REQUEST || action.action_type === SYNCHRO_DEACTIVATION_REQUEST) {
+  if (action.actionType === SYNCHRO_ACTIVATION_REQUEST || action.actionType === SYNCHRO_DEACTIVATION_REQUEST) {
     const { synchronization } = result;
     const sync = { ...synchronization, open: true };
     result = { ...result, synchronization: sync };
@@ -26,7 +26,7 @@ function synchroActivationRequest(action: Action, result: IState) {
 }
 
 function synchroConfigurationClose(action: Action, result: IState) {
-  if (action.action_type === MODALS_CLOSE || action.action_type === SYNCHRO_CONFIGURATION_CLOSE) {
+  if (action.actionType === MODALS_CLOSE || action.actionType === SYNCHRO_CONFIGURATION_CLOSE) {
     const { synchronization } = result;
     const sync = { ...synchronization, open: undefined };
     result = { ...result, synchronization: sync };
@@ -35,7 +35,7 @@ function synchroConfigurationClose(action: Action, result: IState) {
 }
 
 function synchroActivation(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_ACTIVATION) {
+  if (action.actionType === SYNCHRO_ACTIVATION) {
     const { synchronization } = result;
     const sync = { ...synchronization, enabled: true, signInProgress: true };
     result = { ...result, synchronization: sync };
@@ -44,7 +44,7 @@ function synchroActivation(action: Action, result: IState) {
 }
 
 function synchroDeactivation(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_DEACTIVATION) {
+  if (action.actionType === SYNCHRO_DEACTIVATION) {
     const { synchronization } = result;
     const sync = { ...synchronization, enabled: false };
     result = { ...result, synchronization: sync };
@@ -53,7 +53,7 @@ function synchroDeactivation(action: Action, result: IState) {
 }
 
 async function synchroSignIn(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_SIGN_IN) {
+  if (action.actionType === SYNCHRO_SIGN_IN) {
     let { synchronization } = result;
     if (synchronization.enabled) {
       synchronization = await synchronizer
@@ -71,7 +71,7 @@ async function synchroSignIn(action: Action, result: IState) {
 }
 
 function synchroSignOut(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_SIGN_OUT) {
+  if (action.actionType === SYNCHRO_SIGN_OUT) {
     const { synchronization } = result;
     synchronizer.signOut();
     const sync = {
@@ -87,7 +87,7 @@ function synchroSignOut(action: Action, result: IState) {
 }
 
 function synchroForceStart(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_FORCE_START) {
+  if (action.actionType === SYNCHRO_FORCE_START) {
     const { synchronization } = result;
     if (synchronization.syncInProgress) {
       throw new DispatcherError("Synchronization in progress");
@@ -102,7 +102,7 @@ function synchroForceStart(action: Action, result: IState) {
 }
 
 async function synchroForce(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_FORCE) {
+  if (action.actionType === SYNCHRO_FORCE) {
     const { synchronization } = result;
     const count = await synchronizer.download(result);
     console.info("Synchronized songs", count);
@@ -113,7 +113,7 @@ async function synchroForce(action: Action, result: IState) {
 }
 
 function synchroToggle(action: Action, result: IState) {
-  if (action.action_type === SYNCHRO_TOGGLE_ENABLED) {
+  if (action.actionType === SYNCHRO_TOGGLE_ENABLED) {
     const { synchronization, featureFlags } = result;
     const enabled = !featureFlags?.synchro_enabled;
     if (!enabled && synchronization.signInValid) {

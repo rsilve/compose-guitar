@@ -1,10 +1,10 @@
 export default class Action {
-  readonly action_type: string;
+  readonly actionType: string;
 
   readonly payload: unknown;
 
-  constructor(action_type: string, payload: unknown = null) {
-    this.action_type = action_type;
+  constructor(actionType: string, payload: unknown = null) {
+    this.actionType = actionType;
     this.payload = payload;
   }
 }

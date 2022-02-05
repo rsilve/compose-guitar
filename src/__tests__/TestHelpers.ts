@@ -1,6 +1,6 @@
 import { IState, STATE_VERSION } from "../stores/state";
 
-export const state_test: IState = {
+export const stateTest: IState = {
   version: STATE_VERSION,
   track: {
     title: "title",

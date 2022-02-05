@@ -17,7 +17,7 @@ import { uuid } from "../../tools/uuid";
 
 export async function track_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === TRACK_NEW) {
+  if (action.actionType === TRACK_NEW) {
     const { track = {} } = result;
     if (save_needed(track)) {
       result = { ...result, confirm_save: true };
@@ -31,7 +31,7 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
     }
   }
 
-  if (action.action_type === TRACK_NEW_WITHOUT_SAVE) {
+  if (action.actionType === TRACK_NEW_WITHOUT_SAVE) {
     result = {
       ...result,
       editor: {},
@@ -40,21 +40,21 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
     };
   }
 
-  if (action.action_type === TRACK_NEW_CANCEL || action.action_type === MODALS_CLOSE) {
+  if (action.actionType === TRACK_NEW_CANCEL || action.actionType === MODALS_CLOSE) {
     result.confirm_save = undefined;
     result.editor = undefined;
   }
 
-  if (action.action_type === TRACK_EDIT) {
+  if (action.actionType === TRACK_EDIT) {
     const { title, grid_text } = action.payload as IPayloadEditor;
     result.editor = { title, grid_text };
   }
 
-  if (action.action_type === TRACK_EDIT_CANCEL || action.action_type === MODALS_CLOSE) {
+  if (action.actionType === TRACK_EDIT_CANCEL || action.actionType === MODALS_CLOSE) {
     result.editor = undefined;
   }
 
-  if (action.action_type === TRACK_EDIT_APPLY) {
+  if (action.actionType === TRACK_EDIT_APPLY) {
     const { title, grid_text, updated_at } = action.payload as IPayloadEditor;
     let { track = {} } = result;
     track = {
@@ -69,12 +69,12 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
     result = { ...result, track, editor: undefined };
   }
 
-  if (action.action_type === TRACK_COPY) {
+  if (action.actionType === TRACK_COPY) {
     const { title, grid_text } = action.payload as IPayloadEditor;
     await navigator.clipboard.writeText(JSON.stringify({ title, grid_text }));
   }
 
-  if (action.action_type === TRACK_PASTE) {
+  if (action.actionType === TRACK_PASTE) {
     await navigator.clipboard.readText().then((t) => {
       result.track = JSON.parse(t);
     });

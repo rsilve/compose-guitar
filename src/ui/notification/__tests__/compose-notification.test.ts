@@ -1,10 +1,10 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ComposeNotification from "../compose-notification";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { reset_dispatcher } from "../../../stores/dispatcher";
 
 suite("compose-notification element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);

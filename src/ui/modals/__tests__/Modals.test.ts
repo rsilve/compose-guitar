@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Modals from "../Modals";
 import { register, reset_dispatcher } from "../../../stores/dispatcher";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import {
   SYNCHRO_ACTIVATION,
   SYNCHRO_CONFIGURATION_CLOSE,
@@ -11,7 +11,7 @@ import {
 } from "../../../actions/actions";
 
 suite("Modals element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     reset_dispatcher({ ...st });
@@ -78,7 +78,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_CONFIGURATION_CLOSE);
+        resolve(action.actionType === SYNCHRO_CONFIGURATION_CLOSE);
         return Promise.resolve(state);
       });
     });
@@ -100,7 +100,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: false, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_ACTIVATION);
+        resolve(action.actionType === SYNCHRO_ACTIVATION);
         return Promise.resolve(state);
       });
     });
@@ -122,7 +122,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_DEACTIVATION);
+        resolve(action.actionType === SYNCHRO_DEACTIVATION);
         return Promise.resolve(state);
       });
     });
@@ -144,7 +144,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === SYNCHRO_SIGN_OUT) {
+        if (action.actionType === SYNCHRO_SIGN_OUT) {
           resolve(true);
         }
         return Promise.resolve(state);
@@ -168,7 +168,7 @@ suite("Modals element", () => {
     reset_dispatcher({ ...st, help_open: true });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_TOGGLE_ENABLED);
+        resolve(action.actionType === SYNCHRO_TOGGLE_ENABLED);
         return Promise.resolve(state);
       });
     });

@@ -9,14 +9,14 @@ import { DispatcherController } from "../../stores/lit_controller";
 import {
   actionGalleryClose,
   actionGalleryRemove,
-  action_help_close,
+  actionHelpClose,
   actionNotificationOpen,
   actionSaveAsStartAndNew,
-  action_synchro_sign_out,
-  action_synchro_toggle_enable,
-  action_synchronization_activation,
-  action_synchronization_configuration_close,
-  action_synchronization_deactivation,
+  actionSynchroSignOut,
+  actionSynchroToggleEnable,
+  actionSynchronizationActivation,
+  actionSynchronizationConfigurationClose,
+  actionSynchronizationDeactivation,
   actionTrackNewCancel,
   actionTrackNewWithoutSave,
   actionUploadFromGallery,
@@ -103,11 +103,11 @@ class Modals extends LitElement {
   }
 
   private static dispatchDeactivate() {
-    action_synchronization_deactivation().then(action_synchro_sign_out);
+    actionSynchronizationDeactivation().then(actionSynchroSignOut);
   }
 
   private toggle_synchro_feature() {
-    action_synchro_toggle_enable().then(() => {
+    actionSynchroToggleEnable().then(() => {
       if (import.meta.env?.PROD) {
         document.location.reload();
       }
@@ -136,7 +136,7 @@ class Modals extends LitElement {
           class="modal"
           .featureFlags="${this.featureFlags}"
           @toggleSyncEnable="${this.toggle_synchro_feature}"
-          @close="${action_help_close}"
+          @close="${actionHelpClose}"
         ></help-modal>`;
     }
     if (this._confirm_save_enabled) {
@@ -154,9 +154,9 @@ class Modals extends LitElement {
         <synchronize-configuration
           class="modal"
           .synchronization="${this.synchronization}"
-          @activate="${action_synchronization_activation}"
+          @activate="${actionSynchronizationActivation}"
           @deactivate="${Modals.dispatchDeactivate}"
-          @close="${action_synchronization_configuration_close}"
+          @close="${actionSynchronizationConfigurationClose}"
         ></synchronize-configuration>`;
     }
     return html``;

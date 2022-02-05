@@ -31,7 +31,7 @@ suite("app on boarding element", () => {
     reset_dispatcher();
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === TRACK_NEW);
+        resolve(action.actionType === TRACK_NEW);
         return Promise.resolve(state);
       });
     });

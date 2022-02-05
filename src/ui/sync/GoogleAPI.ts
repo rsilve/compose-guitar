@@ -4,9 +4,9 @@ import { IState } from "../../stores/state";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
   actionNotificationOpen,
-  action_synchro_force,
-  action_synchro_force_start,
-  action_synchro_sign_in,
+  actionSynchroForce,
+  actionSynchroForceStart,
+  actionSynchroSignIn,
 } from "../../actions/actions";
 
 @customElement("google-api")
@@ -30,9 +30,9 @@ class GoogleAPI extends LitElement {
   }
 
   dispatchSignIn(): void {
-    action_synchro_sign_in()
-      .then(action_synchro_force_start)
-      .then(action_synchro_force)
+    actionSynchroSignIn()
+      .then(actionSynchroForceStart)
+      .then(actionSynchroForce)
       .then(() => actionNotificationOpen("Synchronisation completed"));
   }
 

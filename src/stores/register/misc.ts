@@ -6,7 +6,7 @@ import FeatureFlag from "../FeatureFlag";
 
 export function init_app_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === INIT_APP) {
+  if (action.actionType === INIT_APP) {
     const st = get_last_state();
     if (st) {
       result = { ...result, ...st };
@@ -20,7 +20,7 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
 
 export function zoom_change_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === ZOOM_CHANGE) {
+  if (action.actionType === ZOOM_CHANGE) {
     let { zoom } = action.payload as { zoom: number };
     if (!zoom || Number.isNaN(zoom)) {
       zoom = 100;
@@ -34,7 +34,7 @@ export function zoom_change_callback(action: Action, state: IState): Promise<ISt
 
 export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
-  if (action.action_type === TRANSPOSE_CHANGE) {
+  if (action.actionType === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };
     if (!transpose || Number.isNaN(Number(transpose))) {
       transpose = 0;

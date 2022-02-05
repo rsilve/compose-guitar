@@ -4,14 +4,14 @@ import {
   actionGalleryOpen,
   actionGalleryRemove,
   actionInitApp,
-  action_synchro_sign_in,
+  actionSynchroSignIn,
   actionSaveAsStart,
   actionSaveAsStartAndNew,
-  action_synchronization_activation,
-  action_synchronization_activation_request,
-  action_synchronization_configuration_close,
-  action_synchronization_deactivation,
-  action_synchronization_deactivation_request,
+  actionSynchronizationActivation,
+  actionSynchronizationActivationRequest,
+  actionSynchronizationConfigurationClose,
+  actionSynchronizationDeactivation,
+  actionSynchronizationDeactivationRequest,
   actionTransposeChange,
   actionUploadFromGallery,
   GALLERY_CLOSE,
@@ -29,13 +29,13 @@ import {
   TRANSPOSE_CHANGE,
   UPLOAD_FROM_GALLERY,
   SYNCHRO_SIGN_OUT,
-  action_synchro_sign_out,
+  actionSynchroSignOut,
   SYNCHRO_FORCE_START,
-  action_synchro_force_start,
+  actionSynchroForceStart,
   SYNCHRO_FORCE,
-  action_synchro_force,
+  actionSynchroForce,
   SYNCHRO_TOGGLE_ENABLED,
-  action_synchro_toggle_enable,
+  actionSynchroToggleEnable,
 } from "../actions";
 import { default_state } from "../../stores/state";
 import { reset_dispatcher, register } from "../../stores/dispatcher";
@@ -45,7 +45,7 @@ suite("actions", () => {
     let handle = 0;
     reset_dispatcher(default_state());
     register((action, state) => {
-      if (action.action_type === TRANSPOSE_CHANGE) {
+      if (action.actionType === TRANSPOSE_CHANGE) {
         const { transpose } = action.payload as { transpose: number };
         handle = transpose;
       }
@@ -59,7 +59,7 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === INIT_APP;
+      handle = action.actionType === INIT_APP;
       return Promise.resolve(state);
     });
     await actionInitApp();
@@ -71,7 +71,7 @@ suite("actions", () => {
     reset_dispatcher(default_state());
     register((action, state) => {
       const { id = "" } = action.payload as { id: string };
-      handle = action.action_type === UPLOAD_FROM_GALLERY ? id : "";
+      handle = action.actionType === UPLOAD_FROM_GALLERY ? id : "";
       return Promise.resolve(state);
     });
     await actionUploadFromGallery("id");
@@ -82,7 +82,7 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SAVE_AS_START;
+      handle = action.actionType === SAVE_AS_START;
       return Promise.resolve(state);
     });
     await actionSaveAsStart();
@@ -93,7 +93,7 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SAVE_AS_START_AND_NEW;
+      handle = action.actionType === SAVE_AS_START_AND_NEW;
       return Promise.resolve(state);
     });
     await actionSaveAsStartAndNew();
@@ -104,7 +104,7 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === GALLERY_OPEN;
+      handle = action.actionType === GALLERY_OPEN;
       return Promise.resolve(state);
     });
     await actionGalleryOpen();
@@ -116,7 +116,7 @@ suite("actions", () => {
     reset_dispatcher(default_state());
     register((action, state) => {
       const { id = "" } = action.payload as { id: string };
-      handle = action.action_type === GALLERY_REMOVE ? id : "";
+      handle = action.actionType === GALLERY_REMOVE ? id : "";
       return Promise.resolve(state);
     });
     await actionGalleryRemove("id");
@@ -127,7 +127,7 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === GALLERY_CLOSE;
+      handle = action.actionType === GALLERY_CLOSE;
       return Promise.resolve(state);
     });
     await actionGalleryClose();
@@ -138,10 +138,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_ACTIVATION_REQUEST;
+      handle = action.actionType === SYNCHRO_ACTIVATION_REQUEST;
       return Promise.resolve(state);
     });
-    await action_synchronization_activation_request();
+    await actionSynchronizationActivationRequest();
     expect(handle).to.be.true;
   });
 
@@ -149,10 +149,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_DEACTIVATION_REQUEST;
+      handle = action.actionType === SYNCHRO_DEACTIVATION_REQUEST;
       return Promise.resolve(state);
     });
-    await action_synchronization_deactivation_request();
+    await actionSynchronizationDeactivationRequest();
     expect(handle).to.be.true;
   });
 
@@ -160,10 +160,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_ACTIVATION;
+      handle = action.actionType === SYNCHRO_ACTIVATION;
       return Promise.resolve(state);
     });
-    await action_synchronization_activation();
+    await actionSynchronizationActivation();
     expect(handle).to.be.true;
   });
 
@@ -171,10 +171,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_DEACTIVATION;
+      handle = action.actionType === SYNCHRO_DEACTIVATION;
       return Promise.resolve(state);
     });
-    await action_synchronization_deactivation();
+    await actionSynchronizationDeactivation();
     expect(handle).to.be.true;
   });
 
@@ -182,10 +182,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_CONFIGURATION_CLOSE;
+      handle = action.actionType === SYNCHRO_CONFIGURATION_CLOSE;
       return Promise.resolve(state);
     });
-    await action_synchronization_configuration_close();
+    await actionSynchronizationConfigurationClose();
     expect(handle).to.be.true;
   });
 
@@ -193,10 +193,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_SIGN_IN;
+      handle = action.actionType === SYNCHRO_SIGN_IN;
       return Promise.resolve(state);
     });
-    await action_synchro_sign_in();
+    await actionSynchroSignIn();
     expect(handle).to.be.true;
   });
 
@@ -204,10 +204,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_SIGN_OUT;
+      handle = action.actionType === SYNCHRO_SIGN_OUT;
       return Promise.resolve(state);
     });
-    await action_synchro_sign_out();
+    await actionSynchroSignOut();
     expect(handle).to.be.true;
   });
 
@@ -215,10 +215,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_FORCE_START;
+      handle = action.actionType === SYNCHRO_FORCE_START;
       return Promise.resolve(state);
     });
-    await action_synchro_force_start();
+    await actionSynchroForceStart();
     expect(handle).to.be.true;
   });
 
@@ -226,10 +226,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_FORCE;
+      handle = action.actionType === SYNCHRO_FORCE;
       return Promise.resolve(state);
     });
-    await action_synchro_force();
+    await actionSynchroForce();
     expect(handle).to.be.true;
   });
 
@@ -237,10 +237,10 @@ suite("actions", () => {
     let handle = false;
     reset_dispatcher(default_state());
     register((action, state) => {
-      handle = action.action_type === SYNCHRO_TOGGLE_ENABLED;
+      handle = action.actionType === SYNCHRO_TOGGLE_ENABLED;
       return Promise.resolve(state);
     });
-    await action_synchro_toggle_enable();
+    await actionSynchroToggleEnable();
     expect(handle).to.be.true;
   });
 });

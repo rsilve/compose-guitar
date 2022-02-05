@@ -25,7 +25,7 @@ suite("Menu element", () => {
     reset_dispatcher();
     let click_handled = false;
     register((action, state) => {
-      click_handled = action.action_type === SAVE_AS_START;
+      click_handled = action.actionType === SAVE_AS_START;
       return Promise.resolve(state);
     });
     const el: Menu = await fixture(html` <compose-menu></compose-menu>`);
@@ -39,7 +39,7 @@ suite("Menu element", () => {
     reset_dispatcher();
     let click_handled = false;
     register((action, state) => {
-      click_handled = action.action_type === GALLERY_OPEN;
+      click_handled = action.actionType === GALLERY_OPEN;
       return Promise.resolve(state);
     });
     const el: Menu = await fixture(html` <compose-menu></compose-menu>`);
@@ -53,7 +53,7 @@ suite("Menu element", () => {
     reset_dispatcher();
     let click_handled = false;
     register((action, state) => {
-      click_handled = action.action_type === TRACK_NEW;
+      click_handled = action.actionType === TRACK_NEW;
       return Promise.resolve(state);
     });
     const el: Menu = await fixture(html` <compose-menu></compose-menu>`);

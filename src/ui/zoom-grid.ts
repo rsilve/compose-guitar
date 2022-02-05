@@ -68,21 +68,21 @@ class ZoomGrid extends LitElement {
   @state()
   _zoom = DEFAULT_ZOOM;
 
-  _handle_incr(): void {
+  private handleIncr(): void {
     const z = this._zoom + 10;
     actionZoomChange(z);
   }
 
-  _handle_decr(): void {
+  private handleDecr(): void {
     const z = this._zoom - 10;
     actionZoomChange(z);
   }
 
   render(): unknown {
-    return html` <div class="zoom_in pill" @click="${this._handle_incr}" title="Zoom in - Atl++/Alt+=" ontouchstart="">
+    return html` <div class="zoom_in pill" @click="${this.handleIncr}" title="Zoom in - Atl++/Alt+=" ontouchstart="">
         +
       </div>
-      <div class="zoom_out pill" @click="${this._handle_decr}" title="Zoom out - Alt+-" ontouchstart="">-</div>
+      <div class="zoom_out pill" @click="${this.handleDecr}" title="Zoom out - Alt+-" ontouchstart="">-</div>
       <div class="text">${this._zoom}%</div>`;
   }
 }

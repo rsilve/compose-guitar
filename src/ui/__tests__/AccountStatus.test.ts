@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import AccountStatus from "../AccountStatus";
 import { register, reset_dispatcher } from "../../stores/dispatcher";
-import { state_test } from "../../__tests__/TestHelpers";
+import { stateTest } from "../../__tests__/TestHelpers";
 import {
   NOTIFICATION_OPEN,
   SYNCHRO_ACTIVATION_REQUEST,
@@ -11,7 +11,7 @@ import {
 } from "../../actions/actions";
 
 suite("account status element", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("is defined", async () => {
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
@@ -46,7 +46,7 @@ suite("account status element", () => {
     reset_dispatcher({ ...st });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_ACTIVATION_REQUEST);
+        resolve(action.actionType === SYNCHRO_ACTIVATION_REQUEST);
         return Promise.resolve(state);
       });
     });
@@ -62,7 +62,7 @@ suite("account status element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_DEACTIVATION_REQUEST);
+        resolve(action.actionType === SYNCHRO_DEACTIVATION_REQUEST);
         return Promise.resolve(state);
       });
     });
@@ -81,7 +81,7 @@ suite("account status element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true } });
     const promiseStart = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_FORCE_START);
+        resolve(action.actionType === SYNCHRO_FORCE_START);
         return Promise.resolve(state);
       });
     });
@@ -99,7 +99,7 @@ suite("account status element", () => {
 
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === SYNCHRO_FORCE) {
+        if (action.actionType === SYNCHRO_FORCE) {
           resolve(true);
         }
         return Promise.resolve(state);
@@ -119,7 +119,7 @@ suite("account status element", () => {
 
     const promise = new Promise((resolve) => {
       register((action, state) => {
-        if (action.action_type === NOTIFICATION_OPEN) {
+        if (action.actionType === NOTIFICATION_OPEN) {
           resolve(true);
         }
         return Promise.resolve(state);
@@ -138,7 +138,7 @@ suite("account status element", () => {
     reset_dispatcher({ ...st, synchronization: { enabled: true, syncInProgress: true } });
     const promiseStart = new Promise((resolve) => {
       register((action, state) => {
-        resolve(action.action_type === SYNCHRO_FORCE_START);
+        resolve(action.actionType === SYNCHRO_FORCE_START);
         return Promise.resolve(state);
       });
     });

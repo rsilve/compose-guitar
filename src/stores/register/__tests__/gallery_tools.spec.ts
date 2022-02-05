@@ -13,11 +13,11 @@ import {
   remove_from_synchronized_index,
 } from "../gallery_tools";
 import { STATE_VERSION } from "../../state";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { uuid } from "../../../tools/uuid";
 
 suite("Gallery tools", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("empty gallery", () => {
     localStorage.clear();

@@ -17,7 +17,7 @@ suite("Init", () => {
     });
 
     register((action, state): Promise<IState> => {
-      action_init_done = action.action_type === INIT_APP;
+      action_init_done = action.actionType === INIT_APP;
       return Promise.resolve(state);
     });
 

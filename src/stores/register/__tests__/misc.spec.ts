@@ -3,13 +3,13 @@ import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../../actions/action
 
 import { init_app_callback, transpose_change_callback, zoom_change_callback } from "../misc";
 import { save_last_state } from "../gallery_tools";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
 import Action from "../../../actions/Action";
 import FeatureFlag from "../../FeatureFlag";
 
 suite("Register misc", () => {
-  const st = state_test;
+  const st = stateTest;
 
   test("init_app_callback", async () => {
     const last_state: IState = {

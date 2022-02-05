@@ -2,7 +2,7 @@ export function normalize(value: string): string {
   return value.replace(/\n\|$/s, "").trim();
 }
 
-function auto_correct(value: string): string {
+function autoCorrect(value: string): string {
   return value
     .replace(/[,;]/g, "|")
     .replace(/\|{3,}/g, "||")
@@ -27,7 +27,7 @@ export class AutoCorrect {
       position = value.length;
     }
     let head = value.slice(0, position);
-    head = auto_correct(head);
+    head = autoCorrect(head);
     let tail = "";
     if (value.length > position) {
       tail = value.slice(position);

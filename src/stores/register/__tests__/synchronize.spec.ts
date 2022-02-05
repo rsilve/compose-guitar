@@ -12,7 +12,7 @@ import {
   SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
 } from "../../../actions/actions";
-import { state_test } from "../../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import { synchronize_callback } from "../synchronize";
 import sinon from "sinon";
@@ -20,7 +20,7 @@ import { synchronizer } from "../synchronizer";
 import DispatcherError from "../../DispatcherError";
 
 suite("synchronize callback", () => {
-  const st = state_test;
+  const st = stateTest;
   const stub = sinon.stub(synchronizer);
 
   test("activation request", async () => {
