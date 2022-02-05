@@ -52,6 +52,11 @@ export interface IState {
   featureFlags?: IStateFeatureFlag;
 }
 
+export interface IGalleryTrack {
+  title: string;
+  synchronized: boolean;
+}
+
 export function default_state(): IState {
   return {
     version: STATE_VERSION,
