@@ -195,7 +195,7 @@ class Chord {
     score = Object.entries(base_score)
       .filter((entry) => entry[0] === noteOrig)
       .reduce((_, entry) => entry[1], score);
-    score += tone;
+    score += tone + 12;
     score %= 12;
     const notes = Object.entries(base_score)
       .filter((entry) => score === entry[1])

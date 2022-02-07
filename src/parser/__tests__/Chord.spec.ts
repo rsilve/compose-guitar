@@ -213,6 +213,24 @@ suite("Parse chords", () => {
     expect(transposed.name).to.be.equal("%");
   });
 
+  test("transpose negative 001", () => {
+    const orig = new Chord("A");
+    const transposed = orig.transpose(-1);
+    expect(transposed.name).to.be.equal("Ab");
+  });
+
+  test("transpose negative 002", () => {
+    const orig = new Chord("A");
+    const transposed = orig.transpose(-2);
+    expect(transposed.name).to.be.equal("G");
+  });
+
+  test("transpose negative 003", () => {
+    const orig = new Chord("A");
+    const transposed = orig.transpose(-12);
+    expect(transposed.name).to.be.equal("A");
+  });
+
   test("Parse empty", () => {
     const chord = new Chord("X");
     expect(chord.name).to.be.equal("X");
