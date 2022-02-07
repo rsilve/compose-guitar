@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@types/gapi": "^0.0.41",
-    "@types/gapi.auth2": "^0.0.55",
+    "@types/gapi.auth2": "^0.0.56",
     "@types/gapi.client.drive": "^3.0.13",
     "lit": "^2.1.2",
     "tslib": "^2.3.1"
