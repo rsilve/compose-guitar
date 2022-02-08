@@ -1,5 +1,5 @@
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE, MODALS_CLOSE } from "../../actions/actions";
-import { remove_from_gallery } from "./gallery_tools";
+import { removeFromGallery } from "./gallery_tools";
 import { IState } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
@@ -12,7 +12,7 @@ export async function gallery_callback(action: Action, state: IState): Promise<I
 
   if (action.actionType === GALLERY_REMOVE) {
     const { id } = action.payload as { id: string };
-    remove_from_gallery(id);
+    removeFromGallery(id);
     if (result.synchronization.enabled) {
       await synchronizer.remove(id);
     }

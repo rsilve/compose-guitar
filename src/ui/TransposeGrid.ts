@@ -74,24 +74,24 @@ class TransposeGrid extends LitElement {
   constructor() {
     super();
     const cb = (st: IState) => {
-      this._transpose = st.transpose || 0;
+      this.transpose = st.transpose || 0;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
   @state()
-  _transpose = 0;
+  transpose = 0;
 
-  _handle_change(e: Event): void {
-    this._transpose = +(e.target as HTMLInputElement).value;
-    actionTransposeChange(this._transpose);
+  private handleChange(e: Event): void {
+    this.transpose = +(e.target as HTMLInputElement).value;
+    actionTransposeChange(this.transpose);
   }
 
   render(): unknown {
     return html`
       <label title="transpose">
-        <input type="range" min="-11" max="11" @input="${this._handle_change}" .value="${this._transpose}" />
-        <div>${this._transpose} tone</div>
+        <input type="range" min="-11" max="11" @input="${this.handleChange}" .value="${this.transpose}" />
+        <div>${this.transpose} tone</div>
       </label>
     `;
   }

@@ -5,7 +5,7 @@ import "../../icons/save_icon";
 import "../../icons/new_track_icon";
 import "../../icons/gallery_icon";
 import { IState } from "../../stores/state";
-import { save_needed } from "../../tools/state_tools";
+import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";
 import { actionGalleryOpen, actionNotificationOpen, actionSaveAsStart, actionTrackNew } from "../../actions/actions";
 
@@ -24,26 +24,21 @@ class Menu extends LitElement {
   constructor() {
     super();
     const cb = ({ track }: IState): void => {
-      this._need_save = save_needed(track);
+      this.needSave = saveNeeded(track);
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
   @state()
-  _need_save = false;
+  private needSave = false;
 
-  _handle_save(): void {
+  private handleSave(): void {
     actionSaveAsStart().then(() => actionNotificationOpen("Save completed"));
   }
 
   render(): unknown {
     return html`
-      <menu-item
-        title="save the track - Ctrl+s"
-        class="_save"
-        .dotted="${this._need_save}"
-        @click="${this._handle_save}"
-      >
+      <menu-item title="save the track - Ctrl+s" class="_save" .dotted="${this.needSave}" @click="${this.handleSave}">
         <save-icon></save-icon>
       </menu-item>
       <menu-item title="Open the Library - Ctrl+l" class="_library" @click="${actionGalleryOpen}">

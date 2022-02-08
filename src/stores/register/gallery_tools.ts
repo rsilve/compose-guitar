@@ -80,31 +80,31 @@ function hasJsonStructure(str: string | null): boolean {
   }
 }
 
-export function get_from_gallery(id: string): IState | null {
-  const from_gallery: string | null = localStorage.getItem(id);
-  if (from_gallery) {
-    const is_json = hasJsonStructure(from_gallery);
-    if (is_json) {
-      const parsed = stateFromString(from_gallery);
+export function getFromGallery(id: string): IState | null {
+  const fromGallery: string | null = localStorage.getItem(id);
+  if (fromGallery) {
+    const isJson = hasJsonStructure(fromGallery);
+    if (isJson) {
+      const parsed = stateFromString(fromGallery);
       if (parsed.track) {
         parsed.track.title = parsed.track.title || id;
       }
       return parsed;
     }
     const state = default_state();
-    return { ...state, track: { grid_text: from_gallery, title: id } };
+    return { ...state, track: { grid_text: fromGallery, title: id } };
   }
   return null;
 }
 
-export function remove_from_gallery(id: string): void {
+export function removeFromGallery(id: string): void {
   const track_index: Record<string, string> = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");
   delete track_index[id];
   localStorage.setItem("_gallery_list_dict_", JSON.stringify(track_index));
   localStorage.removeItem(id);
 }
 
-export function save_last_state(state: IState): void {
+export function saveLastState(state: IState): void {
   localStorage.setItem("_last_state_", JSON.stringify(state));
 }
 

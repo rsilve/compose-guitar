@@ -1,13 +1,13 @@
 import { css, svg } from "lit";
 import { customElement } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
-import icon_style from "./icon_style";
+import iconStyle from "./iconStyle";
 import StyledIcon from "./StyledIcon";
 
 @customElement("info-icon")
 class InfoIcon extends StyledIcon {
   static styles = [
-    icon_style,
+    iconStyle,
     css`
       :host {
         display: inline-block;

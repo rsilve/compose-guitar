@@ -1,6 +1,6 @@
 import { expect } from "@open-wc/testing";
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE } from "../../../actions/actions";
-import { add_to_gallery, add_to_synchronized_index, get_from_gallery, get_synchronized_index } from "../gallery_tools";
+import { add_to_gallery, add_to_synchronized_index, getFromGallery, get_synchronized_index } from "../gallery_tools";
 import { gallery_callback } from "../gallery";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
@@ -23,9 +23,9 @@ suite("Gallery callback", () => {
     const state = await gallery_callback(new Action(GALLERY_REMOVE, { id: track.id }), { ...st });
     expect(state.gallery).to.be.undefined;
     expect(state).to.deep.equal(st);
-    const fromGallery = get_from_gallery("test1");
+    const fromGallery = getFromGallery("test1");
     expect(fromGallery).to.be.null;
-    const fromGalleryById = get_from_gallery(track.id || "");
+    const fromGalleryById = getFromGallery(track.id || "");
     expect(fromGalleryById).to.be.null;
   });
 
@@ -43,9 +43,9 @@ suite("Gallery callback", () => {
     const state = await gallery_callback(new Action(GALLERY_REMOVE, { id: track.id }), stateSync);
     expect(state.gallery).to.be.undefined;
     expect(state).to.deep.equal(stateSync);
-    const fromGallery = get_from_gallery("test1");
+    const fromGallery = getFromGallery("test1");
     expect(fromGallery).to.be.null;
-    const fromGalleryById = get_from_gallery(track.id || "");
+    const fromGalleryById = getFromGallery(track.id || "");
     expect(fromGalleryById).to.be.null;
     const id = get_synchronized_index(track.id || "undef");
     expect(id).to.be.undefined;

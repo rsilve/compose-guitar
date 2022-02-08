@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import { customElement, property } from "lit/decorators.js";
 import { html as lit_html, LitElement } from "lit";
-import chord_render from "../chord_render";
+import chordRender from "../chord_render";
 import Chord from "../../../parser/Chord";
 
 @customElement("chord-render-test")
@@ -10,7 +10,7 @@ class ChordRenderTest extends LitElement {
   chord: Chord = new Chord("A");
 
   render(): unknown {
-    return lit_html`${chord_render(this.chord)}`;
+    return lit_html`${chordRender(this.chord)}`;
   }
 }
 

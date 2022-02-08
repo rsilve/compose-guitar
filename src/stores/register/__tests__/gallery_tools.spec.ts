@@ -7,9 +7,9 @@ import {
   gallery_dict,
   gallery_dict_extended,
   gallery_list,
-  get_from_gallery,
+  getFromGallery,
   get_synchronized_index,
-  remove_from_gallery,
+  removeFromGallery,
   remove_from_synchronized_index,
 } from "../gallery_tools";
 import { STATE_VERSION } from "../../state";
@@ -23,49 +23,49 @@ suite("Gallery tools", () => {
     localStorage.clear();
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery("test")).to.be.null;
-    remove_from_gallery("test");
+    expect(getFromGallery("test")).to.be.null;
+    removeFromGallery("test");
     expect(gallery_dict()).to.deep.equal({});
     expect(gallery_list()).to.deep.equal([]);
-    expect(get_from_gallery("test")).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
   });
 
   test("tools for gallery", () => {
     localStorage.clear();
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery("test")).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
 
     const track = { id: uuid(), grid_text: "ee", title: "test" };
     add_to_gallery(track, { ...st, track });
     expect(gallery_list()).to.deep.equal(["test"]);
     expect(Object.values(gallery_dict())).to.deep.equal([track.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track.id]);
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
-    remove_from_gallery(track.id);
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
+    removeFromGallery(track.id);
     expect(gallery_dict()).to.deep.equal({});
     expect(gallery_list()).to.deep.equal([]);
-    expect(get_from_gallery("test")).to.be.null;
-    expect(get_from_gallery(track.id)).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
+    expect(getFromGallery(track.id)).to.be.null;
   });
 
   test("tools for gallery 002", () => {
     localStorage.clear();
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery("test")).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
 
     const track = { id: uuid(), grid_text: "zz", title: "test" };
     add_to_gallery(track, { ...st, track });
     expect(gallery_list()).to.deep.equal(["test"]);
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
-    remove_from_gallery(track.id);
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
+    removeFromGallery(track.id);
     expect(localStorage.getItem(track.id)).to.be.null;
     expect(gallery_dict()).to.deep.equal({});
     expect(gallery_list()).to.deep.equal([]);
-    expect(get_from_gallery("test")).to.be.null;
-    expect(get_from_gallery(track.id)).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
+    expect(getFromGallery(track.id)).to.be.null;
   });
 
   test("gallery with more than one element", () => {
@@ -77,44 +77,44 @@ suite("Gallery tools", () => {
     expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id]);
     expect(gallery_list()).to.deep.equal(["test1", "test2"]);
-    expect(get_from_gallery(track_a.id)).to.deep.equal({
+    expect(getFromGallery(track_a.id)).to.deep.equal({
       ...st,
       track: track_a,
     });
-    expect(get_from_gallery(track_b.id)).to.deep.equal({
+    expect(getFromGallery(track_b.id)).to.deep.equal({
       ...st,
       track: track_b,
     });
 
-    remove_from_gallery("unknown_id");
+    removeFromGallery("unknown_id");
     expect(gallery_list()).to.deep.equal(["test1", "test2"]);
     expect(Object.values(gallery_dict())).to.deep.equal([track_a.title, track_b.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track_a.id, track_b.id]);
-    expect(get_from_gallery(track_a.id)).to.deep.equal({
+    expect(getFromGallery(track_a.id)).to.deep.equal({
       ...st,
       track: track_a,
     });
-    expect(get_from_gallery(track_b.id)).to.deep.equal({
+    expect(getFromGallery(track_b.id)).to.deep.equal({
       ...st,
       track: track_b,
     });
 
-    remove_from_gallery(track_b.id);
+    removeFromGallery(track_b.id);
     expect(gallery_list()).to.deep.equal(["test1"]);
-    expect(get_from_gallery(track_a.id)).to.deep.equal({
+    expect(getFromGallery(track_a.id)).to.deep.equal({
       ...st,
       track: track_a,
     });
-    expect(get_from_gallery(track_b.id)).to.be.null;
+    expect(getFromGallery(track_b.id)).to.be.null;
 
-    remove_from_gallery(track_a.id);
+    removeFromGallery(track_a.id);
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery("test1")).to.be.null;
-    expect(get_from_gallery("test2")).to.be.null;
+    expect(getFromGallery("test1")).to.be.null;
+    expect(getFromGallery("test2")).to.be.null;
 
-    expect(get_from_gallery(track_a.id)).to.be.null;
-    expect(get_from_gallery(track_b.id)).to.be.null;
+    expect(getFromGallery(track_a.id)).to.be.null;
+    expect(getFromGallery(track_b.id)).to.be.null;
   });
 
   test("multiple add", () => {
@@ -124,33 +124,33 @@ suite("Gallery tools", () => {
     expect(gallery_list()).to.deep.equal(["test1"]);
     expect(Object.values(gallery_dict())).to.deep.equal([track.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track.id]);
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
 
     track.grid_text = "bb";
     add_to_gallery(track, { ...st, track });
     expect(gallery_list()).to.deep.equal(["test1"]);
     expect(Object.values(gallery_dict())).to.deep.equal([track.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track.id]);
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
 
     track.title = "test2";
     add_to_gallery(track, { ...st, track });
     expect(gallery_list()).to.deep.equal(["test2"]);
     expect(Object.values(gallery_dict())).to.deep.equal([track.title]);
     expect(Object.keys(gallery_dict())).to.deep.equal([track.id]);
-    expect(get_from_gallery(track.id)).to.deep.equal({ ...st, track });
+    expect(getFromGallery(track.id)).to.deep.equal({ ...st, track });
 
-    remove_from_gallery(track.id);
+    removeFromGallery(track.id);
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery(track.id)).to.be.null;
+    expect(getFromGallery(track.id)).to.be.null;
   });
 
   test("tools for gallery with IState", () => {
     localStorage.clear();
     expect(gallery_list()).to.deep.equal([]);
     expect(gallery_dict()).to.deep.equal({});
-    expect(get_from_gallery("test")).to.be.null;
+    expect(getFromGallery("test")).to.be.null;
 
     const state = {
       ...st,
@@ -161,9 +161,9 @@ suite("Gallery tools", () => {
     };
     const new_state = add_to_gallery(state.track, state);
     expect(new_state.track?.id).to.not.be.undefined;
-    const new_st = get_from_gallery(new_state.track?.id || "");
+    const new_st = getFromGallery(new_state.track?.id || "");
     expect(new_st).to.deep.equal(new_state);
-    remove_from_gallery(new_state.track?.id || "");
+    removeFromGallery(new_state.track?.id || "");
   });
 
   test("exists in library (empty)", () => {
@@ -190,7 +190,7 @@ suite("Gallery tools", () => {
     expect(exists_in_gallery("other", "foo")).to.be.false;
     expect(exists_in_gallery("other", "title")).to.be.false;
     expect(exists_in_gallery("other", undefined)).to.be.false;
-    remove_from_gallery("title");
+    removeFromGallery("title");
   });
 
   test("exists in library (not empty) 2 ", () => {
@@ -226,8 +226,8 @@ suite("Gallery tools", () => {
     expect(exists_in_gallery("other", "foo")).to.be.false;
     expect(exists_in_gallery("other", "title")).to.be.false;
     expect(exists_in_gallery("other", undefined)).to.be.false;
-    remove_from_gallery("title");
-    remove_from_gallery("title2");
+    removeFromGallery("title");
+    removeFromGallery("title2");
   });
 
   test("add to synchronize index", () => {

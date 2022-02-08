@@ -2,7 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./grid-style";
 import part from "./part";
-import { repeat_end, repeat_start } from "./repeat";
+import { repeatEnd, repeatStart } from "./repeat";
 import Grid from "../../parser/Grid";
 import Row from "../../parser/Row";
 import Measure from "../../parser/Measure";
@@ -113,8 +113,8 @@ class ChordsGrid extends LitElement {
         element = html``;
     }
     const part_element = part(measure);
-    const repeat_start_el = repeat_start(measure);
-    const repeat_end_el = repeat_end(measure);
+    const repeat_start_el = repeatStart(measure);
+    const repeat_end_el = repeatEnd(measure);
     return html`${repeat_start_el}${part_element}${element}${repeat_end_el}`;
   }
 }

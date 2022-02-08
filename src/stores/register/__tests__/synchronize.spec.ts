@@ -14,7 +14,7 @@ import {
 } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
-import { synchronize_callback } from "../synchronize";
+import { synchronizeCallback } from "../synchronize";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
 import DispatcherError from "../../DispatcherError";
@@ -24,31 +24,31 @@ suite("synchronize callback", () => {
   const stub = sinon.stub(synchronizer);
 
   test("activation request", async () => {
-    const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION_REQUEST), { ...st });
+    const state = await synchronizeCallback(new Action(SYNCHRO_ACTIVATION_REQUEST), { ...st });
     expect(state.synchronization.open).to.be.true;
   });
 
   test("deactivation request", async () => {
-    const state = await synchronize_callback(new Action(SYNCHRO_DEACTIVATION_REQUEST), { ...st });
+    const state = await synchronizeCallback(new Action(SYNCHRO_DEACTIVATION_REQUEST), { ...st });
     expect(state.synchronization.open).to.be.true;
   });
 
   test("configuration close keyboard", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, open: true };
-    const state = await synchronize_callback(new Action(MODALS_CLOSE), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(MODALS_CLOSE), { ...st, synchronization });
     expect(state.synchronization.open).to.be.undefined;
   });
 
   test("configuration close", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, open: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_CONFIGURATION_CLOSE), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_CONFIGURATION_CLOSE), { ...st, synchronization });
     expect(state.synchronization.open).to.be.undefined;
   });
 
   test("activate", async () => {
-    const state = await synchronize_callback(new Action(SYNCHRO_ACTIVATION), { ...st });
+    const state = await synchronizeCallback(new Action(SYNCHRO_ACTIVATION), { ...st });
     expect(state.synchronization.enabled).to.be.true;
     expect(state.synchronization.error).to.be.undefined;
     expect(state.synchronization.signInProgress).to.be.true;
@@ -57,7 +57,7 @@ suite("synchronize callback", () => {
   test("deactivate", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_DEACTIVATION), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_DEACTIVATION), { ...st, synchronization });
     expect(state.synchronization.enabled).to.be.false;
     expect(state.synchronization.signInProgress).to.be.undefined;
   });
@@ -66,7 +66,7 @@ suite("synchronize callback", () => {
     stub.signIn.returns(Promise.resolve(true));
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: true, error: "ee", signInProgress: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.true;
     expect(state.synchronization.error).to.be.undefined;
     expect(state.synchronization.signInProgress).to.be.undefined;
@@ -76,7 +76,7 @@ suite("synchronize callback", () => {
     stub.signIn.returns(Promise.resolve(true));
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: false, signInProgress: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.undefined;
     expect(state.synchronization.signInProgress).to.be.undefined;
   });
@@ -85,7 +85,7 @@ suite("synchronize callback", () => {
     stub.signIn.returns(Promise.reject({ reason: "error" }));
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: true, signInProgress: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_SIGN_IN), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.false;
     const error = state.synchronization.error as { reason: string };
     expect(error.reason).to.be.equal("error");
@@ -95,7 +95,7 @@ suite("synchronize callback", () => {
   test("sign_out", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: false, signInValid: true, signInProgress: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_SIGN_OUT), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_SIGN_OUT), { ...st, synchronization });
     expect(state.synchronization.signInValid).to.be.undefined;
     expect(state.synchronization.error).to.be.undefined;
     expect(state.synchronization.signInProgress).to.be.undefined;
@@ -104,7 +104,7 @@ suite("synchronize callback", () => {
   test("force_sync start", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, enabled: true, signInValid: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.true;
   });
 
@@ -112,7 +112,7 @@ suite("synchronize callback", () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, syncInProgress: true };
     try {
-      await synchronize_callback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
+      await synchronizeCallback(new Action(SYNCHRO_FORCE_START), { ...st, synchronization });
     } catch (e: unknown) {
       const dispatchErr = e as DispatcherError;
       expect(dispatchErr.message).to.be.equal("Synchronization in progress");
@@ -122,12 +122,12 @@ suite("synchronize callback", () => {
   test("force_sync", async () => {
     let { synchronization } = st;
     synchronization = { ...synchronization, syncInProgress: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_FORCE), { ...st, synchronization });
+    const state = await synchronizeCallback(new Action(SYNCHRO_FORCE), { ...st, synchronization });
     expect(state.synchronization.syncInProgress).to.be.undefined;
   });
 
   test("toggle sync on", async () => {
-    const state = await synchronize_callback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st });
+    const state = await synchronizeCallback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st });
     expect(state.synchronization.enabled).to.be.false;
     expect(state.featureFlags?.synchro_enabled).to.be.true;
   });
@@ -135,7 +135,7 @@ suite("synchronize callback", () => {
   test("toggle sync off", async () => {
     let { featureFlags } = st;
     featureFlags = { ...featureFlags, synchro_enabled: true };
-    const state = await synchronize_callback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st, featureFlags });
+    const state = await synchronizeCallback(new Action(SYNCHRO_TOGGLE_ENABLED), { ...st, featureFlags });
     expect(state.synchronization.enabled).to.be.false;
     expect(state.featureFlags?.synchro_enabled).to.be.false;
   });

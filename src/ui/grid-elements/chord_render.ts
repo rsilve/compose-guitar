@@ -1,7 +1,7 @@
 import { html } from "lit";
 import Chord from "../../parser/Chord";
 
-export default function chord_render(chord: Chord): unknown {
+export default function chordRender(chord: Chord): unknown {
   const base = html`<span class="chord_note">${chord.base}</span>`;
 
   let modifier = html``;

@@ -31,7 +31,7 @@ class HelpModal extends LitElement {
   @property()
   featureFlags: IStateFeatureFlag | undefined;
 
-  private _dispatch_close() {
+  private dispatchClose() {
     const options = {
       bubbles: true,
       composed: true,
@@ -39,7 +39,7 @@ class HelpModal extends LitElement {
     this.dispatchEvent(new CustomEvent("close", options));
   }
 
-  private _dispatch_toggle_sync_enable() {
+  private dispatchToggleSyncEnable() {
     const options = {
       bubbles: true,
       composed: true,
@@ -98,11 +98,11 @@ class HelpModal extends LitElement {
           id="featureSynchronizationEnabled"
           type="checkbox"
           .checked="${this.featureFlags?.synchro_enabled}"
-          @change="${this._dispatch_toggle_sync_enable}"
+          @change="${this.dispatchToggleSyncEnable}"
         />
       </div>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" @click="${this._dispatch_close}">Close</button>
+        <button tabindex="-1" class="btn-primary _close" @click="${this.dispatchClose}">Close</button>
       </div>
     `;
   }

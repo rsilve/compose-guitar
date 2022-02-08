@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
-import chord_render from "./chord_render";
+import chordRender from "./chord_render";
 import { MeasureElement } from "./MeasureElement";
 import Measure from "../../parser/Measure";
 
@@ -11,7 +11,7 @@ class MeasureElement1 extends MeasureElement {
       <table class="grid-measure-1">
         <tbody>
           <tr>
-            <td>${chord_render(measure.chords[0].transpose(transpose))}</td>
+            <td>${chordRender(measure.chords[0].transpose(transpose))}</td>
           </tr>
         </tbody>
       </table>

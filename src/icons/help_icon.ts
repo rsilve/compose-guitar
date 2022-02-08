@@ -1,12 +1,12 @@
 import { svg } from "lit";
 import { customElement } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
-import icon_style from "./icon_style";
+import iconStyle from "./iconStyle";
 import StyledIcon from "./StyledIcon";
 
 @customElement("help-icon")
 class HelpIcon extends StyledIcon {
-  static styles = [icon_style];
+  static styles = [iconStyle];
 
   render(): unknown {
     const styleMap1 = styleMap({ fill: this.fill });

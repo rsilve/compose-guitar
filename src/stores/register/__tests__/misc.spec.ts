@@ -2,7 +2,7 @@ import { expect } from "@open-wc/testing";
 import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../../actions/actions";
 
 import { init_app_callback, transpose_change_callback, zoom_change_callback } from "../misc";
-import { save_last_state } from "../gallery_tools";
+import { saveLastState } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
 import Action from "../../../actions/Action";
@@ -27,7 +27,7 @@ suite("Register misc", () => {
         synchro_enabled: true,
       },
     };
-    save_last_state(last_state);
+    saveLastState(last_state);
     const state = await init_app_callback(new Action(INIT_APP), { ...st });
     expect(state).to.deep.equal(last_state);
     expect(FeatureFlag.get().synchro_enabled).to.be.true;

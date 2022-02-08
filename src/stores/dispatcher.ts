@@ -4,13 +4,13 @@ import { default_state, IState } from "./state";
 let _state: IState;
 
 let listeners: ((state: IState) => void)[] = [];
-let dispatch_callback: ((action: Action, state: IState) => Promise<IState>)[] = [];
+let dispatchCallback: ((action: Action, state: IState) => Promise<IState>)[] = [];
 
 function notify() {
   listeners.forEach((listener) => listener({ ..._state }));
 }
 
-export function initialize_state(st: IState): void {
+export function initializeState(st: IState): void {
   _state = st;
 }
 
@@ -30,15 +30,15 @@ export function disconnect(callback: (state: IState) => void): void {
 }
 
 export function register(callback: (action: Action, state: IState) => Promise<IState>): void {
-  dispatch_callback.push(callback);
+  dispatchCallback.push(callback);
 }
 
 export function registered(callback: (action: Action, state: IState) => Promise<IState>): boolean {
-  return dispatch_callback.indexOf(callback) >= 0;
+  return dispatchCallback.indexOf(callback) >= 0;
 }
 
 export async function dispatch(action: Action): Promise<void> {
-  for (const cb of dispatch_callback) {
+  for (const cb of dispatchCallback) {
     _state = await cb(action, { ..._state });
   }
   notify();
@@ -52,5 +52,5 @@ export function reset_dispatcher(st: IState | undefined = undefined): void {
     _state = { ...default_state() };
   }
   listeners = [];
-  dispatch_callback = [];
+  dispatchCallback = [];
 }

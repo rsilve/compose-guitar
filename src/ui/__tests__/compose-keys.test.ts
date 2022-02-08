@@ -7,7 +7,7 @@ import { stateTest } from "../../__tests__/TestHelpers";
 import { save_as_callback } from "../../stores/register/save_as";
 import { gallery_callback } from "../../stores/register/gallery";
 import { zoom_change_callback } from "../../stores/register/misc";
-import { help_callback } from "../../stores/register/help";
+import { helpCallback } from "../../stores/register/help";
 
 suite("compose-key element", () => {
   const st = stateTest;
@@ -207,7 +207,7 @@ suite("compose-key element", () => {
 
   test("esc event", async () => {
     reset_dispatcher(st);
-    register(help_callback);
+    register(helpCallback);
     const promise = new Promise((resolve) => {
       connect(() => {
         resolve(true);

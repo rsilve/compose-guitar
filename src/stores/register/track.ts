@@ -11,7 +11,7 @@ import {
   TRACK_PASTE,
 } from "../../actions/actions";
 import { IState } from "../state";
-import { save_needed } from "../../tools/state_tools";
+import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
 import { uuid } from "../../tools/uuid";
 
@@ -19,7 +19,7 @@ export async function track_callback(action: Action, state: IState): Promise<ISt
   let result = { ...state };
   if (action.actionType === TRACK_NEW) {
     const { track = {} } = result;
-    if (save_needed(track)) {
+    if (saveNeeded(track)) {
       result = { ...result, confirm_save: true };
     } else {
       result = {

@@ -136,7 +136,7 @@ function synchroToggle(action: Action, result: IState) {
   return result;
 }
 
-export async function synchronize_callback(action: Action, state: IState): Promise<IState> {
+export async function synchronizeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   result = synchroActivationRequest(action, result);
 

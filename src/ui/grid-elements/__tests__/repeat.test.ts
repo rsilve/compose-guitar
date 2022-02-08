@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import { customElement, property } from "lit/decorators.js";
 import { html as lit_html, LitElement } from "lit";
 import Measure from "../../../parser/Measure";
-import { repeat_end, repeat_start } from "../repeat";
+import { repeatEnd, repeatStart } from "../repeat";
 
 @customElement("repeat-start-test")
 class RepeatStartTest extends LitElement {
@@ -10,7 +10,7 @@ class RepeatStartTest extends LitElement {
   measure: Measure = new Measure("A");
 
   render(): unknown {
-    return lit_html`${repeat_start(this.measure)}`;
+    return lit_html`${repeatStart(this.measure)}`;
   }
 }
 
@@ -20,7 +20,7 @@ class RepeatEndTest extends LitElement {
   measure: Measure = new Measure("A");
 
   render(): unknown {
-    return lit_html`${repeat_end(this.measure)}`;
+    return lit_html`${repeatEnd(this.measure)}`;
   }
 }
 

@@ -14,7 +14,7 @@ suite("transpose element", () => {
                 <div>0 tone</div>
             </label>`
     );
-    expect(el._transpose).to.equal(0);
+    expect(el.transpose).to.equal(0);
   });
 
   test("change", async () => {
@@ -29,7 +29,7 @@ suite("transpose element", () => {
       cancelable: true,
     });
     node.dispatchEvent(event);
-    expect(el._transpose).to.equal(1);
+    expect(el.transpose).to.equal(1);
     fixtureCleanup();
   });
 });
