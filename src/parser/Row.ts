@@ -1,7 +1,7 @@
 import Measure from "./Measure";
 
-const row_regexp = /(\|{1,2})?[^|]+(\|{1,2})?/g;
-const row_invalid_regexp = /\|\s\||\|\|\|/;
+const ROW_REGEXP = /(\|{1,2})?[^|]+(\|{1,2})?/g;
+const ROW_INVALID_REGEXP = /\|\s\||\|\|\|/;
 
 class Row {
   private readonly _raw: string;
@@ -14,19 +14,19 @@ class Row {
 
   constructor(raw: string) {
     this._raw = raw.trim();
-    const match_invalid = this.raw.match(row_invalid_regexp);
+    const matchInvalid = this.raw.match(ROW_INVALID_REGEXP);
 
-    if (match_invalid) {
+    if (matchInvalid) {
       this.valid = false;
     } else {
-      const matches = this.raw.matchAll(row_regexp);
+      const matches = this.raw.matchAll(ROW_REGEXP);
       for (const m of matches) {
-        const measure_object = new Measure(m[0]);
-        this.valid = this.valid && measure_object.valid;
-        if (!measure_object.valid) {
-          this.reason = measure_object.reason;
+        const measureObject = new Measure(m[0]);
+        this.valid = this.valid && measureObject.valid;
+        if (!measureObject.valid) {
+          this.reason = measureObject.reason;
         }
-        this.measure.push(measure_object);
+        this.measure.push(measureObject);
       }
     }
   }
