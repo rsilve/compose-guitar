@@ -1,6 +1,6 @@
 import { fixture, html, expect, fixtureCleanup } from "@open-wc/testing";
 import ZoomGrid from "../zoom-grid";
-import { register, reset_dispatcher } from "../../stores/dispatcher";
+import { register, resetDispatcher } from "../../stores/dispatcher";
 import { zoom_change_callback } from "../../stores/register/misc";
 
 suite("Zoom grid element", () => {
@@ -40,7 +40,7 @@ suite("Zoom grid element", () => {
   });
 
   test("click zoom out", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     register(zoom_change_callback);
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);
     await expect(el).shadowDom.to.be.accessible();

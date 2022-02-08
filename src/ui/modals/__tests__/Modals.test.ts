@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Modals from "../Modals";
-import { register, reset_dispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import {
   SYNCHRO_ACTIVATION,
@@ -14,7 +14,7 @@ suite("Modals element", () => {
   const st = stateTest;
 
   test("is defined", async () => {
-    reset_dispatcher({ ...st });
+    resetDispatcher({ ...st });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -22,7 +22,7 @@ suite("Modals element", () => {
   });
 
   test("open gallery", async () => {
-    reset_dispatcher({ ...st, gallery: true });
+    resetDispatcher({ ...st, gallery: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -32,7 +32,7 @@ suite("Modals element", () => {
   });
 
   test("open editor", async () => {
-    reset_dispatcher({ ...st, editor: {} });
+    resetDispatcher({ ...st, editor: {} });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -42,7 +42,7 @@ suite("Modals element", () => {
   });
 
   test("open help", async () => {
-    reset_dispatcher({ ...st, help_open: true });
+    resetDispatcher({ ...st, help_open: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -52,7 +52,7 @@ suite("Modals element", () => {
   });
 
   test("confirm save", async () => {
-    reset_dispatcher({ ...st, confirm_save: true });
+    resetDispatcher({ ...st, confirm_save: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -62,7 +62,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize activation", async () => {
-    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
     await expect(el).shadowDom.to.be.accessible();
@@ -75,7 +75,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize configuration close", async () => {
-    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.actionType === SYNCHRO_CONFIGURATION_CLOSE);
@@ -97,7 +97,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize activation", async () => {
-    reset_dispatcher({ ...st, synchronization: { enabled: false, open: true } });
+    resetDispatcher({ ...st, synchronization: { enabled: false, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.actionType === SYNCHRO_ACTIVATION);
@@ -119,7 +119,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize deactivation", async () => {
-    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.actionType === SYNCHRO_DEACTIVATION);
@@ -141,7 +141,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize sign out", async () => {
-    reset_dispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
         if (action.actionType === SYNCHRO_SIGN_OUT) {
@@ -165,7 +165,7 @@ suite("Modals element", () => {
   });
 
   test("synchronize enable feature", async () => {
-    reset_dispatcher({ ...st, help_open: true });
+    resetDispatcher({ ...st, help_open: true });
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.actionType === SYNCHRO_TOGGLE_ENABLED);

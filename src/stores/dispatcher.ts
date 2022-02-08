@@ -45,7 +45,7 @@ export async function dispatch(action: Action): Promise<void> {
 }
 
 // for tests
-export function reset_dispatcher(st: IState | undefined = undefined): void {
+export function resetDispatcher(st: IState | undefined = undefined): void {
   if (st) {
     _state = { ...st };
   } else {

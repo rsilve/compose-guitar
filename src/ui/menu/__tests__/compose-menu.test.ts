@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Menu from "../Menu";
-import { register, reset_dispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { GALLERY_OPEN, SAVE_AS_START, TRACK_NEW } from "../../../actions/actions";
 
 suite("Menu element", () => {
@@ -22,7 +22,7 @@ suite("Menu element", () => {
   });
 
   test("click save", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     let click_handled = false;
     register((action, state) => {
       click_handled = action.actionType === SAVE_AS_START;
@@ -36,7 +36,7 @@ suite("Menu element", () => {
   });
 
   test("click library", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     let click_handled = false;
     register((action, state) => {
       click_handled = action.actionType === GALLERY_OPEN;
@@ -50,7 +50,7 @@ suite("Menu element", () => {
   });
 
   test("click new", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     let click_handled = false;
     register((action, state) => {
       click_handled = action.actionType === TRACK_NEW;

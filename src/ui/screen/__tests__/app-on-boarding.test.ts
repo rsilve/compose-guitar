@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 
 import AppOnBoarding from "../app-on-boarding";
-import { register, reset_dispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { TRACK_NEW } from "../../../actions/actions";
 
 suite("app on boarding element", () => {
@@ -28,7 +28,7 @@ suite("app on boarding element", () => {
   });
 
   test("is defined", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     const promise = new Promise((resolve) => {
       register((action, state) => {
         resolve(action.actionType === TRACK_NEW);

@@ -1,6 +1,6 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import TransposeGrid from "../TransposeGrid";
-import { register, reset_dispatcher } from "../../stores/dispatcher";
+import { register, resetDispatcher } from "../../stores/dispatcher";
 import { transpose_change_callback } from "../../stores/register/misc";
 
 suite("transpose element", () => {
@@ -18,7 +18,7 @@ suite("transpose element", () => {
   });
 
   test("change", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     register(transpose_change_callback);
     const el: TransposeGrid = await fixture(html` <transpose-grid></transpose-grid>s`);
     expect(el).to.instanceOf(TransposeGrid);

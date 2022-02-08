@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { connect, dispatch, init, register, reset_dispatcher, disconnect } from "../dispatcher";
+import { connect, dispatch, init, register, resetDispatcher, disconnect } from "../dispatcher";
 import Action from "../../actions/Action";
 import { stateTest } from "../../__tests__/TestHelpers";
 import { IState } from "../state";
@@ -8,7 +8,7 @@ suite("Dispatcher", () => {
   const st = stateTest;
 
   test("init, connect, register, dispatch", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     let grid_text: string | undefined = "eee";
     init((state) => {
       const { track = {} } = state;
@@ -35,7 +35,7 @@ suite("Dispatcher", () => {
   });
 
   test("error in register callback", () => {
-    reset_dispatcher();
+    resetDispatcher();
     let grid_text: string | undefined = "eee";
     connect(({ track = {} }: IState) => {
       grid_text = track.grid_text;

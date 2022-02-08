@@ -38,12 +38,12 @@ import {
   actionSynchroToggleEnable,
 } from "../actions";
 import { default_state } from "../../stores/state";
-import { reset_dispatcher, register } from "../../stores/dispatcher";
+import { resetDispatcher, register } from "../../stores/dispatcher";
 
 suite("actions", () => {
   test("transpose", async () => {
     let handle = 0;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       if (action.actionType === TRANSPOSE_CHANGE) {
         const { transpose } = action.payload as { transpose: number };
@@ -57,7 +57,7 @@ suite("actions", () => {
 
   test("init", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === INIT_APP;
       return Promise.resolve(state);
@@ -68,7 +68,7 @@ suite("actions", () => {
 
   test("upload_from_gallery", async () => {
     let handle = "";
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       const { id = "" } = action.payload as { id: string };
       handle = action.actionType === UPLOAD_FROM_GALLERY ? id : "";
@@ -80,7 +80,7 @@ suite("actions", () => {
 
   test("save_as_start", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SAVE_AS_START;
       return Promise.resolve(state);
@@ -91,7 +91,7 @@ suite("actions", () => {
 
   test("save_as_start_and_new", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SAVE_AS_START_AND_NEW;
       return Promise.resolve(state);
@@ -102,7 +102,7 @@ suite("actions", () => {
 
   test("gallery_open", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === GALLERY_OPEN;
       return Promise.resolve(state);
@@ -113,7 +113,7 @@ suite("actions", () => {
 
   test("gallery_gallery_remove", async () => {
     let handle = "id";
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       const { id = "" } = action.payload as { id: string };
       handle = action.actionType === GALLERY_REMOVE ? id : "";
@@ -125,7 +125,7 @@ suite("actions", () => {
 
   test("gallery_gallery_close", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === GALLERY_CLOSE;
       return Promise.resolve(state);
@@ -136,7 +136,7 @@ suite("actions", () => {
 
   test("action_synchronization_activation_request", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_ACTIVATION_REQUEST;
       return Promise.resolve(state);
@@ -147,7 +147,7 @@ suite("actions", () => {
 
   test("action_synchronization_deactivation_request", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_DEACTIVATION_REQUEST;
       return Promise.resolve(state);
@@ -158,7 +158,7 @@ suite("actions", () => {
 
   test("action_synchronization_activation", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_ACTIVATION;
       return Promise.resolve(state);
@@ -169,7 +169,7 @@ suite("actions", () => {
 
   test("action_synchronization_deactivation", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_DEACTIVATION;
       return Promise.resolve(state);
@@ -180,7 +180,7 @@ suite("actions", () => {
 
   test("action_synchronization_close", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_CONFIGURATION_CLOSE;
       return Promise.resolve(state);
@@ -191,7 +191,7 @@ suite("actions", () => {
 
   test("action_synchro_sign_in", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_SIGN_IN;
       return Promise.resolve(state);
@@ -202,7 +202,7 @@ suite("actions", () => {
 
   test("action_remote_sign_out", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_SIGN_OUT;
       return Promise.resolve(state);
@@ -213,7 +213,7 @@ suite("actions", () => {
 
   test("action_synchro_force start", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_FORCE_START;
       return Promise.resolve(state);
@@ -224,7 +224,7 @@ suite("actions", () => {
 
   test("action_synchro_force", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_FORCE;
       return Promise.resolve(state);
@@ -235,7 +235,7 @@ suite("actions", () => {
 
   test("action_synchro_toggle_enable", async () => {
     let handle = false;
-    reset_dispatcher(default_state());
+    resetDispatcher(default_state());
     register((action, state) => {
       handle = action.actionType === SYNCHRO_TOGGLE_ENABLED;
       return Promise.resolve(state);

@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import MainScreen from "../main-screen";
 import { stateTest } from "../../__tests__/TestHelpers";
-import { reset_dispatcher } from "../../stores/dispatcher";
+import { resetDispatcher } from "../../stores/dispatcher";
 
 suite("Main screen element", () => {
   const st = stateTest;
@@ -16,7 +16,7 @@ suite("Main screen element", () => {
   });
 
   test("with track", async () => {
-    reset_dispatcher({ ...st, track: { title: "title", grid_text: "A" } });
+    resetDispatcher({ ...st, track: { title: "title", grid_text: "A" } });
     const el: MainScreen = await fixture(html` <main-screen></main-screen> `);
     expect(el).to.instanceOf(MainScreen);
     await expect(el).shadowDom.to.be.accessible();
@@ -29,7 +29,7 @@ suite("Main screen element", () => {
   });
 
   test("with zoom", async () => {
-    reset_dispatcher({
+    resetDispatcher({
       ...st,
       track: { title: "title", grid_text: "A" },
       zoom: 50,

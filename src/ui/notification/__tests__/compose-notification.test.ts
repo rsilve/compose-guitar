@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ComposeNotification from "../compose-notification";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { reset_dispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../stores/dispatcher";
 
 suite("compose-notification element", () => {
   const st = stateTest;
@@ -16,7 +16,7 @@ suite("compose-notification element", () => {
   });
 
   test("with message", async () => {
-    reset_dispatcher({ ...st, notification: "test" });
+    resetDispatcher({ ...st, notification: "test" });
     const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();
@@ -26,7 +26,7 @@ suite("compose-notification element", () => {
   });
 
   test("with message after timeout", async () => {
-    reset_dispatcher({ ...st, notification: "test" });
+    resetDispatcher({ ...st, notification: "test" });
     const el: ComposeNotification = await fixture(html` <compose-notification delay="100"></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();

@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import AppMainPreview from "../app-main-preview";
-import { connect, register, reset_dispatcher } from "../../../stores/dispatcher";
+import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
 import { track_callback } from "../../../stores/register/track";
 import { IState } from "../../../stores/state";
 
@@ -23,7 +23,7 @@ suite("app main preview element", () => {
   });
 
   test("handle edit", async () => {
-    reset_dispatcher();
+    resetDispatcher();
     register(track_callback);
     const promise: Promise<boolean> = new Promise((resolve) => {
       connect((st: IState) => {

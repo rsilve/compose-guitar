@@ -1,6 +1,6 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import ComposeKeys from "../compose-keys";
-import { connect, register, reset_dispatcher } from "../../stores/dispatcher";
+import { connect, register, resetDispatcher } from "../../stores/dispatcher";
 import { track_callback } from "../../stores/register/track";
 import { IState, IStateTrack } from "../../stores/state";
 import { stateTest } from "../../__tests__/TestHelpers";
@@ -23,7 +23,7 @@ suite("compose-key element", () => {
   });
 
   test("add edit_key event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(track_callback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
@@ -44,7 +44,7 @@ suite("compose-key element", () => {
   });
 
   test("add save_as_start event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(save_as_callback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
@@ -68,7 +68,7 @@ suite("compose-key element", () => {
   });
 
   test("add gallery_open event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(gallery_callback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
@@ -91,7 +91,7 @@ suite("compose-key element", () => {
   });
 
   test("add track_new event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(track_callback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
@@ -114,7 +114,7 @@ suite("compose-key element", () => {
   });
 
   test("zoom_incr event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(zoom_change_callback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
@@ -137,7 +137,7 @@ suite("compose-key element", () => {
   });
 
   test("zoom_incr event 2", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(zoom_change_callback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
@@ -160,7 +160,7 @@ suite("compose-key element", () => {
   });
 
   test("zoom_decr event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(zoom_change_callback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
@@ -183,7 +183,7 @@ suite("compose-key element", () => {
   });
 
   test("zoom_decr event 2", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(zoom_change_callback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
@@ -206,7 +206,7 @@ suite("compose-key element", () => {
   });
 
   test("esc event", async () => {
-    reset_dispatcher(st);
+    resetDispatcher(st);
     register(helpCallback);
     const promise = new Promise((resolve) => {
       connect(() => {
