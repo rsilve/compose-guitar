@@ -15,7 +15,7 @@ const main = document.querySelector("main")!;
 const { getLocale, setLocale } = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: (locale) => import(`./generated/locales/${locale}`),
+  loadLocale: (locale) => import(`./generated/locales/${locale}.ts`),
 });
 
 (async () => {
