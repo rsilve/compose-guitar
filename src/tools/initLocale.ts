@@ -1,10 +1,15 @@
 import { configureLocalization } from "@lit/localize";
 import { sourceLocale, targetLocales, allLocales } from "../generated/locales";
 
-const { getLocale, setLocale } = configureLocalization({
+export const { getLocale, setLocale } = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: (locale) => import(`../generated/locales/${locale}.ts`),
+  loadLocale: (locale) => {
+    if (locale === "fr") {
+      return import("../generated/locales/fr");
+    }
+    return Promise.reject(`unknown locale '${locale}'`);
+  },
 });
 
 export default async function localize(): Promise<void> {
@@ -16,8 +21,6 @@ export default async function localize(): Promise<void> {
   try {
     await setLocale(lang);
   } catch (e) {
-    // Either the URL locale code was invalid, or there was a problem loading
-    // the locale module.
     console.warn(`Error loading locale for code '${lang}': ${(e as Error).message}`);
   }
   console.info("Language", getLocale());
