@@ -19,8 +19,9 @@ const { getLocale, setLocale } = configureLocalization({
 });
 
 (async () => {
+  type LocalesNameType = typeof allLocales[number];
   let lang = window.navigator.language;
-  if (!Object.keys(allLocales).indexOf(lang)) {
+  if (!allLocales.includes(lang as LocalesNameType)) {
     lang = lang.split("-")[0];
   }
   try {
@@ -28,7 +29,7 @@ const { getLocale, setLocale } = configureLocalization({
   } catch (e) {
     // Either the URL locale code was invalid, or there was a problem loading
     // the locale module.
-    console.error(`Error loading locale for code '${lang}': ${(e as Error).message}`);
+    console.warn(`Error loading locale for code '${lang}': ${(e as Error).message}`);
   }
   console.info("Language", getLocale());
   render(html` <editor-main></editor-main> `, main);
