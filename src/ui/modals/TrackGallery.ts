@@ -1,10 +1,12 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { msg, localized } from "@lit/localize";
 import { modalStyles } from "../styles/modals";
 import buttonStyles from "../styles/buttonStyles";
 import "../../icons/delete_icon";
 import { IGalleryTrack } from "../../stores/state";
 
+@localized()
 @customElement("track-gallery")
 class TrackGallery extends LitElement {
   static styles = [
@@ -92,7 +94,7 @@ class TrackGallery extends LitElement {
   render(): unknown {
     const itemTemplates = this.render_list();
     return html`
-      <p>Click on a track to load it</p>
+      <p>${msg("Click on a track to load it")}</p>
       <ul>
         ${itemTemplates}
       </ul>
