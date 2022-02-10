@@ -78,6 +78,30 @@
   <source>Save and continue</source>
   <target>Sauvegarder et continuer</target>
 </trans-unit>
+<trans-unit id="sc1724a8bddde2ed2">
+  <source>You are not connected.</source>
+  <target>Vous n'êtes pas connecté.</target>
+</trans-unit>
+<trans-unit id="sf97f9b5f623b31cc">
+  <source>Retry ?</source>
+  <target>Réessayer ?</target>
+</trans-unit>
+<trans-unit id="sc4f1c47579ba1771">
+  <source>You are connected</source>
+  <target>Vous êtes connecté</target>
+</trans-unit>
+<trans-unit id="s01c9945d94c2d458">
+  <source>The error message was</source>
+  <target>Le message d'erreur était</target>
+</trans-unit>
+<trans-unit id="sac61352e8ffe9655">
+  <source>Synchronization between devices is enabled</source>
+  <target>La synchronisation entre les appareils est activée</target>
+</trans-unit>
+<trans-unit id="s771bdf9b9dc0dc53">
+  <source>deactivate</source>
+  <target>désactiver</target>
+</trans-unit>
 <trans-unit id="s614a0ead0aa35590">
   <source>activate</source>
   <target>activer</target>
