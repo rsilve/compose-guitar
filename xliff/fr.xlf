@@ -10,6 +10,50 @@
   <source>Click on a track to load it</source>
   <target>Cliquez sur un morceau pour le charger</target>
 </trans-unit>
+<trans-unit id="s2b9a1d2a9a3110da">
+  <source>Chord sequence (required)</source>
+  <target>Séquence d'accords (obligatoire)</target>
+</trans-unit>
+<trans-unit id="s521f2a45bd964146">
+  <source>Song title (required)</source>
+  <target>Titre du morceau (obligatoire)</target>
+</trans-unit>
+<trans-unit id="s2189cdd19d22a843">
+  <source>Track updated</source>
+  <target>Morceau mis à jour</target>
+</trans-unit>
+<trans-unit id="s8d349529fc5fb3b7">
+  <source>See examples</source>
+  <target>Voir les exemples</target>
+</trans-unit>
+<trans-unit id="s2ceb11be2290bb1b">
+  <source>Cancel</source>
+  <target>Abandonner les modifications</target>
+</trans-unit>
+<trans-unit id="sb8f855b49234b81b">
+  <source>Apply</source>
+  <target>Appliquer</target>
+</trans-unit>
+<trans-unit id="sc27e0098602d39d6">
+  <source>Examples</source>
+  <target>Exemples</target>
+</trans-unit>
+<trans-unit id="sd82e949fd3cbad7d">
+  <source>Chord:</source>
+  <target>Accords :</target>
+</trans-unit>
+<trans-unit id="sbefcc6bf7b752e55">
+  <source>Measure:</source>
+  <target>Mesures :</target>
+</trans-unit>
+<trans-unit id="sf7c45e0969b403fb">
+  <source>Measure row:</source>
+  <target>Séquence d'accords :</target>
+</trans-unit>
+<trans-unit id="s559bca2d83795046">
+  <source>Measure modifier:</source>
+  <target>Compléments :</target>
+</trans-unit>
 </body>
 </file>
 </xliff>

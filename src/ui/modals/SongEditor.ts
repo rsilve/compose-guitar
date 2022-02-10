@@ -14,7 +14,9 @@ import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { exists_in_gallery } from "../../stores/register/gallery_tools";
 import { actionNotificationOpen, actionTrackEditApply, actionTrackEditCancel } from "../../actions/actions";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("song-editor")
 class SongEditor extends LitElement {
   static styles = [
@@ -123,7 +125,7 @@ class SongEditor extends LitElement {
         title: this._grid_title,
         grid_text: this._value,
         updated_at: new Date().toISOString(),
-      }).then(() => actionNotificationOpen("Track updated"));
+      }).then(() => actionNotificationOpen(msg("Track updated")));
     } else {
       console.info("grid text is empty: close");
       actionTrackEditCancel();
@@ -164,11 +166,13 @@ class SongEditor extends LitElement {
     return html` <div class="modal-footer">
       <button class="btn-secondary help_toggle" @click="${this._toggle_help}">
         <info-icon .fill="${color}"></info-icon>
-        See examples
+        ${msg("See examples")}
       </button>
 
-      <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${actionTrackEditCancel}">Cancel</button>
-      <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">Apply</button>
+      <button class="btn-secondary" tabindex="-1" ontouchstart="" @click="${actionTrackEditCancel}">
+        ${msg("Cancel")}
+      </button>
+      <button .disabled="${disabled}" ontouchstart="" @click="${this._handle_apply}">${msg("Apply")}</button>
     </div>`;
   }
 
@@ -179,11 +183,11 @@ class SongEditor extends LitElement {
     });
     return html`
             <div class="${classes}">
-                <h2>Examples</h2>
-                <p>Chord : <strong>A</strong>, <strong>Em</strong>, <strong>F#</strong>, <strong>Cb</strong>,
+                <h2>${msg("Examples")}</h2>
+                <p>${msg("Chord:")} <strong>A</strong>, <strong>Em</strong>, <strong>F#</strong>, <strong>Cb</strong>,
                     <strong>G7</strong>, <strong>D9</strong>, <strong>Asus2</strong>, <strong>Bm57b</strong>,
                     <strong>Bø</strong>, <strong>C/E</strong></p>
-                <p>Measure : <strong>| A |</strong>, <strong>| D C |</strong>, <strong>| G Em _ _ |</strong>
+                <p>${msg("Measure :")} <strong>| A |</strong>, <strong>| D C |</strong>, <strong>| G Em _ _ |</strong>
                 <div class="song-editor-body-help-example">
                     <chords-grid>| A |</chords-grid>
                     <chords-grid>| D C |</chords-grid>
@@ -192,12 +196,12 @@ class SongEditor extends LitElement {
                     <chords-grid>| G Em D7 G |</chords-grid>
                 </div>
                 </p>
-                <p>Measure row : <strong>| F | G | Em | G Em |</strong>
+                <p>${msg("Measure row:")} <strong>| F | G | Em | G Em |</strong>
                 <div class="song-editor-body-help-example">
                     <chords-grid>| F | G | Em | G Em |</chords-grid>
                 </div>
                 </p>
-                <p>Measure modifier : <strong>|(a) A |</strong>, <strong>|: D :|</strong>
+                <p>${msg("Measure modifier:")} <strong>|(a) A |</strong>, <strong>|: D :|</strong>
                 <div class="song-editor-body-help-example">
                     <chords-grid> |(a) A |</chords-grid>
                     <chords-grid>|: D :|</chords-grid>

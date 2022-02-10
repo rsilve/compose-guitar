@@ -5,7 +5,9 @@ import { classMap } from "lit/directives/class-map.js";
 import Grid from "../../../parser/Grid";
 import inputStyles from "../../styles/inputStyles";
 import { AutoCorrect, normalize } from "./tools";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("grid-editor")
 class GridEditor extends LitElement {
   static styles = [
@@ -86,7 +88,7 @@ class GridEditor extends LitElement {
   render(): unknown {
     const normalized = this.value || "";
     return html`
-      <div class="input-label">Chord sequence (required)</div>
+      <div class="input-label">${msg("Chord sequence (required)")}</div>
       <textarea
         .value="${ifDefined(normalized)}"
         class="${classMap({ invalid: !this._grid_valid })}"
