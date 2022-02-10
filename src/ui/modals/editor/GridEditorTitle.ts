@@ -73,7 +73,7 @@ class GridEditorTitle extends LitElement {
 
   titleErrorPane(): unknown {
     if (this.invalid) {
-      return html` <div class="error-title">This title already exists</div>`;
+      return html` <div class="error-title">${msg("This title already exists")}</div>`;
     }
     return html``;
   }

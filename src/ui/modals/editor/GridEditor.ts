@@ -102,7 +102,7 @@ class GridEditor extends LitElement {
 
   grid_error_pane(): unknown {
     if (!this._grid_valid) {
-      return html` <div class="song-editor-body-form-error">Invalid syntax : ${this._grid_error_reason}</div>`;
+      return html` <div class="song-editor-body-form-error">${msg("Invalid syntax:")} ${this._grid_error_reason}</div>`;
     }
     return html``;
   }

@@ -14,9 +14,17 @@
   <source>Chord sequence (required)</source>
   <target>Séquence d'accords (obligatoire)</target>
 </trans-unit>
+<trans-unit id="sc4766e4bd5916653">
+  <source>Invalid syntax:</source>
+  <target>Syntaxe incorrecte :</target>
+</trans-unit>
 <trans-unit id="s521f2a45bd964146">
   <source>Song title (required)</source>
   <target>Titre du morceau (obligatoire)</target>
+</trans-unit>
+<trans-unit id="s7bb88acd8dbfaa89">
+  <source>This title already exists</source>
+  <target>Ce titre existe déjà</target>
 </trans-unit>
 <trans-unit id="s2189cdd19d22a843">
   <source>Track updated</source>
@@ -43,7 +51,7 @@
   <target>Accords :</target>
 </trans-unit>
 <trans-unit id="sbefcc6bf7b752e55">
-  <source>Measure:</source>
+  <source>Measure :</source>
   <target>Mesures :</target>
 </trans-unit>
 <trans-unit id="sf7c45e0969b403fb">
