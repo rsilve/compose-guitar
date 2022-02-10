@@ -12,6 +12,7 @@ export const templates = {
   s4121faefacc64cdc: `Cliquez sur un morceau pour le charger`,
   s521f2a45bd964146: `Titre du morceau (obligatoire)`,
   s559bca2d83795046: `Compléments :`,
+  s5e8250fb85d64c23: `Fermer`,
   s7bb88acd8dbfaa89: `Ce titre existe déjà`,
   s81ecf2d4386b8e84: `Continuer`,
   s8d349529fc5fb3b7: `Voir les exemples`,
@@ -23,5 +24,6 @@ export const templates = {
   scc854eb62c822760: `Cliquez pour modifier`,
   sd2052cf3f218e095: `Certains changements n'ont pas été enregistrés. Voulez-vous quand même continuer ?`,
   sd82e949fd3cbad7d: `Accords :`,
+  sf18cfde2dfadbbbb: `Synchronisation`,
   sf7c45e0969b403fb: `Séquence d'accords :`,
 };

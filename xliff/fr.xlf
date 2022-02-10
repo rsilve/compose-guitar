@@ -78,6 +78,14 @@
   <source>Save and continue</source>
   <target>Sauvegarder et continuer</target>
 </trans-unit>
+<trans-unit id="sf18cfde2dfadbbbb">
+  <source>Synchronization</source>
+  <target>Synchronisation</target>
+</trans-unit>
+<trans-unit id="s5e8250fb85d64c23">
+  <source>Close</source>
+  <target>Fermer</target>
+</trans-unit>
 </body>
 </file>
 </xliff>
