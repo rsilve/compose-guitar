@@ -78,6 +78,18 @@
   <source>Save and continue</source>
   <target>Sauvegarder et continuer</target>
 </trans-unit>
+<trans-unit id="s614a0ead0aa35590">
+  <source>activate</source>
+  <target>activer</target>
+</trans-unit>
+<trans-unit id="sd2e14edbdc642e9b">
+  <source>Please wait during authentication...</source>
+  <target>Veuillez patienter pendant l'authentification...</target>
+</trans-unit>
+<trans-unit id="sf7037ffe166d667f">
+  <source>The synchronization between devices is not activated.</source>
+  <target>La synchronisation entre les appareils n'est pas activée.</target>
+</trans-unit>
 <trans-unit id="sf18cfde2dfadbbbb">
   <source>Synchronization</source>
   <target>Synchronisation</target>
