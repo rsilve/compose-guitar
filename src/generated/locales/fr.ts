@@ -7,7 +7,8 @@
 export const templates = {
   s2189cdd19d22a843: `Morceau mis à jour`,
   s2b9a1d2a9a3110da: `Séquence d'accords (obligatoire)`,
-  s2ceb11be2290bb1b: `Abandonner les modifications`,
+  s2ba99e6c2f37b21e: `Supprimer de la galerie`,
+  s2ceb11be2290bb1b: `Abandonner`,
   s4121faefacc64cdc: `Cliquez sur un morceau pour le charger`,
   s521f2a45bd964146: `Titre du morceau (obligatoire)`,
   s559bca2d83795046: `Compléments :`,
