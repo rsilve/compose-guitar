@@ -21,6 +21,7 @@ export const templates = {
   s4bb1a88bd0a26f59: `Morceau chargé`,
   s4e7ccee09d565412: `Fermer la modale ouverte actuelle`,
   s521f2a45bd964146: `Titre du morceau (obligatoire)`,
+  s5327035df1f42b8e: `Aide sur les raccourcis`,
   s559bca2d83795046: `Compléments :`,
   s5e8250fb85d64c23: `Fermer`,
   s614a0ead0aa35590: `activer`,
