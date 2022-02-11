@@ -2,6 +2,22 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 <file target-language="fr" source-language="en" original="lit-localize-inputs" datatype="plaintext">
 <body>
+<trans-unit id="s6ede53926be8f8e0">
+  <source>save the track</source>
+  <target>sauvegarder le morceau</target>
+</trans-unit>
+<trans-unit id="sc1b7dd6184d4b261">
+  <source>Save completed</source>
+  <target>Sauvegarde terminée</target>
+</trans-unit>
+<trans-unit id="s3c4164e02d8d8d4d">
+  <source>Open the Library</source>
+  <target>Ouvrir la bibliothèque</target>
+</trans-unit>
+<trans-unit id="s8a85ab7998970662">
+  <source>new track</source>
+  <target>nouveau morceau</target>
+</trans-unit>
 <trans-unit id="scc854eb62c822760">
   <source>click to edit</source>
   <target>Cliquez pour modifier</target>
@@ -165,10 +181,6 @@
 <trans-unit id="sf7037ffe166d667f">
   <source>The synchronization between devices is not activated.</source>
   <target>La synchronisation entre les appareils n'est pas activée.</target>
-</trans-unit>
-<trans-unit id="sc1b7dd6184d4b261">
-  <source>Save completed</source>
-  <target>Sauvegarde terminée</target>
 </trans-unit>
 </body>
 </file>

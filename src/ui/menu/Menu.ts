@@ -8,7 +8,9 @@ import { IState } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";
 import { actionGalleryOpen, actionNotificationOpen, actionSaveAsStart, actionTrackNew } from "../../actions/actions";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("compose-menu")
 class Menu extends LitElement {
   static styles = css`
@@ -32,19 +34,26 @@ class Menu extends LitElement {
   @state()
   private needSave = false;
 
-  private handleSave(): void {
-    actionSaveAsStart().then(() => actionNotificationOpen("Save completed"));
+  private handleSave(message: string): () => void {
+    return () => {
+      actionSaveAsStart().then(() => actionNotificationOpen(message));
+    };
   }
 
   render(): unknown {
     return html`
-      <menu-item title="save the track - Ctrl+s" class="_save" .dotted="${this.needSave}" @click="${this.handleSave}">
+      <menu-item
+        title="${msg("save the track")} - Ctrl+s"
+        class="_save"
+        .dotted="${this.needSave}"
+        @click="${this.handleSave(msg("Save completed"))}"
+      >
         <save-icon></save-icon>
       </menu-item>
-      <menu-item title="Open the Library - Ctrl+l" class="_library" @click="${actionGalleryOpen}">
+      <menu-item title="${msg("Open the Library")} - Ctrl+l" class="_library" @click="${actionGalleryOpen}">
         <gallery-icon></gallery-icon>
       </menu-item>
-      <menu-item title="new track - Ctrl+n" class="_new" @click="${actionTrackNew}">
+      <menu-item title="${msg("new track")} - Ctrl+n" class="_new" @click="${actionTrackNew}">
         <new-track-icon></new-track-icon>
       </menu-item>
     `;
