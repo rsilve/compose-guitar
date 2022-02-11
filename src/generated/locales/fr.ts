@@ -15,6 +15,7 @@ export const templates = {
   s2b9a1d2a9a3110da: `Séquence d'accords (obligatoire)`,
   s2ba99e6c2f37b21e: `Supprimer de la galerie`,
   s2ceb11be2290bb1b: `Abandonner`,
+  s2d5c90e47b7c145f: `Synchronisation terminée`,
   s3c4164e02d8d8d4d: `Ouvrir la bibliothèque`,
   s4121faefacc64cdc: `Cliquez sur un morceau pour le charger`,
   s4bb1a88bd0a26f59: `Morceau chargé`,

@@ -186,6 +186,10 @@
   <source>Track loaded</source>
   <target>Morceau chargé</target>
 </trans-unit>
+<trans-unit id="s2d5c90e47b7c145f">
+  <source>Synchronisation completed</source>
+  <target>Synchronisation terminée</target>
+</trans-unit>
 </body>
 </file>
 </xliff>
