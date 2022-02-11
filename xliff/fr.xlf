@@ -22,6 +22,10 @@
   <source>click to edit</source>
   <target>Cliquez pour modifier</target>
 </trans-unit>
+<trans-unit id="scd382fbbde23a2e3">
+  <source>Songs gallery</source>
+  <target>bibliothèque de morceaux</target>
+</trans-unit>
 <trans-unit id="s4121faefacc64cdc">
   <source>Click on a track to load it</source>
   <target>Cliquez sur un morceau pour le charger</target>

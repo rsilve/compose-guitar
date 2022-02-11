@@ -13,6 +13,15 @@ class TrackGallery extends LitElement {
     modalStyles,
     buttonStyles,
     css`
+      h1 {
+        margin-bottom: 0;
+      }
+
+      .help {
+        font-size: 0.7em;
+        margin: 0 0 1em 0;
+      }
+
       ul {
         list-style: none;
         margin: 0;
@@ -94,13 +103,14 @@ class TrackGallery extends LitElement {
   render(): unknown {
     const itemTemplates = this.render_list();
     return html`
-      <p>${msg("Click on a track to load it")}</p>
+      <h1>${msg("Songs gallery")}</h1>
+      <p class="help">${msg("Click on a track to load it")}</p>
       <ul>
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
         <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this._dispatch_close}">
-          ${msg("Cancel")}
+          ${msg("Close")}
         </button>
       </div>
     `;
