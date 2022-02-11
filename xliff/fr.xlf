@@ -66,6 +66,58 @@
   <source>Measure modifier:</source>
   <target>Compléments :</target>
 </trans-unit>
+<trans-unit id="se3b4c857f91f80d7">
+  <source>Keyboard shortcuts</source>
+  <target>Raccourcis clavier</target>
+</trans-unit>
+<trans-unit id="s1f81786993324e60">
+  <source>Edit the current song</source>
+  <target>Modifier le morceau</target>
+</trans-unit>
+<trans-unit id="sba5088f6c35462dc">
+  <source>Save the current song to the library</source>
+  <target>Sauvegarder le morceau actuel dans la bibliothèque</target>
+</trans-unit>
+<trans-unit id="s4e7ccee09d565412">
+  <source>Close the current open modal</source>
+  <target>Fermer la modale ouverte actuelle</target>
+</trans-unit>
+<trans-unit id="s056816f3b950857a">
+  <source>New song</source>
+  <target>Nouveau morceau</target>
+</trans-unit>
+<trans-unit id="s236ae937cbcd6a39">
+  <source>Zoom in</source>
+  <target>Zoom avant</target>
+</trans-unit>
+<trans-unit id="sc65ea2cf2f21a13a">
+  <source>Zoom out</source>
+  <target>Zoom arrière</target>
+</trans-unit>
+<trans-unit id="s03a781dc88e1925e">
+  <source>Open library</source>
+  <target>Ouvrir la bibliothèque</target>
+</trans-unit>
+<trans-unit id="s818d44a194caa829">
+  <source>Copy the current song to the clipboard</source>
+  <target>Copier le morceau actuel dans le presse-papiers</target>
+</trans-unit>
+<trans-unit id="sc23b152d5a150f42">
+  <source>Replace the current song with the one from the clipboard</source>
+  <target>Remplacer le morceau actuel par celui du presse-papiers</target>
+</trans-unit>
+<trans-unit id="sf18cfde2dfadbbbb">
+  <source>Synchronization</source>
+  <target>Synchronisation</target>
+</trans-unit>
+<trans-unit id="s27f85a663d769c1c">
+  <source>Save your song on google drive</source>
+  <target>Enregistrez vos morceau sur google drive</target>
+</trans-unit>
+<trans-unit id="s5e8250fb85d64c23">
+  <source>Close</source>
+  <target>Fermer</target>
+</trans-unit>
 <trans-unit id="sd2052cf3f218e095">
   <source>Some changes have not been recorded. Do you want to continue anyway?</source>
   <target>Certains changements n'ont pas été enregistrés. Voulez-vous quand même continuer ?</target>
@@ -113,14 +165,6 @@
 <trans-unit id="sf7037ffe166d667f">
   <source>The synchronization between devices is not activated.</source>
   <target>La synchronisation entre les appareils n'est pas activée.</target>
-</trans-unit>
-<trans-unit id="sf18cfde2dfadbbbb">
-  <source>Synchronization</source>
-  <target>Synchronisation</target>
-</trans-unit>
-<trans-unit id="s5e8250fb85d64c23">
-  <source>Close</source>
-  <target>Fermer</target>
 </trans-unit>
 <trans-unit id="sc1b7dd6184d4b261">
   <source>Save completed</source>
