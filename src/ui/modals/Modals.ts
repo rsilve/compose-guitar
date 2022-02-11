@@ -92,8 +92,8 @@ class Modals extends LitElement {
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
-  private static _dispatch_library_select(e: CustomEvent): void {
-    actionUploadFromGallery(e.detail.id);
+  private static _dispatch_library_select(message: string): (e: CustomEvent) => void {
+    return (e: CustomEvent) => actionUploadFromGallery(e.detail.id).then(() => actionNotificationOpen(message));
   }
 
   private static _dispatch_library_remove(e: CustomEvent): void {
@@ -126,7 +126,7 @@ class Modals extends LitElement {
         <track-gallery
           class="modal"
           .list="${gallery_dict_extended()}"
-          @select="${Modals._dispatch_library_select}"
+          @select="${Modals._dispatch_library_select(msg("Track loaded"))}"
           @remove="${Modals._dispatch_library_remove}"
           @close="${actionGalleryClose}"
         ></track-gallery>`;

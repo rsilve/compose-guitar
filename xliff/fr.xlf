@@ -182,6 +182,10 @@
   <source>The synchronization between devices is not activated.</source>
   <target>La synchronisation entre les appareils n'est pas activée.</target>
 </trans-unit>
+<trans-unit id="s4bb1a88bd0a26f59">
+  <source>Track loaded</source>
+  <target>Morceau chargé</target>
+</trans-unit>
 </body>
 </file>
 </xliff>

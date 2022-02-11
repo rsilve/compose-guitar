@@ -17,6 +17,7 @@ export const templates = {
   s2ceb11be2290bb1b: `Abandonner`,
   s3c4164e02d8d8d4d: `Ouvrir la bibliothèque`,
   s4121faefacc64cdc: `Cliquez sur un morceau pour le charger`,
+  s4bb1a88bd0a26f59: `Morceau chargé`,
   s4e7ccee09d565412: `Fermer la modale ouverte actuelle`,
   s521f2a45bd964146: `Titre du morceau (obligatoire)`,
   s559bca2d83795046: `Compléments :`,
