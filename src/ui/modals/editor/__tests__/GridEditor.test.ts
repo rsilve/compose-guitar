@@ -35,7 +35,7 @@ suite("Grid Editor element", () => {
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>
-        <div class="song-editor-body-form-error">Invalid syntax : invalid</div>
+        <div class="song-editor-body-form-error">Invalid syntax: invalid</div>
         `);
   });
 
@@ -56,7 +56,7 @@ suite("Grid Editor element", () => {
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>
-        <div class="song-editor-body-form-error">Invalid syntax : Ek</div>
+        <div class="song-editor-body-form-error">Invalid syntax: Ek</div>
         `);
   });
 
@@ -83,7 +83,7 @@ suite("Grid Editor element", () => {
         <textarea required placeholder="| Am7 Am7M | Am7 Am6 |
 | F Dm7 | Dm6 E7 | Dm E7 |
   ..." class="invalid"></textarea>
-        <div class="song-editor-body-form-error">Invalid syntax : Ek</div>
+        <div class="song-editor-body-form-error">Invalid syntax: Ek</div>
         `);
     const res = await promise;
     expect(res).to.be.true;
