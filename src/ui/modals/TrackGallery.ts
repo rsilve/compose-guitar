@@ -13,6 +13,17 @@ class TrackGallery extends LitElement {
     modalStyles,
     buttonStyles,
     css`
+      h1 {
+        margin-bottom: 0;
+        padding: 0 6px;
+      }
+
+      .help {
+        font-size: 0.7em;
+        margin: 0 0 1em 0;
+        padding: 0 6px;
+      }
+
       ul {
         list-style: none;
         margin: 0;
@@ -26,13 +37,15 @@ class TrackGallery extends LitElement {
         justify-content: space-between;
         align-items: center;
         line-height: 1.8em;
-        padding: 0 4px;
+        padding: 0 6px;
         cursor: pointer;
         border-radius: var(--border-radius);
       }
 
+      li:active,
       li:hover {
-        outline: thin dotted var(--theme-secondary);
+        color: var(--theme-secondary);
+        background-color: var(--theme-secondary-lighter);
       }
 
       li > span {
@@ -40,9 +53,7 @@ class TrackGallery extends LitElement {
       }
 
       .gallery_trash {
-        margin-left: 2em;
-        margin-bottom: -1em;
-        font-size: 0.8em;
+        font-size: 1em;
       }
 
       .cloud {
@@ -94,13 +105,14 @@ class TrackGallery extends LitElement {
   render(): unknown {
     const itemTemplates = this.render_list();
     return html`
-      <p>${msg("Click on a track to load it")}</p>
+      <h1>${msg("Songs gallery")}</h1>
+      <p class="help">${msg("Click on a track to load it")}</p>
       <ul>
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
         <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this._dispatch_close}">
-          ${msg("Cancel")}
+          ${msg("Close")}
         </button>
       </div>
     `;
@@ -112,8 +124,12 @@ class TrackGallery extends LitElement {
       const synchronized = this.render_cloud(entry[1].synchronized);
       return html` <li>
         <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
-        <div @click="${this._generate_handler_remove(entry[0])}" class="gallery_trash _remove">
-          <delete-icon title="${msg("Remove from the gallery")}"></delete-icon>
+        <div
+          @click="${this._generate_handler_remove(entry[0])}"
+          title="${msg("Remove from the gallery")}"
+          class="gallery_trash _remove"
+        >
+          &times;
         </div>
       </li>`;
     });

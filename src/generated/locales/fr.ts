@@ -45,6 +45,7 @@ export const templates = {
   sc65ea2cf2f21a13a: `Zoom arrière`,
   sc8e99647d23486da: `Sauvegarder et continuer`,
   scc854eb62c822760: `Cliquez pour modifier`,
+  scd382fbbde23a2e3: `bibliothèque de morceaux`,
   sd2052cf3f218e095: `Certains changements n'ont pas été enregistrés. Voulez-vous quand même continuer ?`,
   sd2e14edbdc642e9b: `Veuillez patienter pendant l'authentification...`,
   sd82e949fd3cbad7d: `Accords :`,
