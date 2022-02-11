@@ -158,9 +158,9 @@ class SongEditor extends LitElement {
   }
 
   footer_pane(): unknown {
-    let disabled = "";
-    if (!this._grid_valid || !this._grid_title || !this._value) {
-      disabled = "disabled";
+    let disabled = "disabled";
+    if (this._grid_valid && this._grid_title && this._value && !this._grid_title_already_exists) {
+      disabled = "";
     }
     const color = getComputedStyle(this).getPropertyValue("--theme-help");
     return html` <div class="modal-footer">
