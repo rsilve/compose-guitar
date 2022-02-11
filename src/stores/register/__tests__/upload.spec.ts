@@ -1,11 +1,9 @@
 import { expect } from "@open-wc/testing";
-import { NOTIFICATION_OPEN, UPLOAD_FROM_GALLERY } from "../../../actions/actions";
+import { UPLOAD_FROM_GALLERY } from "../../../actions/actions";
 
 import { upload_callback } from "../upload";
 import { add_to_gallery } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { connect, register } from "../../dispatcher";
-import { IState } from "../../state";
 import { uuid } from "../../../tools/uuid";
 import Action from "../../../actions/Action";
 
