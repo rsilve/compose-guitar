@@ -122,6 +122,10 @@
   <source>Close</source>
   <target>Fermer</target>
 </trans-unit>
+<trans-unit id="sc1b7dd6184d4b261">
+  <source>Save completed</source>
+  <target>Sauvegarde terminée</target>
+</trans-unit>
 </body>
 </file>
 </xliff>

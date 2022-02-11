@@ -23,6 +23,7 @@ export const templates = {
   sb8f855b49234b81b: `Appliquer`,
   sbefcc6bf7b752e55: `Mesures :`,
   sc1724a8bddde2ed2: `Vous n'êtes pas connecté.`,
+  sc1b7dd6184d4b261: `Sauvegarde terminée`,
   sc27e0098602d39d6: `Exemples`,
   sc4766e4bd5916653: `Syntaxe incorrecte :`,
   sc4f1c47579ba1771: `Vous êtes connecté`,
