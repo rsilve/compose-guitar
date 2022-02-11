@@ -14,7 +14,9 @@ import {
 import "../icons/PersonOffIcon";
 import "../icons/AccountCircleIcon";
 import "./sync/SynchronizationStatus";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("account-status")
 class AccountStatus extends LitElement {
   static styles = [
@@ -72,15 +74,17 @@ class AccountStatus extends LitElement {
     this.setAttribute("ontouchstart", "");
   }
 
-  dispatchSynchroEvent(): void {
-    if (!this.syncInProgress) {
-      actionSynchroForceStart()
-        .then(actionSynchroForce)
-        .then(() => actionNotificationOpen("Synchronisation completed"))
-        .catch((reason) => {
-          console.info(reason);
-        });
-    }
+  dispatchSynchroEvent(message: string): () => void {
+    return () => {
+      if (!this.syncInProgress) {
+        actionSynchroForceStart()
+          .then(actionSynchroForce)
+          .then(() => actionNotificationOpen(message))
+          .catch((reason) => {
+            console.info(reason);
+          });
+      }
+    };
   }
 
   render(): unknown {
@@ -92,7 +96,7 @@ class AccountStatus extends LitElement {
         </div>
         <synchronization-status
           .active="${this.syncInProgress}"
-          @click="${this.dispatchSynchroEvent}"
+          @click="${this.dispatchSynchroEvent(msg("Synchronisation completed"))}"
         ></synchronization-status>`;
     }
     return html` <div @click="${actionSynchronizationActivationRequest}">

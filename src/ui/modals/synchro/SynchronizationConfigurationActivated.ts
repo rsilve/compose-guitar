@@ -2,6 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import buttonStyles from "../../styles/buttonStyles";
 import { IStateSynchronization } from "../../../stores/state";
+import { msg } from "@lit/localize";
 
 @customElement("synchronization-configuration-activated")
 class SynchronizationConfigurationActivated extends LitElement {
@@ -42,26 +43,28 @@ class SynchronizationConfigurationActivated extends LitElement {
   render(): unknown {
     let errorStatus = html``;
     let signInStatus = html` <div>
-      You are not connected. <a href="" @click="${this.dispatchDeactivate}">Retry ?</a>
+      ${msg("You are not connected.")} <a href="" @click="${this.dispatchDeactivate}">${msg("Retry ?")}</a>
     </div>`;
     let workingStatus = html` but does not work ⚠️`;
     if (this.synchronization?.signInValid || this.synchronization?.signInProgress) {
-      signInStatus = html` <div>You are connected</div>`;
+      signInStatus = html` <div>${msg("You are connected")}</div>`;
       workingStatus = html``;
     }
 
     if (this.synchronization?.error) {
       const error = this.synchronization?.error as { error: string };
       errorStatus = html` <div class="error">
-        The error message was
+        ${msg("The error message was")}
         <div class="error-message">${error.error}</div>
       </div>`;
     }
 
     return html`
-      <div>Synchronization between devices is enabled${workingStatus}.</div>
+      <div>${msg("Synchronization between devices is enabled")}${workingStatus}.</div>
       ${errorStatus} ${signInStatus}
-      <button class="btn-secondary btn-deactivate _deactivate" @click="${this.dispatchDeactivate}">deactivate</button>
+      <button class="btn-secondary btn-deactivate _deactivate" @click="${this.dispatchDeactivate}">
+        ${msg("deactivate")}
+      </button>
     `;
   }
 }

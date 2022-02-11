@@ -1,10 +1,12 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { msg, localized } from "@lit/localize";
 import { modalStyles } from "../styles/modals";
 import buttonStyles from "../styles/buttonStyles";
 import "../../icons/delete_icon";
 import { IGalleryTrack } from "../../stores/state";
 
+@localized()
 @customElement("track-gallery")
 class TrackGallery extends LitElement {
   static styles = [
@@ -92,13 +94,13 @@ class TrackGallery extends LitElement {
   render(): unknown {
     const itemTemplates = this.render_list();
     return html`
-      <p>Click on a track to load it</p>
+      <p>${msg("Click on a track to load it")}</p>
       <ul>
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
         <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this._dispatch_close}">
-          Cancel
+          ${msg("Cancel")}
         </button>
       </div>
     `;
@@ -111,7 +113,7 @@ class TrackGallery extends LitElement {
       return html` <li>
         <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
         <div @click="${this._generate_handler_remove(entry[0])}" class="gallery_trash _remove">
-          <delete-icon title="Remove from the gallery"></delete-icon>
+          <delete-icon title="${msg("Remove from the gallery")}"></delete-icon>
         </div>
       </li>`;
     });

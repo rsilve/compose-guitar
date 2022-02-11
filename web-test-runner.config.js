@@ -8,7 +8,7 @@ export default {
   coverage: true,
   coverageConfig: {
     include: ["./out/**/*.js"],
-    exclude: ["**/api.js", "**/__tests__/**"],
+    exclude: ["**/api.js", "**/__tests__/**", "**/generated/**"],
   },
   browsers: [playwrightLauncher({ product: "chromium" })],
   testFramework: {

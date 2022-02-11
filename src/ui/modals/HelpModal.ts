@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import buttonStyles from "../styles/buttonStyles";
 import { modalStyles } from "../styles/modals";
 import { IStateFeatureFlag } from "../../stores/state";
+import { msg } from "@lit/localize";
 
 @customElement("help-modal")
 class HelpModal extends LitElement {
@@ -49,50 +50,50 @@ class HelpModal extends LitElement {
 
   render(): unknown {
     return html`
-      <h1>Keyboard shortcuts</h1>
+      <h1>${msg("Keyboard shortcuts")}</h1>
       <div class="shortcuts">
         <table>
           <tr>
             <td><code>Ctrl+e</code></td>
-            <td>Edit the current song</td>
+            <td>${msg("Edit the current song")}</td>
           </tr>
           <tr>
             <td><code>Ctrl+s</code></td>
-            <td>Save the current song to the library</td>
+            <td>${msg("Save the current song to the library")}</td>
           </tr>
           <tr>
             <td><code>Esc</code></td>
-            <td>Close the current open modal</td>
+            <td>${msg("Close the current open modal")}</td>
           </tr>
           <tr>
             <td><code>Ctrl+n</code></td>
-            <td>New song</td>
+            <td>${msg("New song")}</td>
           </tr>
           <tr>
             <td><code>Alt+=/Alt++</code></td>
-            <td>Zoom in</td>
+            <td>${msg("Zoom in")}</td>
           </tr>
           <tr>
             <td><code>Alt+-</code></td>
-            <td>Zoom out</td>
+            <td>${msg("Zoom out")}</td>
           </tr>
           <tr>
             <td><code>Ctrl+l</code></td>
-            <td>open library</td>
+            <td>${msg("Open library")}</td>
           </tr>
           <tr>
             <td><code>Ctrl+c</code></td>
-            <td>Copy the current song to the clipboard</td>
+            <td>${msg("Copy the current song to the clipboard")}</td>
           </tr>
           <tr>
             <td><code>Ctrl+v</code></td>
-            <td>Replace the current song with the one from the clipboard</td>
+            <td>${msg("Replace the current song with the one from the clipboard")}</td>
           </tr>
         </table>
       </div>
-      <h1>Synchronization</h1>
+      <h1>${msg("Synchronization")}</h1>
       <div class="google-sync">
-        <label for="featureSynchronizationEnabled">Save your song on google drive</label>
+        <label for="featureSynchronizationEnabled">${msg("Save your song on google drive")}</label>
         <input
           data-testid="featureSynchronizationEnabled"
           id="featureSynchronizationEnabled"
@@ -102,7 +103,7 @@ class HelpModal extends LitElement {
         />
       </div>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" @click="${this.dispatchClose}">Close</button>
+        <button tabindex="-1" class="btn-primary _close" @click="${this.dispatchClose}">${msg("Close")}</button>
       </div>
     `;
   }

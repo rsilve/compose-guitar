@@ -16,7 +16,9 @@ import {
   actionTrackPaste,
   actionZoomChange,
 } from "../actions/actions";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("compose-keys")
 class ComposeKeys extends LitElement {
   private readonly _listener_handler: (e: KeyboardEvent) => void;
@@ -124,7 +126,7 @@ class ComposeKeys extends LitElement {
 
   render(): unknown {
     const color = getComputedStyle(this).getPropertyValue("--theme-help");
-    return html` <help-icon @click="${actionHelpOpen}" .fill="${color}" title="Shortcut help"></help-icon> `;
+    return html` <help-icon @click="${actionHelpOpen}" .fill="${color}" title="${msg("Shortcut help")}"></help-icon> `;
   }
 }
 

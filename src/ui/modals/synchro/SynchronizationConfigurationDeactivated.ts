@@ -2,7 +2,9 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import buttonStyles from "../../styles/buttonStyles";
 import { IStateSynchronization } from "../../../stores/state";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("synchronization-configuration-deactivated")
 class SynchronizationConfigurationDeactivated extends LitElement {
   static styles = [
@@ -29,12 +31,12 @@ class SynchronizationConfigurationDeactivated extends LitElement {
 
   render(): unknown {
     let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this.dispatchActivate}">
-      activate
+      ${msg("activate")}
     </button>`;
     if (this.synchronization?.signInProgress) {
-      cta = html`<div class="btn-activate">Please wait during authentication...</div>`;
+      cta = html`<div class="btn-activate">${msg("Please wait during authentication...")}</div>`;
     }
-    return html`<div>The synchronization between devices is not activated. ${cta}</div>`;
+    return html`<div>${msg("The synchronization between devices is not activated.")} ${cta}</div>`;
   }
 }
 

@@ -1,4 +1,4 @@
-import { actionNotificationOpen, UPLOAD_FROM_GALLERY } from "../../actions/actions";
+import { UPLOAD_FROM_GALLERY } from "../../actions/actions";
 import { getFromGallery } from "./gallery_tools";
 import Action from "../../actions/Action";
 import { IState } from "../state";
@@ -10,7 +10,6 @@ export function upload_callback(action: Action, state: IState): Promise<IState> 
     const grid = getFromGallery(id);
     const { synchronization, featureFlags } = result;
     result = { ...result, ...grid, synchronization, featureFlags, gallery: undefined };
-    actionNotificationOpen("Track loaded");
   }
 
   return Promise.resolve(result);

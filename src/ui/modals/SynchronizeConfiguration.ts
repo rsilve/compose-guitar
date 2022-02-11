@@ -5,7 +5,9 @@ import { modalStyles } from "../styles/modals";
 import { IStateSynchronization } from "../../stores/state";
 import "./synchro/SynchronizationConfigurationActivated";
 import "./synchro/SynchronizationConfigurationDeactivated";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("synchronize-configuration")
 class SynchronizeConfiguration extends LitElement {
   static styles = [buttonStyles, modalStyles];
@@ -31,10 +33,12 @@ class SynchronizeConfiguration extends LitElement {
       ></synchronization-configuration-activated>`;
     }
     return html`
-      <h1>Synchronization</h1>
+      <h1>${msg("Synchronization")}</h1>
       ${body}
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" ontouchstart="" @click="${this._dispatch_close}">Close</button>
+        <button tabindex="-1" class="btn-primary _close" ontouchstart="" @click="${this._dispatch_close}">
+          ${msg("Close")}
+        </button>
       </div>
     `;
   }

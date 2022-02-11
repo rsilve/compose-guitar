@@ -5,8 +5,8 @@ export const INIT_APP = "INIT_APP";
 export const actionInitApp = (): Promise<void> => publishAction(new Action(INIT_APP));
 
 export const UPLOAD_FROM_GALLERY = "UPLOAD_FROM_GALLERY";
-export const actionUploadFromGallery = (id: string): void => {
-  publishAction(new Action(UPLOAD_FROM_GALLERY, { id }));
+export const actionUploadFromGallery = (id: string): Promise<void> => {
+  return publishAction(new Action(UPLOAD_FROM_GALLERY, { id }));
 };
 
 export const SAVE_AS_START = "SAVE_AS_START";

@@ -3,7 +3,9 @@ import { customElement, property, query } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { classMap } from "lit/directives/class-map.js";
 import inputStyles from "../../styles/inputStyles";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("grid-editor-title")
 class GridEditorTitle extends LitElement {
   static styles = [
@@ -56,7 +58,7 @@ class GridEditorTitle extends LitElement {
   render(): unknown {
     return html`
       ${this.titleErrorPane()}
-      <div class="input-label">Song title (required)</div>
+      <div class="input-label">${msg("Song title (required)")}</div>
       <input
         id="title_input"
         type="text"
@@ -71,7 +73,7 @@ class GridEditorTitle extends LitElement {
 
   titleErrorPane(): unknown {
     if (this.invalid) {
-      return html` <div class="error-title">This title already exists</div>`;
+      return html` <div class="error-title">${msg("This title already exists")}</div>`;
     }
     return html``;
   }

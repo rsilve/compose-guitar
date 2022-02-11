@@ -6,7 +6,9 @@ import { noPrintStyles } from "../styles/no_print";
 
 import "../grid-elements/ChordsGrid";
 import { actionTrackEdit } from "../../actions/actions";
+import { localized, msg } from "@lit/localize";
 
+@localized()
 @customElement("app-main-preview")
 class AppMainPreview extends LitElement {
   static styles = [
@@ -48,7 +50,7 @@ class AppMainPreview extends LitElement {
       <h1>${this.song_title}</h1>
       <chords-grid style="${styleMap(styles)}" text_grid="${this.song_grid}" transpose="${this.transpose}">
       </chords-grid>
-      <p class="no_print">click to edit</p>
+      <p class="no_print">${msg("click to edit")}</p>
     </div>`;
   }
 }
