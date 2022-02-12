@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { msg, localized } from "@lit/localize";
 import { modalStyles } from "../styles/modals";
 import buttonStyles from "../styles/buttonStyles";
@@ -37,7 +37,7 @@ class TrackGallery extends LitElement {
         justify-content: space-between;
         align-items: center;
         line-height: 1.8em;
-        padding: 0 6px;
+        padding: 0 0 0 6px;
         cursor: pointer;
         border-radius: var(--border-radius);
       }
@@ -54,6 +54,14 @@ class TrackGallery extends LitElement {
 
       .gallery_trash {
         font-size: 1em;
+        padding: 0 6px;
+      }
+
+      .gallery_trash_confirm {
+        color: var(--theme-on-surface);
+        background-color: var(--theme-warning);
+        padding: 0 6px;
+        border-radius: var(--border-radius);
       }
 
       .cloud {
@@ -63,6 +71,11 @@ class TrackGallery extends LitElement {
       }
     `,
   ];
+
+  private confirmTimeout: NodeJS.Timeout | undefined;
+
+  @state()
+  private confirm: string | undefined;
 
   @property({ attribute: false })
   list: Record<string, IGalleryTrack> = {};
@@ -74,6 +87,7 @@ class TrackGallery extends LitElement {
 
   _generate_handler_select(id: string) {
     return (): void => {
+      this.clearEventualTimeout();
       const options = {
         detail: { id },
         bubbles: true,
@@ -85,6 +99,7 @@ class TrackGallery extends LitElement {
 
   _generate_handler_remove(id: string) {
     return (): void => {
+      this.clearEventualTimeout();
       const options = {
         detail: { id },
         bubbles: true,
@@ -94,7 +109,22 @@ class TrackGallery extends LitElement {
     };
   }
 
+  private clearEventualTimeout(): void {
+    if (this.confirmTimeout) {
+      clearTimeout(this.confirmTimeout);
+    }
+  }
+
+  _generate_handler_confirm(id: string) {
+    return (): void => {
+      this.confirm = id;
+      this.clearEventualTimeout();
+      this.confirmTimeout = setTimeout(() => (this.confirm = undefined), 3000);
+    };
+  }
+
   private _dispatch_close() {
+    this.clearEventualTimeout();
     const options = {
       bubbles: true,
       composed: true,
@@ -120,19 +150,35 @@ class TrackGallery extends LitElement {
 
   render_list(): unknown {
     return Object.entries(this.list).map((entry) => {
-      const { title } = entry[1];
-      const synchronized = this.render_cloud(entry[1].synchronized);
+      const id = entry[0];
+      const { title, synchronized } = entry[1];
+      const deleteOrConfirm = id === this.confirm ? this.render_confirm(id) : this.render_delete(id);
+      const synchronizedIcon = this.render_cloud(synchronized);
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
-        <div
-          @click="${this._generate_handler_remove(entry[0])}"
-          title="${msg("Remove from the gallery")}"
-          class="gallery_trash _remove"
-        >
-          &times;
-        </div>
+        <span class="_select" @click="${this._generate_handler_select(id)}">${title}${synchronizedIcon}</span>
+        ${deleteOrConfirm}
       </li>`;
     });
+  }
+
+  render_delete(id: string): unknown {
+    return html`<div
+      @click="${this._generate_handler_confirm(id)}"
+      title="${msg("Remove from the gallery")}"
+      class="gallery_trash _remove"
+    >
+      &times;
+    </div>`;
+  }
+
+  render_confirm(id: string): unknown {
+    return html`<div
+      @click="${this._generate_handler_remove(id)}"
+      title="${msg("Remove from the gallery")}"
+      class="gallery_trash_confirm _confirm_remove"
+    >
+      ${msg("Confirm")}
+    </div>`;
   }
 
   render_cloud(synchronized: boolean): unknown {
