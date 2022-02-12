@@ -37,7 +37,7 @@ class TrackGallery extends LitElement {
         justify-content: space-between;
         align-items: center;
         line-height: 1.8em;
-        padding: 0 6px;
+        padding: 0 0 0 6px;
         cursor: pointer;
         border-radius: var(--border-radius);
       }
@@ -54,6 +54,14 @@ class TrackGallery extends LitElement {
 
       .gallery_trash {
         font-size: 1em;
+        padding: 0 6px;
+      }
+
+      .gallery_trash_confirm {
+        color: var(--theme-on-surface);
+        background-color: var(--theme-error);
+        padding: 0 6px;
+        border-radius: var(--border-radius);
       }
 
       .cloud {
@@ -154,7 +162,7 @@ class TrackGallery extends LitElement {
     return html`<div
       @click="${this._generate_handler_remove(id)}"
       title="${msg("Remove from the gallery")}"
-      class="gallery_trash _confirm_remove"
+      class="gallery_trash_confirm _confirm_remove"
     >
       confirm
     </div>`;
