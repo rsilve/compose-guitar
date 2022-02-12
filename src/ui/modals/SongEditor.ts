@@ -1,6 +1,5 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import buttonStyles from "../styles/buttonStyles";
 import { modalStyles } from "../styles/modals";
@@ -9,6 +8,7 @@ import inputStyles from "../styles/inputStyles";
 import "../../icons/info_icon";
 import "./editor/GridEditor";
 import "./editor/GridEditorTitle";
+import "./editor/GridEditorHelp";
 
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
@@ -31,31 +31,6 @@ class SongEditor extends LitElement {
 
       .song-editor-body-form {
         position: relative;
-      }
-
-      .song-editor-body-help {
-        display: none;
-        margin-left: 1em;
-        margin-top: 1px;
-        box-sizing: border-box;
-        min-width: 20em;
-        padding: 0.5em;
-        border: 1px solid var(--theme-surface-darker);
-        border-radius: 4px;
-      }
-
-      .song-editor-body-help.open {
-        display: block;
-      }
-
-      .song-editor-body-help chords-grid {
-        font-size: 0.5em;
-      }
-
-      .song-editor-body-help-example {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
       }
 
       textarea {
@@ -177,37 +152,7 @@ class SongEditor extends LitElement {
   }
 
   help_pane(): unknown {
-    const classes = classMap({
-      "song-editor-body-help": true,
-      open: this._help_pane_open,
-    });
-    return html`
-            <div class="${classes}">
-                <h2>${msg("Examples")}</h2>
-                <p>${msg("Chord:")} <strong>A</strong>, <strong>Em</strong>, <strong>F#</strong>, <strong>Cb</strong>,
-                    <strong>G7</strong>, <strong>D9</strong>, <strong>Asus2</strong>, <strong>Bm57b</strong>,
-                    <strong>Bø</strong>, <strong>C/E</strong></p>
-                <p>${msg("Measure :")} <strong>| A |</strong>, <strong>| D C |</strong>, <strong>| G Em _ _ |</strong>
-                <div class="song-editor-body-help-example">
-                    <chords-grid>| A |</chords-grid>
-                    <chords-grid>| D C |</chords-grid>
-                    <chords-grid>| G Em _ _ |</chords-grid>
-                    <chords-grid>| G _ _ Em |</chords-grid>
-                    <chords-grid>| G Em D7 G |</chords-grid>
-                </div>
-                </p>
-                <p>${msg("Measure row:")} <strong>| F | G | Em | G Em |</strong>
-                <div class="song-editor-body-help-example">
-                    <chords-grid>| F | G | Em | G Em |</chords-grid>
-                </div>
-                </p>
-                <p>${msg("Measure modifier:")} <strong>|(a) A |</strong>, <strong>|: D :|</strong>
-                <div class="song-editor-body-help-example">
-                    <chords-grid> |(a) A |</chords-grid>
-                    <chords-grid>|: D :|</chords-grid>
-                </div>
-                </p>
-            </div>`;
+    return html`<grid-editor-help .open=${this._help_pane_open}></grid-editor-help>`;
   }
 }
 
