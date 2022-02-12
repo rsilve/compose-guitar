@@ -59,7 +59,7 @@ class TrackGallery extends LitElement {
 
       .gallery_trash_confirm {
         color: var(--theme-on-surface);
-        background-color: var(--theme-error);
+        background-color: var(--theme-warning);
         padding: 0 6px;
         border-radius: var(--border-radius);
       }
@@ -71,6 +71,8 @@ class TrackGallery extends LitElement {
       }
     `,
   ];
+
+  private confirmTimeout: NodeJS.Timeout | undefined;
 
   @state()
   private confirm: string | undefined;
@@ -85,6 +87,7 @@ class TrackGallery extends LitElement {
 
   _generate_handler_select(id: string) {
     return (): void => {
+      this.clearEventualTimeout();
       const options = {
         detail: { id },
         bubbles: true,
@@ -96,6 +99,7 @@ class TrackGallery extends LitElement {
 
   _generate_handler_remove(id: string) {
     return (): void => {
+      this.clearEventualTimeout();
       const options = {
         detail: { id },
         bubbles: true,
@@ -105,13 +109,22 @@ class TrackGallery extends LitElement {
     };
   }
 
+  private clearEventualTimeout(): void {
+    if (this.confirmTimeout) {
+      clearTimeout(this.confirmTimeout);
+    }
+  }
+
   _generate_handler_confirm(id: string) {
     return (): void => {
       this.confirm = id;
+      this.clearEventualTimeout();
+      this.confirmTimeout = setTimeout(() => (this.confirm = undefined), 3000);
     };
   }
 
   private _dispatch_close() {
+    this.clearEventualTimeout();
     const options = {
       bubbles: true,
       composed: true,
@@ -164,7 +177,7 @@ class TrackGallery extends LitElement {
       title="${msg("Remove from the gallery")}"
       class="gallery_trash_confirm _confirm_remove"
     >
-      confirm
+      ${msg("Confirm")}
     </div>`;
   }
 

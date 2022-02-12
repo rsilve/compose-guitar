@@ -33,6 +33,7 @@ export const templates = {
   s8a85ab7998970662: `nouveau morceau`,
   s8d349529fc5fb3b7: `Voir les exemples`,
   sac61352e8ffe9655: `La synchronisation entre les appareils est activée`,
+  sb85774dc5d18ff0f: `Confirmer`,
   sb8f855b49234b81b: `Appliquer`,
   sba5088f6c35462dc: `Sauvegarder le morceau actuel dans la bibliothèque`,
   sbefcc6bf7b752e55: `Mesures :`,
