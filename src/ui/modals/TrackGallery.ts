@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { msg, localized } from "@lit/localize";
 import { modalStyles } from "../styles/modals";
 import buttonStyles from "../styles/buttonStyles";
@@ -64,6 +64,9 @@ class TrackGallery extends LitElement {
     `,
   ];
 
+  @state()
+  private confirm: string | undefined;
+
   @property({ attribute: false })
   list: Record<string, IGalleryTrack> = {};
 
@@ -94,6 +97,12 @@ class TrackGallery extends LitElement {
     };
   }
 
+  _generate_handler_confirm(id: string) {
+    return (): void => {
+      this.confirm = id;
+    };
+  }
+
   private _dispatch_close() {
     const options = {
       bubbles: true,
@@ -120,19 +129,35 @@ class TrackGallery extends LitElement {
 
   render_list(): unknown {
     return Object.entries(this.list).map((entry) => {
-      const { title } = entry[1];
-      const synchronized = this.render_cloud(entry[1].synchronized);
+      const id = entry[0];
+      const { title, synchronized } = entry[1];
+      const deleteOrConfirm = id === this.confirm ? this.render_confirm(id) : this.render_delete(id);
+      const synchronizedIcon = this.render_cloud(synchronized);
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(entry[0])}">${title}${synchronized}</span>
-        <div
-          @click="${this._generate_handler_remove(entry[0])}"
-          title="${msg("Remove from the gallery")}"
-          class="gallery_trash _remove"
-        >
-          &times;
-        </div>
+        <span class="_select" @click="${this._generate_handler_select(id)}">${title}${synchronizedIcon}</span>
+        ${deleteOrConfirm}
       </li>`;
     });
+  }
+
+  render_delete(id: string): unknown {
+    return html`<div
+      @click="${this._generate_handler_confirm(id)}"
+      title="${msg("Remove from the gallery")}"
+      class="gallery_trash _remove"
+    >
+      &times;
+    </div>`;
+  }
+
+  render_confirm(id: string): unknown {
+    return html`<div
+      @click="${this._generate_handler_remove(id)}"
+      title="${msg("Remove from the gallery")}"
+      class="gallery_trash _confirm_remove"
+    >
+      confirm
+    </div>`;
   }
 
   render_cloud(synchronized: boolean): unknown {

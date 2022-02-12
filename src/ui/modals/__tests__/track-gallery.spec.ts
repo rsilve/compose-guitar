@@ -82,6 +82,10 @@ suite("Track gallery element", () => {
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._remove") as HTMLElement;
     node.click();
+    await el.updateComplete;
+    const confirm = el.shadowRoot?.querySelector("._confirm_remove") as HTMLElement;
+    expect(confirm).to.not.be.null;
+    confirm.click();
     expect(handled).to.be.true;
   });
 });
