@@ -10,7 +10,6 @@
     "build:compile:watch": "npm run build:compile -- --watch",
     "build:prod": "vite build",
     "start": "vite",
-    "start:serve:watch": "wds --watch",
     "test": "npm-run-all build:compile test:wtr",
     "test:wtr": "web-test-runner",
     "test:watch": "npm run test:wtr -- --watch",
@@ -24,7 +23,7 @@
     "prepare": "husky install",
     "prepare:playwright": "playwright install chromium",
     "prepare:playwright-deps": "playwright install-deps chromium",
-    "pretest": "npm-run-all prepare:playwright prepare:playwright-deps",
+    "prepare:test": "npm-run-all prepare:playwright prepare:playwright-deps",
     "localize:extract": "lit-localize extract",
     "localize:build": "lit-localize build"
   },

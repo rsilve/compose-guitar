@@ -5,8 +5,6 @@ tasks:
   - name: prepare project
     init: |
       npm install
-      yes y | npx playwright install
-      yes y | npx playwright install-deps
       gp sync-done bundle
   - name: run serve
     init: gp sync-await bundle
@@ -19,7 +17,7 @@ tasks:
   - name: run test watch
     init: gp sync-await bundle
     command: |
-      npm run pretest
+      npm run prepare:test
       npm run test:watch
     openMode: tab-after
 
