@@ -112,10 +112,10 @@ class ChordsGrid extends LitElement {
       default:
         element = html``;
     }
-    const part_element = part(measure);
-    const repeat_start_el = repeatStart(measure);
-    const repeat_end_el = repeatEnd(measure);
-    return html`${repeat_start_el}${part_element}${element}${repeat_end_el}`;
+    const partElement = part(measure);
+    const repeatStartEl = repeatStart(measure);
+    const repeatEndEl = repeatEnd(measure);
+    return html`${repeatStartEl}${partElement}${element}${repeatEndEl}`;
   }
 }
 

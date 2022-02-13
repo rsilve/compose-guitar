@@ -2,7 +2,7 @@ import { expect } from "@open-wc/testing";
 import { UPLOAD_FROM_GALLERY } from "../../../actions/actions";
 
 import { uploadCallback } from "../upload";
-import { add_to_gallery } from "../gallery_tools";
+import { addToGallery } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { uuid } from "../../../tools/uuid";
 import Action from "../../../actions/Action";
@@ -12,7 +12,7 @@ suite("Upload callback", () => {
 
   test("upload from gallery", async () => {
     const track = { grid_text: "zz", title: "test", id: uuid() };
-    add_to_gallery(track, { ...st, track });
+    addToGallery(track, { ...st, track });
     const state = await uploadCallback(new Action(UPLOAD_FROM_GALLERY, { id: track.id }), {
       ...st,
       gallery: true,
@@ -27,7 +27,7 @@ suite("Upload callback", () => {
     const st_with_sync = { ...st, synchronization: { enabled: true }, featureFlags: { synchro_enabled: true } };
 
     const track = { grid_text: "zz", title: "test", id: uuid() };
-    add_to_gallery(track, { ...st, track, featureFlags: { synchro_enabled: false } });
+    addToGallery(track, { ...st, track, featureFlags: { synchro_enabled: false } });
     const state = await uploadCallback(new Action(UPLOAD_FROM_GALLERY, { id: track.id }), {
       ...st_with_sync,
       gallery: true,

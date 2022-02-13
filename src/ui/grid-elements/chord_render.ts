@@ -5,8 +5,8 @@ export default function chordRender(chord: Chord): unknown {
   const base = html`<span class="chord_note">${chord.base}</span>`;
 
   let modifier = html``;
-  if (chord.base_modifier) {
-    modifier = html`<span class="chord_note_modifier">${chord.base_modifier}</span>`;
+  if (chord.baseModifier) {
+    modifier = html`<span class="chord_note_modifier">${chord.baseModifier}</span>`;
   }
 
   let color = html``;
@@ -15,7 +15,7 @@ export default function chordRender(chord: Chord): unknown {
   }
 
   let detail = html``;
-  if (chord.base_modifier || chord.color) {
+  if (chord.baseModifier || chord.color) {
     detail = html`<span class="chord_note_detail">${modifier}${color}</span>`;
   }
 
@@ -26,13 +26,13 @@ export default function chordRender(chord: Chord): unknown {
 
   const note = html`${base}${detail}${extension}`;
 
-  let external_base = html``;
-  if (chord.external_base) {
-    let external_base_modifier = html``;
-    if (chord.external_base_modifier) {
-      external_base_modifier = html`<span class="chord_base_note_modifier">${chord.external_base_modifier}</span>`;
+  let externalBase = html``;
+  if (chord.externalBase) {
+    let externalBaseModifier = html``;
+    if (chord.externalBaseModifier) {
+      externalBaseModifier = html`<span class="chord_base_note_modifier">${chord.externalBaseModifier}</span>`;
     }
-    external_base = html`<span class="chord_base_note">/${chord.external_base}${external_base_modifier}</span>`;
+    externalBase = html`<span class="chord_base_note">/${chord.externalBase}${externalBaseModifier}</span>`;
   }
-  return html`<div class="chord">${note}${external_base}</div>`;
+  return html`<div class="chord">${note}${externalBase}</div>`;
 }

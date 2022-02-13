@@ -3,7 +3,7 @@ import init from "../init";
 import { INIT_APP } from "../actions/actions";
 import { connect, register } from "../stores/dispatcher";
 import { IState } from "../stores/state";
-import { get_last_state } from "../stores/register/gallery_tools";
+import { getLastState } from "../stores/register/gallery_tools";
 
 suite("Init", () => {
   test("init", async () => {
@@ -21,11 +21,11 @@ suite("Init", () => {
       return Promise.resolve(state);
     });
 
-    expect(get_last_state()).to.be.undefined;
+    expect(getLastState()).to.be.undefined;
     // initialize_state()
     init();
     await promise;
     expect(action_init_done).to.be.true;
-    expect(get_last_state()).not.be.undefined;
+    expect(getLastState()).not.be.undefined;
   });
 });

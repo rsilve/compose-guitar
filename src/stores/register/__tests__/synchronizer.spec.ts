@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { add_to_synchronized_index, gallery_dict, get_synchronized_index } from "../gallery_tools";
+import { addToSynchronizedIndex, galleryDict, getSynchronizedIndex } from "../gallery_tools";
 import { googleApiWrapper } from "../google-api";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
@@ -14,16 +14,16 @@ suite("synchronize tools", () => {
     const track: IStateTrack = { grid_text: "A", title: "title2" };
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    const id = get_synchronized_index(track.id || "undef");
+    const id = getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("gid");
   });
 
   test("upload already uploaded", async () => {
-    const track = add_to_synchronized_index({ grid_text: "A", title: "title2" }, "my_id");
-    stub.updateSong.returns(Promise.resolve(get_synchronized_index(track.id || "undef") || "undef"));
+    const track = addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
+    stub.updateSong.returns(Promise.resolve(getSynchronizedIndex(track.id || "undef") || "undef"));
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    const id = get_synchronized_index(track.id || "undef");
+    const id = getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("my_id");
   });
 
@@ -39,7 +39,7 @@ suite("synchronize tools", () => {
     );
     const count = await synchronizer.download(stateTest);
     expect(count).to.be.equal(1);
-    expect(gallery_dict()).to.be.deep.equal({ my_id: "title2" });
+    expect(galleryDict()).to.be.deep.equal({ my_id: "title2" });
   });
 
   test("delete", async () => {
@@ -49,11 +49,11 @@ suite("synchronize tools", () => {
     const track: IStateTrack = { grid_text: "A", title: "title2" };
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    let id = get_synchronized_index(track.id || "undef");
+    let id = getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("gid");
 
     await synchronizer.remove(track.id || "undef");
-    id = get_synchronized_index(track.id || "undef");
+    id = getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.undefined;
   });
 });

@@ -6,10 +6,10 @@ suite("Parse chords", () => {
     const chord = new Chord("R");
     expect(chord.name).to.be.equal("R");
     expect(chord.base).to.be.null;
-    expect(chord.base_modifier).to.be.null;
+    expect(chord.baseModifier).to.be.null;
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.valid).to.be.false;
     expect(chord.empty).to.be.false;
   });
@@ -19,10 +19,10 @@ suite("Parse chords", () => {
     expect(chord.name).to.be.equal("A");
     expect(chord.valid).to.be.true;
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.null;
+    expect(chord.baseModifier).to.be.null;
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.empty).to.be.false;
     expect(chord.same).to.be.false;
   });
@@ -31,10 +31,10 @@ suite("Parse chords", () => {
     const chord = new Chord("Ab");
     expect(chord.name).to.be.equal("Ab");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.equal("b");
+    expect(chord.baseModifier).to.be.equal("b");
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.valid).to.be.true;
   });
 
@@ -42,10 +42,10 @@ suite("Parse chords", () => {
     const chord = new Chord("Abm");
     expect(chord.name).to.be.equal("Abm");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.equal("b");
+    expect(chord.baseModifier).to.be.equal("b");
     expect(chord.color).to.be.equal("m");
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.valid).to.be.true;
   });
 
@@ -53,10 +53,10 @@ suite("Parse chords", () => {
     const chord = new Chord("Abm7");
     expect(chord.name).to.be.equal("Abm7");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.equal("b");
+    expect(chord.baseModifier).to.be.equal("b");
     expect(chord.color).to.be.equal("m");
     expect(chord.extension).to.be.equal("7");
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.valid).to.be.true;
   });
 
@@ -64,11 +64,11 @@ suite("Parse chords", () => {
     const chord = new Chord("Abm7/G");
     expect(chord.name).to.be.equal("Abm7/G");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.equal("b");
+    expect(chord.baseModifier).to.be.equal("b");
     expect(chord.color).to.be.equal("m");
     expect(chord.extension).to.be.equal("7");
-    expect(chord.external_base).to.be.equal("G");
-    expect(chord.external_base_modifier).to.be.null;
+    expect(chord.externalBase).to.be.equal("G");
+    expect(chord.externalBaseModifier).to.be.null;
     expect(chord.valid).to.be.true;
   });
 
@@ -76,11 +76,11 @@ suite("Parse chords", () => {
     const chord = new Chord("Abm7/Gb");
     expect(chord.name).to.be.equal("Abm7/Gb");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.equal("b");
+    expect(chord.baseModifier).to.be.equal("b");
     expect(chord.color).to.be.equal("m");
     expect(chord.extension).to.be.equal("7");
-    expect(chord.external_base).to.be.equal("G");
-    expect(chord.external_base_modifier).to.be.equal("b");
+    expect(chord.externalBase).to.be.equal("G");
+    expect(chord.externalBaseModifier).to.be.equal("b");
     expect(chord.valid).to.be.true;
   });
 
@@ -88,10 +88,10 @@ suite("Parse chords", () => {
     const chord = new Chord("A+5");
     expect(chord.name).to.be.equal("A+5");
     expect(chord.base).to.be.equal("A");
-    expect(chord.base_modifier).to.be.null;
+    expect(chord.baseModifier).to.be.null;
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.equal("+5");
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.valid).to.be.true;
   });
 
@@ -110,7 +110,7 @@ suite("Parse chords", () => {
       const chord = new Chord(`A${b}`);
       expect(chord.name).to.be.equal(`A${b}`);
       expect(chord.base).to.be.equal("A");
-      expect(chord.base_modifier).to.be.equal(b);
+      expect(chord.baseModifier).to.be.equal(b);
     }
   });
 
@@ -236,10 +236,10 @@ suite("Parse chords", () => {
     expect(chord.name).to.be.equal("X");
     expect(chord.valid).to.be.true;
     expect(chord.base).to.be.null;
-    expect(chord.base_modifier).to.be.null;
+    expect(chord.baseModifier).to.be.null;
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.empty).to.be.true;
   });
 
@@ -248,10 +248,10 @@ suite("Parse chords", () => {
     expect(chord.name).to.be.equal("%");
     expect(chord.valid).to.be.true;
     expect(chord.base).to.be.equal("%");
-    expect(chord.base_modifier).to.be.null;
+    expect(chord.baseModifier).to.be.null;
     expect(chord.color).to.be.null;
     expect(chord.extension).to.be.null;
-    expect(chord.external_base).to.be.null;
+    expect(chord.externalBase).to.be.null;
     expect(chord.empty).to.be.false;
     expect(chord.same).to.be.true;
   });

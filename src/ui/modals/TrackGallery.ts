@@ -85,7 +85,7 @@ class TrackGallery extends LitElement {
     /* do nothing by default */
   };
 
-  _generate_handler_select(id: string) {
+  generateHandlerSelect(id: string) {
     return (): void => {
       this.clearEventualTimeout();
       const options = {
@@ -97,7 +97,7 @@ class TrackGallery extends LitElement {
     };
   }
 
-  _generate_handler_remove(id: string) {
+  generateHandlerRemove(id: string) {
     return (): void => {
       this.clearEventualTimeout();
       const options = {
@@ -115,7 +115,7 @@ class TrackGallery extends LitElement {
     }
   }
 
-  _generate_handler_confirm(id: string) {
+  generateHandlerConfirm(id: string) {
     return (): void => {
       this.confirm = id;
       this.clearEventualTimeout();
@@ -123,7 +123,7 @@ class TrackGallery extends LitElement {
     };
   }
 
-  private _dispatch_close() {
+  private dispatchClose() {
     this.clearEventualTimeout();
     const options = {
       bubbles: true,
@@ -133,7 +133,7 @@ class TrackGallery extends LitElement {
   }
 
   render(): unknown {
-    const itemTemplates = this.render_list();
+    const itemTemplates = this.renderList();
     return html`
       <h1>${msg("Songs gallery")}</h1>
       <p class="help">${msg("Click on a track to load it")}</p>
@@ -141,29 +141,29 @@ class TrackGallery extends LitElement {
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this._dispatch_close}">
+        <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this.dispatchClose}">
           ${msg("Close")}
         </button>
       </div>
     `;
   }
 
-  render_list(): unknown {
+  renderList(): unknown {
     return Object.entries(this.list).map((entry) => {
       const id = entry[0];
       const { title, synchronized } = entry[1];
-      const deleteOrConfirm = id === this.confirm ? this.render_confirm(id) : this.render_delete(id);
-      const synchronizedIcon = this.render_cloud(synchronized);
+      const deleteOrConfirm = id === this.confirm ? this.renderConfirm(id) : this.renderDelete(id);
+      const synchronizedIcon = this.renderCloud(synchronized);
       return html` <li>
-        <span class="_select" @click="${this._generate_handler_select(id)}">${title}${synchronizedIcon}</span>
+        <span class="_select" @click="${this.generateHandlerSelect(id)}">${title}${synchronizedIcon}</span>
         ${deleteOrConfirm}
       </li>`;
     });
   }
 
-  render_delete(id: string): unknown {
+  renderDelete(id: string): unknown {
     return html`<div
-      @click="${this._generate_handler_confirm(id)}"
+      @click="${this.generateHandlerConfirm(id)}"
       title="${msg("Remove from the gallery")}"
       class="gallery_trash _remove"
     >
@@ -171,9 +171,9 @@ class TrackGallery extends LitElement {
     </div>`;
   }
 
-  render_confirm(id: string): unknown {
+  renderConfirm(id: string): unknown {
     return html`<div
-      @click="${this._generate_handler_remove(id)}"
+      @click="${this.generateHandlerRemove(id)}"
       title="${msg("Remove from the gallery")}"
       class="gallery_trash_confirm _confirm_remove"
     >
@@ -181,7 +181,7 @@ class TrackGallery extends LitElement {
     </div>`;
   }
 
-  render_cloud(synchronized: boolean): unknown {
+  renderCloud(synchronized: boolean): unknown {
     if (synchronized) {
       return html`<span class="cloud">☁</span>`;
     }

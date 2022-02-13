@@ -1,5 +1,5 @@
 import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../actions/actions";
-import { get_last_state } from "./gallery_tools";
+import { getLastState } from "./gallery_tools";
 import { IState } from "../state";
 import Action from "../../actions/Action";
 import FeatureFlag from "../FeatureFlag";
@@ -7,7 +7,7 @@ import FeatureFlag from "../FeatureFlag";
 export function initAppCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === INIT_APP) {
-    const st = get_last_state();
+    const st = getLastState();
     if (st) {
       result = { ...result, ...st };
     }
@@ -32,7 +32,7 @@ export function zoomChangeCallback(action: Action, state: IState): Promise<IStat
   return Promise.resolve(result);
 }
 
-export function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
+export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };

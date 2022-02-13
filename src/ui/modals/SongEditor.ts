@@ -12,7 +12,7 @@ import "./editor/GridEditorHelp";
 
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
-import { exists_in_gallery } from "../../stores/register/gallery_tools";
+import { existsInGallery } from "../../stores/register/gallery_tools";
 import { actionNotificationOpen, actionTrackEditApply, actionTrackEditCancel } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
 
@@ -85,7 +85,7 @@ class SongEditor extends LitElement {
   _handle_change_title(e: CustomEvent): void {
     let { value } = e.detail;
     value = value.trim();
-    this._grid_title_already_exists = exists_in_gallery(value, this._original_title);
+    this._grid_title_already_exists = existsInGallery(value, this._original_title);
     this._grid_title = value;
   }
 

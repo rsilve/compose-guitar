@@ -1,5 +1,5 @@
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../actions/actions";
-import { add_to_gallery } from "./gallery_tools";
+import { addToGallery } from "./gallery_tools";
 import { IState, IStateTrack } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
@@ -9,7 +9,7 @@ async function save(state: IState): Promise<IState> {
   if (result.track && result.track.title) {
     const { track = {} } = result;
     const tr: IStateTrack = { ...track, saved_at: new Date().toISOString() };
-    result = add_to_gallery(tr, result);
+    result = addToGallery(tr, result);
     if (result.synchronization.enabled) {
       await synchronizer.upload(tr);
     }

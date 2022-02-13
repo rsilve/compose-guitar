@@ -1,7 +1,7 @@
-const chord_regexp = /^([ABCDEFG])([b#])?(m)?([^\s/]{0,20})(\/([ABCDEFG])([b#])?)?$/;
-const chord_extension_regexp = /^(-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5}$/;
+const chordRegexp = /^([ABCDEFG])([b#])?(m)?([^\s/]{0,20})(\/([ABCDEFG])([b#])?)?$/;
+const chordExtensionRegexp = /^(-|\+|ø|°|5|b|6|7|9|add|sus2|sus4|dim|Maj7|M){0,5}$/;
 
-const base_score: Record<string, number> = {
+const baseScore: Record<string, number> = {
   A: 0,
   "A#": 1,
   Ab: 11,
@@ -28,15 +28,15 @@ class Chord {
 
   private _base: string | null = null;
 
-  private _base_modifier: string | null = null;
+  private _baseModifier: string | null = null;
 
   private _color: string | null = null;
 
   private _extension: string | null = null;
 
-  private _external_base: string | null = null;
+  private _externalBase: string | null = null;
 
-  private _external_base_modifier: string | null = null;
+  private _externalBaseModifier: string | null = null;
 
   private _valid = false;
 
@@ -48,16 +48,16 @@ class Chord {
 
   constructor(name: string, duration?: number) {
     this._name = name.trim();
-    const match = this.name.match(chord_regexp);
+    const match = this.name.match(chordRegexp);
     if (match) {
-      const extension_match = this._parse_extension(match[4] || null);
-      if (extension_match) {
+      const extensionMatch = this.parseExtension(match[4] || null);
+      if (extensionMatch) {
         // eslint-disable-next-line prefer-destructuring
         this.base = match[1];
-        this.base_modifier = match[2] || null;
+        this.baseModifier = match[2] || null;
         this.color = match[3] || null;
-        this.external_base = match[6] || null;
-        this.external_base_modifier = match[7] || null;
+        this.externalBase = match[6] || null;
+        this.externalBaseModifier = match[7] || null;
         this.valid = true;
       }
     }
@@ -76,11 +76,11 @@ class Chord {
     }
   }
 
-  _parse_extension(extension: string | null): boolean {
+  private parseExtension(extension: string | null): boolean {
     if (!extension) {
       return true;
     }
-    const match = extension.match(chord_extension_regexp);
+    const match = extension.match(chordExtensionRegexp);
     if (match) {
       [this.extension] = match;
     }
@@ -99,12 +99,12 @@ class Chord {
     this._base = value;
   }
 
-  get base_modifier(): string | null {
-    return this._base_modifier;
+  get baseModifier(): string | null {
+    return this._baseModifier;
   }
 
-  set base_modifier(value: string | null) {
-    this._base_modifier = value;
+  set baseModifier(value: string | null) {
+    this._baseModifier = value;
   }
 
   get color(): string | null {
@@ -123,20 +123,20 @@ class Chord {
     this._extension = value;
   }
 
-  get external_base(): string | null {
-    return this._external_base;
+  get externalBase(): string | null {
+    return this._externalBase;
   }
 
-  set external_base(value: string | null) {
-    this._external_base = value;
+  set externalBase(value: string | null) {
+    this._externalBase = value;
   }
 
-  get external_base_modifier(): string | null {
-    return this._external_base_modifier;
+  get externalBaseModifier(): string | null {
+    return this._externalBaseModifier;
   }
 
-  set external_base_modifier(value: string | null) {
-    this._external_base_modifier = value;
+  set externalBaseModifier(value: string | null) {
+    this._externalBaseModifier = value;
   }
 
   get valid(): boolean {
@@ -165,8 +165,8 @@ class Chord {
 
   tone(): number {
     if (this.base) {
-      const note = `${this.base}${this.base_modifier ? this.base_modifier : ""}`;
-      const score = base_score[note];
+      const note = `${this.base}${this.baseModifier ? this.baseModifier : ""}`;
+      const score = baseScore[note];
       if (score >= 0) {
         return score;
       }
@@ -179,11 +179,11 @@ class Chord {
       return this;
     }
     if (this.base) {
-      const note = `${this.base}${this.base_modifier ? this.base_modifier : ""}`;
+      const note = `${this.base}${this.baseModifier ? this.baseModifier : ""}`;
       let raw = this.name.replace(note, this._transpose(note, tone));
-      if (this.external_base) {
-        const external_base = `${this.external_base}${this.external_base_modifier ? this.external_base_modifier : ""}`;
-        raw = raw.replace(external_base, this._transpose(external_base, tone));
+      if (this.externalBase) {
+        const externalBase = `${this.externalBase}${this.externalBaseModifier ? this.externalBaseModifier : ""}`;
+        raw = raw.replace(externalBase, this._transpose(externalBase, tone));
       }
       return new Chord(raw);
     }
@@ -192,12 +192,12 @@ class Chord {
 
   _transpose(noteOrig: string, tone: number): string {
     let score = 0;
-    score = Object.entries(base_score)
+    score = Object.entries(baseScore)
       .filter((entry) => entry[0] === noteOrig)
       .reduce((_, entry) => entry[1], score);
     score += tone + 12;
     score %= 12;
-    const notes = Object.entries(base_score)
+    const notes = Object.entries(baseScore)
       .filter((entry) => score === entry[1])
       .map((entry) => entry[0]);
     return notes.length > 0 ? notes[0] : noteOrig;

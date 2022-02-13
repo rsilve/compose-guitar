@@ -21,7 +21,7 @@ import {
   actionTrackNewWithoutSave,
   actionUploadFromGallery,
 } from "../../actions/actions";
-import { gallery_dict_extended } from "../../stores/register/gallery_tools";
+import { galleryDictExtended } from "../../stores/register/gallery_tools";
 import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
 import { localized, msg } from "@lit/localize";
 
@@ -125,7 +125,7 @@ class Modals extends LitElement {
       return html`${overlay}
         <track-gallery
           class="modal"
-          .list="${gallery_dict_extended()}"
+          .list="${galleryDictExtended()}"
           @select="${Modals._dispatch_library_select(msg("Track loaded"))}"
           @remove="${Modals._dispatch_library_remove}"
           @close="${actionGalleryClose}"
