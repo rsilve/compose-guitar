@@ -90,7 +90,7 @@ suite("Parse measure", () => {
     const measure = new Measure("A :");
     expect(measure.raw).to.be.equal("A :");
     expect(measure.chords).to.deep.equal([new Chord("A", 4)]);
-    expect(measure.repeat_end).to.be.true;
+    expect(measure.repeatEnd).to.be.true;
     expect(measure.valid).to.be.true;
     expect(measure.type).to.be.equal(1);
   });
@@ -99,7 +99,7 @@ suite("Parse measure", () => {
     const measure = new Measure(": A");
     expect(measure.raw).to.be.equal(": A");
     expect(measure.chords).to.deep.equal([new Chord("A", 4)]);
-    expect(measure.repeat_start).to.be.true;
+    expect(measure.repeatStart).to.be.true;
     expect(measure.valid).to.be.true;
     expect(measure.type).to.be.equal(1);
   });

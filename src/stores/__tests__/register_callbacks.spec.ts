@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import registerCallbacks from "../register_callbacks";
 import { registered } from "../dispatcher";
-import { initAppCallback, transpose_change_callback, zoomChangeCallback } from "../register/misc";
+import { initAppCallback, transposeChangeCallback, zoomChangeCallback } from "../register/misc";
 import { galleryCallback } from "../register/gallery";
 import { saveAsCallback } from "../register/save_as";
 import { uploadCallback } from "../register/upload";
@@ -19,7 +19,7 @@ suite("Register", () => {
     expect(registered(notificationCallback)).to.be.true;
     expect(registered(zoomChangeCallback)).to.be.true;
     expect(registered(trackCallback)).to.be.true;
-    expect(registered(transpose_change_callback)).to.be.true;
+    expect(registered(transposeChangeCallback)).to.be.true;
     expect(registered(synchronizeCallback)).to.be.true;
   });
 });

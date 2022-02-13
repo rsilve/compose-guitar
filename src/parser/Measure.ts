@@ -1,17 +1,17 @@
 import Chord from "./Chord";
 
-const measure_regexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]{1,32}\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/;
+const measureRegexp = /^(\|{1,2})?(:)?(\((\w)\))?\s{0,5}(([^:|\s]{1,32}\s{0,5}){1,4})\s{0,5}(:)?(\|{1,2})?$/;
 
 class Measure {
-  private _raw: string;
+  private readonly _raw: string;
 
   private _chords: Chord[] = [];
 
   private _part: string | undefined = undefined;
 
-  private _repeat_start = false;
+  private _repeatStart = false;
 
-  private _repeat_end = false;
+  private _repeatEnd = false;
 
   private _valid = true;
 
@@ -21,43 +21,43 @@ class Measure {
 
   constructor(raw: string) {
     this._raw = raw.trim();
-    const match = this.raw.match(measure_regexp);
+    const match = this.raw.match(measureRegexp);
     if (match) {
-      this.extract_chords(match[5].trim().split(/\s+/));
-      this.extract_part(match[4]);
-      this.repeat_start = !!match[2];
-      this.repeat_end = !!match[7];
+      this.extractChords(match[5].trim().split(/\s+/));
+      this.extractPart(match[4]);
+      this.repeatStart = !!match[2];
+      this.repeatEnd = !!match[7];
       this.computeMeasureType();
     } else {
       this.valid = false;
     }
   }
 
-  private extract_part(part: string | undefined): void {
+  private extractPart(part: string | undefined): void {
     this.part = part;
   }
 
-  private extract_chords(chords: string[]) {
-    let raw_length = chords.length;
-    if (raw_length === 2) {
+  private extractChords(chords: string[]) {
+    let rawLength = chords.length;
+    if (rawLength === 2) {
       chords.splice(1, 0, "_");
       chords.push("_");
-      raw_length = 4;
+      rawLength = 4;
     }
-    for (let i = 0; i < 4 - raw_length; i += 1) {
+    for (let i = 0; i < 4 - rawLength; i += 1) {
       chords.push("_");
     }
-    let last_chord: Chord | null = null;
+    let lastChord: Chord | null = null;
     chords.forEach((chord) => {
-      if (last_chord && chord === "_") {
-        last_chord.duration += 1;
+      if (lastChord && chord === "_") {
+        lastChord.duration += 1;
       } else {
-        last_chord = new Chord(chord);
-        this.valid = this.valid && last_chord.valid;
-        if (!last_chord.valid) {
-          this.reason = last_chord.name;
+        lastChord = new Chord(chord);
+        this.valid = this.valid && lastChord.valid;
+        if (!lastChord.valid) {
+          this.reason = lastChord.name;
         }
-        this.chords.push(last_chord);
+        this.chords.push(lastChord);
       }
     });
   }
@@ -135,20 +135,20 @@ class Measure {
     this._part = value;
   }
 
-  get repeat_end(): boolean {
-    return this._repeat_end;
+  get repeatEnd(): boolean {
+    return this._repeatEnd;
   }
 
-  set repeat_end(value: boolean) {
-    this._repeat_end = value;
+  set repeatEnd(value: boolean) {
+    this._repeatEnd = value;
   }
 
-  get repeat_start(): boolean {
-    return this._repeat_start;
+  get repeatStart(): boolean {
+    return this._repeatStart;
   }
 
-  set repeat_start(value: boolean) {
-    this._repeat_start = value;
+  set repeatStart(value: boolean) {
+    this._repeatStart = value;
   }
 }
 

@@ -1,7 +1,7 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import TransposeGrid from "../TransposeGrid";
 import { register, resetDispatcher } from "../../stores/dispatcher";
-import { transpose_change_callback } from "../../stores/register/misc";
+import { transposeChangeCallback } from "../../stores/register/misc";
 
 suite("transpose element", () => {
   test("is defined", async () => {
@@ -19,7 +19,7 @@ suite("transpose element", () => {
 
   test("change", async () => {
     resetDispatcher();
-    register(transpose_change_callback);
+    register(transposeChangeCallback);
     const el: TransposeGrid = await fixture(html` <transpose-grid></transpose-grid>s`);
     expect(el).to.instanceOf(TransposeGrid);
     const node = el.shadowRoot?.querySelector("input") as HTMLInputElement;

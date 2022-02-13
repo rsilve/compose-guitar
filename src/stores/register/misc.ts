@@ -32,7 +32,7 @@ export function zoomChangeCallback(action: Action, state: IState): Promise<IStat
   return Promise.resolve(result);
 }
 
-export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
+export function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };

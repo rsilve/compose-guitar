@@ -71,8 +71,8 @@ export const actionTrackNewCancel = (): void => {
 };
 
 export const TRACK_EDIT = "TRACK_EDIT";
-export const actionTrackEdit = (track_payload: IPayloadEditor): Promise<void> =>
-  publishAction(new Action(TRACK_EDIT, track_payload));
+export const actionTrackEdit = (trackPayload: IPayloadEditor): Promise<void> =>
+  publishAction(new Action(TRACK_EDIT, trackPayload));
 
 export const TRACK_EDIT_CANCEL = "TRACK_EDIT_CANCEL";
 export const actionTrackEditCancel = (): void => {
@@ -80,12 +80,12 @@ export const actionTrackEditCancel = (): void => {
 };
 
 export const TRACK_EDIT_APPLY = "TRACK_EDIT_APPLY";
-export const actionTrackEditApply = (track_payload: IPayloadEditor): Promise<void> =>
-  publishAction(new Action(TRACK_EDIT_APPLY, track_payload));
+export const actionTrackEditApply = (trackPayload: IPayloadEditor): Promise<void> =>
+  publishAction(new Action(TRACK_EDIT_APPLY, trackPayload));
 
 export const TRACK_COPY = "TRACK_COPY";
-export const actionTrackCopy = (track_payload: IPayloadEditor): Promise<void> =>
-  publishAction(new Action(TRACK_COPY, track_payload));
+export const actionTrackCopy = (trackPayload: IPayloadEditor): Promise<void> =>
+  publishAction(new Action(TRACK_COPY, trackPayload));
 
 export const TRACK_PASTE = "TRACK_PASTE";
 export const actionTrackPaste = (): Promise<void> => publishAction(new Action(TRACK_PASTE));

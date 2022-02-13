@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../../actions/actions";
 
-import { initAppCallback, transpose_change_callback, zoomChangeCallback } from "../misc";
+import { initAppCallback, transposeChangeCallback, zoomChangeCallback } from "../misc";
 import { saveLastState } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
@@ -54,22 +54,22 @@ suite("Register misc", () => {
   });
 
   test("transpose_change_callback", async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: 2 }), { ...st });
+    const state = await transposeChangeCallback(new Action(TRANSPOSE_CHANGE, { transpose: 2 }), { ...st });
     expect(state).to.deep.equal({ ...st, transpose: 2 });
   });
 
   test("transpose_change_callback 001", async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: 13 }), { ...st });
+    const state = await transposeChangeCallback(new Action(TRANSPOSE_CHANGE, { transpose: 13 }), { ...st });
     expect(state).to.deep.equal({ ...st, transpose: 12 });
   });
 
   test("transpose_change_callback 002", async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: -13 }), { ...st });
+    const state = await transposeChangeCallback(new Action(TRANSPOSE_CHANGE, { transpose: -13 }), { ...st });
     expect(state).to.deep.equal({ ...st, transpose: -12 });
   });
 
   test("transpose_change_callback 003", async () => {
-    const state = await transpose_change_callback(new Action(TRANSPOSE_CHANGE, { transpose: "a" }), { ...st });
+    const state = await transposeChangeCallback(new Action(TRANSPOSE_CHANGE, { transpose: "a" }), { ...st });
     expect(state).to.deep.equal({ ...st });
   });
 });
