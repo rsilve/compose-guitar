@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "types": ["vite/client", "gapi", "gapi.auth2", "gapi.client.drive", "mocha", "node"],
+    "types": ["vite/client", "gapi", "gapi.auth2", "gapi.client.drive", "mocha", "node", "vite-plugin-pwa/client"],
     "module": "es2020",
     "lib": ["es2020", "DOM", "DOM.Iterable"],
     "declaration": true,
