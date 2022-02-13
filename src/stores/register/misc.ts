@@ -4,7 +4,7 @@ import { IState } from "../state";
 import Action from "../../actions/Action";
 import FeatureFlag from "../FeatureFlag";
 
-export function init_app_callback(action: Action, state: IState): Promise<IState> {
+export function initAppCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === INIT_APP) {
     const st = get_last_state();
@@ -18,7 +18,7 @@ export function init_app_callback(action: Action, state: IState): Promise<IState
   return Promise.resolve(result);
 }
 
-export function zoom_change_callback(action: Action, state: IState): Promise<IState> {
+export function zoomChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === ZOOM_CHANGE) {
     let { zoom } = action.payload as { zoom: number };
@@ -32,7 +32,7 @@ export function zoom_change_callback(action: Action, state: IState): Promise<ISt
   return Promise.resolve(result);
 }
 
-export function transpose_change_callback(action: Action, state: IState): Promise<IState> {
+export function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };

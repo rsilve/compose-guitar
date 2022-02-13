@@ -23,8 +23,8 @@ suite("Main screen element", () => {
     expect(el).shadowDom.to.be.equal(`
            <app-main-preview
                         zoom="100"
-                        song_title="title"
-                        song_grid="A" transpose="0"></app-main-preview>
+                        songTitle="title"
+                        songGrid="A" transpose="0"></app-main-preview>
         `);
   });
 
@@ -41,8 +41,8 @@ suite("Main screen element", () => {
     expect(el).shadowDom.to.be.equal(`
            <app-main-preview
                         zoom="50"
-                        song_title="title"
-                        song_grid="A" transpose="0"></app-main-preview>
+                        songTitle="title"
+                        songGrid="A" transpose="0"></app-main-preview>
         `);
   });
 });

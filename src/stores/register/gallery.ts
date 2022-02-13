@@ -4,7 +4,7 @@ import { IState } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
 
-export async function gallery_callback(action: Action, state: IState): Promise<IState> {
+export async function galleryCallback(action: Action, state: IState): Promise<IState> {
   const result = state;
   if (action.actionType === GALLERY_OPEN) {
     result.gallery = true;

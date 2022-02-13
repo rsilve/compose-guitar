@@ -3,18 +3,18 @@ import { connect, disconnect, init } from "./dispatcher";
 import { IState } from "./state";
 
 export class DispatcherController implements ReactiveController {
-  private readonly _dispatch_callback: (st: IState) => void;
+  private readonly dispatchCallback: (st: IState) => void;
 
-  constructor(dispatch_callback: (st: IState) => void) {
-    this._dispatch_callback = dispatch_callback;
+  constructor(dispatchCallback: (st: IState) => void) {
+    this.dispatchCallback = dispatchCallback;
   }
 
   hostConnected(): void {
-    init(this._dispatch_callback);
-    connect(this._dispatch_callback);
+    init(this.dispatchCallback);
+    connect(this.dispatchCallback);
   }
 
   hostDisconnected(): void {
-    disconnect(this._dispatch_callback);
+    disconnect(this.dispatchCallback);
   }
 }

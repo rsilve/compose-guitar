@@ -15,7 +15,7 @@ class SynchronizeConfiguration extends LitElement {
   @property()
   synchronization: IStateSynchronization | undefined;
 
-  private _dispatch_close() {
+  private dispatchClose() {
     const options = {
       bubbles: true,
       composed: true,
@@ -36,7 +36,7 @@ class SynchronizeConfiguration extends LitElement {
       <h1>${msg("Synchronization")}</h1>
       ${body}
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" ontouchstart="" @click="${this._dispatch_close}">
+        <button tabindex="-1" class="btn-primary _close" ontouchstart="" @click="${this.dispatchClose}">
           ${msg("Close")}
         </button>
       </div>

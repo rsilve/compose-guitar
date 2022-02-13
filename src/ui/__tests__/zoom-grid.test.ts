@@ -1,7 +1,7 @@
 import { fixture, html, expect, fixtureCleanup } from "@open-wc/testing";
 import ZoomGrid from "../zoom-grid";
 import { register, resetDispatcher } from "../../stores/dispatcher";
-import { zoom_change_callback } from "../../stores/register/misc";
+import { zoomChangeCallback } from "../../stores/register/misc";
 
 suite("Zoom grid element", () => {
   test("is defined", async () => {
@@ -22,7 +22,7 @@ suite("Zoom grid element", () => {
   });
 
   test("click zoom in", async () => {
-    register(zoom_change_callback);
+    register(zoomChangeCallback);
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el.shadowRoot).to.be.not.null;
@@ -41,7 +41,7 @@ suite("Zoom grid element", () => {
 
   test("click zoom out", async () => {
     resetDispatcher();
-    register(zoom_change_callback);
+    register(zoomChangeCallback);
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector(".zoom_out") as HTMLElement;

@@ -32,23 +32,23 @@ class AppMainPreview extends LitElement {
   zoom = 100;
 
   @property()
-  song_title = "";
+  songTitle = "";
 
   @property()
-  song_grid = "";
+  songGrid = "";
 
   @property({ type: Number })
   transpose = 0;
 
   private handleEdit(): void {
-    actionTrackEdit({ title: this.song_title, grid_text: this.song_grid });
+    actionTrackEdit({ title: this.songTitle, grid_text: this.songGrid });
   }
 
   render(): unknown {
     const styles = { "font-size": `${this.zoom / 100}em` };
     return html` <div @click="${this.handleEdit}" title="click to edit">
-      <h1>${this.song_title}</h1>
-      <chords-grid style="${styleMap(styles)}" text_grid="${this.song_grid}" transpose="${this.transpose}">
+      <h1>${this.songTitle}</h1>
+      <chords-grid style="${styleMap(styles)}" text_grid="${this.songGrid}" transpose="${this.transpose}">
       </chords-grid>
       <p class="no_print">${msg("click to edit")}</p>
     </div>`;

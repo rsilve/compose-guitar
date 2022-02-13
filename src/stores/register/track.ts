@@ -15,7 +15,7 @@ import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
 import { uuid } from "../../tools/uuid";
 
-export async function track_callback(action: Action, state: IState): Promise<IState> {
+export async function trackCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === TRACK_NEW) {
     const { track = {} } = result;

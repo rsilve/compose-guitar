@@ -34,8 +34,8 @@ class MainScreen extends LitElement {
     }
     return html` <app-main-preview
       zoom="${this._zoom}"
-      song_title="${this._title}"
-      song_grid="${this._grid_text}"
+      songTitle="${this._title}"
+      songGrid="${this._grid_text}"
       transpose="${this._transpose}"
     ></app-main-preview>`;
   }

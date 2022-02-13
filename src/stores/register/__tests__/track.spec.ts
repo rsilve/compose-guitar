@@ -9,14 +9,14 @@ import {
   TRACK_NEW_WITHOUT_SAVE,
 } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { track_callback } from "../track";
+import { trackCallback } from "../track";
 import Action from "../../../actions/Action";
 
 suite("track callback", () => {
   const st = stateTest;
 
   test("new track", async () => {
-    const state = await track_callback(new Action(TRACK_NEW), {
+    const state = await trackCallback(new Action(TRACK_NEW), {
       ...st,
       transpose: 1,
     });
@@ -28,7 +28,7 @@ suite("track callback", () => {
   });
 
   test("new track with save needed", async () => {
-    const state = await track_callback(new Action(TRACK_NEW), {
+    const state = await trackCallback(new Action(TRACK_NEW), {
       ...st,
       track: { ...st.track, updated_at: new Date().toISOString() },
     });
@@ -37,7 +37,7 @@ suite("track callback", () => {
   });
 
   test("new track without save", async () => {
-    const state = await track_callback(new Action(TRACK_NEW_WITHOUT_SAVE), {
+    const state = await trackCallback(new Action(TRACK_NEW_WITHOUT_SAVE), {
       ...st,
       transpose: 1,
     });
@@ -47,7 +47,7 @@ suite("track callback", () => {
   });
 
   test("new track cancel", async () => {
-    const state = await track_callback(new Action(TRACK_NEW_CANCEL), {
+    const state = await trackCallback(new Action(TRACK_NEW_CANCEL), {
       ...st,
       transpose: 1,
     });
@@ -57,7 +57,7 @@ suite("track callback", () => {
   });
 
   test("new track cancel (modal close", async () => {
-    const state = await track_callback(new Action(MODALS_CLOSE), {
+    const state = await trackCallback(new Action(MODALS_CLOSE), {
       ...st,
       transpose: 1,
     });
@@ -69,7 +69,7 @@ suite("track callback", () => {
   test("edit track", async () => {
     const { track = {} } = st;
     const payload = { title: track.title, grid_text: track.grid_text };
-    const state = await track_callback(new Action(TRACK_EDIT, payload), {
+    const state = await trackCallback(new Action(TRACK_EDIT, payload), {
       ...st,
     });
     expect(state.editor).not.to.be.undefined;
@@ -78,7 +78,7 @@ suite("track callback", () => {
 
   test("cancel track edition", async () => {
     const { track = {} } = st;
-    const state = await track_callback(new Action(TRACK_EDIT_CANCEL), {
+    const state = await trackCallback(new Action(TRACK_EDIT_CANCEL), {
       ...st,
     });
     expect(state.editor).to.be.undefined;
@@ -92,7 +92,7 @@ suite("track callback", () => {
       grid_text: "new grid",
       updated_at: "now",
     };
-    const state = await track_callback(new Action(TRACK_EDIT_APPLY, payload), {
+    const state = await trackCallback(new Action(TRACK_EDIT_APPLY, payload), {
       ...st,
     });
     expect(state.editor).to.be.undefined;
@@ -107,7 +107,7 @@ suite("track callback", () => {
       grid_text: "new grid",
       updated_at: "now",
     };
-    const state = await track_callback(new Action(TRACK_EDIT_APPLY, payload), {
+    const state = await trackCallback(new Action(TRACK_EDIT_APPLY, payload), {
       ...st,
     });
     expect(state.editor).to.be.undefined;

@@ -1,6 +1,6 @@
 import { expect } from "@open-wc/testing";
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../../actions/actions";
-import { save_as_callback } from "../save_as";
+import { saveAsCallback } from "../save_as";
 import { getFromGallery } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
@@ -12,7 +12,7 @@ suite("Register save_as", () => {
   const stub = sinon.stub(synchronizer);
 
   test("save as start", async () => {
-    const state = await save_as_callback(new Action(SAVE_AS_START), { ...st });
+    const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st });
     const fromGallery = getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;
@@ -23,7 +23,7 @@ suite("Register save_as", () => {
 
   test("save as start without id", async () => {
     delete st.track?.id;
-    const state = await save_as_callback(new Action(SAVE_AS_START), { ...st });
+    const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st });
     const fromGallery = getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;
@@ -34,7 +34,7 @@ suite("Register save_as", () => {
   });
 
   test("save as start and new", async () => {
-    const state = await save_as_callback(new Action(SAVE_AS_START_AND_NEW), {
+    const state = await saveAsCallback(new Action(SAVE_AS_START_AND_NEW), {
       ...st,
       transpose: 0,
     });
@@ -51,7 +51,7 @@ suite("Register save_as", () => {
 
   test("save as start and upload", async () => {
     stub.upload.resolves(st.track);
-    const state = await save_as_callback(new Action(SAVE_AS_START), { ...st, synchronization: { enabled: true } });
+    const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st, synchronization: { enabled: true } });
     const fromGallery = getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;

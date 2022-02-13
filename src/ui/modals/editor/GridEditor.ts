@@ -62,12 +62,12 @@ class GridEditor extends LitElement {
   value: string | undefined;
 
   @state()
-  _grid_valid = true;
+  private gridValid = true;
 
   @state()
-  _grid_error_reason: string | undefined = undefined;
+  private gridErrorReason: string | undefined = undefined;
 
-  _handle_change_grid(e: Event): void {
+  handleChangeGrid(e: Event): void {
     const el = e.target as HTMLTextAreaElement;
     let raw = el.value;
     const autoCorrect = new AutoCorrect(raw, el.selectionEnd);
@@ -78,7 +78,7 @@ class GridEditor extends LitElement {
     this.validate(raw);
 
     const options = {
-      detail: { value: autoCorrect.value, valid: this._grid_valid },
+      detail: { value: autoCorrect.value, valid: this.gridValid },
       bubbles: true,
       composed: true,
     };
@@ -91,18 +91,18 @@ class GridEditor extends LitElement {
       <div class="input-label">${msg("Chord sequence (required)")}</div>
       <textarea
         .value="${ifDefined(normalized)}"
-        class="${classMap({ invalid: !this._grid_valid })}"
+        class="${classMap({ invalid: !this.gridValid })}"
         required
         placeholder="| Am7 Am7M | Am7 Am6 |&#10;| F Dm7 | Dm6 E7 | Dm E7 |&#10;  ..."
-        @input="${this._handle_change_grid}"
+        @input="${this.handleChangeGrid}"
       ></textarea>
-      ${this.grid_error_pane()}
+      ${this.gridErrorPane()}
     `;
   }
 
-  grid_error_pane(): unknown {
-    if (!this._grid_valid) {
-      return html` <div class="song-editor-body-form-error">${msg("Invalid syntax:")} ${this._grid_error_reason}</div>`;
+  gridErrorPane(): unknown {
+    if (!this.gridValid) {
+      return html` <div class="song-editor-body-form-error">${msg("Invalid syntax:")} ${this.gridErrorReason}</div>`;
     }
     return html``;
   }
@@ -110,10 +110,10 @@ class GridEditor extends LitElement {
   private validate(raw: string | undefined): void {
     if (raw) {
       const parsed = new Grid(raw);
-      this._grid_valid = parsed.valid;
-      this._grid_error_reason = parsed.reason;
+      this.gridValid = parsed.valid;
+      this.gridErrorReason = parsed.reason;
     } else {
-      this._grid_valid = true;
+      this.gridValid = true;
     }
   }
 }

@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import { INIT_APP, TRANSPOSE_CHANGE, ZOOM_CHANGE } from "../../../actions/actions";
 
-import { init_app_callback, transpose_change_callback, zoom_change_callback } from "../misc";
+import { initAppCallback, transpose_change_callback, zoomChangeCallback } from "../misc";
 import { saveLastState } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { IState, STATE_VERSION } from "../../state";
@@ -28,28 +28,28 @@ suite("Register misc", () => {
       },
     };
     saveLastState(last_state);
-    const state = await init_app_callback(new Action(INIT_APP), { ...st });
+    const state = await initAppCallback(new Action(INIT_APP), { ...st });
     expect(state).to.deep.equal(last_state);
     expect(FeatureFlag.get().synchro_enabled).to.be.true;
   });
 
   test("zoom_change_callback", async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 101 }), { ...st });
+    const state = await zoomChangeCallback(new Action(ZOOM_CHANGE, { zoom: 101 }), { ...st });
     expect(state).to.deep.equal({ ...st, zoom: 101 });
   });
 
   test("zoom_change_callback 001", async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 201 }), { ...st });
+    const state = await zoomChangeCallback(new Action(ZOOM_CHANGE, { zoom: 201 }), { ...st });
     expect(state).to.deep.equal({ ...st, zoom: 200 });
   });
 
   test("zoom_change_callback 002", async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: 9 }), { ...st });
+    const state = await zoomChangeCallback(new Action(ZOOM_CHANGE, { zoom: 9 }), { ...st });
     expect(state).to.deep.equal({ ...st, zoom: 10 });
   });
 
   test("zoom_change_callback 003", async () => {
-    const state = await zoom_change_callback(new Action(ZOOM_CHANGE, { zoom: undefined }), { ...st });
+    const state = await zoomChangeCallback(new Action(ZOOM_CHANGE, { zoom: undefined }), { ...st });
     expect(state).to.deep.equal({ ...st, zoom: 100 });
   });
 

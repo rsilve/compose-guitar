@@ -18,7 +18,7 @@ async function save(state: IState): Promise<IState> {
   return result;
 }
 
-export async function save_as_callback(action: Action, state: IState): Promise<IState> {
+export async function saveAsCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === SAVE_AS_START) {
     result = await save(result);

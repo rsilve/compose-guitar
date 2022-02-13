@@ -1,13 +1,13 @@
 import "./ui/editor-main";
 
 import init from "./init";
-import register_callbacks from "./stores/register_callbacks";
+import registerCallbacks from "./stores/register_callbacks";
 import { html, render } from "lit";
 import localize from "./tools/initLocale";
 import { registerSW } from "virtual:pwa-register";
 
 function run(): void {
-  register_callbacks();
+  registerCallbacks();
   init();
 }
 
