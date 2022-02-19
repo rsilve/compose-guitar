@@ -6,10 +6,10 @@ import { synchronizer } from "../synchronizer";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { IStateTrack } from "../../state";
 
-suite("synchronize tools", () => {
+describe("synchronize tools", () => {
   const stub = sinon.stub(googleApiWrapper);
 
-  test("upload", async () => {
+  it("upload", async () => {
     stub.saveSong.returns(Promise.resolve("gid"));
     const track: IStateTrack = { grid_text: "A", title: "title2" };
     const result = await synchronizer.upload(track);
@@ -18,7 +18,7 @@ suite("synchronize tools", () => {
     expect(id).to.be.equal("gid");
   });
 
-  test("upload already uploaded", async () => {
+  it("upload already uploaded", async () => {
     const track = addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
     stub.updateSong.returns(Promise.resolve(getSynchronizedIndex(track.id || "undef") || "undef"));
     const result = await synchronizer.upload(track);
@@ -27,7 +27,7 @@ suite("synchronize tools", () => {
     expect(id).to.be.equal("my_id");
   });
 
-  test("download", async () => {
+  it("download", async () => {
     localStorage.clear();
     stub.listFiles.returns(
       Promise.resolve([
@@ -42,7 +42,7 @@ suite("synchronize tools", () => {
     expect(galleryDict()).to.be.deep.equal({ my_id: "title2" });
   });
 
-  test("delete", async () => {
+  it("delete", async () => {
     localStorage.clear();
     stub.saveSong.returns(Promise.resolve("gid"));
     stub.delete.returns(Promise.resolve());

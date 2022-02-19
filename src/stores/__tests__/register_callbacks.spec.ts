@@ -9,8 +9,8 @@ import { notificationCallback } from "../register/notification";
 import { trackCallback } from "../register/track";
 import { synchronizeCallback } from "../register/synchronize";
 
-suite("Register", () => {
-  test("init", () => {
+describe("Register", () => {
+  it("init", () => {
     registerCallbacks();
     expect(registered(initAppCallback)).to.be.true;
     expect(registered(galleryCallback)).to.be.true;

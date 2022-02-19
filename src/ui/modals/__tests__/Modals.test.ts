@@ -10,10 +10,10 @@ import {
   SYNCHRO_TOGGLE_ENABLED,
 } from "../../../actions/actions";
 
-suite("Modals element", () => {
+describe("Modals element", () => {
   const st = stateTest;
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     resetDispatcher({ ...st });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -21,7 +21,7 @@ suite("Modals element", () => {
     expect(el).shadowDom.to.be.equal("");
   });
 
-  test("open gallery", async () => {
+  it("open gallery", async () => {
     resetDispatcher({ ...st, gallery: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -31,7 +31,7 @@ suite("Modals element", () => {
         <track-gallery class="modal"></track-gallery>`);
   });
 
-  test("open editor", async () => {
+  it("open editor", async () => {
     resetDispatcher({ ...st, editor: {} });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -41,7 +41,7 @@ suite("Modals element", () => {
         <song-editor class="modal"></song-editor>`);
   });
 
-  test("open help", async () => {
+  it("open help", async () => {
     resetDispatcher({ ...st, help_open: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -51,7 +51,7 @@ suite("Modals element", () => {
         <help-modal class="modal"></help-modal>`);
   });
 
-  test("confirm save", async () => {
+  it("confirm save", async () => {
     resetDispatcher({ ...st, confirm_save: true });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -61,7 +61,7 @@ suite("Modals element", () => {
         <confirm-save class="modal"></confirm-save>`);
   });
 
-  test("synchronize activation", async () => {
+  it("synchronize activation", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
     expect(el).to.instanceOf(Modals);
@@ -74,7 +74,7 @@ suite("Modals element", () => {
         <synchronize-configuration class="modal"></synchronize-configuration>`);
   });
 
-  test("synchronize configuration close", async () => {
+  it("synchronize configuration close", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -96,7 +96,7 @@ suite("Modals element", () => {
     expect(closed).to.be.true;
   });
 
-  test("synchronize activation", async () => {
+  it("synchronize activation", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: false, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -118,7 +118,7 @@ suite("Modals element", () => {
     expect(closed).to.be.true;
   });
 
-  test("synchronize deactivation", async () => {
+  it("synchronize deactivation", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -140,7 +140,7 @@ suite("Modals element", () => {
     expect(closed).to.be.true;
   });
 
-  test("synchronize sign out", async () => {
+  it("synchronize sign out", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -164,7 +164,7 @@ suite("Modals element", () => {
     expect(closed).to.be.true;
   });
 
-  test("synchronize enable feature", async () => {
+  it("synchronize enable feature", async () => {
     resetDispatcher({ ...st, help_open: true });
     const promise = new Promise((resolve) => {
       register((action, state) => {

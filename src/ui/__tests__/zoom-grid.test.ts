@@ -3,14 +3,14 @@ import ZoomGrid from "../zoom-grid";
 import { register, resetDispatcher } from "../../stores/dispatcher";
 import { zoomChangeCallback } from "../../stores/register/misc";
 
-suite("Zoom grid element", () => {
-  test("is defined", async () => {
+describe("Zoom grid element", () => {
+  it("is defined", async () => {
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid> `);
     expect(el).to.instanceOf(ZoomGrid);
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test("renders with default values", async () => {
+  it("renders with default values", async () => {
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el._zoom).to.equal(100);
@@ -21,7 +21,7 @@ suite("Zoom grid element", () => {
     );
   });
 
-  test("click zoom in", async () => {
+  it("click zoom in", async () => {
     register(zoomChangeCallback);
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);
     await expect(el).shadowDom.to.be.accessible();
@@ -39,7 +39,7 @@ suite("Zoom grid element", () => {
     fixtureCleanup();
   });
 
-  test("click zoom out", async () => {
+  it("click zoom out", async () => {
     resetDispatcher();
     register(zoomChangeCallback);
     const el: ZoomGrid = await fixture(html` <zoom-grid></zoom-grid>`);

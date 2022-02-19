@@ -7,10 +7,10 @@ import { stateTest } from "../../../__tests__/TestHelpers";
 import { uuid } from "../../../tools/uuid";
 import Action from "../../../actions/Action";
 
-suite("Upload callback", () => {
+describe("Upload callback", () => {
   const st = stateTest;
 
-  test("upload from gallery", async () => {
+  it("upload from gallery", async () => {
     const track = { grid_text: "zz", title: "test", id: uuid() };
     addToGallery(track, { ...st, track });
     const state = await uploadCallback(new Action(UPLOAD_FROM_GALLERY, { id: track.id }), {
@@ -23,7 +23,7 @@ suite("Upload callback", () => {
     expect(state.zoom).to.equal(100);
   });
 
-  test("upload from gallery does not update syn state", async () => {
+  it("upload from gallery does not update syn state", async () => {
     const st_with_sync = { ...st, synchronization: { enabled: true }, featureFlags: { synchro_enabled: true } };
 
     const track = { grid_text: "zz", title: "test", id: uuid() };

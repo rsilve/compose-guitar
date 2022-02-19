@@ -4,16 +4,16 @@ import { notificationCallback } from "../notification";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 
-suite("Notification callback", () => {
+describe("Notification callback", () => {
   const st = stateTest;
 
-  test("notification open", async () => {
+  it("notification open", async () => {
     const action = new Action(NOTIFICATION_OPEN, { message: "message" });
     const state = await notificationCallback(action, { ...st });
     expect(state.notification).to.equal("message");
   });
 
-  test("notification close", async () => {
+  it("notification close", async () => {
     const action = new Action(NOTIFICATION_CLOSE);
     const state = await notificationCallback(action, { ...st });
     expect(state.notification).to.be.undefined;

@@ -11,10 +11,4 @@ export default {
     exclude: ["**/api.js", "**/__tests__/**", "**/generated/**"],
   },
   browsers: [playwrightLauncher({ product: "chromium" })],
-  testFramework: {
-    // https://mochajs.org/api/mocha
-    config: {
-      ui: "tdd",
-    },
-  },
 };

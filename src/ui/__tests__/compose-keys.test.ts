@@ -9,10 +9,10 @@ import { galleryCallback } from "../../stores/register/gallery";
 import { zoomChangeCallback } from "../../stores/register/misc";
 import { helpCallback } from "../../stores/register/help";
 
-suite("compose-key element", () => {
+describe("compose-key element", () => {
   const st = stateTest;
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
     expect(el).to.instanceOf(ComposeKeys);
     await expect(el).shadowDom.to.be.accessible();
@@ -22,7 +22,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("add edit_key event", async () => {
+  it("add edit_key event", async () => {
     resetDispatcher(st);
     register(trackCallback);
     const promise = new Promise((resolve) => {
@@ -43,7 +43,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("add save_as_start event", async () => {
+  it("add save_as_start event", async () => {
     resetDispatcher(st);
     register(saveAsCallback);
     const promise = new Promise((resolve) => {
@@ -67,7 +67,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("add gallery_open event", async () => {
+  it("add gallery_open event", async () => {
     resetDispatcher(st);
     register(galleryCallback);
     const promise = new Promise((resolve) => {
@@ -90,7 +90,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("add track_new event", async () => {
+  it("add track_new event", async () => {
     resetDispatcher(st);
     register(trackCallback);
     const promise = new Promise((resolve) => {
@@ -113,7 +113,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("zoom_incr event", async () => {
+  it("zoom_incr event", async () => {
     resetDispatcher(st);
     register(zoomChangeCallback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
@@ -136,7 +136,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("zoom_incr event 2", async () => {
+  it("zoom_incr event 2", async () => {
     resetDispatcher(st);
     register(zoomChangeCallback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
@@ -159,7 +159,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("zoom_decr event", async () => {
+  it("zoom_decr event", async () => {
     resetDispatcher(st);
     register(zoomChangeCallback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
@@ -182,7 +182,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("zoom_decr event 2", async () => {
+  it("zoom_decr event 2", async () => {
     resetDispatcher(st);
     register(zoomChangeCallback);
     const el: ComposeKeys = await fixture(html` <compose-keys></compose-keys> `);
@@ -205,7 +205,7 @@ suite("compose-key element", () => {
     fixtureCleanup();
   });
 
-  test("esc event", async () => {
+  it("esc event", async () => {
     resetDispatcher(st);
     register(helpCallback);
     const promise = new Promise((resolve) => {

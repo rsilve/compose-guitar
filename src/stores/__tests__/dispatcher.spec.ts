@@ -4,10 +4,10 @@ import Action from "../../actions/Action";
 import { stateTest } from "../../__tests__/TestHelpers";
 import { IState } from "../state";
 
-suite("Dispatcher", () => {
+describe("Dispatcher", () => {
   const st = stateTest;
 
-  test("init, connect, register, dispatch", async () => {
+  it("init, connect, register, dispatch", async () => {
     resetDispatcher(st);
     let grid_text: string | undefined = "eee";
     init((state) => {
@@ -34,7 +34,7 @@ suite("Dispatcher", () => {
     expect(grid_text).to.equal("test");
   });
 
-  test("error in register callback", () => {
+  it("error in register callback", () => {
     resetDispatcher();
     let grid_text: string | undefined = "eee";
     connect(({ track = {} }: IState) => {

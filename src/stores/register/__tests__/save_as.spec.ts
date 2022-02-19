@@ -7,11 +7,11 @@ import Action from "../../../actions/Action";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
 
-suite("Register save_as", () => {
+describe("Register save_as", () => {
   const st = stateTest;
   const stub = sinon.stub(synchronizer);
 
-  test("save as start", async () => {
+  it("save as start", async () => {
     const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st });
     const fromGallery = getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
@@ -21,7 +21,7 @@ suite("Register save_as", () => {
     expect(fromGallery).to.deep.equal(state);
   });
 
-  test("save as start without id", async () => {
+  it("save as start without id", async () => {
     delete st.track?.id;
     const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st });
     const fromGallery = getFromGallery(state.track?.id || "");
@@ -33,7 +33,7 @@ suite("Register save_as", () => {
     expect(fromGallery).to.deep.equal(st);
   });
 
-  test("save as start and new", async () => {
+  it("save as start and new", async () => {
     const state = await saveAsCallback(new Action(SAVE_AS_START_AND_NEW), {
       ...st,
       transpose: 0,
@@ -49,7 +49,7 @@ suite("Register save_as", () => {
     expect(state.transpose).to.be.equal(0);
   });
 
-  test("save as start and upload", async () => {
+  it("save as start and upload", async () => {
     stub.upload.resolves(st.track);
     const state = await saveAsCallback(new Action(SAVE_AS_START), { ...st, synchronization: { enabled: true } });
     const fromGallery = getFromGallery(state.track?.id || "");

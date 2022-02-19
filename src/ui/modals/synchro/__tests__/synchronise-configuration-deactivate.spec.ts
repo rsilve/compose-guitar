@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationDeactivated from "../SynchronizationConfigurationDeactivated";
 
-suite("synchronise configuration deactivate element", () => {
-  test("is defined", async () => {
+describe("synchronise configuration deactivate element", () => {
+  it("is defined", async () => {
     const el: SynchronizationConfigurationDeactivated = await fixture(
       html`<synchronization-configuration-deactivated></synchronization-configuration-deactivated>`
     );
@@ -10,7 +10,7 @@ suite("synchronise configuration deactivate element", () => {
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test("has an activate button", async () => {
+  it("has an activate button", async () => {
     let handle = false;
     const el: SynchronizationConfigurationDeactivated = await fixture(html` <synchronization-configuration-deactivated
       @activate="${() => (handle = true)}"

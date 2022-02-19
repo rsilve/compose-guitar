@@ -2,8 +2,8 @@ import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationActivated from "../SynchronizationConfigurationActivated";
 import { IStateSynchronization } from "../../../../stores/state";
 
-suite("synchronise configuration activate element", () => {
-  test("is defined", async () => {
+describe("synchronise configuration activate element", () => {
+  it("is defined", async () => {
     const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated></synchronization-configuration-activated>`
     );
@@ -11,7 +11,7 @@ suite("synchronise configuration activate element", () => {
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test("has a deactivate button", async () => {
+  it("has a deactivate button", async () => {
     const sync: IStateSynchronization = { enabled: true };
     let handle = false;
     const el: SynchronizationConfigurationActivated = await fixture(
@@ -27,7 +27,7 @@ suite("synchronise configuration activate element", () => {
     expect(handle).to.be.true;
   });
 
-  test("display status if signin is active", async () => {
+  it("display status if signin is active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: true };
     const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated
@@ -43,7 +43,7 @@ suite("synchronise configuration activate element", () => {
         `);
   });
 
-  test("display warning if signin not active", async () => {
+  it("display warning if signin not active", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false };
     const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated
@@ -59,7 +59,7 @@ suite("synchronise configuration activate element", () => {
         `);
   });
 
-  test("display warning if signin have failed", async () => {
+  it("display warning if signin have failed", async () => {
     const sync: IStateSynchronization = { enabled: true, signInValid: false, error: { error: "blocked" } };
     const el: SynchronizationConfigurationActivated = await fixture(
       html`

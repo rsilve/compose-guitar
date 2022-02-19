@@ -2,14 +2,14 @@ import { expect, fixture, html } from "@open-wc/testing";
 import ConfirmSave from "../ConfirmSave";
 import TrackGallery from "../TrackGallery";
 
-suite("Track gallery element", () => {
-  test("is defined", async () => {
+describe("Track gallery element", () => {
+  it("is defined", async () => {
     const el: ConfirmSave = await fixture(html` <track-gallery></track-gallery>`);
     expect(el).to.instanceOf(TrackGallery);
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test("default render", async () => {
+  it("default render", async () => {
     const el: ConfirmSave = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
@@ -17,7 +17,7 @@ suite("Track gallery element", () => {
     expect(node.childElementCount).to.be.equal(0);
   });
 
-  test("render list", async () => {
+  it("render list", async () => {
     const list = [
       { title: "1", synchronized: false },
       { title: "2", synchronized: false },
@@ -32,7 +32,7 @@ suite("Track gallery element", () => {
     expect(label.innerText).to.be.equal("2");
   });
 
-  test("render list with sync state", async () => {
+  it("render list with sync state", async () => {
     const list = [
       { title: "1", synchronized: true },
       { title: "2", synchronized: false },
@@ -47,7 +47,7 @@ suite("Track gallery element", () => {
     expect(label.innerText).to.be.equal("2");
   });
 
-  test("close event", async () => {
+  it("close event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "close";
@@ -59,7 +59,7 @@ suite("Track gallery element", () => {
     expect(handled).to.be.true;
   });
 
-  test("select event", async () => {
+  it("select event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "select" && e.detail.id === "1";
@@ -72,7 +72,7 @@ suite("Track gallery element", () => {
     expect(handled).to.be.true;
   });
 
-  test("remove event", async () => {
+  it("remove event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "remove" && e.detail.id === "1";

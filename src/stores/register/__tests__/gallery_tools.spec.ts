@@ -16,10 +16,10 @@ import { STATE_VERSION } from "../../state";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { uuid } from "../../../tools/uuid";
 
-suite("Gallery tools", () => {
+describe("Gallery tools", () => {
   const st = stateTest;
 
-  test("empty gallery", () => {
+  it("empty gallery", () => {
     localStorage.clear();
     expect(galleryList()).to.deep.equal([]);
     expect(galleryDict()).to.deep.equal({});
@@ -30,7 +30,7 @@ suite("Gallery tools", () => {
     expect(getFromGallery("test")).to.be.null;
   });
 
-  test("tools for gallery", () => {
+  it("tools for gallery", () => {
     localStorage.clear();
     expect(galleryList()).to.deep.equal([]);
     expect(galleryDict()).to.deep.equal({});
@@ -50,7 +50,7 @@ suite("Gallery tools", () => {
     expect(getFromGallery(track.id)).to.be.null;
   });
 
-  test("tools for gallery 002", () => {
+  it("tools for gallery 002", () => {
     localStorage.clear();
     expect(galleryList()).to.deep.equal([]);
     expect(galleryDict()).to.deep.equal({});
@@ -68,7 +68,7 @@ suite("Gallery tools", () => {
     expect(getFromGallery(track.id)).to.be.null;
   });
 
-  test("gallery with more than one element", () => {
+  it("gallery with more than one element", () => {
     localStorage.clear();
     const track_a = { id: uuid(), grid_text: "aa", title: "test1" };
     const track_b = { id: uuid(), grid_text: "bb", title: "test2" };
@@ -117,7 +117,7 @@ suite("Gallery tools", () => {
     expect(getFromGallery(track_b.id)).to.be.null;
   });
 
-  test("multiple add", () => {
+  it("multiple add", () => {
     localStorage.clear();
     const track = { id: uuid(), grid_text: "aa", title: "test1" };
     addToGallery(track, { ...st, track });
@@ -146,7 +146,7 @@ suite("Gallery tools", () => {
     expect(getFromGallery(track.id)).to.be.null;
   });
 
-  test("tools for gallery with IState", () => {
+  it("tools for gallery with IState", () => {
     localStorage.clear();
     expect(galleryList()).to.deep.equal([]);
     expect(galleryDict()).to.deep.equal({});
@@ -166,13 +166,13 @@ suite("Gallery tools", () => {
     removeFromGallery(new_state.track?.id || "");
   });
 
-  test("exists in library (empty)", () => {
+  it("exists in library (empty)", () => {
     localStorage.clear();
     expect(existsInGallery("title", "foo")).to.be.false;
     expect(existsInGallery("title", undefined)).to.be.false;
   });
 
-  test("exists in library (not empty) ", () => {
+  it("exists in library (not empty) ", () => {
     localStorage.clear();
     addToGallery(
       { grid_text: "A", title: "title" },
@@ -193,7 +193,7 @@ suite("Gallery tools", () => {
     removeFromGallery("title");
   });
 
-  test("exists in library (not empty) 2 ", () => {
+  it("exists in library (not empty) 2 ", () => {
     localStorage.clear();
     addToGallery(
       { grid_text: "A", title: "title" },
@@ -230,14 +230,14 @@ suite("Gallery tools", () => {
     removeFromGallery("title2");
   });
 
-  test("add to synchronize index", () => {
+  it("add to synchronize index", () => {
     localStorage.clear();
     const track = addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
     const id = getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("my_id");
   });
 
-  test("add to synchronize index with existing id", () => {
+  it("add to synchronize index with existing id", () => {
     localStorage.clear();
     const track = addToSynchronizedIndex({ id: "my_song", grid_text: "A", title: "title2" }, "my_id");
     expect(track.id).to.be.equal("my_song");
@@ -245,7 +245,7 @@ suite("Gallery tools", () => {
     expect(id).to.be.equal("my_id");
   });
 
-  test("remove from synchronize index", () => {
+  it("remove from synchronize index", () => {
     localStorage.clear();
     const track = addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
     removeFromSynchronizedIndex(track.id || "undef");
@@ -253,7 +253,7 @@ suite("Gallery tools", () => {
     expect(id).to.be.undefined;
   });
 
-  test("get extended index", () => {
+  it("get extended index", () => {
     localStorage.clear();
     addToGallery(
       { grid_text: "A", title: "title", id: "my_id" },

@@ -12,10 +12,10 @@ import { stateTest } from "../../../__tests__/TestHelpers";
 import { trackCallback } from "../track";
 import Action from "../../../actions/Action";
 
-suite("track callback", () => {
+describe("track callback", () => {
   const st = stateTest;
 
-  test("new track", async () => {
+  it("new track", async () => {
     const state = await trackCallback(new Action(TRACK_NEW), {
       ...st,
       transpose: 1,
@@ -27,7 +27,7 @@ suite("track callback", () => {
     expect(state.transpose).to.be.equal(0);
   });
 
-  test("new track with save needed", async () => {
+  it("new track with save needed", async () => {
     const state = await trackCallback(new Action(TRACK_NEW), {
       ...st,
       track: { ...st.track, updated_at: new Date().toISOString() },
@@ -36,7 +36,7 @@ suite("track callback", () => {
     expect(state.confirm_save).to.be.true;
   });
 
-  test("new track without save", async () => {
+  it("new track without save", async () => {
     const state = await trackCallback(new Action(TRACK_NEW_WITHOUT_SAVE), {
       ...st,
       transpose: 1,
@@ -46,7 +46,7 @@ suite("track callback", () => {
     expect(state.transpose).to.be.equal(0);
   });
 
-  test("new track cancel", async () => {
+  it("new track cancel", async () => {
     const state = await trackCallback(new Action(TRACK_NEW_CANCEL), {
       ...st,
       transpose: 1,
@@ -56,7 +56,7 @@ suite("track callback", () => {
     expect(state.transpose).to.be.equal(1);
   });
 
-  test("new track cancel (modal close", async () => {
+  it("new track cancel (modal close", async () => {
     const state = await trackCallback(new Action(MODALS_CLOSE), {
       ...st,
       transpose: 1,
@@ -66,7 +66,7 @@ suite("track callback", () => {
     expect(state.transpose).to.be.equal(1);
   });
 
-  test("edit track", async () => {
+  it("edit track", async () => {
     const { track = {} } = st;
     const payload = { title: track.title, grid_text: track.grid_text };
     const state = await trackCallback(new Action(TRACK_EDIT, payload), {
@@ -76,7 +76,7 @@ suite("track callback", () => {
     expect(state.editor).to.deep.equal(payload);
   });
 
-  test("cancel track edition", async () => {
+  it("cancel track edition", async () => {
     const { track = {} } = st;
     const state = await trackCallback(new Action(TRACK_EDIT_CANCEL), {
       ...st,
@@ -85,7 +85,7 @@ suite("track callback", () => {
     expect(state.track).to.deep.equal(track);
   });
 
-  test("apply track edition", async () => {
+  it("apply track edition", async () => {
     const { track = {} } = st;
     const payload = {
       title: "new title",
@@ -99,7 +99,7 @@ suite("track callback", () => {
     expect(state.track).to.deep.equal({ ...track, ...payload });
   });
 
-  test("apply track edition without track id", async () => {
+  it("apply track edition without track id", async () => {
     const { track = {} } = st;
     delete track.id;
     const payload = {

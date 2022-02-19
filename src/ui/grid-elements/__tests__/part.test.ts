@@ -14,15 +14,15 @@ class ChordRenderTest extends LitElement {
   }
 }
 
-suite("part render", () => {
-  test("is defined", async () => {
+describe("part render", () => {
+  it("is defined", async () => {
     const el = await fixture(html`<part-test .measure="${new Measure("A")}"></part-test>`);
     expect(el).to.be.instanceOf(ChordRenderTest);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });
 
-  test("is defined with part", async () => {
+  it("is defined with part", async () => {
     const el = await fixture(html`<part-test .measure="${new Measure("(a) A")}"></part-test>`);
     expect(el).to.be.instanceOf(ChordRenderTest);
     await expect(el).shadowDom.to.be.accessible();

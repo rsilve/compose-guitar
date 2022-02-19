@@ -40,8 +40,8 @@ import {
 import { default_state } from "../../stores/state";
 import { resetDispatcher, register } from "../../stores/dispatcher";
 
-suite("actions", () => {
-  test("transpose", async () => {
+describe("actions", () => {
+  it("transpose", async () => {
     let handle = 0;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -55,7 +55,7 @@ suite("actions", () => {
     expect(handle).to.be.equal(2);
   });
 
-  test("init", async () => {
+  it("init", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -66,7 +66,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("upload_from_gallery", async () => {
+  it("upload_from_gallery", async () => {
     let handle = "";
     resetDispatcher(default_state());
     register((action, state) => {
@@ -78,7 +78,7 @@ suite("actions", () => {
     expect(handle).to.be.equal("id");
   });
 
-  test("save_as_start", async () => {
+  it("save_as_start", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -89,7 +89,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("save_as_start_and_new", async () => {
+  it("save_as_start_and_new", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -100,7 +100,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("gallery_open", async () => {
+  it("gallery_open", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -111,7 +111,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("gallery_gallery_remove", async () => {
+  it("gallery_gallery_remove", async () => {
     let handle = "id";
     resetDispatcher(default_state());
     register((action, state) => {
@@ -123,7 +123,7 @@ suite("actions", () => {
     expect(handle).to.be.equal("id");
   });
 
-  test("gallery_gallery_close", async () => {
+  it("gallery_gallery_close", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -134,7 +134,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchronization_activation_request", async () => {
+  it("action_synchronization_activation_request", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -145,7 +145,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchronization_deactivation_request", async () => {
+  it("action_synchronization_deactivation_request", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -156,7 +156,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchronization_activation", async () => {
+  it("action_synchronization_activation", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -167,7 +167,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchronization_deactivation", async () => {
+  it("action_synchronization_deactivation", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -178,7 +178,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchronization_close", async () => {
+  it("action_synchronization_close", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -189,7 +189,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchro_sign_in", async () => {
+  it("action_synchro_sign_in", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -200,7 +200,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_remote_sign_out", async () => {
+  it("action_remote_sign_out", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -211,7 +211,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchro_force start", async () => {
+  it("action_synchro_force start", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -222,7 +222,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchro_force", async () => {
+  it("action_synchro_force", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {
@@ -233,7 +233,7 @@ suite("actions", () => {
     expect(handle).to.be.true;
   });
 
-  test("action_synchro_toggle_enable", async () => {
+  it("action_synchro_toggle_enable", async () => {
     let handle = false;
     resetDispatcher(default_state());
     register((action, state) => {

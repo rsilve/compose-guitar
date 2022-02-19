@@ -10,21 +10,21 @@ import {
   SYNCHRO_FORCE_START,
 } from "../../actions/actions";
 
-suite("account status element", () => {
+describe("account status element", () => {
   const st = stateTest;
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     expect(el).to.instanceOf(AccountStatus);
     await expect(el).shadowDom.to.be.accessible();
   });
 
-  test("is inactive", async () => {
+  it("is inactive", async () => {
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     await expect(el).shadowDom.to.equal('<div><person-off-icon  title="Synchronization off"></person-off-icon></div>');
   });
 
-  test("is active", async () => {
+  it("is active", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     await expect(el).shadowDom.to.equal(`
@@ -33,7 +33,7 @@ suite("account status element", () => {
 `);
   });
 
-  test("is active without warning", async () => {
+  it("is active without warning", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, signInValid: true } });
     const el: AccountStatus = await fixture(html` <account-status></account-status>`);
     await expect(el).shadowDom.to.equal(`
@@ -42,7 +42,7 @@ suite("account status element", () => {
 `);
   });
 
-  test("has an active action", async () => {
+  it("has an active action", async () => {
     resetDispatcher({ ...st });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -58,7 +58,7 @@ suite("account status element", () => {
     expect(res).to.be.true;
   });
 
-  test("has an inactive action", async () => {
+  it("has an inactive action", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true } });
     const promise = new Promise((resolve) => {
       register((action, state) => {
@@ -77,7 +77,7 @@ suite("account status element", () => {
     expect(res).to.be.true;
   });
 
-  test("has a synchro start action", async () => {
+  it("has a synchro start action", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true } });
     const promiseStart = new Promise((resolve) => {
       register((action, state) => {
@@ -94,7 +94,7 @@ suite("account status element", () => {
     expect(resStart).to.be.true;
   });
 
-  test("has a synchro action", async () => {
+  it("has a synchro action", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true } });
 
     const promise = new Promise((resolve) => {
@@ -114,7 +114,7 @@ suite("account status element", () => {
     expect(res).to.be.true;
   });
 
-  test("has a synchro notif action", async () => {
+  it("has a synchro notif action", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true } });
 
     const promise = new Promise((resolve) => {
@@ -134,7 +134,7 @@ suite("account status element", () => {
     expect(res).to.be.true;
   });
 
-  test("synchro start action does nothing if already started", async () => {
+  it("synchro start action does nothing if already started", async () => {
     resetDispatcher({ ...st, synchronization: { enabled: true, syncInProgress: true } });
     const promiseStart = new Promise((resolve) => {
       register((action, state) => {

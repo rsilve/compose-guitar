@@ -3,8 +3,8 @@ import Menu from "../Menu";
 import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { GALLERY_OPEN, SAVE_AS_START, TRACK_NEW } from "../../../actions/actions";
 
-suite("Menu element", () => {
-  test("is defined", async () => {
+describe("Menu element", () => {
+  it("is defined", async () => {
     const el: Menu = await fixture(html` <compose-menu></compose-menu>`);
     expect(el).to.instanceOf(Menu);
     await expect(el).shadowDom.to.be.accessible();
@@ -21,7 +21,7 @@ suite("Menu element", () => {
         `);
   });
 
-  test("click save", async () => {
+  it("click save", async () => {
     resetDispatcher();
     let click_handled = false;
     register((action, state) => {
@@ -35,7 +35,7 @@ suite("Menu element", () => {
     expect(click_handled).to.be.true;
   });
 
-  test("click library", async () => {
+  it("click library", async () => {
     resetDispatcher();
     let click_handled = false;
     register((action, state) => {
@@ -49,7 +49,7 @@ suite("Menu element", () => {
     expect(click_handled).to.be.true;
   });
 
-  test("click new", async () => {
+  it("click new", async () => {
     resetDispatcher();
     let click_handled = false;
     register((action, state) => {

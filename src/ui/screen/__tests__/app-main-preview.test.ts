@@ -4,8 +4,8 @@ import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
 import { trackCallback } from "../../../stores/register/track";
 import { IState } from "../../../stores/state";
 
-suite("app main preview element", () => {
-  test("is defined", async () => {
+describe("app main preview element", () => {
+  it("is defined", async () => {
     const el: AppMainPreview = await fixture(html`
       <app-main-preview zoom="100" songTitle="title" songGrid="A"></app-main-preview>
     `);
@@ -22,7 +22,7 @@ suite("app main preview element", () => {
         `);
   });
 
-  test("handle edit", async () => {
+  it("handle edit", async () => {
     resetDispatcher();
     register(trackCallback);
     const promise: Promise<boolean> = new Promise((resolve) => {

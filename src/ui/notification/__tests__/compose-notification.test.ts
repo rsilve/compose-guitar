@@ -3,10 +3,10 @@ import ComposeNotification from "../compose-notification";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { resetDispatcher } from "../../../stores/dispatcher";
 
-suite("compose-notification element", () => {
+describe("compose-notification element", () => {
   const st = stateTest;
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
     await expect(el).shadowDom.to.be.accessible();
@@ -15,7 +15,7 @@ suite("compose-notification element", () => {
         `);
   });
 
-  test("with message", async () => {
+  it("with message", async () => {
     resetDispatcher({ ...st, notification: "test" });
     const el: ComposeNotification = await fixture(html` <compose-notification></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
@@ -25,7 +25,7 @@ suite("compose-notification element", () => {
         `);
   });
 
-  test("with message after timeout", async () => {
+  it("with message after timeout", async () => {
     resetDispatcher({ ...st, notification: "test" });
     const el: ComposeNotification = await fixture(html` <compose-notification delay="100"></compose-notification> `);
     expect(el).to.instanceOf(ComposeNotification);
