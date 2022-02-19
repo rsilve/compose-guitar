@@ -5,8 +5,8 @@ import { connect, register } from "../stores/dispatcher";
 import { IState } from "../stores/state";
 import { getLastState } from "../stores/register/gallery_tools";
 
-suite("Init", () => {
-  test("init", async () => {
+describe("Init", () => {
+  it("init", async () => {
     localStorage.clear();
 
     let action_init_done = false;

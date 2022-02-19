@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ConfirmSave from "../ConfirmSave";
 
-suite("Confirm save element", () => {
-  test("is defined", async () => {
+describe("Confirm save element", () => {
+  it("is defined", async () => {
     const el: ConfirmSave = await fixture(html` <confirm-save></confirm-save> `);
     expect(el).to.instanceOf(ConfirmSave);
     await expect(el).shadowDom.to.be.accessible();
@@ -16,7 +16,7 @@ suite("Confirm save element", () => {
         `);
   });
 
-  test("cancel event", async () => {
+  it("cancel event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "cancel";
@@ -28,7 +28,7 @@ suite("Confirm save element", () => {
     expect(handled).to.be.true;
   });
 
-  test("continue event", async () => {
+  it("continue event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "continue";
@@ -40,7 +40,7 @@ suite("Confirm save element", () => {
     expect(handled).to.be.true;
   });
 
-  test("save event", async () => {
+  it("save event", async () => {
     let handled = false;
     const handler = (e: CustomEvent) => {
       handled = e.type === "save";

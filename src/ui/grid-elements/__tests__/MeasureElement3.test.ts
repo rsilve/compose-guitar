@@ -2,14 +2,14 @@ import { expect, fixture, html } from "@open-wc/testing";
 import "../MeasureElement3";
 import Measure from "../../../parser/Measure";
 
-suite("Measure3", () => {
-  test("is defined", async () => {
+describe("Measure3", () => {
+  it("is defined", async () => {
     const el = await fixture(html` <chords-grid-measure3></chords-grid-measure3>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal("");
   });
 
-  test("is defined with measure", async () => {
+  it("is defined with measure", async () => {
     const el = await fixture(html` <chords-grid-measure3 .measure="${new Measure("A B")}"></chords-grid-measure3>`);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.be.equal(`
@@ -26,7 +26,7 @@ suite("Measure3", () => {
        `);
   });
 
-  test("is defined with measure and transpose", async () => {
+  it("is defined with measure and transpose", async () => {
     const el = await fixture(html` <chords-grid-measure3
       .measure="${new Measure("C D")}"
       transpose="2"

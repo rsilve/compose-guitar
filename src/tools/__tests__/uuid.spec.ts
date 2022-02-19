@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import { uuid } from "../uuid";
 
-suite("uuid", () => {
-  test("generate", () => {
+describe("uuid", () => {
+  it("generate", () => {
     const uuid1 = uuid();
     expect(uuid1).to.not.be.null;
     expect(uuid1).to.not.be.empty;

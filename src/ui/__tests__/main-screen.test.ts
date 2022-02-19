@@ -3,10 +3,10 @@ import MainScreen from "../main-screen";
 import { stateTest } from "../../__tests__/TestHelpers";
 import { resetDispatcher } from "../../stores/dispatcher";
 
-suite("Main screen element", () => {
+describe("Main screen element", () => {
   const st = stateTest;
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     const el: MainScreen = await fixture(html` <main-screen></main-screen> `);
     expect(el).to.instanceOf(MainScreen);
     await expect(el).shadowDom.to.be.accessible();
@@ -15,7 +15,7 @@ suite("Main screen element", () => {
         `);
   });
 
-  test("with track", async () => {
+  it("with track", async () => {
     resetDispatcher({ ...st, track: { title: "title", grid_text: "A" } });
     const el: MainScreen = await fixture(html` <main-screen></main-screen> `);
     expect(el).to.instanceOf(MainScreen);
@@ -28,7 +28,7 @@ suite("Main screen element", () => {
         `);
   });
 
-  test("with zoom", async () => {
+  it("with zoom", async () => {
     resetDispatcher({
       ...st,
       track: { title: "title", grid_text: "A" },

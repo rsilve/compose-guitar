@@ -7,16 +7,16 @@ import Action from "../../../actions/Action";
 import sinon from "sinon";
 import { googleApiWrapper } from "../google-api";
 
-suite("Gallery callback", () => {
+describe("Gallery callback", () => {
   const st = stateTest;
   const stub = sinon.stub(googleApiWrapper);
 
-  test("gallery open", async () => {
+  it("gallery open", async () => {
     const state = await galleryCallback(new Action(GALLERY_OPEN), { ...st });
     expect(state.gallery).to.be.true;
   });
 
-  test("remove from gallery", async () => {
+  it("remove from gallery", async () => {
     let { track = {} } = st;
     track = { ...track, grid_text: "aa" };
     addToGallery(track, { ...st, track });
@@ -29,7 +29,7 @@ suite("Gallery callback", () => {
     expect(fromGalleryById).to.be.null;
   });
 
-  test("remove from gallery with sync", async () => {
+  it("remove from gallery with sync", async () => {
     stub.delete.returns(Promise.resolve());
     let stateSync = {
       ...st,
@@ -51,7 +51,7 @@ suite("Gallery callback", () => {
     expect(id).to.be.undefined;
   });
 
-  test("gallery close", async () => {
+  it("gallery close", async () => {
     const state = await galleryCallback(new Action(GALLERY_CLOSE), { ...st });
     expect(state.gallery).to.be.undefined;
   });

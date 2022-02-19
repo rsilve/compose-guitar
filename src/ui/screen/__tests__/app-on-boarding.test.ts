@@ -4,8 +4,8 @@ import AppOnBoarding from "../app-on-boarding";
 import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { TRACK_NEW } from "../../../actions/actions";
 
-suite("app on boarding element", () => {
-  test("is defined", async () => {
+describe("app on boarding element", () => {
+  it("is defined", async () => {
     const el: AppOnBoarding = await fixture(html` <app-on-boarding></app-on-boarding> `);
     expect(el).to.instanceOf(AppOnBoarding);
     await expect(el).shadowDom.to.be.accessible();
@@ -27,7 +27,7 @@ suite("app on boarding element", () => {
         `);
   });
 
-  test("is defined", async () => {
+  it("is defined", async () => {
     resetDispatcher();
     const promise = new Promise((resolve) => {
       register((action, state) => {

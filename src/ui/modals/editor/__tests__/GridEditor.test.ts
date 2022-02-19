@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import GridEditor from "../GridEditor";
 
-suite("Grid Editor element", () => {
-  test("is defined", async () => {
+describe("Grid Editor element", () => {
+  it("is defined", async () => {
     const el: GridEditor = await fixture(html` <grid-editor></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
@@ -14,7 +14,7 @@ suite("Grid Editor element", () => {
         `);
   });
 
-  test("have value attribute", async () => {
+  it("have value attribute", async () => {
     const el: GridEditor = await fixture(html` <grid-editor value="A | B"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
@@ -26,7 +26,7 @@ suite("Grid Editor element", () => {
         `);
   });
 
-  test("validate value", async () => {
+  it("validate value", async () => {
     const el: GridEditor = await fixture(html` <grid-editor value="invalid"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
@@ -39,7 +39,7 @@ suite("Grid Editor element", () => {
         `);
   });
 
-  test("validate value on input change", async () => {
+  it("validate value on input change", async () => {
     const el: GridEditor = await fixture(html` <grid-editor value="A"></grid-editor> `);
     expect(el).to.instanceOf(GridEditor);
     await expect(el).shadowDom.to.be.accessible();
@@ -60,7 +60,7 @@ suite("Grid Editor element", () => {
         `);
   });
 
-  test("notify on input change", async () => {
+  it("notify on input change", async () => {
     const thenable = new Promise<boolean>((resolve) => {
       resolve(true);
     });

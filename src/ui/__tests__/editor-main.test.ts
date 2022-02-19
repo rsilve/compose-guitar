@@ -5,8 +5,8 @@ import { stateTest } from "../../__tests__/TestHelpers";
 import sinon from "sinon";
 import FeatureFlag from "../../stores/FeatureFlag";
 
-suite("Main app element", () => {
-  test("is defined", async () => {
+describe("Main app element", () => {
+  it("is defined", async () => {
     resetDispatcher(stateTest);
     const el: EditorMain = await fixture(html` <editor-main></editor-main> `);
     expect(el).to.instanceOf(EditorMain);
@@ -23,7 +23,7 @@ suite("Main app element", () => {
         `);
   });
 
-  test("is defined with synchro enabled", async () => {
+  it("is defined with synchro enabled", async () => {
     sinon.stub(FeatureFlag, "get").callsFake(() => {
       return { synchro_enabled: true };
     });
