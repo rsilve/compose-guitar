@@ -11,6 +11,8 @@ function run(): void {
   init();
 }
 
+console.info("app version", __APP_VERSION__);
+
 const main = document.querySelector("main")!;
 
 (async () => {

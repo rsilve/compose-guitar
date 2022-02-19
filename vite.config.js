@@ -12,6 +12,9 @@ export default {
     outDir: "../dist",
     emptyOutDir: true,
   },
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+  },
   server: {
     hmr: hmr,
   },
