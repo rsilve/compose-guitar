@@ -30,9 +30,12 @@
         "name": "ts-lit-plugin",
         "strict": true
       }
-    ],
+    ]
   },
   "rootDirs": ["src"],
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "env.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
