@@ -9,6 +9,7 @@ import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";
 import { actionGalleryOpen, actionNotificationOpen, actionSaveAsStart, actionTrackNew } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
+import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 @localized()
 @customElement("compose-menu")
@@ -34,10 +35,8 @@ class Menu extends LitElement {
   @state()
   private needSave = false;
 
-  private handleSave(message: string): () => void {
-    return () => {
-      actionSaveAsStart().then(() => actionNotificationOpen(message));
-    };
+  private handleSave(): void {
+    actionSaveAsStart().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
   }
 
   render(): unknown {
@@ -46,7 +45,7 @@ class Menu extends LitElement {
         title="${msg("save the track")} - Ctrl+s"
         class="_save"
         .dotted="${this.needSave}"
-        @click="${this.handleSave(msg("Save completed"))}"
+        @click="${this.handleSave}"
       >
         <save-icon></save-icon>
       </menu-item>

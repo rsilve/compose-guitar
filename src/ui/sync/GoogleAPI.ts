@@ -8,6 +8,7 @@ import {
   actionSynchroForceStart,
   actionSynchroSignIn,
 } from "../../actions/actions";
+import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 @customElement("google-api")
 class GoogleAPI extends LitElement {
@@ -33,7 +34,7 @@ class GoogleAPI extends LitElement {
     actionSynchroSignIn()
       .then(actionSynchroForceStart)
       .then(actionSynchroForce)
-      .then(() => actionNotificationOpen("Synchronisation completed"));
+      .then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SYNC_COMPLETED));
   }
 
   script() {

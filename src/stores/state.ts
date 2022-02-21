@@ -1,3 +1,5 @@
+import { NotificationMessageEnum } from "src/ui/NotificationMessageEnum";
+
 export interface IStateDownload {
   filename?: string;
   ready?: boolean;
@@ -42,7 +44,7 @@ export interface IState {
   track?: IStateTrack;
   download?: IStateDownload;
   gallery?: boolean;
-  notification?: string;
+  notification?: NotificationMessageEnum;
   zoom: number;
   editor?: IStateEditor;
   help_open?: boolean;
