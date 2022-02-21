@@ -6,10 +6,6 @@
   <source>save the track</source>
   <target>sauvegarder le morceau</target>
 </trans-unit>
-<trans-unit id="sc1b7dd6184d4b261">
-  <source>Save completed</source>
-  <target>Sauvegarde terminée</target>
-</trans-unit>
 <trans-unit id="s3c4164e02d8d8d4d">
   <source>Open the Library</source>
   <target>Ouvrir la bibliothèque</target>
@@ -77,10 +73,6 @@
 <trans-unit id="s559bca2d83795046">
   <source>Measure modifier:</source>
   <target>Compléments :</target>
-</trans-unit>
-<trans-unit id="s2189cdd19d22a843">
-  <source>Track updated</source>
-  <target>Morceau mis à jour</target>
 </trans-unit>
 <trans-unit id="s8d349529fc5fb3b7">
   <source>See examples</source>
@@ -190,17 +182,33 @@
   <source>The synchronization between devices is not activated.</source>
   <target>La synchronisation entre les appareils n'est pas activée.</target>
 </trans-unit>
+<trans-unit id="s2d5c90e47b7c145f">
+  <source>Synchronisation completed</source>
+  <target>Synchronisation terminée</target>
+</trans-unit>
+<trans-unit id="s30f85bf2943acf84">
+  <source>Pasted</source>
+  <target>Morceau importé</target>
+</trans-unit>
+<trans-unit id="s2429a0c1e97172e8">
+  <source>Song copied</source>
+  <target>Morceau copié</target>
+</trans-unit>
+<trans-unit id="sc1b7dd6184d4b261">
+  <source>Save completed</source>
+  <target>Sauvegarde terminée</target>
+</trans-unit>
 <trans-unit id="s4bb1a88bd0a26f59">
   <source>Track loaded</source>
   <target>Morceau chargé</target>
 </trans-unit>
+<trans-unit id="s2189cdd19d22a843">
+  <source>Track updated</source>
+  <target>Morceau mis à jour</target>
+</trans-unit>
 <trans-unit id="s5327035df1f42b8e">
   <source>Shortcut help</source>
   <target>Aide sur les raccourcis</target>
-</trans-unit>
-<trans-unit id="s2d5c90e47b7c145f">
-  <source>Synchronisation completed</source>
-  <target>Synchronisation terminée</target>
 </trans-unit>
 </body>
 </file>

@@ -1,3 +1,4 @@
+import { NotificationMessageEnum } from "src/ui/NotificationMessageEnum";
 import Action from "./Action";
 import { publishAction } from "./publish_action";
 
@@ -31,7 +32,7 @@ export const actionGalleryClose = (): void => {
 };
 
 export const NOTIFICATION_OPEN = "NOTIFICATION_OPEN";
-export const actionNotificationOpen = (message: string): void => {
+export const actionNotificationOpen = (message: NotificationMessageEnum): void => {
   setTimeout(() => {
     publishAction(new Action(NOTIFICATION_OPEN, { message }));
   }, 100);

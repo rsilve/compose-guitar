@@ -15,6 +15,7 @@ import { IState } from "../../stores/state";
 import { existsInGallery } from "../../stores/register/gallery_tools";
 import { actionNotificationOpen, actionTrackEditApply, actionTrackEditCancel } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
+import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 @localized()
 @customElement("song-editor")
@@ -100,7 +101,7 @@ class SongEditor extends LitElement {
         title: this._grid_title,
         grid_text: this._value,
         updated_at: new Date().toISOString(),
-      }).then(() => actionNotificationOpen(msg("Track updated")));
+      }).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_UPDATED));
     } else {
       console.info("grid text is empty: close");
       actionTrackEditCancel();

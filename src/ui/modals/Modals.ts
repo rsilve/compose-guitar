@@ -23,7 +23,8 @@ import {
 } from "../../actions/actions";
 import { galleryDictExtended } from "../../stores/register/gallery_tools";
 import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
-import { localized, msg } from "@lit/localize";
+import { localized } from "@lit/localize";
+import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 @localized()
 @customElement("compose-modals")
@@ -92,18 +93,16 @@ class Modals extends LitElement {
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
-  private static _dispatch_library_select(message: string): (e: CustomEvent) => void {
-    return (e: CustomEvent) => actionUploadFromGallery(e.detail.id).then(() => actionNotificationOpen(message));
+  private static _dispatch_library_select(e: CustomEvent): void {
+    actionUploadFromGallery(e.detail.id).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_LOADED));
   }
 
   private static _dispatch_library_remove(e: CustomEvent): void {
     actionGalleryRemove(e.detail.id);
   }
 
-  private _handle_save(message: string): () => void {
-    return () => {
-      actionSaveAsStartAndNew().then(() => actionNotificationOpen(message));
-    };
+  private _handle_save(): void {
+    actionSaveAsStartAndNew().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
   }
 
   private static dispatchDeactivate() {
@@ -126,7 +125,7 @@ class Modals extends LitElement {
         <track-gallery
           class="modal"
           .list="${galleryDictExtended()}"
-          @select="${Modals._dispatch_library_select(msg("Track loaded"))}"
+          @select="${Modals._dispatch_library_select}"
           @remove="${Modals._dispatch_library_remove}"
           @close="${actionGalleryClose}"
         ></track-gallery>`;
@@ -149,7 +148,7 @@ class Modals extends LitElement {
           class="modal"
           @cancel="${actionTrackNewCancel}"
           @continue="${actionTrackNewWithoutSave}"
-          @save="${this._handle_save(msg("Save completed"))}"
+          @save="${this._handle_save}"
         ></confirm-save>`;
     }
 

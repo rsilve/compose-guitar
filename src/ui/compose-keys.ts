@@ -17,6 +17,7 @@ import {
   actionZoomChange,
 } from "../actions/actions";
 import { localized, msg } from "@lit/localize";
+import { NotificationMessageEnum } from "./NotificationMessageEnum";
 
 @localized()
 @customElement("compose-keys")
@@ -74,14 +75,16 @@ class ComposeKeys extends LitElement {
 
   private paste_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "v" && this._state) {
-      actionTrackPaste().then(() => actionNotificationOpen("Pasted"));
+      actionTrackPaste().then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_PASTED));
     }
   }
 
   private copy_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "c" && this._state) {
       const { track: { title, grid_text } = {} } = this._state;
-      actionTrackCopy({ title, grid_text }).then(() => actionNotificationOpen("Song copied"));
+      actionTrackCopy({ title, grid_text }).then(() =>
+        actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SONG_COMPLETED)
+      );
     }
   }
 
@@ -112,7 +115,7 @@ class ComposeKeys extends LitElement {
 
   private save_as_start_key(e: KeyboardEvent) {
     if (!e.altKey && e.ctrlKey && e.key === "s" && this._state) {
-      actionSaveAsStart().then(() => actionNotificationOpen("Save completed"));
+      actionSaveAsStart().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
       e.preventDefault();
     }
   }
