@@ -46,13 +46,19 @@ class Menu extends LitElement {
         class="_save"
         .dotted="${this.needSave}"
         @click="${this.handleSave}"
+        ontouchstart=""
       >
         <save-icon></save-icon>
       </menu-item>
-      <menu-item title="${msg("Open the Library")} - Ctrl+l" class="_library" @click="${actionGalleryOpen}">
+      <menu-item
+        title="${msg("Open the Library")} - Ctrl+l"
+        class="_library"
+        @click="${actionGalleryOpen}"
+        ontouchstart=""
+      >
         <gallery-icon></gallery-icon>
       </menu-item>
-      <menu-item title="${msg("new track")} - Ctrl+n" class="_new" @click="${actionTrackNew}">
+      <menu-item title="${msg("new track")} - Ctrl+n" class="_new" @click="${actionTrackNew}" ontouchstart="">
         <new-track-icon></new-track-icon>
       </menu-item>
     `;

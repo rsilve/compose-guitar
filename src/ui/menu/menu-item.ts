@@ -32,11 +32,6 @@ class MenuItem extends LitElement {
     }
   `;
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute("ontouchstart", "");
-  }
-
   @property({ type: Boolean })
   dotted = false;
 
