@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import { customElement, property } from "lit/decorators.js";
 import { html as lit_html, LitElement } from "lit";
 import chordRender from "../chord_render";
-import Chord from "../../../parser/Chord";
+import Chord from "../parser/Chord";
 
 @customElement("chord-render-test")
 class ChordRenderTest extends LitElement {

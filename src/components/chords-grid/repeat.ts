@@ -1,5 +1,5 @@
 import { html } from "lit";
-import Measure from "../../parser/Measure";
+import Measure from "./parser/Measure";
 
 export function repeatEnd(measure: Measure): unknown {
   if (measure.repeatEnd) {

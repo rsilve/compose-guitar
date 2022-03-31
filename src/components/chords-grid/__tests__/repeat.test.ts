@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import { customElement, property } from "lit/decorators.js";
 import { html as lit_html, LitElement } from "lit";
-import Measure from "../../../parser/Measure";
 import { repeatEnd, repeatStart } from "../repeat";
+import Measure from "../parser/Measure";
 
 @customElement("repeat-start-test")
 class RepeatStartTest extends LitElement {

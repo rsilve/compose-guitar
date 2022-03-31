@@ -4,7 +4,7 @@ import { styleMap } from "lit/directives/style-map.js";
 import buttonStyles from "../styles/buttonStyles";
 import { noPrintStyles } from "../styles/no_print";
 
-import "../grid-elements/ChordsGrid";
+import "../../components/chords-grid";
 import { actionTrackEdit } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
 

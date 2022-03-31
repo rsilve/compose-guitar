@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import "../MeasureElement7";
-import Measure from "../../../parser/Measure";
+import Measure from "../parser/Measure";
 
 describe("Measure7", () => {
   it("is defined", async () => {

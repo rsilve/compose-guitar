@@ -2,10 +2,10 @@ import { css, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { classMap } from "lit/directives/class-map.js";
-import Grid from "../../../parser/Grid";
 import inputStyles from "../../styles/inputStyles";
 import { AutoCorrect, normalize } from "./tools";
 import { localized, msg } from "@lit/localize";
+import Grid from "../../../components/chords-grid/parser/Grid";
 
 @localized()
 @customElement("grid-editor")

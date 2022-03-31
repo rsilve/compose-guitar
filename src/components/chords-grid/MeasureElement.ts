@@ -1,6 +1,6 @@
 import { property } from "lit/decorators.js";
 import { css, html, LitElement } from "lit";
-import Measure from "../../parser/Measure";
+import Measure from "./parser/Measure";
 import styles from "./grid-style";
 
 export abstract class MeasureElement extends LitElement {

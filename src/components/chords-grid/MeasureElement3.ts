@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import chordRender from "./chord_render";
-import Measure from "../../parser/Measure";
+import Measure from "./parser/Measure";
 import { MeasureElement } from "./MeasureElement";
 
 @customElement("chords-grid-measure3")
