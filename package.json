@@ -7,9 +7,10 @@
   "scripts": {
     "clean": "rm -rf build out dist",
     "build:compile": "tsc",
-    "build:compile:watch": "npm run build:compile -- --watch",
     "build:prod": "vite build",
-    "start": "vite",
+    "start": "run-p start:**",
+    "start:vite": "vite",
+    "start:compile": "npm run build:compile -- --watch",
     "test": "npm-run-all build:compile test:wtr",
     "test:wtr": "web-test-runner",
     "test:watch": "npm run test:wtr -- --watch",

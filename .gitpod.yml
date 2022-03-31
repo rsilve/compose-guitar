@@ -10,10 +10,6 @@ tasks:
     init: gp sync-await bundle
     command: npm run start
     openMode: tab-after
-  - name: run compile watch
-    init: gp sync-await bundle
-    command: npm run build:compile:watch
-    openMode: tab-after
   - name: run test watch
     init: gp sync-await bundle
     command: |
