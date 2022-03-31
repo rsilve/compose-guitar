@@ -1,4 +1,4 @@
-import { initAppCallback, transposeChangeCallback, zoomChangeCallback } from "./register/misc";
+import { initAppCallback } from "./register/misc";
 import { galleryCallback } from "./register/gallery";
 import { saveAsCallback } from "./register/save_as";
 import { uploadCallback } from "./register/upload";
@@ -14,9 +14,7 @@ export default function registerCallbacks(): void {
   register(saveAsCallback);
   register(uploadCallback);
   register(notificationCallback);
-  register(zoomChangeCallback);
   register(trackCallback);
   register(helpCallback);
-  register(transposeChangeCallback);
   register(synchronizeCallback);
 }

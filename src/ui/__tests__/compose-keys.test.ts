@@ -6,8 +6,8 @@ import { IState, IStateTrack } from "../../stores/state";
 import { stateTest } from "../../__tests__/TestHelpers";
 import { saveAsCallback } from "../../stores/register/save_as";
 import { galleryCallback } from "../../stores/register/gallery";
-import { zoomChangeCallback } from "../../stores/register/misc";
 import { helpCallback } from "../../stores/register/help";
+import { zoomChangeCallback } from "../../components/zoom/store";
 
 describe("compose-key element", () => {
   const st = stateTest;

@@ -1,8 +1,8 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { actionTransposeChange } from "../actions/actions";
-import { IState } from "../stores/state";
-import { DispatcherController } from "../stores/lit_controller";
+import { IState } from "../../stores/state";
+import { DispatcherController } from "../../stores/lit_controller";
+import { actionTransposeChange } from "./actions";
 
 @customElement("transpose-grid")
 class TransposeGrid extends LitElement {

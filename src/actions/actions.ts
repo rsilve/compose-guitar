@@ -43,15 +43,6 @@ export const actionNotificationClose = (): void => {
   publishAction(new Action(NOTIFICATION_CLOSE));
 };
 
-export const ZOOM_CHANGE = "ZOOM_CHANGE";
-export const actionZoomChange = (zoom: number): void => {
-  publishAction(new Action(ZOOM_CHANGE, { zoom }));
-};
-
-export const TRANSPOSE_CHANGE = "TRANSPOSE_CHANGE";
-export const actionTransposeChange = (transpose: number): Promise<void> =>
-  publishAction(new Action(TRANSPOSE_CHANGE, { transpose }));
-
 export interface IPayloadEditor {
   title?: string;
   grid_text?: string;

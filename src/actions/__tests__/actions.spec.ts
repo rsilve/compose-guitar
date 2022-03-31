@@ -4,21 +4,23 @@ import {
   actionGalleryOpen,
   actionGalleryRemove,
   actionInitApp,
-  actionSynchroSignIn,
   actionSaveAsStart,
   actionSaveAsStartAndNew,
+  actionSynchroForce,
+  actionSynchroForceStart,
   actionSynchronizationActivation,
   actionSynchronizationActivationRequest,
   actionSynchronizationConfigurationClose,
   actionSynchronizationDeactivation,
   actionSynchronizationDeactivationRequest,
-  actionTransposeChange,
+  actionSynchroSignIn,
+  actionSynchroSignOut,
+  actionSynchroToggleEnable,
   actionUploadFromGallery,
   GALLERY_CLOSE,
   GALLERY_OPEN,
   GALLERY_REMOVE,
   INIT_APP,
-  SYNCHRO_SIGN_IN,
   SAVE_AS_START,
   SAVE_AS_START_AND_NEW,
   SYNCHRO_ACTIVATION,
@@ -26,35 +28,17 @@ import {
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
-  TRANSPOSE_CHANGE,
-  UPLOAD_FROM_GALLERY,
-  SYNCHRO_SIGN_OUT,
-  actionSynchroSignOut,
-  SYNCHRO_FORCE_START,
-  actionSynchroForceStart,
   SYNCHRO_FORCE,
-  actionSynchroForce,
+  SYNCHRO_FORCE_START,
+  SYNCHRO_SIGN_IN,
+  SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
-  actionSynchroToggleEnable,
+  UPLOAD_FROM_GALLERY,
 } from "../actions";
 import { default_state } from "../../stores/state";
-import { resetDispatcher, register } from "../../stores/dispatcher";
+import { register, resetDispatcher } from "../../stores/dispatcher";
 
 describe("actions", () => {
-  it("transpose", async () => {
-    let handle = 0;
-    resetDispatcher(default_state());
-    register((action, state) => {
-      if (action.actionType === TRANSPOSE_CHANGE) {
-        const { transpose } = action.payload as { transpose: number };
-        handle = transpose;
-      }
-      return Promise.resolve(state);
-    });
-    await actionTransposeChange(2);
-    expect(handle).to.be.equal(2);
-  });
-
   it("init", async () => {
     let handle = false;
     resetDispatcher(default_state());

@@ -14,10 +14,10 @@ import {
   actionTrackEdit,
   actionTrackNew,
   actionTrackPaste,
-  actionZoomChange,
 } from "../actions/actions";
 import { localized, msg } from "@lit/localize";
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
+import { actionZoomChange } from "../components/zoom/actions";
 
 @localized()
 @customElement("compose-keys")
