@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import "./TrackGallery";
+import "../../components/gallery";
 import "./SongEditor";
 import "./HelpModal";
 import "./ConfirmSave";

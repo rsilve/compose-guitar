@@ -1,16 +1,15 @@
 import { expect, fixture, html } from "@open-wc/testing";
-import ConfirmSave from "../ConfirmSave";
 import TrackGallery from "../TrackGallery";
 
 describe("Track gallery element", () => {
   it("is defined", async () => {
-    const el: ConfirmSave = await fixture(html` <track-gallery></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     expect(el).to.instanceOf(TrackGallery);
     await expect(el).shadowDom.to.be.accessible();
   });
 
   it("default render", async () => {
-    const el: ConfirmSave = await fixture(html` <track-gallery></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
 
@@ -22,7 +21,7 @@ describe("Track gallery element", () => {
       { title: "1", synchronized: false },
       { title: "2", synchronized: false },
     ];
-    const el: ConfirmSave = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
@@ -37,7 +36,7 @@ describe("Track gallery element", () => {
       { title: "1", synchronized: true },
       { title: "2", synchronized: false },
     ];
-    const el: ConfirmSave = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
@@ -52,7 +51,7 @@ describe("Track gallery element", () => {
     const handler = (e: CustomEvent) => {
       handled = e.type === "close";
     };
-    const el: ConfirmSave = await fixture(html` <track-gallery @close="${handler}"></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery @close="${handler}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
     node.click();
@@ -65,7 +64,7 @@ describe("Track gallery element", () => {
       handled = e.type === "select" && e.detail.id === "1";
     };
     const list = { 1: "title" };
-    const el: ConfirmSave = await fixture(html` <track-gallery @select="${handler}" .list="${list}"></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery @select="${handler}" .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._select") as HTMLElement;
     node.click();
@@ -78,7 +77,7 @@ describe("Track gallery element", () => {
       handled = e.type === "remove" && e.detail.id === "1";
     };
     const list = { 1: "title" };
-    const el: ConfirmSave = await fixture(html` <track-gallery @remove="${handler}" .list="${list}"></track-gallery>`);
+    const el: TrackGallery = await fixture(html` <track-gallery @remove="${handler}" .list="${list}"></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._remove") as HTMLElement;
     node.click();
