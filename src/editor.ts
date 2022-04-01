@@ -13,7 +13,11 @@ function run(): void {
 
 console.info("app version", __APP_VERSION__);
 
-const main = document.querySelector("main")!;
+let main = document.querySelector("main");
+if (!main) {
+  main = document.createElement("main");
+  document.body.appendChild(main);
+}
 
 (async () => {
   await localize();
