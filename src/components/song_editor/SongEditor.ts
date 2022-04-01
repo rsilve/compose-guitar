@@ -1,12 +1,8 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import buttonStyles from "../styles/buttonStyles";
-import { modalStyles } from "../styles/modals";
-import inputStyles from "../styles/inputStyles";
-
 import "../../icons/info_icon";
-import "./editor/GridEditor";
+import "../../components/chords-grid";
 import "./editor/GridEditorTitle";
 import "./editor/GridEditorHelp";
 
@@ -15,7 +11,8 @@ import { IState } from "../../stores/state";
 import { existsInGallery } from "../../stores/register/gallery_tools";
 import { actionNotificationOpen, actionTrackEditApply, actionTrackEditCancel } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
-import { NotificationMessageEnum } from "../NotificationMessageEnum";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+import { buttonStyles, inputStyles, modalStyles } from "../styles";
 
 @localized()
 @customElement("song-editor")

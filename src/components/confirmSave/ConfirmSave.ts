@@ -1,8 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import { localized, msg } from "@lit/localize";
-import { modalStyles } from "../../ui/styles/modals";
-import buttonStyles from "../../ui/styles/buttonStyles";
+import { buttonStyles, modalStyles } from "../styles";
 
 @localized()
 @customElement("confirm-save")

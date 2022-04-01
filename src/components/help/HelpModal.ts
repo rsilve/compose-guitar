@@ -2,8 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { IStateFeatureFlag } from "../../stores/state";
 import { msg } from "@lit/localize";
-import buttonStyles from "../../ui/styles/buttonStyles";
-import { modalStyles } from "../../ui/styles/modals";
+import { buttonStyles, modalStyles } from "../styles";
 
 @customElement("help-modal")
 class HelpModal extends LitElement {

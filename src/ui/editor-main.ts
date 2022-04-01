@@ -1,6 +1,5 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import { noPrintStyles } from "./styles/no_print";
 
 import "./menu/Menu";
 import "./main-screen";
@@ -12,6 +11,7 @@ import "./compose-keys";
 import "./AccountStatus";
 import "./sync/GoogleAPI";
 import FeatureFlag from "../stores/FeatureFlag";
+import { noPrintStyles } from "../components/styles";
 
 @customElement("editor-main")
 class EditorMain extends LitElement {

@@ -2,8 +2,8 @@ import { css, html, LitElement, PropertyValues } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { classMap } from "lit/directives/class-map.js";
-import inputStyles from "../../styles/inputStyles";
 import { localized, msg } from "@lit/localize";
+import { inputStyles } from "../../styles";
 
 @localized()
 @customElement("grid-editor-title")

@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import buttonStyles from "../styles/buttonStyles";
 import { actionTrackNew } from "../../actions/actions";
+import { buttonStyles } from "../../components/styles";
 
 @customElement("app-on-boarding")
 class AppOnBoarding extends LitElement {

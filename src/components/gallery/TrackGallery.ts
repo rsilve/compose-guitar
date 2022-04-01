@@ -3,8 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { msg, localized } from "@lit/localize";
 import "../../icons/delete_icon";
 import { IGalleryTrack } from "../../stores/state";
-import buttonStyles from "../../ui/styles/buttonStyles";
-import { modalStyles } from "../../ui/styles/modals";
+import { buttonStyles, modalStyles } from "../styles";
 
 @localized()
 @customElement("track-gallery")

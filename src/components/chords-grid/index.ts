@@ -1,1 +1,2 @@
 import "./ChordsGrid";
+import "./GridEditor";

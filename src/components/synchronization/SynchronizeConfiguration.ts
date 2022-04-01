@@ -4,8 +4,7 @@ import { IStateSynchronization } from "../../stores/state";
 import "./SynchronizationConfigurationActivated";
 import "./SynchronizationConfigurationDeactivated";
 import { localized, msg } from "@lit/localize";
-import buttonStyles from "../../ui/styles/buttonStyles";
-import { modalStyles } from "../../ui/styles/modals";
+import { buttonStyles, modalStyles } from "../styles";
 
 @localized()
 @customElement("synchronize-configuration")
