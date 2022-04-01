@@ -2,8 +2,8 @@ import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../../components/gallery";
 import "./SongEditor";
-import "./HelpModal";
-import "./ConfirmSave";
+import "../../components/help";
+import "../../components/confirmSave";
 import "./SynchronizeConfiguration";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
