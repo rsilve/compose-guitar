@@ -1,8 +1,8 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import buttonStyles from "../../styles/buttonStyles";
-import { IStateSynchronization } from "../../../stores/state";
 import { msg } from "@lit/localize";
+import buttonStyles from "../../ui/styles/buttonStyles";
+import { IStateSynchronization } from "../../stores/state";
 
 @customElement("synchronization-configuration-activated")
 class SynchronizationConfigurationActivated extends LitElement {

@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationActivated from "../SynchronizationConfigurationActivated";
-import { IStateSynchronization } from "../../../../stores/state";
+import { IStateSynchronization } from "../../../stores/state";
 
 describe("synchronise configuration activate element", () => {
   it("is defined", async () => {

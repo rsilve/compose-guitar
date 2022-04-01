@@ -4,7 +4,7 @@ import "../../components/gallery";
 import "./SongEditor";
 import "../../components/help";
 import "../../components/confirmSave";
-import "./SynchronizeConfiguration";
+import "../../components/synchronization";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
   actionGalleryClose,
