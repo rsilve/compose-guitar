@@ -62,16 +62,6 @@ export const actionTrackCopy = (trackPayload: IPayloadEditor): Promise<void> =>
 export const TRACK_PASTE = "TRACK_PASTE";
 export const actionTrackPaste = (): Promise<void> => publishAction(new Action(TRACK_PASTE));
 
-export const HELP_OPEN = "HELP_OPEN";
-export const actionHelpOpen = (): void => {
-  publishAction(new Action(HELP_OPEN));
-};
-
-export const HELP_CLOSE = "HELP_CLOSE";
-export const actionHelpClose = (): void => {
-  publishAction(new Action(HELP_CLOSE));
-};
-
 export const MODALS_CLOSE = "MODALS_CLOSE";
 export const actionModalsClose = (): void => {
   publishAction(new Action(MODALS_CLOSE));

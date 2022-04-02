@@ -5,7 +5,6 @@ import "../icons/help_icon";
 import { IState } from "../stores/state";
 import { DispatcherController } from "../stores/lit_controller";
 import {
-  actionHelpOpen,
   actionModalsClose,
   actionNotificationOpen,
   actionSaveAsStart,
@@ -18,6 +17,7 @@ import { localized, msg } from "@lit/localize";
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
 import { actionZoomChange } from "../components/zoom/actions";
 import { actionGalleryOpen } from "../components/gallery/actions";
+import { actionHelpOpen } from "../components/help/actions";
 
 @localized()
 @customElement("compose-keys")

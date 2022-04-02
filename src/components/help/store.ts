@@ -1,6 +1,7 @@
-import { HELP_CLOSE, HELP_OPEN, MODALS_CLOSE } from "../../actions/actions";
-import { IState } from "../state";
+import { MODALS_CLOSE } from "../../actions/actions";
 import Action from "../../actions/Action";
+import { HELP_CLOSE, HELP_OPEN } from "./actions";
+import { IState } from "../../stores/state";
 
 export function helpCallback(action: Action, state: IState): Promise<IState> {
   const result = state;

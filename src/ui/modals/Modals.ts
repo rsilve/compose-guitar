@@ -7,18 +7,16 @@ import "../../components/confirmSave";
 import "../../components/synchronization";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
-  actionHelpClose,
   actionNotificationOpen,
   actionSaveAsStartAndNew,
   actionSynchronizationActivation,
   actionSynchronizationConfigurationClose,
   actionSynchronizationDeactivation,
   actionSynchroSignOut,
-  actionSynchroToggleEnable,
   actionTrackNewCancel,
   actionTrackNewWithoutSave,
 } from "../../actions/actions";
-import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
+import { IState, IStateSynchronization } from "../../stores/state";
 import { localized } from "@lit/localize";
 import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
@@ -72,9 +70,6 @@ class Modals extends LitElement {
   @state()
   synchronization: IStateSynchronization | undefined;
 
-  @state()
-  featureFlags: IStateFeatureFlag | undefined;
-
   constructor() {
     super();
     const cb = (st: IState) => {
@@ -84,7 +79,6 @@ class Modals extends LitElement {
       this._confirm_save_enabled = !!st.confirm_save;
       this.synchronizationConfigurationOpen = st.synchronization.open || false;
       this.synchronization = st.synchronization;
-      this.featureFlags = st.featureFlags;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -97,14 +91,6 @@ class Modals extends LitElement {
     actionSynchronizationDeactivation().then(actionSynchroSignOut);
   }
 
-  private toggle_synchro_feature() {
-    actionSynchroToggleEnable().then(() => {
-      if (import.meta.env?.PROD) {
-        document.location.reload();
-      }
-    });
-  }
-
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -115,13 +101,7 @@ class Modals extends LitElement {
       return html`${overlay} <song-editor class="modal"></song-editor>`;
     }
     if (this._help_open) {
-      return html`${overlay}
-        <help-modal
-          class="modal"
-          .featureFlags="${this.featureFlags}"
-          @toggleSyncEnable="${this.toggle_synchro_feature}"
-          @close="${actionHelpClose}"
-        ></help-modal>`;
+      return html`${overlay} <help-modal class="modal"></help-modal>`;
     }
     if (this._confirm_save_enabled) {
       return html`${overlay}

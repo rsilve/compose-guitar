@@ -6,9 +6,9 @@ import { html, render } from "lit";
 import localize from "./tools/initLocale";
 import { registerSW } from "virtual:pwa-register";
 
-function run(): void {
+async function run(): Promise<void> {
   registerCallbacks();
-  init();
+  await init();
 }
 
 console.info("app version", __APP_VERSION__);
@@ -21,8 +21,8 @@ if (!main) {
 
 (async () => {
   await localize();
+  await run();
   render(html` <editor-main></editor-main> `, main);
-  run();
 })();
 
 registerSW({});

@@ -1,8 +1,11 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { IStateFeatureFlag } from "../../stores/state";
+import { customElement, state } from "lit/decorators.js";
+import { IState, IStateFeatureFlag } from "../../stores/state";
 import { msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
+import { actionHelpClose } from "./actions";
+import { actionSynchroToggleEnable } from "../../actions/actions";
+import { DispatcherController } from "../../stores/lit_controller";
 
 @customElement("help-modal")
 class HelpModal extends LitElement {
@@ -28,23 +31,23 @@ class HelpModal extends LitElement {
     `,
   ];
 
-  @property()
-  featureFlags: IStateFeatureFlag | undefined;
-
-  private dispatchClose() {
-    const options = {
-      bubbles: true,
-      composed: true,
+  constructor() {
+    super();
+    const cb = (st: IState) => {
+      this.featureFlags = st.featureFlags;
     };
-    this.dispatchEvent(new CustomEvent("close", options));
+    this.addController(new DispatcherController(cb.bind(this)));
   }
 
+  @state()
+  featureFlags: IStateFeatureFlag | undefined;
+
   private dispatchToggleSyncEnable() {
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("toggleSyncEnable", options));
+    actionSynchroToggleEnable().then(() => {
+      if (import.meta.env?.PROD) {
+        document.location.reload();
+      }
+    });
   }
 
   render(): unknown {
@@ -102,7 +105,7 @@ class HelpModal extends LitElement {
         />
       </div>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" @click="${this.dispatchClose}">${msg("Close")}</button>
+        <button tabindex="-1" class="btn-primary _close" @click="${actionHelpClose}">${msg("Close")}</button>
       </div>
     `;
   }
