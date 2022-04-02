@@ -15,9 +15,9 @@ import {
 } from "../actions/actions";
 import { localized, msg } from "@lit/localize";
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
-import { actionZoomChange } from "../components/zoom/actions";
-import { actionGalleryOpen } from "../components/gallery/actions";
 import { actionHelpOpen } from "../components/help/actions";
+import { galleryOpenKey } from "../components/gallery";
+import { zoomDecrKey, zoomIncrKey } from "../components/zoom";
 
 @localized()
 @customElement("compose-keys")
@@ -51,13 +51,13 @@ class ComposeKeys extends LitElement {
 
     this.save_as_start_key(e);
 
-    this.gallery_open_key(e);
+    galleryOpenKey(e, this._state);
 
     this.track_new_key(e);
 
-    this.zoom_incr_key(e);
+    zoomIncrKey(e, this._state);
 
-    this.zoom_decr_key(e);
+    zoomDecrKey(e, this._state);
 
     this.copy_key(e);
 
@@ -88,28 +88,9 @@ class ComposeKeys extends LitElement {
     }
   }
 
-  private zoom_decr_key(e: KeyboardEvent) {
-    if (e.altKey && (e.key === "—" || e.key === "-") && this._state) {
-      actionZoomChange(this._state.zoom - 10);
-    }
-  }
-
-  private zoom_incr_key(e: KeyboardEvent) {
-    if (e.altKey && (e.key === "≠" || e.key === "+") && this._state) {
-      actionZoomChange(this._state.zoom + 10);
-    }
-  }
-
   private track_new_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "n" && this._state) {
       actionTrackNew();
-    }
-  }
-
-  private gallery_open_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "l" && this._state) {
-      actionGalleryOpen();
-      e.preventDefault();
     }
   }
 

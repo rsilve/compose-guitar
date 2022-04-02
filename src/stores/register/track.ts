@@ -1,18 +1,10 @@
-import {
-  IPayloadEditor,
-  MODALS_CLOSE,
-  TRACK_COPY,
-  TRACK_EDIT,
-  TRACK_EDIT_APPLY,
-  TRACK_EDIT_CANCEL,
-  TRACK_NEW,
-  TRACK_PASTE,
-} from "../../actions/actions";
+import { IPayloadEditor, MODALS_CLOSE, TRACK_COPY, TRACK_EDIT, TRACK_NEW, TRACK_PASTE } from "../../actions/actions";
 import { IState } from "../state";
 import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
 import { uuid } from "../../tools/uuid";
 import { TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../../components/confirmSave/actions";
+import { TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "../../components/song_editor/actions";
 
 export async function trackCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
