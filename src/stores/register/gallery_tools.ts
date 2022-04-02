@@ -125,3 +125,15 @@ export function galleryDictExtended(): Record<string, IGalleryTrack> {
   });
   return res;
 }
+
+export const storage = {
+  getFromGallery,
+  removeFromGallery,
+  addToGallery,
+  addToSynchronizedIndex,
+  removeFromSynchronizedIndex,
+  getSynchronizedIndex,
+  galleryDictExtended,
+  getLastState,
+  saveLastState,
+};

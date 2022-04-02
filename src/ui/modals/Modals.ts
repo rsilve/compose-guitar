@@ -7,21 +7,17 @@ import "../../components/confirmSave";
 import "../../components/synchronization";
 import { DispatcherController } from "../../stores/lit_controller";
 import {
-  actionGalleryClose,
-  actionGalleryRemove,
   actionHelpClose,
   actionNotificationOpen,
   actionSaveAsStartAndNew,
-  actionSynchroSignOut,
-  actionSynchroToggleEnable,
   actionSynchronizationActivation,
   actionSynchronizationConfigurationClose,
   actionSynchronizationDeactivation,
+  actionSynchroSignOut,
+  actionSynchroToggleEnable,
   actionTrackNewCancel,
   actionTrackNewWithoutSave,
-  actionUploadFromGallery,
 } from "../../actions/actions";
-import { galleryDictExtended } from "../../stores/register/gallery_tools";
 import { IState, IStateFeatureFlag, IStateSynchronization } from "../../stores/state";
 import { localized } from "@lit/localize";
 import { NotificationMessageEnum } from "../NotificationMessageEnum";
@@ -93,14 +89,6 @@ class Modals extends LitElement {
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
-  private static _dispatch_library_select(e: CustomEvent): void {
-    actionUploadFromGallery(e.detail.id).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_LOADED));
-  }
-
-  private static _dispatch_library_remove(e: CustomEvent): void {
-    actionGalleryRemove(e.detail.id);
-  }
-
   private _handle_save(): void {
     actionSaveAsStartAndNew().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
   }
@@ -121,14 +109,7 @@ class Modals extends LitElement {
     const overlay = html` <div class="overlay"></div>`;
 
     if (this._gallery_activated) {
-      return html`${overlay}
-        <track-gallery
-          class="modal"
-          .list="${galleryDictExtended()}"
-          @select="${Modals._dispatch_library_select}"
-          @remove="${Modals._dispatch_library_remove}"
-          @close="${actionGalleryClose}"
-        ></track-gallery>`;
+      return html`${overlay} <track-gallery class="modal"></track-gallery>`;
     }
     if (this._editor_enabled) {
       return html`${overlay} <song-editor class="modal"></song-editor>`;

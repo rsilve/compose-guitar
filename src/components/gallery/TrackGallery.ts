@@ -1,9 +1,13 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { msg, localized } from "@lit/localize";
+import { localized, msg } from "@lit/localize";
 import "../../icons/delete_icon";
 import { IGalleryTrack } from "../../stores/state";
 import { buttonStyles, modalStyles } from "../styles";
+import { actionGalleryClose, actionGalleryRemove, actionUploadFromGallery } from "./actions";
+import { actionNotificationOpen } from "../../actions/actions";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+import { storage } from "../../stores/register/gallery_tools";
 
 @localized()
 @customElement("track-gallery")
@@ -76,8 +80,8 @@ class TrackGallery extends LitElement {
   @state()
   private confirm: string | undefined;
 
-  @property({ attribute: false })
-  list: Record<string, IGalleryTrack> = {};
+  @state()
+  list: Record<string, IGalleryTrack> = storage.galleryDictExtended();
 
   @property({ attribute: false })
   remove_handler: (id: string) => void = () => {
@@ -87,24 +91,14 @@ class TrackGallery extends LitElement {
   generateHandlerSelect(id: string) {
     return (): void => {
       this.clearEventualTimeout();
-      const options = {
-        detail: { id },
-        bubbles: true,
-        composed: true,
-      };
-      this.dispatchEvent(new CustomEvent("select", options));
+      actionUploadFromGallery(id).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_LOADED));
     };
   }
 
   generateHandlerRemove(id: string) {
     return (): void => {
       this.clearEventualTimeout();
-      const options = {
-        detail: { id },
-        bubbles: true,
-        composed: true,
-      };
-      this.dispatchEvent(new CustomEvent("remove", options));
+      actionGalleryRemove(id).then(() => (this.list = storage.galleryDictExtended()));
     };
   }
 
@@ -122,15 +116,6 @@ class TrackGallery extends LitElement {
     };
   }
 
-  private dispatchClose() {
-    this.clearEventualTimeout();
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("close", options));
-  }
-
   render(): unknown {
     const itemTemplates = this.renderList();
     return html`
@@ -140,7 +125,7 @@ class TrackGallery extends LitElement {
         ${itemTemplates}
       </ul>
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${this.dispatchClose}">
+        <button tabindex="-1" class="btn-secondary _close" ontouchstart="" @click="${actionGalleryClose}">
           ${msg("Close")}
         </button>
       </div>
@@ -148,7 +133,7 @@ class TrackGallery extends LitElement {
   }
 
   renderList(): unknown {
-    return Object.entries(this.list).map((entry) => {
+    return Object.entries(this.list || {}).map((entry) => {
       const id = entry[0];
       const { title, synchronized } = entry[1];
       const deleteOrConfirm = id === this.confirm ? this.renderConfirm(id) : this.renderDelete(id);

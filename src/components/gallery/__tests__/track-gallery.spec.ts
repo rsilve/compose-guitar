@@ -1,7 +1,13 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import TrackGallery from "../TrackGallery";
+import sinon from "sinon";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { storage } from "../../../stores/register/gallery_tools";
+import { GALLERY_CLOSE, GALLERY_REMOVE, UPLOAD_FROM_GALLERY } from "../actions";
 
 describe("Track gallery element", () => {
+  const stub = sinon.stub(storage);
+
   it("is defined", async () => {
     const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     expect(el).to.instanceOf(TrackGallery);
@@ -17,11 +23,11 @@ describe("Track gallery element", () => {
   });
 
   it("render list", async () => {
-    const list = [
-      { title: "1", synchronized: false },
-      { title: "2", synchronized: false },
-    ];
-    const el: TrackGallery = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
+    stub.galleryDictExtended.returns({
+      "1": { title: "1", synchronized: false },
+      "2": { title: "2", synchronized: false },
+    });
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
@@ -32,11 +38,11 @@ describe("Track gallery element", () => {
   });
 
   it("render list with sync state", async () => {
-    const list = [
-      { title: "1", synchronized: true },
-      { title: "2", synchronized: false },
-    ];
-    const el: TrackGallery = await fixture(html` <track-gallery .list="${list}"></track-gallery>`);
+    stub.galleryDictExtended.returns({
+      "1": { title: "1", synchronized: true },
+      "2": { title: "2", synchronized: false },
+    });
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("ul") as HTMLElement;
     expect(node.childElementCount).to.be.equal(2);
@@ -47,11 +53,13 @@ describe("Track gallery element", () => {
   });
 
   it("close event", async () => {
+    resetDispatcher();
     let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "close";
-    };
-    const el: TrackGallery = await fixture(html` <track-gallery @close="${handler}"></track-gallery>`);
+    register((action, state) => {
+      handled = action.actionType === GALLERY_CLOSE;
+      return Promise.resolve(state);
+    });
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
     node.click();
@@ -59,25 +67,35 @@ describe("Track gallery element", () => {
   });
 
   it("select event", async () => {
-    let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "select" && e.detail.id === "1";
-    };
-    const list = { 1: "title" };
-    const el: TrackGallery = await fixture(html` <track-gallery @select="${handler}" .list="${list}"></track-gallery>`);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === UPLOAD_FROM_GALLERY);
+        return Promise.resolve(state);
+      });
+    });
+
+    stub.galleryDictExtended.returns({
+      "1": { title: "1", synchronized: true },
+    });
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._select") as HTMLElement;
     node.click();
+    const handled = await promise;
     expect(handled).to.be.true;
   });
 
   it("remove event", async () => {
-    let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "remove" && e.detail.id === "1";
-    };
-    const list = { 1: "title" };
-    const el: TrackGallery = await fixture(html` <track-gallery @remove="${handler}" .list="${list}"></track-gallery>`);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === GALLERY_REMOVE);
+        return Promise.resolve(state);
+      });
+    });
+    stub.galleryDictExtended.returns({
+      "1": { title: "1", synchronized: true },
+    });
+    const el: TrackGallery = await fixture(html` <track-gallery></track-gallery>`);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._remove") as HTMLElement;
     node.click();
@@ -85,6 +103,7 @@ describe("Track gallery element", () => {
     const confirm = el.shadowRoot?.querySelector("._confirm_remove") as HTMLElement;
     expect(confirm).to.not.be.null;
     confirm.click();
+    const handled = await promise;
     expect(handled).to.be.true;
   });
 });

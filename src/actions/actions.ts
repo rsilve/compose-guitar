@@ -5,30 +5,11 @@ import { NotificationMessageEnum } from "../ui/NotificationMessageEnum";
 export const INIT_APP = "INIT_APP";
 export const actionInitApp = (): Promise<void> => publishAction(new Action(INIT_APP));
 
-export const UPLOAD_FROM_GALLERY = "UPLOAD_FROM_GALLERY";
-export const actionUploadFromGallery = (id: string): Promise<void> =>
-  publishAction(new Action(UPLOAD_FROM_GALLERY, { id }));
-
 export const SAVE_AS_START = "SAVE_AS_START";
 export const actionSaveAsStart = (): Promise<void> => publishAction(new Action(SAVE_AS_START));
 
 export const SAVE_AS_START_AND_NEW = "SAVE_AS_START_AND_NEW";
 export const actionSaveAsStartAndNew = (): Promise<void> => publishAction(new Action(SAVE_AS_START_AND_NEW));
-
-export const GALLERY_OPEN = "GALLERY_OPEN";
-export const actionGalleryOpen = (): void => {
-  publishAction(new Action(GALLERY_OPEN));
-};
-
-export const GALLERY_REMOVE = "GALLERY_REMOVE";
-export const actionGalleryRemove = (id: string): void => {
-  publishAction(new Action(GALLERY_REMOVE, { id }));
-};
-
-export const GALLERY_CLOSE = "GALLERY_CLOSE";
-export const actionGalleryClose = (): void => {
-  publishAction(new Action(GALLERY_CLOSE));
-};
 
 export const NOTIFICATION_OPEN = "NOTIFICATION_OPEN";
 export const actionNotificationOpen = (message: NotificationMessageEnum): void => {

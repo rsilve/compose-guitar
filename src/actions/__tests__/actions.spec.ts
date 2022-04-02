@@ -1,8 +1,5 @@
 import { expect } from "@open-wc/testing";
 import {
-  actionGalleryClose,
-  actionGalleryOpen,
-  actionGalleryRemove,
   actionInitApp,
   actionSaveAsStart,
   actionSaveAsStartAndNew,
@@ -16,10 +13,6 @@ import {
   actionSynchroSignIn,
   actionSynchroSignOut,
   actionSynchroToggleEnable,
-  actionUploadFromGallery,
-  GALLERY_CLOSE,
-  GALLERY_OPEN,
-  GALLERY_REMOVE,
   INIT_APP,
   SAVE_AS_START,
   SAVE_AS_START_AND_NEW,
@@ -33,7 +26,6 @@ import {
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
-  UPLOAD_FROM_GALLERY,
 } from "../actions";
 import { default_state } from "../../stores/state";
 import { register, resetDispatcher } from "../../stores/dispatcher";
@@ -48,18 +40,6 @@ describe("actions", () => {
     });
     await actionInitApp();
     expect(handle).to.be.true;
-  });
-
-  it("upload_from_gallery", async () => {
-    let handle = "";
-    resetDispatcher(default_state());
-    register((action, state) => {
-      const { id = "" } = action.payload as { id: string };
-      handle = action.actionType === UPLOAD_FROM_GALLERY ? id : "";
-      return Promise.resolve(state);
-    });
-    await actionUploadFromGallery("id");
-    expect(handle).to.be.equal("id");
   });
 
   it("save_as_start", async () => {
@@ -81,40 +61,6 @@ describe("actions", () => {
       return Promise.resolve(state);
     });
     await actionSaveAsStartAndNew();
-    expect(handle).to.be.true;
-  });
-
-  it("gallery_open", async () => {
-    let handle = false;
-    resetDispatcher(default_state());
-    register((action, state) => {
-      handle = action.actionType === GALLERY_OPEN;
-      return Promise.resolve(state);
-    });
-    await actionGalleryOpen();
-    expect(handle).to.be.true;
-  });
-
-  it("gallery_gallery_remove", async () => {
-    let handle = "id";
-    resetDispatcher(default_state());
-    register((action, state) => {
-      const { id = "" } = action.payload as { id: string };
-      handle = action.actionType === GALLERY_REMOVE ? id : "";
-      return Promise.resolve(state);
-    });
-    await actionGalleryRemove("id");
-    expect(handle).to.be.equal("id");
-  });
-
-  it("gallery_gallery_close", async () => {
-    let handle = false;
-    resetDispatcher(default_state());
-    register((action, state) => {
-      handle = action.actionType === GALLERY_CLOSE;
-      return Promise.resolve(state);
-    });
-    await actionGalleryClose();
     expect(handle).to.be.true;
   });
 
