@@ -6,14 +6,13 @@ import {
   TRACK_EDIT_APPLY,
   TRACK_EDIT_CANCEL,
   TRACK_NEW,
-  TRACK_NEW_CANCEL,
-  TRACK_NEW_WITHOUT_SAVE,
   TRACK_PASTE,
 } from "../../actions/actions";
 import { IState } from "../state";
 import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
 import { uuid } from "../../tools/uuid";
+import { TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../../components/confirmSave/actions";
 
 export async function trackCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };

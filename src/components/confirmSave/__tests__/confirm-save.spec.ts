@@ -1,5 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ConfirmSave from "../ConfirmSave";
+import { register } from "../../../stores/dispatcher";
+import { SAVE_AS_START_AND_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
 
 describe("Confirm save element", () => {
   it("is defined", async () => {
@@ -17,38 +19,47 @@ describe("Confirm save element", () => {
   });
 
   it("cancel event", async () => {
-    let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "cancel";
-    };
-    const el: ConfirmSave = await fixture(html` <confirm-save @cancel="${handler}"></confirm-save> `);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === TRACK_NEW_CANCEL);
+        return Promise.resolve(state);
+      });
+    });
+    const el: ConfirmSave = await fixture(html` <confirm-save></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._cancel") as HTMLElement;
     node.click();
+    const handled = await promise;
     expect(handled).to.be.true;
   });
 
   it("continue event", async () => {
-    let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "continue";
-    };
-    const el: ConfirmSave = await fixture(html` <confirm-save @continue="${handler}"></confirm-save> `);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === TRACK_NEW_WITHOUT_SAVE);
+        return Promise.resolve(state);
+      });
+    });
+    const el: ConfirmSave = await fixture(html` <confirm-save></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._continue") as HTMLElement;
     node.click();
+    const handled = await promise;
     expect(handled).to.be.true;
   });
 
   it("save event", async () => {
-    let handled = false;
-    const handler = (e: CustomEvent) => {
-      handled = e.type === "save";
-    };
-    const el: ConfirmSave = await fixture(html` <confirm-save @save="${handler}"></confirm-save> `);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === SAVE_AS_START_AND_NEW);
+        return Promise.resolve(state);
+      });
+    });
+    const el: ConfirmSave = await fixture(html` <confirm-save></confirm-save> `);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._save") as HTMLElement;
     node.click();
+    const handled = await promise;
     expect(handled).to.be.true;
   });
 });

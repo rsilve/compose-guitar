@@ -1,16 +1,9 @@
 import { expect } from "@open-wc/testing";
-import {
-  MODALS_CLOSE,
-  TRACK_EDIT,
-  TRACK_EDIT_APPLY,
-  TRACK_EDIT_CANCEL,
-  TRACK_NEW,
-  TRACK_NEW_CANCEL,
-  TRACK_NEW_WITHOUT_SAVE,
-} from "../../../actions/actions";
+import { MODALS_CLOSE, TRACK_EDIT, TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL, TRACK_NEW } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { trackCallback } from "../track";
 import Action from "../../../actions/Action";
+import { TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../../../components/confirmSave/actions";
 
 describe("track callback", () => {
   const st = stateTest;

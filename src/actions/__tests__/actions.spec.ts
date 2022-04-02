@@ -2,7 +2,6 @@ import { expect } from "@open-wc/testing";
 import {
   actionInitApp,
   actionSaveAsStart,
-  actionSaveAsStartAndNew,
   actionSynchroForce,
   actionSynchroForceStart,
   actionSynchronizationActivationRequest,
@@ -11,7 +10,6 @@ import {
   actionSynchroToggleEnable,
   INIT_APP,
   SAVE_AS_START,
-  SAVE_AS_START_AND_NEW,
   SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_DEACTIVATION_REQUEST,
   SYNCHRO_FORCE,
@@ -50,17 +48,6 @@ describe("actions", () => {
       return Promise.resolve(state);
     });
     await actionSaveAsStart();
-    expect(handle).to.be.true;
-  });
-
-  it("save_as_start_and_new", async () => {
-    let handle = false;
-    resetDispatcher(default_state());
-    register((action, state) => {
-      handle = action.actionType === SAVE_AS_START_AND_NEW;
-      return Promise.resolve(state);
-    });
-    await actionSaveAsStartAndNew();
     expect(handle).to.be.true;
   });
 

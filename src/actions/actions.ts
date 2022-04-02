@@ -8,9 +8,6 @@ export const actionInitApp = (): Promise<void> => publishAction(new Action(INIT_
 export const SAVE_AS_START = "SAVE_AS_START";
 export const actionSaveAsStart = (): Promise<void> => publishAction(new Action(SAVE_AS_START));
 
-export const SAVE_AS_START_AND_NEW = "SAVE_AS_START_AND_NEW";
-export const actionSaveAsStartAndNew = (): Promise<void> => publishAction(new Action(SAVE_AS_START_AND_NEW));
-
 export const NOTIFICATION_OPEN = "NOTIFICATION_OPEN";
 export const actionNotificationOpen = (message: NotificationMessageEnum): void => {
   setTimeout(() => {
@@ -31,16 +28,6 @@ export interface IPayloadEditor {
 
 export const TRACK_NEW = "TRACK_NEW";
 export const actionTrackNew = (): Promise<void> => publishAction(new Action(TRACK_NEW));
-
-export const TRACK_NEW_WITHOUT_SAVE = "TRACK_NEW_WITHOUT_SAVE";
-export const actionTrackNewWithoutSave = (): void => {
-  publishAction(new Action(TRACK_NEW_WITHOUT_SAVE));
-};
-
-export const TRACK_NEW_CANCEL = "TRACK_NEW_CANCEL";
-export const actionTrackNewCancel = (): void => {
-  publishAction(new Action(TRACK_NEW_CANCEL));
-};
 
 export const TRACK_EDIT = "TRACK_EDIT";
 export const actionTrackEdit = (trackPayload: IPayloadEditor): Promise<void> =>

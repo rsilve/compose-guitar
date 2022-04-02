@@ -1,11 +1,12 @@
 import { expect } from "@open-wc/testing";
-import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../../actions/actions";
+import { SAVE_AS_START } from "../../../actions/actions";
 import { saveAsCallback } from "../save_as";
 import { getFromGallery } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
+import { SAVE_AS_START_AND_NEW } from "../../../components/confirmSave/actions";
 
 describe("Register save_as", () => {
   const st = stateTest;

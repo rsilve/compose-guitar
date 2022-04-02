@@ -6,15 +6,8 @@ import "../../components/help";
 import "../../components/confirmSave";
 import "../../components/synchronization";
 import { DispatcherController } from "../../stores/lit_controller";
-import {
-  actionNotificationOpen,
-  actionSaveAsStartAndNew,
-  actionTrackNewCancel,
-  actionTrackNewWithoutSave,
-} from "../../actions/actions";
 import { IState } from "../../stores/state";
 import { localized } from "@lit/localize";
-import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 @localized()
 @customElement("compose-modals")
@@ -75,10 +68,6 @@ class Modals extends LitElement {
     this.addController(new DispatcherController(cb.bind(this)));
   }
 
-  private _handle_save(): void {
-    actionSaveAsStartAndNew().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
-  }
-
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -92,13 +81,7 @@ class Modals extends LitElement {
       return html`${overlay} <help-modal class="modal"></help-modal>`;
     }
     if (this._confirm_save_enabled) {
-      return html`${overlay}
-        <confirm-save
-          class="modal"
-          @cancel="${actionTrackNewCancel}"
-          @continue="${actionTrackNewWithoutSave}"
-          @save="${this._handle_save}"
-        ></confirm-save>`;
+      return html`${overlay} <confirm-save class="modal"></confirm-save>`;
     }
 
     if (this.synchronizationConfigurationOpen) {

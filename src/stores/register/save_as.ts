@@ -1,8 +1,9 @@
-import { SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../../actions/actions";
+import { SAVE_AS_START } from "../../actions/actions";
 import { addToGallery } from "./gallery_tools";
 import { IState, IStateTrack } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
+import { SAVE_AS_START_AND_NEW } from "../../components/confirmSave/actions";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };
