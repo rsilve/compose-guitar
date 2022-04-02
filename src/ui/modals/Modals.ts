@@ -12,7 +12,7 @@ import {
   actionTrackNewCancel,
   actionTrackNewWithoutSave,
 } from "../../actions/actions";
-import { IState, IStateSynchronization } from "../../stores/state";
+import { IState } from "../../stores/state";
 import { localized } from "@lit/localize";
 import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
@@ -63,9 +63,6 @@ class Modals extends LitElement {
   @state()
   synchronizationConfigurationOpen = false;
 
-  @state()
-  synchronization: IStateSynchronization | undefined;
-
   constructor() {
     super();
     const cb = (st: IState) => {
@@ -74,7 +71,6 @@ class Modals extends LitElement {
       this._help_open = !!st.help_open;
       this._confirm_save_enabled = !!st.confirm_save;
       this.synchronizationConfigurationOpen = st.synchronization.open || false;
-      this.synchronization = st.synchronization;
     };
     this.addController(new DispatcherController(cb.bind(this)));
   }
@@ -106,11 +102,7 @@ class Modals extends LitElement {
     }
 
     if (this.synchronizationConfigurationOpen) {
-      return html`${overlay}
-        <synchronize-configuration
-          class="modal"
-          .synchronization="${this.synchronization}"
-        ></synchronize-configuration>`;
+      return html`${overlay} <synchronize-configuration class="modal"></synchronize-configuration>`;
     }
     return html``;
   }

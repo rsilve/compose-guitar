@@ -1,10 +1,11 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
-import { IStateSynchronization } from "../../../stores/state";
-import { register } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { SYNCHRO_CONFIGURATION_CLOSE } from "../actions";
+import { stateTest } from "../../../__tests__/TestHelpers";
 
 describe("synchronise configuration element", () => {
+  const st = stateTest;
   it("is defined", async () => {
     const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
@@ -43,10 +44,8 @@ describe("synchronise configuration element", () => {
   });
 
   it("has a enabled attribute", async () => {
-    const sync: IStateSynchronization = { enabled: true, signInValid: true };
-    const el: SynchronizeConfiguration = await fixture(
-      html` <synchronize-configuration .synchronization="${sync}"></synchronize-configuration>`
-    );
+    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     expect(el).shadowDom.to.equals(`

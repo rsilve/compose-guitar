@@ -1,12 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Modals from "../Modals";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../stores/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import {
-  SYNCHRO_ACTIVATION,
-  SYNCHRO_DEACTIVATION,
-  SYNCHRO_SIGN_OUT,
-} from "../../../components/synchronization/actions";
 
 describe("Modals element", () => {
   const st = stateTest;
@@ -57,18 +52,5 @@ describe("Modals element", () => {
     expect(el).shadowDom.to.be.equal(`
         <div class="overlay"></div>
         <confirm-save class="modal"></confirm-save>`);
-  });
-
-  it("synchronize activation", async () => {
-    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
-    const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
-    expect(el).to.instanceOf(Modals);
-    await expect(el).shadowDom.to.be.accessible();
-    expect(el.synchronizationConfigurationOpen).to.be.true;
-    expect(el.synchronization?.enabled).to.be.true;
-    expect(el.synchronization?.open).to.be.true;
-    expect(el).shadowDom.to.be.equal(`
-        <div class="overlay"></div>
-        <synchronize-configuration class="modal"></synchronize-configuration>`);
   });
 });

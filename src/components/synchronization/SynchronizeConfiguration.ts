@@ -1,18 +1,27 @@
 import { html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { IStateSynchronization } from "../../stores/state";
+import { customElement, state } from "lit/decorators.js";
+import { IState, IStateSynchronization } from "../../stores/state";
 import "./SynchronizationConfigurationActivated";
 import "./SynchronizationConfigurationDeactivated";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionSynchronizationConfigurationClose } from "./actions";
+import { DispatcherController } from "../../stores/lit_controller";
 
 @localized()
 @customElement("synchronize-configuration")
 class SynchronizeConfiguration extends LitElement {
   static styles = [buttonStyles, modalStyles];
 
-  @property()
+  constructor() {
+    super();
+    const cb = (st: IState) => {
+      this.synchronization = st.synchronization;
+    };
+    this.addController(new DispatcherController(cb.bind(this)));
+  }
+
+  @state()
   synchronization: IStateSynchronization | undefined;
 
   render(): unknown {
