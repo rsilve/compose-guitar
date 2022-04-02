@@ -5,7 +5,7 @@ import "./menu/Menu";
 import "./main-screen";
 import "../components/zoom";
 import "../components/transpose";
-import "./modals/Modals";
+import "../components/modals";
 import "./notification/compose-notification";
 import "./compose-keys";
 import "./AccountStatus";
