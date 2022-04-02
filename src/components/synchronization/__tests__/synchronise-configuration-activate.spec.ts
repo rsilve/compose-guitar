@@ -1,6 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationActivated from "../SynchronizationConfigurationActivated";
 import { IStateSynchronization } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { SYNCHRO_DEACTIVATION, SYNCHRO_SIGN_OUT } from "../actions";
 
 describe("synchronise configuration activate element", () => {
   it("is defined", async () => {
@@ -13,18 +15,36 @@ describe("synchronise configuration activate element", () => {
 
   it("has a deactivate button", async () => {
     const sync: IStateSynchronization = { enabled: true };
-    let handle = false;
+    resetDispatcher();
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.actionType === SYNCHRO_DEACTIVATION) {
+          resolve(true);
+        }
+        return Promise.resolve(state);
+      });
+    });
+    const promiseSignOut = new Promise((resolve) => {
+      register((action, state) => {
+        if (action.actionType === SYNCHRO_SIGN_OUT) {
+          resolve(true);
+        }
+        return Promise.resolve(state);
+      });
+    });
     const el: SynchronizationConfigurationActivated = await fixture(
       html` <synchronization-configuration-activated
         .synchronization="${sync}"
-        @deactivate="${() => (handle = true)}"
       ></synchronization-configuration-activated>`
     );
     expect(el).to.instanceOf(SynchronizationConfigurationActivated);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._deactivate") as HTMLElement;
     node.click();
-    expect(handle).to.be.true;
+    const handled = await promise;
+    expect(handled).to.be.true;
+    const handledSignOut = await promiseSignOut;
+    expect(handledSignOut).to.be.true;
   });
 
   it("display status if signin is active", async () => {

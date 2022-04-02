@@ -9,10 +9,6 @@ import { DispatcherController } from "../../stores/lit_controller";
 import {
   actionNotificationOpen,
   actionSaveAsStartAndNew,
-  actionSynchronizationActivation,
-  actionSynchronizationConfigurationClose,
-  actionSynchronizationDeactivation,
-  actionSynchroSignOut,
   actionTrackNewCancel,
   actionTrackNewWithoutSave,
 } from "../../actions/actions";
@@ -87,10 +83,6 @@ class Modals extends LitElement {
     actionSaveAsStartAndNew().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
   }
 
-  private static dispatchDeactivate() {
-    actionSynchronizationDeactivation().then(actionSynchroSignOut);
-  }
-
   render(): unknown {
     const overlay = html` <div class="overlay"></div>`;
 
@@ -118,9 +110,6 @@ class Modals extends LitElement {
         <synchronize-configuration
           class="modal"
           .synchronization="${this.synchronization}"
-          @activate="${actionSynchronizationActivation}"
-          @deactivate="${Modals.dispatchDeactivate}"
-          @close="${actionSynchronizationConfigurationClose}"
         ></synchronize-configuration>`;
     }
     return html``;

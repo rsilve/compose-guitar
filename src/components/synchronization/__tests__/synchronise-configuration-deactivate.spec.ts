@@ -1,5 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationDeactivated from "../SynchronizationConfigurationDeactivated";
+import { register } from "../../../stores/dispatcher";
+import { SYNCHRO_ACTIVATION } from "../actions";
 
 describe("synchronise configuration deactivate element", () => {
   it("is defined", async () => {
@@ -11,14 +13,20 @@ describe("synchronise configuration deactivate element", () => {
   });
 
   it("has an activate button", async () => {
-    let handle = false;
-    const el: SynchronizationConfigurationDeactivated = await fixture(html` <synchronization-configuration-deactivated
-      @activate="${() => (handle = true)}"
-    ></synchronization-configuration-deactivated>`);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === SYNCHRO_ACTIVATION);
+        return Promise.resolve(state);
+      });
+    });
+    const el: SynchronizationConfigurationDeactivated = await fixture(
+      html` <synchronization-configuration-deactivated></synchronization-configuration-deactivated>`
+    );
     expect(el).to.instanceOf(SynchronizationConfigurationDeactivated);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._activate") as HTMLElement;
     node.click();
-    expect(handle).to.be.true;
+    const handled = await promise;
+    expect(handled).to.be.true;
   });
 });

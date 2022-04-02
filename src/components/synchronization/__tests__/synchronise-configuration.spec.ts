@@ -1,6 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
 import { IStateSynchronization } from "../../../stores/state";
+import { register } from "../../../stores/dispatcher";
+import { SYNCHRO_CONFIGURATION_CLOSE } from "../actions";
 
 describe("synchronise configuration element", () => {
   it("is defined", async () => {
@@ -10,16 +12,20 @@ describe("synchronise configuration element", () => {
   });
 
   it("have a close button", async () => {
-    let handle_close = false;
-    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration
-      @close="${() => (handle_close = true)}"
-    ></synchronize-configuration>`);
+    const promise = new Promise((resolve) => {
+      register((action, state) => {
+        resolve(action.actionType === SYNCHRO_CONFIGURATION_CLOSE);
+        return Promise.resolve(state);
+      });
+    });
+    const el: SynchronizeConfiguration = await fixture(html` <synchronize-configuration></synchronize-configuration>`);
     expect(el).to.instanceOf(SynchronizeConfiguration);
     await expect(el).shadowDom.to.be.accessible();
     const node = el.shadowRoot?.querySelector("._close") as HTMLElement;
     expect(node).to.not.be.null;
     node.click();
-    expect(handle_close).to.be.true;
+    const handled = await promise;
+    expect(handled).to.be.true;
   });
 
   it("has default (deactivate) state", async () => {

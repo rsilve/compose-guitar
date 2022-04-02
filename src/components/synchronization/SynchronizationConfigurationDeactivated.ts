@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { localized, msg } from "@lit/localize";
 import { IStateSynchronization } from "../../stores/state";
 import { buttonStyles } from "../styles";
+import { actionSynchronizationActivation } from "./actions";
 
 @localized()
 @customElement("synchronization-configuration-deactivated")
@@ -21,16 +22,8 @@ class SynchronizationConfigurationDeactivated extends LitElement {
   @property()
   synchronization: IStateSynchronization | undefined;
 
-  private dispatchActivate() {
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("activate", options));
-  }
-
   render(): unknown {
-    let cta = html`<button class="btn-secondary btn-activate _activate" @click="${this.dispatchActivate}">
+    let cta = html`<button class="btn-secondary btn-activate _activate" @click="${actionSynchronizationActivation}">
       ${msg("activate")}
     </button>`;
     if (this.synchronization?.signInProgress) {

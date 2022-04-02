@@ -5,6 +5,7 @@ import "./SynchronizationConfigurationActivated";
 import "./SynchronizationConfigurationDeactivated";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
+import { actionSynchronizationConfigurationClose } from "./actions";
 
 @localized()
 @customElement("synchronize-configuration")
@@ -13,14 +14,6 @@ class SynchronizeConfiguration extends LitElement {
 
   @property()
   synchronization: IStateSynchronization | undefined;
-
-  private dispatchClose() {
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("close", options));
-  }
 
   render(): unknown {
     let body = html` <synchronization-configuration-deactivated
@@ -35,7 +28,12 @@ class SynchronizeConfiguration extends LitElement {
       <h1>${msg("Synchronization")}</h1>
       ${body}
       <div class="modal-footer">
-        <button tabindex="-1" class="btn-primary _close" ontouchstart="" @click="${this.dispatchClose}">
+        <button
+          tabindex="-1"
+          class="btn-primary _close"
+          ontouchstart=""
+          @click="${actionSynchronizationConfigurationClose}"
+        >
           ${msg("Close")}
         </button>
       </div>

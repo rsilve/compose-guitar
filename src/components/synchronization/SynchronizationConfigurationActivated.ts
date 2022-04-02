@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { msg } from "@lit/localize";
 import { IStateSynchronization } from "../../stores/state";
 import { buttonStyles } from "../styles";
+import { actionSynchronizationDeactivation, actionSynchroSignOut } from "./actions";
 
 @customElement("synchronization-configuration-activated")
 class SynchronizationConfigurationActivated extends LitElement {
@@ -33,11 +34,7 @@ class SynchronizationConfigurationActivated extends LitElement {
   synchronization: IStateSynchronization | undefined;
 
   private dispatchDeactivate() {
-    const options = {
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent("deactivate", options));
+    actionSynchronizationDeactivation().then(actionSynchroSignOut);
   }
 
   render(): unknown {

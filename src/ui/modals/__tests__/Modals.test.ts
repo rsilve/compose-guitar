@@ -4,10 +4,9 @@ import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import {
   SYNCHRO_ACTIVATION,
-  SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
   SYNCHRO_SIGN_OUT,
-} from "../../../actions/actions";
+} from "../../../components/synchronization/actions";
 
 describe("Modals element", () => {
   const st = stateTest;
@@ -71,95 +70,5 @@ describe("Modals element", () => {
     expect(el).shadowDom.to.be.equal(`
         <div class="overlay"></div>
         <synchronize-configuration class="modal"></synchronize-configuration>`);
-  });
-
-  it("synchronize configuration close", async () => {
-    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        resolve(action.actionType === SYNCHRO_CONFIGURATION_CLOSE);
-        return Promise.resolve(state);
-      });
-    });
-    const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
-    expect(el).to.instanceOf(Modals);
-    await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector("synchronize-configuration");
-    node?.dispatchEvent(
-      new CustomEvent("close", {
-        bubbles: true,
-        composed: true,
-      })
-    );
-    const closed = await promise;
-    expect(closed).to.be.true;
-  });
-
-  it("synchronize activation", async () => {
-    resetDispatcher({ ...st, synchronization: { enabled: false, open: true } });
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        resolve(action.actionType === SYNCHRO_ACTIVATION);
-        return Promise.resolve(state);
-      });
-    });
-    const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
-    expect(el).to.instanceOf(Modals);
-    await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector("synchronize-configuration");
-    node?.dispatchEvent(
-      new CustomEvent("activate", {
-        bubbles: true,
-        composed: true,
-      })
-    );
-    const closed = await promise;
-    expect(closed).to.be.true;
-  });
-
-  it("synchronize deactivation", async () => {
-    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        resolve(action.actionType === SYNCHRO_DEACTIVATION);
-        return Promise.resolve(state);
-      });
-    });
-    const el: Modals = await fixture(html` <compose-modals></compose-modals> `);
-    expect(el).to.instanceOf(Modals);
-    await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector("synchronize-configuration");
-    node?.dispatchEvent(
-      new CustomEvent("deactivate", {
-        bubbles: true,
-        composed: true,
-      })
-    );
-    const closed = await promise;
-    expect(closed).to.be.true;
-  });
-
-  it("synchronize sign out", async () => {
-    resetDispatcher({ ...st, synchronization: { enabled: true, open: true } });
-    const promise = new Promise((resolve) => {
-      register((action, state) => {
-        if (action.actionType === SYNCHRO_SIGN_OUT) {
-          resolve(true);
-        }
-        return Promise.resolve(state);
-      });
-    });
-    const el: Modals = await fixture(html` <compose-modals></compose-modals>`);
-    expect(el).to.instanceOf(Modals);
-    await expect(el).shadowDom.to.be.accessible();
-    const node = el.shadowRoot?.querySelector("synchronize-configuration");
-    node?.dispatchEvent(
-      new CustomEvent("deactivate", {
-        bubbles: true,
-        composed: true,
-      })
-    );
-    const closed = await promise;
-    expect(closed).to.be.true;
   });
 });

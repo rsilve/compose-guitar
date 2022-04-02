@@ -5,30 +5,30 @@ import {
   actionSaveAsStartAndNew,
   actionSynchroForce,
   actionSynchroForceStart,
-  actionSynchronizationActivation,
   actionSynchronizationActivationRequest,
-  actionSynchronizationConfigurationClose,
-  actionSynchronizationDeactivation,
   actionSynchronizationDeactivationRequest,
   actionSynchroSignIn,
-  actionSynchroSignOut,
   actionSynchroToggleEnable,
   INIT_APP,
   SAVE_AS_START,
   SAVE_AS_START_AND_NEW,
-  SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
-  SYNCHRO_CONFIGURATION_CLOSE,
-  SYNCHRO_DEACTIVATION,
   SYNCHRO_DEACTIVATION_REQUEST,
   SYNCHRO_FORCE,
   SYNCHRO_FORCE_START,
   SYNCHRO_SIGN_IN,
-  SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
 } from "../actions";
 import { default_state } from "../../stores/state";
 import { register, resetDispatcher } from "../../stores/dispatcher";
+import {
+  actionSynchronizationActivation,
+  actionSynchronizationDeactivation,
+  actionSynchroSignOut,
+  SYNCHRO_ACTIVATION,
+  SYNCHRO_DEACTIVATION,
+  SYNCHRO_SIGN_OUT,
+} from "../../components/synchronization/actions";
 
 describe("actions", () => {
   it("init", async () => {
@@ -105,17 +105,6 @@ describe("actions", () => {
       return Promise.resolve(state);
     });
     await actionSynchronizationDeactivation();
-    expect(handle).to.be.true;
-  });
-
-  it("action_synchronization_close", async () => {
-    let handle = false;
-    resetDispatcher(default_state());
-    register((action, state) => {
-      handle = action.actionType === SYNCHRO_CONFIGURATION_CLOSE;
-      return Promise.resolve(state);
-    });
-    await actionSynchronizationConfigurationClose();
     expect(handle).to.be.true;
   });
 
