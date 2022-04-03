@@ -8,7 +8,7 @@ import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
 import { saveAsCallback } from "../../../stores/register/save_as";
 import { IState, IStateTrack } from "../../../stores/state";
 import { songEditCallback } from "../../song/store";
-import { confirmSaveCallback } from "../../createAndSave/store";
+import { createAndSaveCallback } from "../../createAndSave/store";
 
 describe("compose-key element", () => {
   const st = stateTest;
@@ -93,7 +93,7 @@ describe("compose-key element", () => {
 
   it("add track_new event", async () => {
     resetDispatcher(st);
-    register(confirmSaveCallback);
+    register(createAndSaveCallback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
         resolve(state.editor);

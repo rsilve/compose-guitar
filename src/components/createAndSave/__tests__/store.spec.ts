@@ -3,13 +3,13 @@ import { MODALS_CLOSE } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import { TRACK_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
-import { confirmSaveCallback } from "../store";
+import { createAndSaveCallback } from "../store";
 
 describe("track callback", () => {
   const st = stateTest;
 
   it("new track", async () => {
-    const state = await confirmSaveCallback(new Action(TRACK_NEW), {
+    const state = await createAndSaveCallback(new Action(TRACK_NEW), {
       ...st,
       transpose: 1,
     });
@@ -21,7 +21,7 @@ describe("track callback", () => {
   });
 
   it("new track with save needed", async () => {
-    const state = await confirmSaveCallback(new Action(TRACK_NEW), {
+    const state = await createAndSaveCallback(new Action(TRACK_NEW), {
       ...st,
       track: { ...st.track, updated_at: new Date().toISOString() },
     });
@@ -29,7 +29,7 @@ describe("track callback", () => {
     expect(state.confirm_save).to.be.true;
   });
   it("new track without save", async () => {
-    const state = await confirmSaveCallback(new Action(TRACK_NEW_WITHOUT_SAVE), {
+    const state = await createAndSaveCallback(new Action(TRACK_NEW_WITHOUT_SAVE), {
       ...st,
       transpose: 1,
     });
@@ -39,7 +39,7 @@ describe("track callback", () => {
   });
 
   it("new track cancel", async () => {
-    const state = await confirmSaveCallback(new Action(TRACK_NEW_CANCEL), {
+    const state = await createAndSaveCallback(new Action(TRACK_NEW_CANCEL), {
       ...st,
       transpose: 1,
     });
@@ -49,7 +49,7 @@ describe("track callback", () => {
   });
 
   it("new track cancel (modal close", async () => {
-    const state = await confirmSaveCallback(new Action(MODALS_CLOSE), {
+    const state = await createAndSaveCallback(new Action(MODALS_CLOSE), {
       ...st,
       transpose: 1,
     });

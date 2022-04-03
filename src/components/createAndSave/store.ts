@@ -4,7 +4,7 @@ import { TRACK_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "./actions";
 import { IState } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 
-export async function confirmSaveCallback(action: Action, state: IState): Promise<IState> {
+export async function createAndSaveCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
 
   if (action.actionType === TRACK_NEW_WITHOUT_SAVE) {

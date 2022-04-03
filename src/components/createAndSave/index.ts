@@ -1,8 +1,8 @@
 import "./ConfirmSave";
 import { register } from "../../stores/dispatcher";
-import { confirmSaveCallback } from "./store";
+import { createAndSaveCallback } from "./store";
 import { track_new_key } from "./keyboard";
 
-register(confirmSaveCallback);
+register(createAndSaveCallback);
 
 export const newSongKey = track_new_key;
