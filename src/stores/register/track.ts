@@ -1,4 +1,4 @@
-import { IPayloadEditor, MODALS_CLOSE, TRACK_COPY, TRACK_EDIT, TRACK_NEW, TRACK_PASTE } from "../../actions/actions";
+import { IPayloadEditor, MODALS_CLOSE, TRACK_COPY, TRACK_NEW, TRACK_PASTE } from "../../actions/actions";
 import { IState } from "../state";
 import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
@@ -32,11 +32,6 @@ export async function trackCallback(action: Action, state: IState): Promise<ISta
   if (action.actionType === TRACK_NEW_CANCEL || action.actionType === MODALS_CLOSE) {
     result.confirm_save = undefined;
     result.editor = undefined;
-  }
-
-  if (action.actionType === TRACK_EDIT) {
-    const { title, grid_text } = action.payload as IPayloadEditor;
-    result.editor = { title, grid_text };
   }
 
   if (action.actionType === TRACK_COPY) {

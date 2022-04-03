@@ -4,8 +4,8 @@ import { styleMap } from "lit/directives/style-map.js";
 import { localized, msg } from "@lit/localize";
 
 import "../../components/chords-grid";
-import { actionTrackEdit } from "../../actions/actions";
 import { buttonStyles, noPrintStyles } from "../../components/styles";
+import { actionTrackEdit } from "./actions";
 
 @localized()
 @customElement("app-main-preview")

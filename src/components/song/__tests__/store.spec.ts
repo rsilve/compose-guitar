@@ -1,6 +1,6 @@
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
-import { TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "../actions";
+import { TRACK_EDIT, TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "../actions";
 import { expect } from "@open-wc/testing";
 import { songEditCallback } from "../store";
 
@@ -45,5 +45,15 @@ describe("track callback", () => {
     expect(state.track?.id).to.not.be.null;
     delete state.track?.id;
     expect(state.track).to.deep.equal({ ...track, ...payload });
+  });
+
+  it("edit track", async () => {
+    const { track = {} } = st;
+    const payload = { title: track.title, grid_text: track.grid_text };
+    const state = await songEditCallback(new Action(TRACK_EDIT, payload), {
+      ...st,
+    });
+    expect(state.editor).not.to.be.undefined;
+    expect(state.editor).to.deep.equal(payload);
   });
 });

@@ -2,7 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 
 import "./screen/app-on-boarding";
-import "./screen/app-main-preview";
+import "../components/song";
 import { DispatcherController } from "../stores/lit_controller";
 import { IState } from "../stores/state";
 

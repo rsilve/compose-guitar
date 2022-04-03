@@ -12,13 +12,13 @@ import {
   actionNotificationOpen,
   actionSaveAsStart,
   actionTrackCopy,
-  actionTrackEdit,
   actionTrackNew,
   actionTrackPaste,
 } from "../../actions/actions";
 import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
+import { songEditKey } from "../song";
 
 @localized()
 @customElement("compose-keys")
@@ -48,7 +48,7 @@ class ComposeKeys extends LitElement {
   }
 
   _listener(e: KeyboardEvent): void {
-    this.edit_key(e);
+    songEditKey(e, this._state);
 
     this.save_as_start_key(e);
 
@@ -99,13 +99,6 @@ class ComposeKeys extends LitElement {
     if (!e.altKey && e.ctrlKey && e.key === "s" && this._state) {
       actionSaveAsStart().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
       e.preventDefault();
-    }
-  }
-
-  private edit_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "e" && this._state) {
-      const { track = {} } = this._state;
-      actionTrackEdit(track).catch((reason) => console.warn(reason));
     }
   }
 

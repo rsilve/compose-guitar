@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import AppMainPreview from "../app-main-preview";
 import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
-import { trackCallback } from "../../../stores/register/track";
 import { IState } from "../../../stores/state";
+import { songEditCallback } from "../store";
 
 describe("app main preview element", () => {
   it("is defined", async () => {
@@ -24,7 +24,7 @@ describe("app main preview element", () => {
 
   it("handle edit", async () => {
     resetDispatcher();
-    register(trackCallback);
+    register(songEditCallback);
     const promise: Promise<boolean> = new Promise((resolve) => {
       connect((st: IState) => {
         resolve(!!st.editor);

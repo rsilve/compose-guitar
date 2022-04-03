@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../../components/gallery";
-import "../../components/song_editor";
+import "../song";
 import "../../components/help";
 import "../../components/confirmSave";
 import "../../components/synchronization";

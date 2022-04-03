@@ -1,9 +1,10 @@
 import { expect } from "@open-wc/testing";
-import { MODALS_CLOSE, TRACK_EDIT, TRACK_NEW } from "../../../actions/actions";
+import { MODALS_CLOSE, TRACK_NEW } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { trackCallback } from "../track";
 import Action from "../../../actions/Action";
 import { TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../../../components/confirmSave/actions";
+import { TRACK_EDIT } from "../../../components/song/actions";
 
 describe("track callback", () => {
   const st = stateTest;
@@ -57,15 +58,5 @@ describe("track callback", () => {
     expect(state.editor).to.be.undefined;
     expect(state.confirm_save).to.be.undefined;
     expect(state.transpose).to.be.equal(1);
-  });
-
-  it("edit track", async () => {
-    const { track = {} } = st;
-    const payload = { title: track.title, grid_text: track.grid_text };
-    const state = await trackCallback(new Action(TRACK_EDIT, payload), {
-      ...st,
-    });
-    expect(state.editor).not.to.be.undefined;
-    expect(state.editor).to.deep.equal(payload);
   });
 });
