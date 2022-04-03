@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import "../../icons/info_icon";
+import "../icons";
 import "../chords-grid";
 import "./editor/GridEditorTitle";
 import "./editor/GridEditorHelp";

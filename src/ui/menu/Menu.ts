@@ -1,9 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "./menu-item";
-import "../../icons/save_icon";
-import "../../icons/new_track_icon";
-import "../../icons/gallery_icon";
+import "../../components/icons";
 import { IState } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";

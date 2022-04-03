@@ -1,9 +1,12 @@
 import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 
-import "../icons/help_icon";
-import { IState } from "../stores/state";
-import { DispatcherController } from "../stores/lit_controller";
+import "../icons";
+
+import { localized, msg } from "@lit/localize";
+import { actionHelpOpen } from "./actions";
+import { galleryOpenKey } from "../gallery";
+import { zoomDecrKey, zoomIncrKey } from "../zoom";
 import {
   actionModalsClose,
   actionNotificationOpen,
@@ -12,12 +15,10 @@ import {
   actionTrackEdit,
   actionTrackNew,
   actionTrackPaste,
-} from "../actions/actions";
-import { localized, msg } from "@lit/localize";
-import { NotificationMessageEnum } from "./NotificationMessageEnum";
-import { actionHelpOpen } from "../components/help/actions";
-import { galleryOpenKey } from "../components/gallery";
-import { zoomDecrKey, zoomIncrKey } from "../components/zoom";
+} from "../../actions/actions";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+import { DispatcherController } from "../../stores/lit_controller";
+import { IState } from "../../stores/state";
 
 @localized()
 @customElement("compose-keys")

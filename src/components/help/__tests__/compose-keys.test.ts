@@ -1,13 +1,13 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import ComposeKeys from "../compose-keys";
-import { connect, register, resetDispatcher } from "../../stores/dispatcher";
-import { trackCallback } from "../../stores/register/track";
-import { IState, IStateTrack } from "../../stores/state";
-import { stateTest } from "../../__tests__/TestHelpers";
-import { saveAsCallback } from "../../stores/register/save_as";
-import { zoomChangeCallback } from "../../components/zoom/store";
-import { galleryCallback } from "../../components/gallery/store";
-import { helpCallback } from "../../components/help/store";
+import { zoomChangeCallback } from "../../zoom/store";
+import { galleryCallback } from "../../gallery/store";
+import { helpCallback } from "../../help/store";
+import { stateTest } from "../../../__tests__/TestHelpers";
+import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
+import { trackCallback } from "../../../stores/register/track";
+import { saveAsCallback } from "../../../stores/register/save_as";
+import { IState, IStateTrack } from "../../../stores/state";
 
 describe("compose-key element", () => {
   const st = stateTest;

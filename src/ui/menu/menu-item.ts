@@ -1,8 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import "../../icons/save_icon";
-import "../../icons/new_track_icon";
-import "../../icons/gallery_icon";
+import "../../components/icons";
 import { classMap } from "lit/directives/class-map.js";
 
 @customElement("menu-item")

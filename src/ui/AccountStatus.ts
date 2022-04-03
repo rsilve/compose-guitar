@@ -11,8 +11,7 @@ import {
   actionSynchronizationDeactivationRequest,
 } from "../actions/actions";
 
-import "../icons/PersonOffIcon";
-import "../icons/AccountCircleIcon";
+import "../components/icons";
 import "./sync/SynchronizationStatus";
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
 

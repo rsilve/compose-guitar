@@ -1,4 +1,5 @@
 import "./HelpModal";
+import "./compose-keys";
 import { register } from "../../stores/dispatcher";
 import { helpCallback } from "./store";
 
