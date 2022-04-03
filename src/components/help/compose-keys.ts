@@ -7,18 +7,13 @@ import { localized, msg } from "@lit/localize";
 import { actionHelpOpen } from "./actions";
 import { galleryOpenKey } from "../gallery";
 import { zoomDecrKey, zoomIncrKey } from "../zoom";
-import {
-  actionModalsClose,
-  actionNotificationOpen,
-  actionSaveAsStart,
-  actionTrackCopy,
-  actionTrackPaste,
-} from "../../actions/actions";
+import { actionModalsClose, actionNotificationOpen, actionSaveAsStart } from "../../actions/actions";
 import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { songEditKey } from "../song";
-import { newSongKey } from "../createAndSave";
+import { newSongKey, songCopyKey } from "../createAndSave";
+import { actionTrackPaste } from "../createAndSave/actions";
 
 @localized()
 @customElement("compose-keys")
@@ -60,7 +55,7 @@ class ComposeKeys extends LitElement {
 
     zoomDecrKey(e, this._state);
 
-    this.copy_key(e);
+    songCopyKey(e, this._state);
 
     this.paste_key(e);
 
@@ -77,15 +72,6 @@ class ComposeKeys extends LitElement {
   private paste_key(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "v" && this._state) {
       actionTrackPaste().then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_PASTED));
-    }
-  }
-
-  private copy_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "c" && this._state) {
-      const { track: { title, grid_text } = {} } = this._state;
-      actionTrackCopy({ title, grid_text }).then(() =>
-        actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SONG_COMPLETED)
-      );
     }
   }
 
