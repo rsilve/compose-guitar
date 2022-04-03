@@ -12,8 +12,7 @@ import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { songEditKey } from "../song";
-import { newSongKey, songCopyKey } from "../createAndSave";
-import { actionTrackPaste } from "../createAndSave/actions";
+import { newSongKey, songCopyKey, songPasteKey } from "../createAndSave";
 
 @localized()
 @customElement("compose-keys")
@@ -57,7 +56,7 @@ class ComposeKeys extends LitElement {
 
     songCopyKey(e, this._state);
 
-    this.paste_key(e);
+    songPasteKey(e, this._state);
 
     ComposeKeys.close_modal_key(e);
   }
@@ -66,12 +65,6 @@ class ComposeKeys extends LitElement {
     if (e.key === "Escape") {
       actionModalsClose();
       e.preventDefault();
-    }
-  }
-
-  private paste_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "v" && this._state) {
-      actionTrackPaste().then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_PASTED));
     }
   }
 
