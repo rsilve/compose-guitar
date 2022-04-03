@@ -26,9 +26,6 @@ export interface IPayloadEditor {
   updated_at?: string;
 }
 
-export const TRACK_NEW = "TRACK_NEW";
-export const actionTrackNew = (): Promise<void> => publishAction(new Action(TRACK_NEW));
-
 export const TRACK_COPY = "TRACK_COPY";
 export const actionTrackCopy = (trackPayload: IPayloadEditor): Promise<void> =>
   publishAction(new Action(TRACK_COPY, trackPayload));

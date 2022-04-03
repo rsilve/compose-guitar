@@ -12,13 +12,13 @@ import {
   actionNotificationOpen,
   actionSaveAsStart,
   actionTrackCopy,
-  actionTrackNew,
   actionTrackPaste,
 } from "../../actions/actions";
 import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { songEditKey } from "../song";
+import { newSongKey } from "../createAndSave";
 
 @localized()
 @customElement("compose-keys")
@@ -54,7 +54,7 @@ class ComposeKeys extends LitElement {
 
     galleryOpenKey(e, this._state);
 
-    this.track_new_key(e);
+    newSongKey(e, this._state);
 
     zoomIncrKey(e, this._state);
 
@@ -86,12 +86,6 @@ class ComposeKeys extends LitElement {
       actionTrackCopy({ title, grid_text }).then(() =>
         actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SONG_COMPLETED)
       );
-    }
-  }
-
-  private track_new_key(e: KeyboardEvent) {
-    if (e.ctrlKey && e.key === "n" && this._state) {
-      actionTrackNew();
     }
   }
 

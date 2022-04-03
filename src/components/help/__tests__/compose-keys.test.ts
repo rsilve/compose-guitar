@@ -2,13 +2,13 @@ import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import ComposeKeys from "../compose-keys";
 import { zoomChangeCallback } from "../../zoom/store";
 import { galleryCallback } from "../../gallery/store";
-import { helpCallback } from "../../help/store";
+import { helpCallback } from "../store";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
-import { trackCallback } from "../../../stores/register/track";
 import { saveAsCallback } from "../../../stores/register/save_as";
 import { IState, IStateTrack } from "../../../stores/state";
 import { songEditCallback } from "../../song/store";
+import { confirmSaveCallback } from "../../createAndSave/store";
 
 describe("compose-key element", () => {
   const st = stateTest;
@@ -93,7 +93,7 @@ describe("compose-key element", () => {
 
   it("add track_new event", async () => {
     resetDispatcher(st);
-    register(trackCallback);
+    register(confirmSaveCallback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
         resolve(state.editor);

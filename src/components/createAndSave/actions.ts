@@ -13,3 +13,6 @@ export const actionTrackNewWithoutSave = (): void => {
 
 export const SAVE_AS_START_AND_NEW = "SAVE_AS_START_AND_NEW";
 export const actionSaveAsStartAndNew = (): Promise<void> => publishAction(new Action(SAVE_AS_START_AND_NEW));
+
+export const TRACK_NEW = "TRACK_NEW";
+export const actionTrackNew = (): Promise<void> => publishAction(new Action(TRACK_NEW));
