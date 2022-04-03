@@ -5,9 +5,6 @@ import { NotificationMessageEnum } from "../ui/NotificationMessageEnum";
 export const INIT_APP = "INIT_APP";
 export const actionInitApp = (): Promise<void> => publishAction(new Action(INIT_APP));
 
-export const SAVE_AS_START = "SAVE_AS_START";
-export const actionSaveAsStart = (): Promise<void> => publishAction(new Action(SAVE_AS_START));
-
 export const NOTIFICATION_OPEN = "NOTIFICATION_OPEN";
 export const actionNotificationOpen = (message: NotificationMessageEnum): void => {
   setTimeout(() => {

@@ -5,7 +5,6 @@ import { galleryCallback } from "../../gallery/store";
 import { helpCallback } from "../store";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
-import { saveAsCallback } from "../../../stores/register/save_as";
 import { IState, IStateTrack } from "../../../stores/state";
 import { songEditCallback } from "../../song/store";
 import { createAndSaveCallback } from "../../createAndSave/store";
@@ -46,7 +45,7 @@ describe("compose-key element", () => {
 
   it("add save_as_start event", async () => {
     resetDispatcher(st);
-    register(saveAsCallback);
+    register(createAndSaveCallback);
     const promise = new Promise((resolve) => {
       connect((state: IState) => {
         resolve(state.track);
