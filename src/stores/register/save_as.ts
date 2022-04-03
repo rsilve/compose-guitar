@@ -3,7 +3,7 @@ import { addToGallery } from "./gallery_tools";
 import { IState, IStateTrack } from "../state";
 import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
-import { SAVE_AS_START_AND_NEW } from "../../components/confirmSave/actions";
+import { SAVE_AS_START_AND_NEW } from "../../components/createAndSave/actions";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };

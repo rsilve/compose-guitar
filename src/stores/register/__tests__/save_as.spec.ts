@@ -6,7 +6,7 @@ import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
-import { SAVE_AS_START_AND_NEW } from "../../../components/confirmSave/actions";
+import { SAVE_AS_START_AND_NEW } from "../../../components/createAndSave/actions";
 
 describe("Register save_as", () => {
   const st = stateTest;

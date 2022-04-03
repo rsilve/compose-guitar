@@ -3,7 +3,7 @@ import { customElement, state } from "lit/decorators.js";
 import "../../components/gallery";
 import "../song";
 import "../../components/help";
-import "../../components/confirmSave";
+import "../createAndSave";
 import "../../components/synchronization";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
