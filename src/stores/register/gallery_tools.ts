@@ -127,6 +127,7 @@ export function galleryDictExtended(): Record<string, IGalleryTrack> {
 }
 
 export const storage = {
+  existsInGallery,
   getFromGallery,
   removeFromGallery,
   addToGallery,

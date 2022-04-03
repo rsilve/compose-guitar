@@ -2,9 +2,7 @@ import { IPayloadEditor, MODALS_CLOSE, TRACK_COPY, TRACK_EDIT, TRACK_NEW, TRACK_
 import { IState } from "../state";
 import { saveNeeded } from "../../tools/state_tools";
 import Action from "../../actions/Action";
-import { uuid } from "../../tools/uuid";
 import { TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../../components/confirmSave/actions";
-import { TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "../../components/song_editor/actions";
 
 export async function trackCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
@@ -39,25 +37,6 @@ export async function trackCallback(action: Action, state: IState): Promise<ISta
   if (action.actionType === TRACK_EDIT) {
     const { title, grid_text } = action.payload as IPayloadEditor;
     result.editor = { title, grid_text };
-  }
-
-  if (action.actionType === TRACK_EDIT_CANCEL || action.actionType === MODALS_CLOSE) {
-    result.editor = undefined;
-  }
-
-  if (action.actionType === TRACK_EDIT_APPLY) {
-    const { title, grid_text, updated_at } = action.payload as IPayloadEditor;
-    let { track = {} } = result;
-    track = {
-      ...track,
-      title,
-      grid_text,
-      updated_at,
-    };
-    if (!track.id) {
-      track.id = uuid();
-    }
-    result = { ...result, track, editor: undefined };
   }
 
   if (action.actionType === TRACK_COPY) {

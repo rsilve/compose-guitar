@@ -8,12 +8,12 @@ import "./editor/GridEditorHelp";
 
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
-import { existsInGallery } from "../../stores/register/gallery_tools";
 import { actionNotificationOpen } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
 import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { buttonStyles, inputStyles, modalStyles } from "../styles";
 import { actionTrackEditApply, actionTrackEditCancel } from "./actions";
+import { storage } from "../../stores/register/gallery_tools";
 
 @localized()
 @customElement("song-editor")
@@ -84,7 +84,7 @@ class SongEditor extends LitElement {
   _handle_change_title(e: CustomEvent): void {
     let { value } = e.detail;
     value = value.trim();
-    this._grid_title_already_exists = existsInGallery(value, this._original_title);
+    this._grid_title_already_exists = storage.existsInGallery(value, this._original_title);
     this._grid_title = value;
   }
 
