@@ -8,7 +8,7 @@ import {
   actionSynchroForceStart,
   actionSynchroSignIn,
 } from "../../actions/actions";
-import { NotificationMessageEnum } from "../NotificationMessageEnum";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 
 @customElement("google-api")
 class GoogleAPI extends LitElement {

@@ -1,14 +1,14 @@
 import { expect, fixture, html } from "@open-wc/testing";
-import AccountStatus from "../AccountStatus";
-import { register, resetDispatcher } from "../../stores/dispatcher";
-import { stateTest } from "../../__tests__/TestHelpers";
+import { stateTest } from "../../../__tests__/TestHelpers";
+import { register, resetDispatcher } from "../../../stores/dispatcher";
 import {
   NOTIFICATION_OPEN,
   SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_DEACTIVATION_REQUEST,
   SYNCHRO_FORCE,
   SYNCHRO_FORCE_START,
-} from "../../actions/actions";
+} from "../../../actions/actions";
+import AccountStatus from "../AccountStatus";
 
 describe("account status element", () => {
   const st = stateTest;

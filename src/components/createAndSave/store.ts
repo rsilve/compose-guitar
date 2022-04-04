@@ -11,7 +11,7 @@ import {
 } from "./actions";
 import { IState, IStateTrack } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
-import { addToGallery } from "../../stores/register/gallery_tools";
+import { storage } from "../../stores/register/gallery_tools";
 import { synchronizer } from "../../stores/register/synchronizer";
 
 async function save(state: IState): Promise<IState> {
@@ -19,7 +19,7 @@ async function save(state: IState): Promise<IState> {
   if (result.track && result.track.title) {
     const { track = {} } = result;
     const tr: IStateTrack = { ...track, saved_at: new Date().toISOString() };
-    result = addToGallery(tr, result);
+    result = storage.addToGallery(tr, result);
     if (result.synchronization.enabled) {
       await synchronizer.upload(tr);
     }

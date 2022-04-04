@@ -1,19 +1,18 @@
 import { html, LitElement, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { DispatcherController } from "../stores/lit_controller";
-import { IState } from "../stores/state";
+import "../icons";
+import "./SynchronizationStatus";
+import { IState } from "../../stores/state";
+import { DispatcherController } from "../../stores/lit_controller";
 import {
   actionNotificationOpen,
   actionSynchroForce,
   actionSynchroForceStart,
   actionSynchronizationActivationRequest,
   actionSynchronizationDeactivationRequest,
-} from "../actions/actions";
-
-import "../components/icons";
-import "./sync/SynchronizationStatus";
-import { NotificationMessageEnum } from "./NotificationMessageEnum";
+} from "../../actions/actions";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 
 @customElement("account-status")
 class AccountStatus extends LitElement {

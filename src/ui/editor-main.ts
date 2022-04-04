@@ -8,8 +8,7 @@ import "../components/transpose";
 import "../components/modals";
 import "../components/help";
 import "./notification/compose-notification";
-import "./AccountStatus";
-import "./sync/GoogleAPI";
+import "../components/synchronization";
 import FeatureFlag from "../stores/FeatureFlag";
 import { noPrintStyles } from "../components/styles";
 
