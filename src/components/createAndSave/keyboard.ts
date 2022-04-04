@@ -1,7 +1,7 @@
 import { actionTrackCopy, actionTrackNew, actionTrackPaste } from "./actions";
 import { IState } from "../../stores/state";
 import { actionNotificationOpen } from "../../actions/actions";
-import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 
 export function track_new_key(e: KeyboardEvent, state: IState | undefined) {
   if (e.ctrlKey && e.key === "n" && state) {

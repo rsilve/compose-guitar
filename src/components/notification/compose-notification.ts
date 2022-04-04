@@ -4,7 +4,7 @@ import { localized, msg } from "@lit/localize";
 import { DispatcherController } from "../../stores/lit_controller";
 import { actionNotificationClose } from "../../actions/actions";
 import { IState } from "../../stores/state";
-import { NotificationMessageEnum } from "../NotificationMessageEnum";
+import { NotificationMessageEnum } from "./NotificationMessageEnum";
 
 @localized()
 @customElement("compose-notification")

@@ -1,4 +1,4 @@
-import { NotificationMessageEnum } from "src/ui/NotificationMessageEnum";
+import { NotificationMessageEnum } from "../components/notification/NotificationMessageEnum";
 
 export interface IStateDownload {
   filename?: string;

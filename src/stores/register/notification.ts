@@ -1,7 +1,7 @@
 import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from "../../actions/actions";
 import { IState } from "../state";
 import Action from "../../actions/Action";
-import { NotificationMessageEnum } from "src/ui/NotificationMessageEnum";
+import { NotificationMessageEnum } from "../../components/notification/NotificationMessageEnum";
 
 export function notificationCallback(action: Action, state: IState): Promise<IState> {
   const result = state;

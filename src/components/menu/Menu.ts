@@ -7,9 +7,9 @@ import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";
 import { actionNotificationOpen } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
-import { NotificationMessageEnum } from "../NotificationMessageEnum";
-import { actionGalleryOpen } from "../../components/gallery/actions";
-import { actionSaveAsStart, actionTrackNew } from "../../components/createAndSave/actions";
+import { actionGalleryOpen } from "../gallery/actions";
+import { actionSaveAsStart, actionTrackNew } from "../createAndSave/actions";
+import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 
 @localized()
 @customElement("compose-menu")

@@ -6,8 +6,8 @@ import { IGalleryTrack } from "../../stores/state";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionGalleryClose, actionGalleryRemove, actionUploadFromGallery } from "./actions";
 import { actionNotificationOpen } from "../../actions/actions";
-import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { storage } from "../../stores/register/gallery_tools";
+import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 
 @localized()
 @customElement("track-gallery")

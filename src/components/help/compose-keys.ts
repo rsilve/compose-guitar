@@ -8,12 +8,12 @@ import { actionHelpOpen } from "./actions";
 import { galleryOpenKey } from "../gallery";
 import { zoomDecrKey, zoomIncrKey } from "../zoom";
 import { actionModalsClose, actionNotificationOpen } from "../../actions/actions";
-import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { songEditKey } from "../song";
 import { newSongKey, songCopyKey, songPasteKey } from "../createAndSave";
 import { actionSaveAsStart } from "../createAndSave/actions";
+import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 
 @localized()
 @customElement("compose-keys")

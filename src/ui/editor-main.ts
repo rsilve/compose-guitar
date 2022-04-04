@@ -1,13 +1,13 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
-import "./menu/Menu";
+import "../components/menu";
 import "./main-screen";
 import "../components/zoom";
 import "../components/transpose";
 import "../components/modals";
 import "../components/help";
-import "./notification/compose-notification";
+import "../components/notification";
 import "../components/synchronization";
 import FeatureFlag from "../stores/FeatureFlag";
 import { noPrintStyles } from "../components/styles";

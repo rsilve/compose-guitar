@@ -1,6 +1,6 @@
 import Action from "./Action";
 import { publishAction } from "./publish_action";
-import { NotificationMessageEnum } from "../ui/NotificationMessageEnum";
+import { NotificationMessageEnum } from "../components/notification/NotificationMessageEnum";
 
 export const INIT_APP = "INIT_APP";
 export const actionInitApp = (): Promise<void> => publishAction(new Action(INIT_APP));

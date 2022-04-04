@@ -4,7 +4,7 @@ import { localized, msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionSaveAsStartAndNew, actionTrackNewCancel, actionTrackNewWithoutSave } from "./actions";
 import { actionNotificationOpen } from "../../actions/actions";
-import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 
 @localized()
 @customElement("confirm-save")
