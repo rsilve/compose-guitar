@@ -5,14 +5,14 @@ import "../icons";
 import "./SynchronizationStatus";
 import { IState } from "../../stores/state";
 import { DispatcherController } from "../../stores/lit_controller";
+import { actionNotificationOpen } from "../../actions/actions";
+import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
 import {
-  actionNotificationOpen,
   actionSynchroForce,
   actionSynchroForceStart,
   actionSynchronizationActivationRequest,
   actionSynchronizationDeactivationRequest,
-} from "../../actions/actions";
-import { NotificationMessageEnum } from "../../ui/NotificationMessageEnum";
+} from "./actions";
 
 @customElement("account-status")
 class AccountStatus extends LitElement {

@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import GoogleAPI from "../GoogleAPI";
 import { register, resetDispatcher } from "../../../stores/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { SYNCHRO_FORCE, SYNCHRO_FORCE_START, SYNCHRO_SIGN_IN } from "../../../actions/actions";
+import { SYNCHRO_FORCE, SYNCHRO_FORCE_START, SYNCHRO_SIGN_IN } from "../actions";
 
 describe("google-api element", () => {
   const st = stateTest;

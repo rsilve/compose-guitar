@@ -4,8 +4,8 @@ import { IState, IStateFeatureFlag } from "../../stores/state";
 import { msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionHelpClose } from "./actions";
-import { actionSynchroToggleEnable } from "../../actions/actions";
 import { DispatcherController } from "../../stores/lit_controller";
+import { actionSynchroToggleEnable } from "../synchronization/actions";
 
 @customElement("help-modal")
 class HelpModal extends LitElement {

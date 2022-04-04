@@ -2,7 +2,7 @@ import { expect, fixture, html } from "@open-wc/testing";
 import HelpModal from "../HelpModal";
 import { register } from "../../../stores/dispatcher";
 import { HELP_CLOSE } from "../actions";
-import { SYNCHRO_TOGGLE_ENABLED } from "../../../actions/actions";
+import { SYNCHRO_TOGGLE_ENABLED } from "../../synchronization/actions";
 
 describe("Help Modal element", () => {
   it("is defined", async () => {

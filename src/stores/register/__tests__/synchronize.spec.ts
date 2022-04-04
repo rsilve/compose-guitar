@@ -1,13 +1,5 @@
 import { expect } from "@open-wc/testing";
-import {
-  MODALS_CLOSE,
-  SYNCHRO_ACTIVATION_REQUEST,
-  SYNCHRO_DEACTIVATION_REQUEST,
-  SYNCHRO_FORCE,
-  SYNCHRO_FORCE_START,
-  SYNCHRO_SIGN_IN,
-  SYNCHRO_TOGGLE_ENABLED,
-} from "../../../actions/actions";
+import { MODALS_CLOSE } from "../../../actions/actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import { synchronizeCallback } from "../synchronize";
@@ -16,9 +8,15 @@ import { synchronizer } from "../synchronizer";
 import DispatcherError from "../../DispatcherError";
 import {
   SYNCHRO_ACTIVATION,
+  SYNCHRO_ACTIVATION_REQUEST,
   SYNCHRO_CONFIGURATION_CLOSE,
   SYNCHRO_DEACTIVATION,
+  SYNCHRO_DEACTIVATION_REQUEST,
+  SYNCHRO_FORCE,
+  SYNCHRO_FORCE_START,
+  SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
+  SYNCHRO_TOGGLE_ENABLED,
 } from "../../../components/synchronization/actions";
 
 describe("synchronize callback", () => {
