@@ -1,7 +1,7 @@
 // https://developers.google.com/drive/api/v3/reference/files/create
 // https://github.com/google/google-api-javascript-client
 
-import { IStateTrack, IStateTrackUploaded } from "../state";
+import { IStateTrack, IStateTrackUploaded } from "../../../stores/state";
 
 function getString(value: string | boolean | undefined): string {
   if (typeof value === "boolean") {

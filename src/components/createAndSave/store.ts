@@ -12,7 +12,7 @@ import {
 import { IState, IStateTrack } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { storage } from "../../stores/register/gallery_tools";
-import { synchronizer } from "../../stores/register/synchronizer";
+import { synchronizer } from "../synchronization/stores/synchronizer";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };

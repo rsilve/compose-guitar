@@ -1,11 +1,6 @@
-import { IState, IStateTrack } from "../state";
-import {
-  addToGallery,
-  addToSynchronizedIndex,
-  getSynchronizedIndex,
-  removeFromSynchronizedIndex,
-} from "./gallery_tools";
 import { googleApiWrapper } from "./google-api";
+import { storage } from "../../../stores/register/gallery_tools";
+import { IState, IStateTrack } from "../../../stores/state";
 
 class Synchronizer {
   signIn(): Promise<boolean> {
@@ -17,14 +12,14 @@ class Synchronizer {
   }
 
   upload(track: IStateTrack): Promise<IStateTrack> {
-    const index = track.id ? getSynchronizedIndex(track.id) : undefined;
+    const index = track.id ? storage.getSynchronizedIndex(track.id) : undefined;
     let promise;
     if (index) {
       promise = googleApiWrapper.updateSong(track, index);
     } else {
       promise = googleApiWrapper.saveSong(track);
     }
-    return promise.then((id) => addToSynchronizedIndex(track, id));
+    return promise.then((id) => storage.addToSynchronizedIndex(track, id));
   }
 
   download(state: IState): Promise<number> {
@@ -34,18 +29,18 @@ class Synchronizer {
       synchronization = { ...synchronization, syncInProgress: undefined, open: undefined };
       st = { ...st, synchronization };
       values.forEach((uploaded) => {
-        st = addToGallery(uploaded.track, st);
-        addToSynchronizedIndex(uploaded.track, uploaded.id);
+        st = storage.addToGallery(uploaded.track, st);
+        storage.addToSynchronizedIndex(uploaded.track, uploaded.id);
       });
       return values.length;
     });
   }
 
   async remove(id: string): Promise<void> {
-    const index = getSynchronizedIndex(id);
+    const index = storage.getSynchronizedIndex(id);
     if (index) {
       return googleApiWrapper.delete(index).then(() => {
-        removeFromSynchronizedIndex(id);
+        storage.removeFromSynchronizedIndex(id);
       });
     }
     return Promise.resolve();

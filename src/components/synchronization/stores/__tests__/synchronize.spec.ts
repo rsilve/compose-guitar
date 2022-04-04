@@ -1,11 +1,7 @@
 import { expect } from "@open-wc/testing";
-import { MODALS_CLOSE } from "../../../actions/actions";
-import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { synchronizeCallback } from "../synchronize";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
-import DispatcherError from "../../DispatcherError";
 import {
   SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
@@ -17,7 +13,11 @@ import {
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
-} from "../../../components/synchronization/actions";
+} from "../../actions";
+import { stateTest } from "../../../../__tests__/TestHelpers";
+import Action from "../../../../actions/Action";
+import { MODALS_CLOSE } from "../../../../actions/actions";
+import DispatcherError from "../../../../stores/DispatcherError";
 
 describe("synchronize callback", () => {
   const st = stateTest;

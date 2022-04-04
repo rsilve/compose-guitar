@@ -5,8 +5,8 @@ import Action from "../../../actions/Action";
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW, TRACK_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
 import { createAndSaveCallback } from "../store";
 import sinon from "sinon";
-import { synchronizer } from "../../../stores/register/synchronizer";
 import { getFromGallery } from "../../../stores/register/gallery_tools";
+import { synchronizer } from "../../synchronization/stores/synchronizer";
 
 describe("track callback", () => {
   const st = stateTest;

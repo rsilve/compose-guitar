@@ -1,10 +1,10 @@
 import { expect } from "@open-wc/testing";
-import { addToSynchronizedIndex, galleryDict, getSynchronizedIndex } from "../gallery_tools";
 import { googleApiWrapper } from "../google-api";
 import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
-import { stateTest } from "../../../__tests__/TestHelpers";
-import { IStateTrack } from "../../state";
+import { IStateTrack } from "../../../../stores/state";
+import { stateTest } from "../../../../__tests__/TestHelpers";
+import { storage } from "../../../../stores/register/gallery_tools";
 
 describe("synchronize tools", () => {
   const stub = sinon.stub(googleApiWrapper);
@@ -14,16 +14,16 @@ describe("synchronize tools", () => {
     const track: IStateTrack = { grid_text: "A", title: "title2" };
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    const id = getSynchronizedIndex(track.id || "undef");
+    const id = storage.getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("gid");
   });
 
   it("upload already uploaded", async () => {
-    const track = addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
-    stub.updateSong.returns(Promise.resolve(getSynchronizedIndex(track.id || "undef") || "undef"));
+    const track = storage.addToSynchronizedIndex({ grid_text: "A", title: "title2" }, "my_id");
+    stub.updateSong.returns(Promise.resolve(storage.getSynchronizedIndex(track.id || "undef") || "undef"));
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    const id = getSynchronizedIndex(track.id || "undef");
+    const id = storage.getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("my_id");
   });
 
@@ -39,7 +39,7 @@ describe("synchronize tools", () => {
     );
     const count = await synchronizer.download(stateTest);
     expect(count).to.be.equal(1);
-    expect(galleryDict()).to.be.deep.equal({ my_id: "title2" });
+    expect(storage.galleryDict()).to.be.deep.equal({ my_id: "title2" });
   });
 
   it("delete", async () => {
@@ -49,11 +49,11 @@ describe("synchronize tools", () => {
     const track: IStateTrack = { grid_text: "A", title: "title2" };
     const result = await synchronizer.upload(track);
     expect(result).to.be.deep.equal(result);
-    let id = getSynchronizedIndex(track.id || "undef");
+    let id = storage.getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.equal("gid");
 
     await synchronizer.remove(track.id || "undef");
-    id = getSynchronizedIndex(track.id || "undef");
+    id = storage.getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.undefined;
   });
 });

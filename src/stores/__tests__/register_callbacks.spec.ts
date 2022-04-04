@@ -3,13 +3,11 @@ import registerCallbacks from "../register_callbacks";
 import { registered } from "../dispatcher";
 import { initAppCallback } from "../register/misc";
 import { notificationCallback } from "../register/notification";
-import { synchronizeCallback } from "../register/synchronize";
 
 describe("Register", () => {
   it("init", () => {
     registerCallbacks();
     expect(registered(initAppCallback)).to.be.true;
     expect(registered(notificationCallback)).to.be.true;
-    expect(registered(synchronizeCallback)).to.be.true;
   });
 });

@@ -1,8 +1,4 @@
-import { MODALS_CLOSE } from "../../actions/actions";
-import { IState } from "../state";
-import Action from "../../actions/Action";
 import { synchronizer } from "./synchronizer";
-import DispatcherError from "../DispatcherError";
 import {
   SYNCHRO_ACTIVATION,
   SYNCHRO_ACTIVATION_REQUEST,
@@ -14,7 +10,11 @@ import {
   SYNCHRO_SIGN_IN,
   SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
-} from "../../components/synchronization/actions";
+} from "../actions";
+import { IState } from "../../../stores/state";
+import Action from "../../../actions/Action";
+import { MODALS_CLOSE } from "../../../actions/actions";
+import DispatcherError from "../../../stores/DispatcherError";
 
 function synchroActivationRequest(action: Action, result: IState) {
   if (action.actionType === SYNCHRO_ACTIVATION_REQUEST || action.actionType === SYNCHRO_DEACTIVATION_REQUEST) {

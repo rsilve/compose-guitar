@@ -2,7 +2,6 @@ import { expect } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import Action from "../../../actions/Action";
 import sinon from "sinon";
-import { googleApiWrapper } from "../../../stores/register/google-api";
 import { galleryCallback } from "../store";
 import {
   addToGallery,
@@ -11,6 +10,7 @@ import {
   getSynchronizedIndex,
 } from "../../../stores/register/gallery_tools";
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE } from "../actions";
+import { googleApiWrapper } from "../../synchronization/stores/google-api";
 
 describe("Gallery callback", () => {
   const st = stateTest;
