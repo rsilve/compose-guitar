@@ -7,7 +7,6 @@ import { localized, msg } from "@lit/localize";
 import { actionHelpOpen } from "./actions";
 import { galleryOpenKey } from "../gallery";
 import { zoomDecrKey, zoomIncrKey } from "../zoom";
-import { actionModalsClose } from "../../actions/actions";
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
 import { songEditKey } from "../song";
@@ -15,6 +14,7 @@ import { newSongKey, songCopyKey, songPasteKey } from "../createAndSave";
 import { actionSaveAsStart } from "../createAndSave/actions";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 import { actionNotificationOpen } from "../notification/actions";
+import { actionModalsClose } from "../modals/actions";
 
 @localized()
 @customElement("compose-keys")

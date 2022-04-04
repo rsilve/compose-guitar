@@ -9,8 +9,3 @@ export interface IPayloadEditor {
   grid_text?: string;
   updated_at?: string;
 }
-
-export const MODALS_CLOSE = "MODALS_CLOSE";
-export const actionModalsClose = (): void => {
-  publishAction(new Action(MODALS_CLOSE));
-};

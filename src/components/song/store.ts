@@ -1,8 +1,9 @@
 import { TRACK_EDIT, TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "./actions";
-import { IPayloadEditor, MODALS_CLOSE } from "../../actions/actions";
+import { IPayloadEditor } from "../../actions/actions";
 import { uuid } from "../../tools/uuid";
 import Action from "../../actions/Action";
 import { IState } from "../../stores/state";
+import { MODALS_CLOSE } from "../modals/actions";
 
 export function songEditCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };

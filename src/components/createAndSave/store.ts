@@ -1,4 +1,4 @@
-import { IPayloadEditor, MODALS_CLOSE } from "../../actions/actions";
+import { IPayloadEditor } from "../../actions/actions";
 import Action from "../../actions/Action";
 import {
   SAVE_AS_START,
@@ -13,6 +13,7 @@ import { IState, IStateTrack } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { storage } from "../../stores/register/gallery_tools";
 import { synchronizer } from "../synchronization/stores/synchronizer";
+import { MODALS_CLOSE } from "../modals/actions";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };

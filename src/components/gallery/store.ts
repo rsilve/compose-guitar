@@ -1,9 +1,9 @@
-import { MODALS_CLOSE } from "../../actions/actions";
 import Action from "../../actions/Action";
 import { IState } from "../../stores/state";
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE, UPLOAD_FROM_GALLERY } from "./actions";
 import { removeFromGallery, storage } from "../../stores/register/gallery_tools";
 import { synchronizer } from "../synchronization/stores/synchronizer";
+import { MODALS_CLOSE } from "../modals/actions";
 
 export async function galleryCallback(action: Action, state: IState): Promise<IState> {
   const result = state;

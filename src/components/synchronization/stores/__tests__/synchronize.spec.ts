@@ -16,8 +16,8 @@ import {
 } from "../../actions";
 import { stateTest } from "../../../../__tests__/TestHelpers";
 import Action from "../../../../actions/Action";
-import { MODALS_CLOSE } from "../../../../actions/actions";
 import DispatcherError from "../../../../stores/DispatcherError";
+import { MODALS_CLOSE } from "../../../modals/actions";
 
 describe("synchronize callback", () => {
   const st = stateTest;

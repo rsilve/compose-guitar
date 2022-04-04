@@ -13,8 +13,8 @@ import {
 } from "../actions";
 import { IState } from "../../../stores/state";
 import Action from "../../../actions/Action";
-import { MODALS_CLOSE } from "../../../actions/actions";
 import DispatcherError from "../../../stores/DispatcherError";
+import { MODALS_CLOSE } from "../../modals/actions";
 
 function synchroActivationRequest(action: Action, result: IState) {
   if (action.actionType === SYNCHRO_ACTIVATION_REQUEST || action.actionType === SYNCHRO_DEACTIVATION_REQUEST) {
