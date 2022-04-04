@@ -2,9 +2,9 @@ import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { IState } from "../../stores/state";
 import { DispatcherController } from "../../stores/lit_controller";
-import { actionNotificationOpen } from "../../actions/actions";
 import { actionSynchroForce, actionSynchroForceStart, actionSynchroSignIn } from "./actions";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
+import { actionNotificationOpen } from "../notification/actions";
 
 @customElement("google-api")
 class GoogleAPI extends LitElement {

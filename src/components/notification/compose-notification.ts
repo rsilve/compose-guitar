@@ -2,9 +2,9 @@ import { customElement, property, state } from "lit/decorators.js";
 import { css, html, LitElement } from "lit";
 import { localized, msg } from "@lit/localize";
 import { DispatcherController } from "../../stores/lit_controller";
-import { actionNotificationClose } from "../../actions/actions";
 import { IState } from "../../stores/state";
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
+import { actionNotificationClose } from "./actions";
 
 @localized()
 @customElement("compose-notification")

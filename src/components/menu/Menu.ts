@@ -5,11 +5,11 @@ import "../../components/icons";
 import { IState } from "../../stores/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { DispatcherController } from "../../stores/lit_controller";
-import { actionNotificationOpen } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
 import { actionGalleryOpen } from "../gallery/actions";
 import { actionSaveAsStart, actionTrackNew } from "../createAndSave/actions";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
+import { actionNotificationOpen } from "../notification/actions";
 
 @localized()
 @customElement("compose-menu")

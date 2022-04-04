@@ -8,12 +8,12 @@ import "./editor/GridEditorHelp";
 
 import { DispatcherController } from "../../stores/lit_controller";
 import { IState } from "../../stores/state";
-import { actionNotificationOpen } from "../../actions/actions";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, inputStyles, modalStyles } from "../styles";
 import { actionTrackEditApply, actionTrackEditCancel } from "./actions";
 import { storage } from "../../stores/register/gallery_tools";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
+import { actionNotificationOpen } from "../notification/actions";
 
 @localized()
 @customElement("song-editor")

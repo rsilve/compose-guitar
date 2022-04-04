@@ -1,7 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { NOTIFICATION_OPEN } from "../../../actions/actions";
 import AccountStatus from "../AccountStatus";
 import {
   SYNCHRO_ACTIVATION_REQUEST,
@@ -9,6 +8,7 @@ import {
   SYNCHRO_FORCE,
   SYNCHRO_FORCE_START,
 } from "../actions";
+import { NOTIFICATION_OPEN } from "../../notification/actions";
 
 describe("account status element", () => {
   const st = stateTest;
