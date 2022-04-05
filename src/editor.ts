@@ -1,13 +1,9 @@
-import "./ui/editor-main";
-
-import init from "./init";
-import registerCallbacks from "./stores/register_callbacks";
 import { html, render } from "lit";
 import localize from "./tools/initLocale";
 import { registerSW } from "virtual:pwa-register";
+import { init } from "./components/root";
 
 async function run(): Promise<void> {
-  registerCallbacks();
   await init();
 }
 

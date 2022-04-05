@@ -1,9 +1,9 @@
 import { expect } from "@open-wc/testing";
-import init from "../init";
-import { INIT_APP } from "../actions/actions";
-import { connect, register } from "../stores/dispatcher";
-import { IState } from "../stores/state";
-import { getLastState } from "../stores/register/gallery_tools";
+import init from "../initApp";
+import { connect, register } from "../../../stores/dispatcher";
+import { IState } from "../../../stores/state";
+import { storage } from "../../../stores/register/gallery_tools";
+import { INIT_APP } from "../actions";
 
 describe("Init", () => {
   it("init", async () => {
@@ -21,11 +21,11 @@ describe("Init", () => {
       return Promise.resolve(state);
     });
 
-    expect(getLastState()).to.be.undefined;
+    expect(storage.getLastState()).to.be.undefined;
     // initialize_state()
     init();
     await promise;
     expect(action_init_done).to.be.true;
-    expect(getLastState()).not.be.undefined;
+    expect(storage.getLastState()).not.be.undefined;
   });
 });

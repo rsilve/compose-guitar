@@ -1,16 +1,16 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
-import "../components/menu";
 import "./main-screen";
-import "../components/zoom";
-import "../components/transpose";
-import "../components/modals";
-import "../components/help";
-import "../components/notification";
-import "../components/synchronization";
-import FeatureFlag from "../stores/FeatureFlag";
-import { noPrintStyles } from "../components/styles";
+import "../menu";
+import "../zoom";
+import "../transpose";
+import "../modals";
+import "../help";
+import "../notification";
+import "../synchronization";
+import FeatureFlag from "../../stores/FeatureFlag";
+import { noPrintStyles } from "../styles";
 
 @customElement("editor-main")
 class EditorMain extends LitElement {

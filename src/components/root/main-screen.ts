@@ -1,10 +1,10 @@
 import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 
-import "../components/onBoarding";
-import "../components/song";
-import { DispatcherController } from "../stores/lit_controller";
-import { IState } from "../stores/state";
+import "../onBoarding";
+import "../song";
+import { IState } from "../../stores/state";
+import { DispatcherController } from "../../stores/lit_controller";
 
 @customElement("main-screen")
 class MainScreen extends LitElement {

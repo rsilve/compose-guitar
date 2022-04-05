@@ -1,13 +1,13 @@
-import { INIT_APP } from "../../actions/actions";
-import { getLastState } from "./gallery_tools";
-import { IState } from "../state";
 import Action from "../../actions/Action";
-import FeatureFlag from "../FeatureFlag";
+import { INIT_APP } from "./actions";
+import FeatureFlag from "../../stores/FeatureFlag";
+import { IState } from "../../stores/state";
+import { storage } from "../../stores/register/gallery_tools";
 
 export function initAppCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === INIT_APP) {
-    const st = getLastState();
+    const st = storage.getLastState();
     if (st) {
       result = { ...result, ...st };
     }

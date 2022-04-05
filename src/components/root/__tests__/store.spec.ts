@@ -1,12 +1,12 @@
 import { expect } from "@open-wc/testing";
-import { INIT_APP } from "../../../actions/actions";
 
-import { initAppCallback } from "../misc";
-import { saveLastState } from "../gallery_tools";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { IState, STATE_VERSION } from "../../state";
 import Action from "../../../actions/Action";
-import FeatureFlag from "../../FeatureFlag";
+import { INIT_APP } from "../actions";
+import FeatureFlag from "../../../stores/FeatureFlag";
+import { storage } from "../../../stores/register/gallery_tools";
+import { IState, STATE_VERSION } from "../../../stores/state";
+import { initAppCallback } from "../store";
 
 describe("Register misc", () => {
   const st = stateTest;
@@ -27,7 +27,7 @@ describe("Register misc", () => {
         synchro_enabled: true,
       },
     };
-    saveLastState(last_state);
+    storage.saveLastState(last_state);
     const state = await initAppCallback(new Action(INIT_APP), { ...st });
     expect(state).to.deep.equal(last_state);
     expect(FeatureFlag.get().synchro_enabled).to.be.true;
