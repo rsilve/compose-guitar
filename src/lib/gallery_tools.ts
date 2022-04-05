@@ -138,4 +138,5 @@ export const storage = {
   getLastState,
   saveLastState,
   galleryDict,
+  galleryList,
 };
