@@ -69,3 +69,9 @@ export function default_state(): IState {
     },
   };
 }
+
+export interface IPayloadEditor {
+  title?: string;
+  grid_text?: string;
+  updated_at?: string;
+}

@@ -7,13 +7,12 @@ import {
   TRACK_NEW_WITHOUT_SAVE,
   TRACK_PASTE,
 } from "./actions";
-import { IState, IStateTrack } from "../../lib/state";
+import { IPayloadEditor, IState, IStateTrack } from "../../lib/state";
 import { saveNeeded } from "../../tools/state_tools";
 import { storage } from "../../lib/register/gallery_tools";
 import { synchronizer } from "../synchronization/stores/synchronizer";
 import { MODALS_CLOSE } from "../modals/actions";
 import Action from "../../lib/Action";
-import { IPayloadEditor } from "../../lib/actions";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };
