@@ -3,10 +3,10 @@ import { stateTest } from "../../../__tests__/TestHelpers";
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW, TRACK_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
 import { createAndSaveCallback } from "../store";
 import sinon from "sinon";
-import { getFromGallery } from "../../../lib/register/gallery_tools";
 import { synchronizer } from "../../synchronization/stores/synchronizer";
 import { MODALS_CLOSE } from "../../modals/actions";
 import Action from "../../../lib/Action";
+import { storage } from "../../../lib/gallery_tools";
 
 describe("track callback", () => {
   const st = stateTest;
@@ -65,7 +65,7 @@ describe("track callback", () => {
 
   it("save as start", async () => {
     const state = await createAndSaveCallback(new Action(SAVE_AS_START), { ...st });
-    const fromGallery = getFromGallery(state.track?.id || "");
+    const fromGallery = storage.getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;
     expect(fromGallery?.track?.saved_at).to.be.not.null;
@@ -76,7 +76,7 @@ describe("track callback", () => {
   it("save as start without id", async () => {
     delete st.track?.id;
     const state = await createAndSaveCallback(new Action(SAVE_AS_START), { ...st });
-    const fromGallery = getFromGallery(state.track?.id || "");
+    const fromGallery = storage.getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;
     expect(fromGallery?.track?.saved_at).to.be.not.null;
@@ -90,7 +90,7 @@ describe("track callback", () => {
       ...st,
       transpose: 0,
     });
-    const fromGallery = getFromGallery(state.track?.id || "");
+    const fromGallery = storage.getFromGallery(state.track?.id || "");
     expect(fromGallery?.track?.id).to.be.not.null;
     expect(fromGallery?.track?.saved_at).to.be.not.null;
     delete fromGallery?.track?.id;
@@ -104,7 +104,7 @@ describe("track callback", () => {
   it("save as start and upload", async () => {
     stub.upload.resolves(st.track);
     const state = await createAndSaveCallback(new Action(SAVE_AS_START), { ...st, synchronization: { enabled: true } });
-    const fromGallery = getFromGallery(state.track?.id || "");
+    const fromGallery = storage.getFromGallery(state.track?.id || "");
     expect(fromGallery?.track).to.be.not.null;
     expect(fromGallery?.track?.id).to.be.not.null;
     expect(fromGallery?.track?.saved_at).to.be.not.null;

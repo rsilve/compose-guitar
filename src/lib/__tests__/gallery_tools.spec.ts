@@ -12,9 +12,9 @@ import {
   removeFromGallery,
   removeFromSynchronizedIndex,
 } from "../gallery_tools";
-import { STATE_VERSION } from "../../state";
-import { stateTest } from "../../../__tests__/TestHelpers";
-import { uuid } from "../../../tools/uuid";
+import { uuid } from "../../tools/uuid";
+import { stateTest } from "../../__tests__/TestHelpers";
+import { STATE_VERSION } from "../state";
 
 describe("Gallery tools", () => {
   const st = stateTest;

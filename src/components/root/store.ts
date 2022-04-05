@@ -1,8 +1,8 @@
 import { INIT_APP } from "./actions";
 import FeatureFlag from "../../lib/FeatureFlag";
 import { IState } from "../../lib/state";
-import { storage } from "../../lib/register/gallery_tools";
 import Action from "../../lib/Action";
+import { storage } from "../../lib/gallery_tools";
 
 export function initAppCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };

@@ -9,10 +9,10 @@ import {
 } from "./actions";
 import { IPayloadEditor, IState, IStateTrack } from "../../lib/state";
 import { saveNeeded } from "../../tools/state_tools";
-import { storage } from "../../lib/register/gallery_tools";
 import { synchronizer } from "../synchronization/stores/synchronizer";
 import { MODALS_CLOSE } from "../modals/actions";
 import Action from "../../lib/Action";
+import { storage } from "../../lib/gallery_tools";
 
 async function save(state: IState): Promise<IState> {
   let result = { ...state };

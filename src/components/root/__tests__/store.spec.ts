@@ -3,10 +3,10 @@ import { expect } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { INIT_APP } from "../actions";
 import FeatureFlag from "../../../lib/FeatureFlag";
-import { storage } from "../../../lib/register/gallery_tools";
 import { IState, STATE_VERSION } from "../../../lib/state";
 import { initAppCallback } from "../store";
 import Action from "../../../lib/Action";
+import { storage } from "../../../lib/gallery_tools";
 
 describe("Register misc", () => {
   const st = stateTest;

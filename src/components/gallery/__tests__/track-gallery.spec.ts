@@ -2,8 +2,8 @@ import { expect, fixture, html } from "@open-wc/testing";
 import TrackGallery from "../TrackGallery";
 import sinon from "sinon";
 import { register, resetDispatcher } from "../../../lib/dispatcher";
-import { storage } from "../../../lib/register/gallery_tools";
 import { GALLERY_CLOSE, GALLERY_REMOVE, UPLOAD_FROM_GALLERY } from "../actions";
+import { storage } from "../../../lib/gallery_tools";
 
 describe("Track gallery element", () => {
   const stub = sinon.stub(storage);

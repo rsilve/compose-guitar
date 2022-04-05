@@ -11,9 +11,9 @@ import { IState } from "../../lib/state";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, inputStyles, modalStyles } from "../styles";
 import { actionTrackEditApply, actionTrackEditCancel } from "./actions";
-import { storage } from "../../lib/register/gallery_tools";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 import { actionNotificationOpen } from "../notification/actions";
+import { storage } from "../../lib/gallery_tools";
 
 @localized()
 @customElement("song-editor")

@@ -4,7 +4,7 @@ import sinon from "sinon";
 import { synchronizer } from "../synchronizer";
 import { IStateTrack } from "../../../../lib/state";
 import { stateTest } from "../../../../__tests__/TestHelpers";
-import { storage } from "../../../../lib/register/gallery_tools";
+import { storage } from "../../../../lib/gallery_tools";
 
 describe("synchronize tools", () => {
   const stub = sinon.stub(googleApiWrapper);

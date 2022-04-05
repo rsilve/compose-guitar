@@ -1,5 +1,5 @@
-import { default_state, IGalleryTrack, IState, IStateTrack } from "../state";
-import { uuid } from "../../tools/uuid";
+import { uuid } from "../tools/uuid";
+import { default_state, IGalleryTrack, IState, IStateTrack } from "./state";
 
 export function galleryList(): string[] {
   const dict = JSON.parse(localStorage.getItem("_gallery_list_dict_") || "{}");

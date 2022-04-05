@@ -2,15 +2,10 @@ import { expect } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
 import sinon from "sinon";
 import { galleryCallback } from "../store";
-import {
-  addToGallery,
-  addToSynchronizedIndex,
-  getFromGallery,
-  getSynchronizedIndex,
-} from "../../../lib/register/gallery_tools";
 import { GALLERY_CLOSE, GALLERY_OPEN, GALLERY_REMOVE } from "../actions";
 import { googleApiWrapper } from "../../synchronization/stores/google-api";
 import Action from "../../../lib/Action";
+import { storage } from "../../../lib/gallery_tools";
 
 describe("Gallery callback", () => {
   const st = stateTest;
@@ -24,13 +19,13 @@ describe("Gallery callback", () => {
   it("remove from gallery", async () => {
     let { track = {} } = st;
     track = { ...track, grid_text: "aa" };
-    addToGallery(track, { ...st, track });
+    storage.addToGallery(track, { ...st, track });
     const state = await galleryCallback(new Action(GALLERY_REMOVE, { id: track.id }), { ...st });
     expect(state.gallery).to.be.undefined;
     expect(state).to.deep.equal(st);
-    const fromGallery = getFromGallery("test1");
+    const fromGallery = storage.getFromGallery("test1");
     expect(fromGallery).to.be.null;
-    const fromGalleryById = getFromGallery(track.id || "");
+    const fromGalleryById = storage.getFromGallery(track.id || "");
     expect(fromGalleryById).to.be.null;
   });
 
@@ -42,17 +37,17 @@ describe("Gallery callback", () => {
     };
     let { track = {} } = stateSync;
     track = { ...track, grid_text: "aa" };
-    stateSync = addToGallery(track, { ...stateSync, track });
+    stateSync = storage.addToGallery(track, { ...stateSync, track });
     track = stateSync.track || {};
-    addToSynchronizedIndex(track, "remote_index");
+    storage.addToSynchronizedIndex(track, "remote_index");
     const state = await galleryCallback(new Action(GALLERY_REMOVE, { id: track.id }), stateSync);
     expect(state.gallery).to.be.undefined;
     expect(state).to.deep.equal(stateSync);
-    const fromGallery = getFromGallery("test1");
+    const fromGallery = storage.getFromGallery("test1");
     expect(fromGallery).to.be.null;
-    const fromGalleryById = getFromGallery(track.id || "");
+    const fromGalleryById = storage.getFromGallery(track.id || "");
     expect(fromGalleryById).to.be.null;
-    const id = getSynchronizedIndex(track.id || "undef");
+    const id = storage.getSynchronizedIndex(track.id || "undef");
     expect(id).to.be.undefined;
   });
 
