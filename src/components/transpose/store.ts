@@ -2,7 +2,7 @@ import { IState } from "../../lib/state";
 import { TRANSPOSE_CHANGE } from "./actions";
 import Action from "../../lib/Action";
 
-export function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
+export async function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === TRANSPOSE_CHANGE) {
     let { transpose } = action.payload as { transpose: number };
@@ -13,5 +13,5 @@ export function transposeChangeCallback(action: Action, state: IState): Promise<
     transpose = Math.max(-12, transpose);
     result = { ...result, transpose };
   }
-  return Promise.resolve(result);
+  return result;
 }

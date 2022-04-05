@@ -23,10 +23,10 @@ export async function galleryCallback(action: Action, state: IState): Promise<IS
   if (action.actionType === GALLERY_CLOSE || action.actionType === MODALS_CLOSE) {
     result.gallery = undefined;
   }
-  return Promise.resolve(result);
+  return result;
 }
 
-export function uploadCallback(action: Action, state: IState): Promise<IState> {
+export async function uploadCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === UPLOAD_FROM_GALLERY) {
     const { id } = action.payload as { id: string };
@@ -35,5 +35,5 @@ export function uploadCallback(action: Action, state: IState): Promise<IState> {
     result = { ...result, ...grid, synchronization, featureFlags, gallery: undefined };
   }
 
-  return Promise.resolve(result);
+  return result;
 }

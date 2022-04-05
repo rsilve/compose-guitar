@@ -3,7 +3,7 @@ import { IState } from "../../lib/state";
 import { MODALS_CLOSE } from "../modals/actions";
 import Action from "../../lib/Action";
 
-export function helpCallback(action: Action, state: IState): Promise<IState> {
+export async function helpCallback(action: Action, state: IState): Promise<IState> {
   const result = state;
   if (action.actionType === HELP_OPEN) {
     result.help_open = true;
@@ -13,5 +13,5 @@ export function helpCallback(action: Action, state: IState): Promise<IState> {
     result.help_open = undefined;
   }
 
-  return Promise.resolve(result);
+  return result;
 }

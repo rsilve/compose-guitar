@@ -79,5 +79,5 @@ export async function createAndSaveCallback(action: Action, state: IState): Prom
     result = { ...result, editor: {}, transpose: 0 };
   }
 
-  return Promise.resolve(result);
+  return result;
 }

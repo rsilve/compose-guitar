@@ -2,7 +2,7 @@ import { IState } from "../../lib/state";
 import { ZOOM_CHANGE } from "./actions";
 import Action from "../../lib/Action";
 
-export function zoomChangeCallback(action: Action, state: IState): Promise<IState> {
+export async function zoomChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };
   if (action.actionType === ZOOM_CHANGE) {
     let { zoom } = action.payload as { zoom: number };
@@ -13,5 +13,5 @@ export function zoomChangeCallback(action: Action, state: IState): Promise<IStat
     zoom = Math.max(10, zoom);
     result = { ...result, zoom };
   }
-  return Promise.resolve(result);
+  return result;
 }

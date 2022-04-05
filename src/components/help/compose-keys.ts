@@ -10,11 +10,8 @@ import { zoomDecrKey, zoomIncrKey } from "../zoom";
 import { DispatcherController } from "../../lib/lit_controller";
 import { IState } from "../../lib/state";
 import { songEditKey } from "../song";
-import { newSongKey, songCopyKey, songPasteKey } from "../createAndSave";
-import { actionSaveAsStart } from "../createAndSave/actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
-import { actionModalsClose } from "../modals/actions";
+import { newSongKey, saveAsStartKey, songCopyKey, songPasteKey } from "../createAndSave";
+import { closeModalKey } from "../modals";
 
 @localized()
 @customElement("compose-keys")
@@ -46,7 +43,7 @@ class ComposeKeys extends LitElement {
   _listener(e: KeyboardEvent): void {
     songEditKey(e, this._state);
 
-    this.save_as_start_key(e);
+    saveAsStartKey(e, this._state);
 
     galleryOpenKey(e, this._state);
 
@@ -60,21 +57,7 @@ class ComposeKeys extends LitElement {
 
     songPasteKey(e, this._state);
 
-    ComposeKeys.close_modal_key(e);
-  }
-
-  private static close_modal_key(e: KeyboardEvent) {
-    if (e.key === "Escape") {
-      actionModalsClose();
-      e.preventDefault();
-    }
-  }
-
-  private save_as_start_key(e: KeyboardEvent) {
-    if (!e.altKey && e.ctrlKey && e.key === "s" && this._state) {
-      actionSaveAsStart().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
-      e.preventDefault();
-    }
+    closeModalKey(e);
   }
 
   render(): unknown {
