@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { DispatcherController } from "../../stores/lit_controller";
-import { IState } from "../../stores/state";
+import { DispatcherController } from "../../lib/lit_controller";
+import { IState } from "../../lib/state";
 import { actionZoomChange } from "./actions";
 
 const DEFAULT_ZOOM = 100;

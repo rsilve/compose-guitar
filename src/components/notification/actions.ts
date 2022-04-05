@@ -1,6 +1,6 @@
 import { NotificationMessageEnum } from "./NotificationMessageEnum";
-import { publishAction } from "../../actions/publish_action";
-import Action from "../../actions/Action";
+import { publishAction } from "../../lib/publish_action";
+import Action from "../../lib/Action";
 
 export const NOTIFICATION_OPEN = "NOTIFICATION_OPEN";
 export const actionNotificationOpen = (message: NotificationMessageEnum): void => {

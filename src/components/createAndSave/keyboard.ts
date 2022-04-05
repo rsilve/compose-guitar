@@ -1,5 +1,5 @@
 import { actionTrackCopy, actionTrackNew, actionTrackPaste } from "./actions";
-import { IState } from "../../stores/state";
+import { IState } from "../../lib/state";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 import { actionNotificationOpen } from "../notification/actions";
 

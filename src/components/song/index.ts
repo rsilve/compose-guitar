@@ -1,6 +1,6 @@
 import "./SongEditor";
 import "./app-main-preview";
-import { register } from "../../stores/dispatcher";
+import { register } from "../../lib/dispatcher";
 import { songEditCallback } from "./store";
 import { editKey } from "./keyboard";
 

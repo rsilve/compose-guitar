@@ -1,8 +1,8 @@
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { TRACK_EDIT, TRACK_EDIT_APPLY, TRACK_EDIT_CANCEL } from "../actions";
 import { expect } from "@open-wc/testing";
 import { songEditCallback } from "../store";
+import Action from "../../../lib/Action";
 
 describe("track callback", () => {
   const st = stateTest;

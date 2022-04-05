@@ -1,5 +1,5 @@
-import { publishAction } from "../../actions/publish_action";
-import Action from "../../actions/Action";
+import { publishAction } from "../../lib/publish_action";
+import Action from "../../lib/Action";
 
 export const UPLOAD_FROM_GALLERY = "UPLOAD_FROM_GALLERY";
 export const actionUploadFromGallery = (id: string): Promise<void> =>

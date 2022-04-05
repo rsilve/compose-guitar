@@ -1,5 +1,5 @@
 import "./zoom-grid";
-import { register } from "../../stores/dispatcher";
+import { register } from "../../lib/dispatcher";
 import { zoomChangeCallback } from "./store";
 import { decrKey, incrKey } from "./keyboard";
 

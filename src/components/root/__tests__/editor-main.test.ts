@@ -1,9 +1,9 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import EditorMain from "../editor-main";
 import sinon from "sinon";
-import { resetDispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../lib/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import FeatureFlag from "../../../stores/FeatureFlag";
+import FeatureFlag from "../../../lib/FeatureFlag";
 
 describe("Main app element", () => {
   it("is defined", async () => {

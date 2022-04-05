@@ -1,5 +1,5 @@
-import { publishAction } from "../../actions/publish_action";
-import Action from "../../actions/Action";
+import Action from "../../lib/Action";
+import { publishAction } from "../../lib/publish_action";
 
 export const ZOOM_CHANGE = "ZOOM_CHANGE";
 export const actionZoomChange = (zoom: number): void => {

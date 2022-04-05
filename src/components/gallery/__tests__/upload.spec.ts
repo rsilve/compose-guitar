@@ -2,10 +2,10 @@ import { expect } from "@open-wc/testing";
 
 import { stateTest } from "../../../__tests__/TestHelpers";
 import { uuid } from "../../../tools/uuid";
-import Action from "../../../actions/Action";
-import { storage } from "../../../stores/register/gallery_tools";
+import { storage } from "../../../lib/register/gallery_tools";
 import { UPLOAD_FROM_GALLERY } from "../actions";
 import { uploadCallback } from "../store";
+import Action from "../../../lib/Action";
 
 describe("Upload callback", () => {
   const st = stateTest;

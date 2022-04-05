@@ -1,6 +1,6 @@
 import { googleApiWrapper } from "./google-api";
-import { storage } from "../../../stores/register/gallery_tools";
-import { IState, IStateTrack } from "../../../stores/state";
+import { storage } from "../../../lib/register/gallery_tools";
+import { IState, IStateTrack } from "../../../lib/state";
 
 class Synchronizer {
   signIn(): Promise<boolean> {

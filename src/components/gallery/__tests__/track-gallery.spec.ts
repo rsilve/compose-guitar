@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import TrackGallery from "../TrackGallery";
 import sinon from "sinon";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { storage } from "../../../stores/register/gallery_tools";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { storage } from "../../../lib/register/gallery_tools";
 import { GALLERY_CLOSE, GALLERY_REMOVE, UPLOAD_FROM_GALLERY } from "../actions";
 
 describe("Track gallery element", () => {

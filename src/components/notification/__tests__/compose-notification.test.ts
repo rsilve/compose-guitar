@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ComposeNotification from "../compose-notification";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { resetDispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../lib/dispatcher";
 import { NotificationMessageEnum } from "../NotificationMessageEnum";
 
 describe("compose-notification element", () => {

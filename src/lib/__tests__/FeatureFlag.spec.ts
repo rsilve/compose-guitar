@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import FeatureFlag from "../../stores/FeatureFlag";
+import FeatureFlag from "../../lib/FeatureFlag";
 import { stateTest } from "../../__tests__/TestHelpers";
 
 describe("FeatureFlag", () => {

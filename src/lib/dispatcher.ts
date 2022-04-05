@@ -1,5 +1,5 @@
-import Action from "../actions/Action";
 import { default_state, IState } from "./state";
+import Action from "./Action";
 
 let _state: IState;
 

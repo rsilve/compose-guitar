@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import AppMainPreview from "../app-main-preview";
-import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
-import { IState } from "../../../stores/state";
+import { connect, register, resetDispatcher } from "../../../lib/dispatcher";
+import { IState } from "../../../lib/state";
 import { songEditCallback } from "../store";
 
 describe("app main preview element", () => {

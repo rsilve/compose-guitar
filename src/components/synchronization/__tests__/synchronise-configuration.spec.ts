@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizeConfiguration from "../SynchronizeConfiguration";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import { SYNCHRO_CONFIGURATION_CLOSE } from "../actions";
 import { stateTest } from "../../../__tests__/TestHelpers";
 

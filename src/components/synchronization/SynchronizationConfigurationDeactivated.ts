@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { localized, msg } from "@lit/localize";
-import { IStateSynchronization } from "../../stores/state";
+import { IStateSynchronization } from "../../lib/state";
 import { buttonStyles } from "../styles";
 import { actionSynchronizationActivation } from "./actions";
 

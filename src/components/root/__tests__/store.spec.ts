@@ -1,12 +1,12 @@
 import { expect } from "@open-wc/testing";
 
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { INIT_APP } from "../actions";
-import FeatureFlag from "../../../stores/FeatureFlag";
-import { storage } from "../../../stores/register/gallery_tools";
-import { IState, STATE_VERSION } from "../../../stores/state";
+import FeatureFlag from "../../../lib/FeatureFlag";
+import { storage } from "../../../lib/register/gallery_tools";
+import { IState, STATE_VERSION } from "../../../lib/state";
 import { initAppCallback } from "../store";
+import Action from "../../../lib/Action";
 
 describe("Register misc", () => {
   const st = stateTest;

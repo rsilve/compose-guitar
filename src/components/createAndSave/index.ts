@@ -1,5 +1,5 @@
 import "./ConfirmSave";
-import { register } from "../../stores/dispatcher";
+import { register } from "../../lib/dispatcher";
 import { createAndSaveCallback } from "./store";
 import { copy_key, paste_key, track_new_key } from "./keyboard";
 

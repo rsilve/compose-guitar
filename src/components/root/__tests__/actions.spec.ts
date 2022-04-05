@@ -1,6 +1,6 @@
 import { expect } from "@open-wc/testing";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { default_state } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { default_state } from "../../../lib/state";
 import { actionInitApp, INIT_APP } from "../actions";
 
 describe("actions", () => {

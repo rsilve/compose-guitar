@@ -1,5 +1,5 @@
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { default_state } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { default_state } from "../../../lib/state";
 import { actionSaveAsStart, actionSaveAsStartAndNew, SAVE_AS_START, SAVE_AS_START_AND_NEW } from "../actions";
 import { expect } from "@open-wc/testing";
 

@@ -11,10 +11,10 @@ import {
   SYNCHRO_SIGN_OUT,
   SYNCHRO_TOGGLE_ENABLED,
 } from "../actions";
-import { IState } from "../../../stores/state";
-import Action from "../../../actions/Action";
-import DispatcherError from "../../../stores/DispatcherError";
+import { IState } from "../../../lib/state";
+import DispatcherError from "../../../lib/DispatcherError";
 import { MODALS_CLOSE } from "../../modals/actions";
+import Action from "../../../lib/Action";
 
 function synchroActivationRequest(action: Action, result: IState) {
   if (action.actionType === SYNCHRO_ACTIVATION_REQUEST || action.actionType === SYNCHRO_DEACTIVATION_REQUEST) {

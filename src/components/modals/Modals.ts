@@ -5,8 +5,8 @@ import "../song";
 import "../../components/help";
 import "../createAndSave";
 import "../../components/synchronization";
-import { DispatcherController } from "../../stores/lit_controller";
-import { IState } from "../../stores/state";
+import { DispatcherController } from "../../lib/lit_controller";
+import { IState } from "../../lib/state";
 import { localized } from "@lit/localize";
 
 @localized()

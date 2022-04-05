@@ -1,7 +1,7 @@
 import { expect } from "@open-wc/testing";
 import { actionTransposeChange, TRANSPOSE_CHANGE } from "../actions";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { default_state } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { default_state } from "../../../lib/state";
 
 describe("actions", () => {
   it("transpose", async () => {

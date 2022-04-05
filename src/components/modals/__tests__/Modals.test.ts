@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Modals from "../Modals";
-import { resetDispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../lib/dispatcher";
 import { stateTest } from "../../../__tests__/TestHelpers";
 
 describe("Modals element", () => {

@@ -1,9 +1,9 @@
 import { expect } from "@open-wc/testing";
 
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { zoomChangeCallback } from "../store";
 import { ZOOM_CHANGE } from "../actions";
+import Action from "../../../lib/Action";
 
 describe("Register misc", () => {
   const st = stateTest;

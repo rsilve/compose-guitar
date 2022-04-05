@@ -1,6 +1,6 @@
-import Action from "../../actions/Action";
-import { IState } from "../../stores/state";
+import { IState } from "../../lib/state";
 import { TRANSPOSE_CHANGE } from "./actions";
+import Action from "../../lib/Action";
 
 export function transposeChangeCallback(action: Action, state: IState): Promise<IState> {
   let result = { ...state };

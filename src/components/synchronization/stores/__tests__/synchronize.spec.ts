@@ -15,9 +15,9 @@ import {
   SYNCHRO_TOGGLE_ENABLED,
 } from "../../actions";
 import { stateTest } from "../../../../__tests__/TestHelpers";
-import Action from "../../../../actions/Action";
-import DispatcherError from "../../../../stores/DispatcherError";
+import DispatcherError from "../../../../lib/DispatcherError";
 import { MODALS_CLOSE } from "../../../modals/actions";
+import Action from "../../../../lib/Action";
 
 describe("synchronize callback", () => {
   const st = stateTest;

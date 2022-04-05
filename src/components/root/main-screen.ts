@@ -3,8 +3,8 @@ import { customElement, state } from "lit/decorators.js";
 
 import "../onBoarding";
 import "../song";
-import { IState } from "../../stores/state";
-import { DispatcherController } from "../../stores/lit_controller";
+import { IState } from "../../lib/state";
+import { DispatcherController } from "../../lib/lit_controller";
 
 @customElement("main-screen")
 class MainScreen extends LitElement {

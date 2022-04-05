@@ -9,7 +9,7 @@ import "../modals";
 import "../help";
 import "../notification";
 import "../synchronization";
-import FeatureFlag from "../../stores/FeatureFlag";
+import FeatureFlag from "../../lib/FeatureFlag";
 import { noPrintStyles } from "../styles";
 
 @customElement("editor-main")

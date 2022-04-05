@@ -2,10 +2,10 @@ import { css, html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { localized, msg } from "@lit/localize";
 import "../icons";
-import { IGalleryTrack } from "../../stores/state";
+import { IGalleryTrack } from "../../lib/state";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionGalleryClose, actionGalleryRemove, actionUploadFromGallery } from "./actions";
-import { storage } from "../../stores/register/gallery_tools";
+import { storage } from "../../lib/register/gallery_tools";
 import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
 import { actionNotificationOpen } from "../notification/actions";
 

@@ -9,8 +9,8 @@ import {
   GALLERY_REMOVE,
   UPLOAD_FROM_GALLERY,
 } from "../actions";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { default_state } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { default_state } from "../../../lib/state";
 
 describe("actions", () => {
   it("upload_from_gallery", async () => {

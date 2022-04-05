@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import { notificationCallback } from "../store";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { NOTIFICATION_CLOSE, NOTIFICATION_OPEN } from "../actions";
+import Action from "../../../lib/Action";
 
 describe("Notification callback", () => {
   const st = stateTest;

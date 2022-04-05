@@ -1,6 +1,6 @@
-import { storage } from "../../stores/register/gallery_tools";
-import { connect, initializeState } from "../../stores/dispatcher";
-import { default_state } from "../../stores/state";
+import { storage } from "../../lib/register/gallery_tools";
+import { connect, initializeState } from "../../lib/dispatcher";
+import { default_state } from "../../lib/state";
 import { actionInitApp } from "./actions";
 
 export default async function initApp(): Promise<void> {

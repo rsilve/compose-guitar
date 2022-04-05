@@ -1,5 +1,5 @@
-import { register, resetDispatcher } from "../../../stores/dispatcher";
-import { default_state } from "../../../stores/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
+import { default_state } from "../../../lib/state";
 import { expect } from "@open-wc/testing";
 import {
   actionSynchroForce,

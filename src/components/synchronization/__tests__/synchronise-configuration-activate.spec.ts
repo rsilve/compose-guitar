@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import SynchronizationConfigurationActivated from "../SynchronizationConfigurationActivated";
-import { IStateSynchronization } from "../../../stores/state";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { IStateSynchronization } from "../../../lib/state";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import { SYNCHRO_DEACTIVATION, SYNCHRO_SIGN_OUT } from "../actions";
 
 describe("synchronise configuration activate element", () => {

@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { HELP_CLOSE, HELP_OPEN } from "../actions";
 import { helpCallback } from "../store";
+import Action from "../../../lib/Action";
 
 describe("help callback", () => {
   const st = stateTest;

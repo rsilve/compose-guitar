@@ -1,5 +1,5 @@
 import "./TransposeGrid";
-import { register } from "../../stores/dispatcher";
+import { register } from "../../lib/dispatcher";
 import { transposeChangeCallback } from "./store";
 
 register(transposeChangeCallback);

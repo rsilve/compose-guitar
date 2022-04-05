@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import MainScreen from "../main-screen";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { resetDispatcher } from "../../../stores/dispatcher";
+import { resetDispatcher } from "../../../lib/dispatcher";
 
 describe("Main screen element", () => {
   const st = stateTest;

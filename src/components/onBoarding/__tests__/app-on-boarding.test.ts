@@ -1,7 +1,7 @@
 import { expect, fixture, html } from "@open-wc/testing";
 
 import AppOnBoarding from "../app-on-boarding";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import { TRACK_NEW } from "../../../components/createAndSave/actions";
 
 describe("app on boarding element", () => {

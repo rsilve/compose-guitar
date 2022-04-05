@@ -1,6 +1,6 @@
-import { publishAction } from "../../actions/publish_action";
-import Action from "../../actions/Action";
-import { IPayloadEditor } from "../../actions/actions";
+import { publishAction } from "../../lib/publish_action";
+import Action from "../../lib/Action";
+import { IPayloadEditor } from "../../lib/actions";
 
 export const TRACK_NEW_CANCEL = "TRACK_NEW_CANCEL";
 export const actionTrackNewCancel = (): void => {

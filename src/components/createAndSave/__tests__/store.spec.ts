@@ -1,12 +1,12 @@
 import { expect } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import Action from "../../../actions/Action";
 import { SAVE_AS_START, SAVE_AS_START_AND_NEW, TRACK_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
 import { createAndSaveCallback } from "../store";
 import sinon from "sinon";
-import { getFromGallery } from "../../../stores/register/gallery_tools";
+import { getFromGallery } from "../../../lib/register/gallery_tools";
 import { synchronizer } from "../../synchronization/stores/synchronizer";
 import { MODALS_CLOSE } from "../../modals/actions";
+import Action from "../../../lib/Action";
 
 describe("track callback", () => {
   const st = stateTest;

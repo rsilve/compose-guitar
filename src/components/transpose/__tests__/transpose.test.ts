@@ -1,6 +1,6 @@
 import { expect, fixture, fixtureCleanup, html } from "@open-wc/testing";
 import TransposeGrid from "../TransposeGrid";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import { transposeChangeCallback } from "../store";
 
 describe("transpose element", () => {

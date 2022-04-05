@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import ConfirmSave from "../ConfirmSave";
-import { register } from "../../../stores/dispatcher";
+import { register } from "../../../lib/dispatcher";
 import { SAVE_AS_START_AND_NEW, TRACK_NEW_CANCEL, TRACK_NEW_WITHOUT_SAVE } from "../actions";
 
 describe("Confirm save element", () => {

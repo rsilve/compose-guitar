@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import { connect, dispatch, init, register, resetDispatcher, disconnect } from "../dispatcher";
-import Action from "../../actions/Action";
 import { stateTest } from "../../__tests__/TestHelpers";
 import { IState } from "../state";
+import Action from "../Action";
 
 describe("Dispatcher", () => {
   const st = stateTest;

@@ -1,4 +1,4 @@
-import { IState } from "../../stores/state";
+import { IState } from "../../lib/state";
 import { actionTrackEdit } from "./actions";
 
 export function editKey(e: KeyboardEvent, state: IState | undefined) {

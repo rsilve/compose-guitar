@@ -1,6 +1,6 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import AccountStatus from "../AccountStatus";
 import {
   SYNCHRO_ACTIVATION_REQUEST,

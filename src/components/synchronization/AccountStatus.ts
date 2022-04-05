@@ -3,8 +3,8 @@ import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import "../icons";
 import "./SynchronizationStatus";
-import { IState } from "../../stores/state";
-import { DispatcherController } from "../../stores/lit_controller";
+import { IState } from "../../lib/state";
+import { DispatcherController } from "../../lib/lit_controller";
 import {
   actionSynchroForce,
   actionSynchroForceStart,

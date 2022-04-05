@@ -1,6 +1,6 @@
 import { fixture, html, expect, fixtureCleanup } from "@open-wc/testing";
 import ZoomGrid from "../zoom-grid";
-import { register, resetDispatcher } from "../../../stores/dispatcher";
+import { register, resetDispatcher } from "../../../lib/dispatcher";
 import { zoomChangeCallback } from "../store";
 
 describe("Zoom grid element", () => {

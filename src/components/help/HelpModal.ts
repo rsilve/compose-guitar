@@ -1,10 +1,10 @@
 import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { IState, IStateFeatureFlag } from "../../stores/state";
+import { IState, IStateFeatureFlag } from "../../lib/state";
 import { msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionHelpClose } from "./actions";
-import { DispatcherController } from "../../stores/lit_controller";
+import { DispatcherController } from "../../lib/lit_controller";
 import { actionSynchroToggleEnable } from "../synchronization/actions";
 
 @customElement("help-modal")

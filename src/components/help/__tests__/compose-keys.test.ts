@@ -4,8 +4,8 @@ import { zoomChangeCallback } from "../../zoom/store";
 import { galleryCallback } from "../../gallery/store";
 import { helpCallback } from "../store";
 import { stateTest } from "../../../__tests__/TestHelpers";
-import { connect, register, resetDispatcher } from "../../../stores/dispatcher";
-import { IState, IStateTrack } from "../../../stores/state";
+import { connect, register, resetDispatcher } from "../../../lib/dispatcher";
+import { IState, IStateTrack } from "../../../lib/state";
 import { songEditCallback } from "../../song/store";
 import { createAndSaveCallback } from "../../createAndSave/store";
 

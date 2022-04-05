@@ -1,5 +1,5 @@
 import "./TrackGallery";
-import { register } from "../../stores/dispatcher";
+import { register } from "../../lib/dispatcher";
 import { galleryCallback, uploadCallback } from "./store";
 import { openKey } from "./keyboard";
 

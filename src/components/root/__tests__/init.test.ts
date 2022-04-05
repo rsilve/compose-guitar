@@ -1,8 +1,8 @@
 import { expect } from "@open-wc/testing";
 import init from "../initApp";
-import { connect, register } from "../../../stores/dispatcher";
-import { IState } from "../../../stores/state";
-import { storage } from "../../../stores/register/gallery_tools";
+import { connect, register } from "../../../lib/dispatcher";
+import { IState } from "../../../lib/state";
+import { storage } from "../../../lib/register/gallery_tools";
 import { INIT_APP } from "../actions";
 
 describe("Init", () => {

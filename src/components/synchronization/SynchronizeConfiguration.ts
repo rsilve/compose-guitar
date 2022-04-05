@@ -1,12 +1,12 @@
 import { html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { IState, IStateSynchronization } from "../../stores/state";
+import { IState, IStateSynchronization } from "../../lib/state";
 import "./SynchronizationConfigurationActivated";
 import "./SynchronizationConfigurationDeactivated";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionSynchronizationConfigurationClose } from "./actions";
-import { DispatcherController } from "../../stores/lit_controller";
+import { DispatcherController } from "../../lib/lit_controller";
 
 @localized()
 @customElement("synchronize-configuration")
