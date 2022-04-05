@@ -23,7 +23,7 @@ describe("Init", () => {
 
     expect(storage.getLastState()).to.be.undefined;
     // initialize_state()
-    init();
+    await init();
     await promise;
     expect(action_init_done).to.be.true;
     expect(storage.getLastState()).not.be.undefined;

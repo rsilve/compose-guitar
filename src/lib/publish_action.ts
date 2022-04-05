@@ -1,4 +1,4 @@
-import { dispatch } from "../lib/dispatcher";
+import { dispatch } from "./dispatcher";
 import Action from "./Action";
 
 export function publishAction(action: Action): Promise<void> {

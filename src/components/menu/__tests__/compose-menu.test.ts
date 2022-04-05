@@ -1,8 +1,8 @@
 import { expect, fixture, html } from "@open-wc/testing";
 import Menu from "../Menu";
 import { register, resetDispatcher } from "../../../lib/dispatcher";
-import { GALLERY_OPEN } from "../../../components/gallery/actions";
-import { SAVE_AS_START, TRACK_NEW } from "../../../components/createAndSave/actions";
+import { GALLERY_OPEN } from "../../gallery/actions";
+import { SAVE_AS_START, TRACK_NEW } from "../../createAndSave/actions";
 
 describe("Menu element", () => {
   it("is defined", async () => {

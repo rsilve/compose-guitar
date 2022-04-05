@@ -3,8 +3,7 @@ import { customElement } from "lit/decorators.js";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionSaveAsStartAndNew, actionTrackNewCancel, actionTrackNewWithoutSave } from "./actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 
 @localized()
 @customElement("confirm-save")
@@ -12,7 +11,7 @@ class ConfirmSave extends LitElement {
   static styles = [modalStyles, buttonStyles];
 
   private dispatchSave() {
-    actionSaveAsStartAndNew().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
+    actionSaveAsStartAndNew().then(() => actionNotificationOpen(messageEnum.SAVE_COMPLETED));
   }
 
   render(): unknown {

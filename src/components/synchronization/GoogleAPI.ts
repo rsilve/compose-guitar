@@ -3,8 +3,7 @@ import { customElement, state } from "lit/decorators.js";
 import { IState } from "../../lib/state";
 import { DispatcherController } from "../../lib/lit_controller";
 import { actionSynchroForce, actionSynchroForceStart, actionSynchroSignIn } from "./actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 
 @customElement("google-api")
 class GoogleAPI extends LitElement {
@@ -30,7 +29,7 @@ class GoogleAPI extends LitElement {
     actionSynchroSignIn()
       .then(actionSynchroForceStart)
       .then(actionSynchroForce)
-      .then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SYNC_COMPLETED));
+      .then(() => actionNotificationOpen(messageEnum.NOTIFICATION_MESSAGE_SYNC_COMPLETED));
   }
 
   script() {

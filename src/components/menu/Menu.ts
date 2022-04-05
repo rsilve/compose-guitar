@@ -8,8 +8,7 @@ import { DispatcherController } from "../../lib/lit_controller";
 import { localized, msg } from "@lit/localize";
 import { actionGalleryOpen } from "../gallery/actions";
 import { actionSaveAsStart, actionTrackNew } from "../createAndSave/actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 
 @localized()
 @customElement("compose-menu")
@@ -36,7 +35,7 @@ class Menu extends LitElement {
   private needSave = false;
 
   private handleSave(): void {
-    actionSaveAsStart().then(() => actionNotificationOpen(NotificationMessageEnum.SAVE_COMPLETED));
+    actionSaveAsStart().then(() => actionNotificationOpen(messageEnum.SAVE_COMPLETED));
   }
 
   render(): unknown {

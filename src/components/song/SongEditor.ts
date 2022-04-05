@@ -11,8 +11,7 @@ import { IState } from "../../lib/state";
 import { localized, msg } from "@lit/localize";
 import { buttonStyles, inputStyles, modalStyles } from "../styles";
 import { actionTrackEditApply, actionTrackEditCancel } from "./actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 import { storage } from "../../lib/gallery_tools";
 
 @localized()
@@ -99,7 +98,7 @@ class SongEditor extends LitElement {
         title: this._grid_title,
         grid_text: this._value,
         updated_at: new Date().toISOString(),
-      }).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_UPDATED));
+      }).then(() => actionNotificationOpen(messageEnum.TRACK_UPDATED));
     } else {
       console.info("grid text is empty: close");
       actionTrackEditCancel();

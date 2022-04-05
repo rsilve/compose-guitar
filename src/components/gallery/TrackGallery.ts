@@ -5,8 +5,7 @@ import "../icons";
 import { IGalleryTrack } from "../../lib/state";
 import { buttonStyles, modalStyles } from "../styles";
 import { actionGalleryClose, actionGalleryRemove, actionUploadFromGallery } from "./actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 import { storage } from "../../lib/gallery_tools";
 
 @localized()
@@ -91,7 +90,7 @@ class TrackGallery extends LitElement {
   generateHandlerSelect(id: string) {
     return (): void => {
       this.clearEventualTimeout();
-      actionUploadFromGallery(id).then(() => actionNotificationOpen(NotificationMessageEnum.TRACK_LOADED));
+      actionUploadFromGallery(id).then(() => actionNotificationOpen(messageEnum.TRACK_LOADED));
     };
   }
 

@@ -1,4 +1,4 @@
-import { html, LitElement, css } from "lit";
+import { css, html, LitElement } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import "../icons";
@@ -11,8 +11,7 @@ import {
   actionSynchronizationActivationRequest,
   actionSynchronizationDeactivationRequest,
 } from "./actions";
-import { NotificationMessageEnum } from "../notification/NotificationMessageEnum";
-import { actionNotificationOpen } from "../notification/actions";
+import { actionNotificationOpen, messageEnum } from "../notification";
 
 @customElement("account-status")
 class AccountStatus extends LitElement {
@@ -75,7 +74,7 @@ class AccountStatus extends LitElement {
     if (!this.syncInProgress) {
       actionSynchroForceStart()
         .then(actionSynchroForce)
-        .then(() => actionNotificationOpen(NotificationMessageEnum.NOTIFICATION_MESSAGE_SYNC_COMPLETED))
+        .then(() => actionNotificationOpen(messageEnum.NOTIFICATION_MESSAGE_SYNC_COMPLETED))
         .catch((reason) => {
           console.info(reason);
         });
