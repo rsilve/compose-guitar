@@ -63,7 +63,7 @@
     "sinon": "^13.0.2",
     "typescript": "^4.6.3",
     "vite": "^2.9.5",
-    "vite-plugin-pwa": "^0.11.13"
+    "vite-plugin-pwa": "^0.12.0"
   },
   "dependencies": {
     "@lit/localize": "^0.11.2",
