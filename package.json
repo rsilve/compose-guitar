@@ -29,10 +29,15 @@
     "release:minor": "npm version minor && git push && git push --tags",
     "release:post": "npm version prerelease && git push && git push --tags",
     "deploy:beta": "git tag -f beta && git push --tags -f",
-    "deploy:prod": "git tag -f prod.$(date +%Y%m%d) && git push --tags -f"
+    "deploy:prod": "git tag -f prod.$(date +%Y%m%d) && git push --tags -f",
+
+    "preinstall": "npx npm-force-resolutions"
   },
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
+  "resolutions": {
+    "async": "^3.2.3"
+  },
   "devDependencies": {
     "@lit/localize-tools": "^0.6.3",
     "@open-wc/testing": "^3.1.4",
