@@ -41,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "@web/dev-server-esbuild": "^0.2.16",
-    "@web/test-runner": "^0.13.29",
+    "@web/test-runner": "^0.13.30",
     "@web/test-runner-playwright": "^0.8.9",
     "audit-ci": "^6.3.0",
     "copyfiles": "^2.4.1",
