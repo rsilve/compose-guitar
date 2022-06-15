@@ -66,7 +66,7 @@
     "vite-plugin-pwa": "^0.12.0"
   },
   "dependencies": {
-    "@lit/localize": "^0.11.2",
+    "@lit/localize": "^0.11.3",
     "@types/gapi": "^0.0.42",
     "@types/gapi.auth2": "^0.0.56",
     "@types/gapi.client.drive": "^3.0.13",
