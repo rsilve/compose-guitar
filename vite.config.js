@@ -1,4 +1,5 @@
 import { VitePWA } from "vite-plugin-pwa";
+import { splitVendorChunkPlugin } from "vite";
 
 let hmr = {};
 if (process.env.GITPOD_GIT_USER_EMAIL) {
@@ -19,6 +20,7 @@ export default {
     hmr: hmr,
   },
   plugins: [
+    splitVendorChunkPlugin(),
     VitePWA({
       includeAssets: [
         "favicon.ico",
