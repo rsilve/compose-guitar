@@ -25,8 +25,8 @@
     "prepare:test": "npm-run-all prepare:playwright prepare:playwright-deps",
     "localize:extract": "lit-localize extract",
     "localize:build": "lit-localize build",
-    "release:patch": "npm version patch && git push && git push --tags",
-    "release:minor": "npm version minor && git push && git push --tags",
+    "release:patch": "npm version patch && git push && git push --tags -f",
+    "release:minor": "npm version minor && git push && git push --tags -f",
     "release:post": "npm version prerelease && git push && git push --tags",
     "deploy:beta": "git tag -f beta && git push --tags -f",
     "deploy:prod": "git tag -f prod.$(date +%Y%m%d) && git push --tags -f"
