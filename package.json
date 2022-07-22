@@ -34,7 +34,7 @@
   "author": "Robert Silve <robert@silve.net>",
   "license": "ISC",
   "devDependencies": {
-    "@lit/localize-tools": "^0.6.4",
+    "@lit/localize-tools": "^0.6.5",
     "@open-wc/testing": "^3.1.6",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.6",
